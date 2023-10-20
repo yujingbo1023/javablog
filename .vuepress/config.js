@@ -1,5 +1,5 @@
 module.exports = {
-  "title": "全栈开发",
+  "title": "码路全栈开发",
   "description": "快来玩java全栈呀",
   "dest": "public",
   "head": [
