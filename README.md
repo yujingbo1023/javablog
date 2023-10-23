@@ -1,7 +1,7 @@
 ---
 home: true
 heroText: JAVA全栈全能开发
-tagline: 跟着码路学全栈开发呀.
+tagline: 跟着码路学全栈开发呀（微信：malumanman）.
 # heroImage: /hero.png
 # heroImageStyle: {
 #   maxWidth: '600px',
