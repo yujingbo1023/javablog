@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>02-MySQL下 | 码路全栈开发</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/javablog/public/favicon.ico">
+    <meta name="description" content="快来玩java全栈呀">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/javablog/public/assets/css/0.styles.ca9f9cd1.css" as="style"><link rel="preload" href="/javablog/public/assets/js/app.c0a5f9ce.js" as="script"><link rel="preload" href="/javablog/public/assets/js/18.c0914709.js" as="script"><link rel="preload" href="/javablog/public/assets/js/1.4a2aebf2.js" as="script"><link rel="preload" href="/javablog/public/assets/js/27.9c5919b3.js" as="script"><link rel="prefetch" href="/javablog/public/assets/js/10.40d2aac8.js"><link rel="prefetch" href="/javablog/public/assets/js/11.ebbb2b64.js"><link rel="prefetch" href="/javablog/public/assets/js/12.028e8706.js"><link rel="prefetch" href="/javablog/public/assets/js/13.f827e6a0.js"><link rel="prefetch" href="/javablog/public/assets/js/14.3810a930.js"><link rel="prefetch" href="/javablog/public/assets/js/15.f0b83a80.js"><link rel="prefetch" href="/javablog/public/assets/js/16.242ec567.js"><link rel="prefetch" href="/javablog/public/assets/js/17.45f24e4b.js"><link rel="prefetch" href="/javablog/public/assets/js/19.b68b69f8.js"><link rel="prefetch" href="/javablog/public/assets/js/20.8003f6a1.js"><link rel="prefetch" href="/javablog/public/assets/js/21.a3e1096b.js"><link rel="prefetch" href="/javablog/public/assets/js/22.755871ca.js"><link rel="prefetch" href="/javablog/public/assets/js/23.e01a964d.js"><link rel="prefetch" href="/javablog/public/assets/js/24.630703df.js"><link rel="prefetch" href="/javablog/public/assets/js/25.9f08e2cc.js"><link rel="prefetch" href="/javablog/public/assets/js/26.33ff3bee.js"><link rel="prefetch" href="/javablog/public/assets/js/28.02347ffa.js"><link rel="prefetch" href="/javablog/public/assets/js/29.b5a07304.js"><link rel="prefetch" href="/javablog/public/assets/js/3.05f3e74e.js"><link rel="prefetch" href="/javablog/public/assets/js/30.727ca7a5.js"><link rel="prefetch" href="/javablog/public/assets/js/31.fe9f4c8c.js"><link rel="prefetch" href="/javablog/public/assets/js/32.7f7866b0.js"><link rel="prefetch" href="/javablog/public/assets/js/33.aca12b54.js"><link rel="prefetch" href="/javablog/public/assets/js/34.a066455e.js"><link rel="prefetch" href="/javablog/public/assets/js/35.bd408cba.js"><link rel="prefetch" href="/javablog/public/assets/js/36.5b50c72a.js"><link rel="prefetch" href="/javablog/public/assets/js/37.a01c884f.js"><link rel="prefetch" href="/javablog/public/assets/js/38.83805877.js"><link rel="prefetch" href="/javablog/public/assets/js/39.f1ad83b1.js"><link rel="prefetch" href="/javablog/public/assets/js/4.b87ee8ba.js"><link rel="prefetch" href="/javablog/public/assets/js/40.93baa0fb.js"><link rel="prefetch" href="/javablog/public/assets/js/41.d8df5b7a.js"><link rel="prefetch" href="/javablog/public/assets/js/42.5b075093.js"><link rel="prefetch" href="/javablog/public/assets/js/43.d16414ae.js"><link rel="prefetch" href="/javablog/public/assets/js/44.404e6efa.js"><link rel="prefetch" href="/javablog/public/assets/js/45.27f2138e.js"><link rel="prefetch" href="/javablog/public/assets/js/46.f55aecea.js"><link rel="prefetch" href="/javablog/public/assets/js/47.856e1b23.js"><link rel="prefetch" href="/javablog/public/assets/js/48.da94ed6b.js"><link rel="prefetch" href="/javablog/public/assets/js/49.fe3f40d0.js"><link rel="prefetch" href="/javablog/public/assets/js/5.ecc7ca5f.js"><link rel="prefetch" href="/javablog/public/assets/js/50.cc1822c6.js"><link rel="prefetch" href="/javablog/public/assets/js/51.5d5141e1.js"><link rel="prefetch" href="/javablog/public/assets/js/6.87a1822c.js"><link rel="prefetch" href="/javablog/public/assets/js/7.af280ff3.js"><link rel="prefetch" href="/javablog/public/assets/js/8.5ca75c41.js"><link rel="prefetch" href="/javablog/public/assets/js/9.64c1590f.js">
+    <link rel="stylesheet" href="/javablog/public/assets/css/0.styles.ca9f9cd1.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-1c636796><div data-v-1c636796><div class="password-shadow password-wrapper-out" style="display:none;" data-v-2c3e9f55 data-v-1c636796 data-v-1c636796><h3 class="title" data-v-2c3e9f55>码路全栈开发</h3> <p class="description" data-v-2c3e9f55>快来玩java全栈呀</p> <label id="box" class="inputBox" data-v-2c3e9f55><input type="password" value="" data-v-2c3e9f55> <span data-v-2c3e9f55>Konck! Knock!</span> <button data-v-2c3e9f55>OK</button></label> <div class="footer" data-v-2c3e9f55><span data-v-2c3e9f55><i class="iconfont reco-theme" data-v-2c3e9f55></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-2c3e9f55>vuePress-theme-reco</a></span> <span data-v-2c3e9f55><i class="iconfont reco-copyright" data-v-2c3e9f55></i> <a data-v-2c3e9f55><span data-v-2c3e9f55>码路</span>
+          
+        <span data-v-2c3e9f55>2017 - </span>
+        2023
+      </a></span></div></div> <div class="hide" data-v-1c636796><header class="navbar" data-v-1c636796><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/javablog/public/" class="home-link router-link-active"><img src="/javablog/public/logo.png" alt="码路全栈开发" class="logo"> <span class="site-name">码路全栈开发</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javase/" class="nav-link"><i class="undefined"></i>
+  javase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-1c636796></div> <aside class="sidebar" data-v-1c636796><div class="personal-info-wrapper" data-v-6f92ba70 data-v-1c636796><img src="/javablog/public/avatar.png" alt="author-avatar" class="personal-img" data-v-6f92ba70> <h3 class="name" data-v-6f92ba70>
+    码路
+  </h3> <div class="num" data-v-6f92ba70><div data-v-6f92ba70><h3 data-v-6f92ba70>41</h3> <h6 data-v-6f92ba70>Articles</h6></div> <div data-v-6f92ba70><h3 data-v-6f92ba70>5</h3> <h6 data-v-6f92ba70>Tags</h6></div></div> <ul class="social-links" data-v-6f92ba70></ul> <hr data-v-6f92ba70></div> <nav class="nav-links"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javase/" class="nav-link"><i class="undefined"></i>
+  javase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-2c3e9f55 data-v-1c636796><h3 class="title" data-v-2c3e9f55>02-MySQL下</h3> <!----> <label id="box" class="inputBox" data-v-2c3e9f55><input type="password" value="" data-v-2c3e9f55> <span data-v-2c3e9f55>Konck! Knock!</span> <button data-v-2c3e9f55>OK</button></label> <div class="footer" data-v-2c3e9f55><span data-v-2c3e9f55><i class="iconfont reco-theme" data-v-2c3e9f55></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-2c3e9f55>vuePress-theme-reco</a></span> <span data-v-2c3e9f55><i class="iconfont reco-copyright" data-v-2c3e9f55></i> <a data-v-2c3e9f55><span data-v-2c3e9f55>码路</span>
+          
+        <span data-v-2c3e9f55>2017 - </span>
+        2023
+      </a></span></div></div> <div data-v-1c636796><div data-v-1c636796><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">02-MySQL下</h1> <div data-v-6acedb3b><i class="iconfont reco-account" data-v-6acedb3b><span data-v-6acedb3b>码路</span></i> <i class="iconfont reco-date" data-v-6acedb3b><span data-v-6acedb3b>12/15/2028</span></i> <!----> <i class="tags iconfont reco-tag" data-v-6acedb3b><span class="tag-item" data-v-6acedb3b>javaweb</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="一-约束"><a href="#一-约束" class="header-anchor">#</a> 一，约束</h2> <h3 id="_1-什么是约束"><a href="#_1-什么是约束" class="header-anchor">#</a> 1，什么是约束</h3> <p>看如下表：</p> <p><img src="/javablog/public/assets/img/1701940463670.9bef6117.png" alt="1701940463670"></p> <p>上面表存在的一些问题：</p> <ul><li>id 列一般是用标示数据的唯一性的，而上述表中的id为1的有三条数据，并且 <code>马花疼</code> 没有id进行标示</li> <li><code>柳白</code> 这条数据的age列的数据是3000，而人也不可能活到3000岁</li> <li><code>马运</code>  这条数据的math数学成绩是-5，而数学学得再不好也不可能出现负分</li> <li><code>柳青</code> 这条数据的english列（英文成绩）值为null，而成绩即使没考也得是0分</li></ul> <p>针对上面的遇到的问题，从数据库层面在添加数据的时候进行限制，这个就是约束。约束是作用于表中列上的规则，用于限制加入表的数据。例如：我们可以给id列加约束，让其值不能重复，不能为null值。</p> <p>约束的存在保证了数据库中数据的正确性、有效性和完整性。添加约束可以在添加数据的时候就限制不正确的数据，年龄是3000，数学成绩是-5分这样无效的数据，继而保障数据的完整性。</p> <h3 id="_2-分类"><a href="#_2-分类" class="header-anchor">#</a> 2，分类</h3> <p>非空约束： 关键字是 NOT NULL</p> <ul><li>保证列中所有的数据不能有null值。</li> <li>例如：id列在添加 <code>马花疼</code> 这条数据时就不能添加成功。</li></ul> <p>唯一约束：关键字是  UNIQUE</p> <ul><li>保证列中所有数据各不相同。</li> <li>例如：id列中三条数据的值都是1，这样的数据在添加时是绝对不允许的。</li></ul> <p>主键约束： 关键字是  PRIMARY KEY</p> <ul><li>主键是一行数据的唯一标识，要求非空且唯一。一般我们都会给没张表添加一个主键列用来唯一标识数据。</li> <li>例如：上图表中id就可以作为主键，来标识每条数据。那么这样就要求数据中id的值不能重复，不能为null值。</li></ul> <p>检查约束： 关键字是  CHECK</p> <ul><li>保证列中的值满足某一条件。</li> <li>例如：我们可以给age列添加一个范围，最低年龄可以设置为1，最大年龄就可以设置为300，这样的数据才更合理些。</li> <li>MySQL不支持检查约束。从数据库层面不能保证，以后可以在java代码中进行限制，一样也可以实现要求。</li></ul> <p>默认约束： 关键字是   DEFAULT</p> <ul><li>保存数据时，未指定值则采用默认值。</li> <li>例如：我们在给english列添加该约束，指定默认值是0，这样在添加数据时没有指定具体值时就会采用默认给定的0。</li></ul> <p>外键约束： 关键字是  FOREIGN KEY</p> <ul><li>外键用来让两个表的数据之间建立链接，保证数据的一致性和完整性。</li> <li>外键约束现在可能还不太好理解，后面我们会重点进行讲解。</li></ul> <h3 id="_3-非空约束"><a href="#_3-非空约束" class="header-anchor">#</a> 3，非空约束</h3> <p>非空约束用于保证列中所有数据不能有NULL值。添加约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 创建表时添加非空约束
+CREATE TABLE 表名(
+   列名 数据类型 NOT NULL,
+   …
+); 
+
+-- 建完表后添加非空约束
+ALTER TABLE 表名 MODIFY 字段名 数据类型 NOT NULL;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>删除约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>ALTER TABLE 表名 MODIFY 字段名 数据类型;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_4-唯一约束"><a href="#_4-唯一约束" class="header-anchor">#</a> 4，唯一约束</h3> <p>唯一约束用于保证列中所有数据各不相同。添加约束语法：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 创建表时添加唯一约束
+CREATE TABLE 表名(
+   列名 数据类型 UNIQUE [AUTO_INCREMENT],
+   -- AUTO_INCREMENT: 当不指定值时自动增长
+   …
+); 
+CREATE TABLE 表名(
+   列名 数据类型,
+   …
+   [CONSTRAINT] [约束名称] UNIQUE(列名)
+); 
+
+-- 建完表后添加唯一约束
+ALTER TABLE 表名 MODIFY 字段名 数据类型 UNIQUE;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>删除约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>ALTER TABLE 表名 DROP INDEX 字段名;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_5-主键约束"><a href="#_5-主键约束" class="header-anchor">#</a> 5，主键约束</h3> <p>键是一行数据的唯一标识，要求非空且唯一。一张表只能有一个主键。添加约束语法：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 创建表时添加主键约束
+CREATE TABLE 表名(
+   列名 数据类型 PRIMARY KEY [AUTO_INCREMENT],
+   …
+); 
+CREATE TABLE 表名(
+   列名 数据类型,
+   [CONSTRAINT] [约束名称] PRIMARY KEY(列名)
+); 
+
+-- 建完表后添加主键约束
+ALTER TABLE 表名 ADD PRIMARY KEY(字段名);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>删除约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>ALTER TABLE 表名 DROP PRIMARY KEY;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_6-默认约束"><a href="#_6-默认约束" class="header-anchor">#</a> 6，默认约束</h3> <p>保存数据时，未指定值则采用默认值，添加约束语法：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 创建表时添加默认约束
+CREATE TABLE 表名(
+   列名 数据类型 DEFAULT 默认值,
+   …
+); 
+
+-- 建完表后添加默认约束
+ALTER TABLE 表名 ALTER 列名 SET DEFAULT 默认值;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>删除约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>ALTER TABLE 表名 ALTER 列名 DROP DEFAULT;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_7-约束练习"><a href="#_7-约束练习" class="header-anchor">#</a> 7，约束练习</h3> <p>需求：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 员工表
+CREATE TABLE emp (
+	id INT,  -- 员工id，主键且自增长
+    ename VARCHAR(50), -- 员工姓名，非空且唯一
+    joindate DATE,  -- 入职日期，非空
+    salary DOUBLE(7,2),  -- 工资，非空
+    bonus DOUBLE(7,2)  -- 奖金，如果没有将近默认为0
+);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>上面一定给出了具体的要求，我们可以根据要求创建这张表，并为每一列添加对应的约束。建表语句如下：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>DROP TABLE IF EXISTS emp;
+
+-- 员工表
+CREATE TABLE emp (
+  id INT PRIMARY KEY, -- 员工id，主键且自增长
+  ename VARCHAR(50) NOT NULL UNIQUE, -- 员工姓名，非空并且唯一
+  joindate DATE NOT NULL , -- 入职日期，非空
+  salary DOUBLE(7,2) NOT NULL , -- 工资，非空
+  bonus DOUBLE(7,2) DEFAULT 0 -- 奖金，如果没有奖金默认为0
+);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>通过上面语句可以创建带有约束的 <code>emp</code> 表，约束能不能发挥作用呢。接下来我们一一进行验证，先添加一条没有问题的数据：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(id,ename,joindate,salary,bonus) values(1,'张三','1999-11-11',8800,5000);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h4 id="a-验证主键约束"><a href="#a-验证主键约束" class="header-anchor">#</a> a）验证主键约束</h4> <p>验证主键约束，非空且唯一：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(id,ename,joindate,salary,bonus) values(null,'张三','1999-11-11',8800,5000);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行结果如下：</p> <p>从上面的结果可以看到，字段 <code>id</code> 不能为null。那我们重新添加一条数据，如下：：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(id,ename,joindate,salary,bonus) values(1,'张三','1999-11-11',8800,5000);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>从上面结果可以看到，1这个值重复了。所以主键约束是用来限制数据非空且唯一的。那我们再添加一条符合要求的数据</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(id,ename,joindate,salary,bonus) values(2,'李四','1999-11-11',8800,5000);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行结果如下：</p> <h4 id="b-验证非空约束"><a href="#b-验证非空约束" class="header-anchor">#</a> b）验证非空约束</h4> <p>验证非空约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(id,ename,joindate,salary,bonus) values(3,null,'1999-11-11',8800,5000);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行结果：</p> <p>从上面结果可以看到， <code>ename</code> 字段的非空约束生效了。</p> <h4 id="c-验证唯一约束"><a href="#c-验证唯一约束" class="header-anchor">#</a> c）验证唯一约束</h4> <p>验证唯一约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(id,ename,joindate,salary,bonus) values(3,'李四','1999-11-11',8800,5000);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行结果如下：</p> <p>从上面结果可以看到， <code>ename</code> 字段的唯一约束生效了。</p> <h4 id="d-验证默认约束"><a href="#d-验证默认约束" class="header-anchor">#</a> d）验证默认约束</h4> <p>验证默认约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(id,ename,joindate,salary) values(3,'王五','1999-11-11',8800);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行完上面语句后查询表中数据，如下图可以看到王五这条数据的bonus列就有了默认值0。如下：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>默认约束只有在不给值时才会采用默认值。如果给了null，那值就是null值。</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(id,ename,joindate,salary,bonus) values(4,'赵六','1999-11-11',8800,null);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行结果如下：</p> <h4 id="e-验证自动增长约束"><a href="#e-验证自动增长约束" class="header-anchor">#</a> e）验证自动增长约束</h4> <p>条件： auto_increment  当列是数字类型 并且唯一约束</p> <p>重新创建 <code>emp</code> 表，并给id列添加自动增长：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 员工表
+CREATE TABLE emp (
+  id INT PRIMARY KEY auto_increment, -- 员工id，主键且自增长
+  ename VARCHAR(50) NOT NULL UNIQUE, -- 员工姓名，非空并且唯一
+  joindate DATE NOT NULL , -- 入职日期，非空
+  salary DOUBLE(7,2) NOT NULL , -- 工资，非空
+  bonus DOUBLE(7,2) DEFAULT 0 -- 奖金，如果没有奖金默认为0
+);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>接下来给emp添加数据，分别验证不给id列添加值以及给id列添加null值，id列的值会不会自动增长：：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>INSERT INTO emp(ename,joindate,salary,bonus) values('赵六','1999-11-11',8800,null);
+INSERT INTO emp(id,ename,joindate,salary,bonus) values(null,'赵六2','1999-11-11',8800,null);
+INSERT INTO emp(id,ename,joindate,salary,bonus) values(null,'赵六3','1999-11-11',8800,null);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_8-外键约束"><a href="#_8-外键约束" class="header-anchor">#</a> 8，外键约束</h3> <p>外键用来让两个表的数据之间建立链接，保证数据的一致性和完整性。如何理解上面的概念呢？如下图有两张表，员工表和部门表：</p> <p><img src="/javablog/public/assets/img/1701941435114.4d828c54.png" alt="1701941435114"></p> <p>员工表中的dep_id字段是部门表的id字段关联，也就是说1号学生张三属于1号部门研发部的员工。现在我要删除1号部门，就会出现错误的数据（员工表中属于1号部门的数据）。而我们上面说的两张表的关系只是我们认为它们有关系，此时需要通过外键让这两张表产生数据库层面的关系，这样你要删除部门表中的1号部门的数据将无法删除。</p> <p>添加外键约束语法：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 创建表时添加外键约束
+CREATE TABLE 表名(
+   列名 数据类型,
+   …
+   [CONSTRAINT] [外键名称] FOREIGN KEY(外键列名) REFERENCES 主表(主表列名) 
+); 
+
+-- 建完表后添加外键约束
+ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>删除外键约束：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>据上述语法创建员工表和部门表，并添加上外键约束：：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 删除表
+DROP TABLE IF EXISTS emp;
+DROP TABLE IF EXISTS dept;
+
+-- 部门表
+CREATE TABLE dept(
+	id int primary key auto_increment,
+	dep_name varchar(20),
+	addr varchar(20)
+);
+-- 员工表 
+CREATE TABLE emp(
+	id int primary key auto_increment,
+	name varchar(20),
+	age int,
+	dep_id int,
+
+	-- 添加外键 dep_id,关联 dept 表的id主键
+	CONSTRAINT fk_emp_dept FOREIGN KEY(dep_id) REFERENCES dept(id)	
+);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>添加数据：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 添加 2 个部门
+insert into dept(dep_name,addr) values
+('研发部','广州'),('销售部', '深圳');
+
+-- 添加员工,dep_id 表示员工所在的部门
+INSERT INTO emp (NAME, age, dep_id) VALUES 
+('张三', 20, 1),
+('李四', 20, 1),
+('王五', 20, 1),
+('赵六', 20, 2),
+('孙七', 22, 2),
+('周八', 18, 2);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>此时删除 <code>研发部</code> 这条数据，会发现无法删除。</p> <p>删除外键：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>alter table emp drop FOREIGN key fk_emp_dept;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>重新添加外键：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>alter table emp add CONSTRAINT fk_emp_dept FOREIGN key(dep_id) REFERENCES dept(id);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="二-数据库设计"><a href="#二-数据库设计" class="header-anchor">#</a> 二，数据库设计</h2> <h3 id="_1-什么是数据库设计"><a href="#_1-什么是数据库设计" class="header-anchor">#</a> 1，什么是数据库设计</h3> <p>所谓的数据库设计，就是设计一个项目中都有哪些表，以及表与表之间的关系。表关系分为：</p> <ul><li>一对一</li> <li>一对多</li> <li>多对多</li></ul> <p>一对一：</p> <ul><li>如用户与身份证就是一对一。如用户和用户详情就是一对一。</li> <li>一对一关系多用于表拆分，将一个实体中经常使用的字段放一张表，不经常使用的字段放另一张表，用于提升查询性能</li></ul> <p>一对多：</p> <ul><li>如部门和员工就是一对多。一个部门对应多个员工，一个员工对应一个部门。</li></ul> <p>多对多：</p> <ul><li>如商品和订单就是多对多。一个商品对应多个订单，一个订单包含多个商品。</li></ul> <h3 id="_2-一对多"><a href="#_2-一对多" class="header-anchor">#</a> 2，一对多</h3> <p>实现方式：</p> <ul><li>在多的一方建立外键，指向一的一方的主键</li></ul> <p>以 <code>员工表</code> 和 <code>部门表</code> 举例。员工表属于多的一方，而部门表属于一的一方，此时我们会在员工表中添加一列（dep_id），指向于部门表的主键（id）：</p> <p><img src="/javablog/public/assets/img/1701942193109.c3de8f93.png" alt="1701942193109"></p> <p>建表语句如下：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 删除表
+DROP TABLE IF EXISTS tb_emp;
+DROP TABLE IF EXISTS tb_dept;
+
+-- 部门表
+CREATE TABLE tb_dept(
+	id int primary key auto_increment,
+	dep_name varchar(20),
+	addr varchar(20)
+);
+-- 员工表 
+CREATE TABLE tb_emp(
+	id int primary key auto_increment,
+	name varchar(20),
+	age int,
+	dep_id int,
+
+	-- 添加外键 dep_id,关联 dept 表的id主键
+	CONSTRAINT fk_emp_dept FOREIGN KEY(dep_id) REFERENCES tb_dept(id)	
+);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>查看表结构模型图：</p> <p><img src="/javablog/public/assets/img/1701942365692.9b7bb351.png" alt="1701942365692"></p> <h3 id="_3-多对多"><a href="#_3-多对多" class="header-anchor">#</a> 3，多对多</h3> <p>实现方式：</p> <ul><li>建立第三张中间表，中间表至少包含两个外键，分别关联两方主键</li></ul> <p>以 <code>订单表</code> 和 <code>商品表</code> 举例，订单表和商品表都属于多的一方，此时需要创建一个中间表，在中间表中添加订单表的外键和商品表的外键指向两张表的主键：</p> <p><img src="/javablog/public/assets/img/1701942302468.6fb06f09.png" alt="1701942302468"></p> <p>建表语句：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 删除表
+DROP TABLE IF EXISTS tb_order_goods;
+DROP TABLE IF EXISTS tb_order;
+DROP TABLE IF EXISTS tb_goods;
+
+-- 订单表
+CREATE TABLE tb_order(
+	id int primary key auto_increment,
+	payment double(10,2),
+	payment_type TINYINT,
+	status TINYINT
+);
+
+-- 商品表
+CREATE TABLE tb_goods(
+	id int primary key auto_increment,
+	title varchar(100),
+	price double(10,2)
+);
+
+-- 订单商品中间表
+CREATE TABLE tb_order_goods(
+	id int primary key auto_increment,
+	order_id int,
+	goods_id int,
+	count int
+);
+
+-- 建完表后，添加外键
+alter table tb_order_goods add CONSTRAINT fk_order_id FOREIGN key(order_id) REFERENCES tb_order(id);
+alter table tb_order_goods add CONSTRAINT fk_goods_id FOREIGN key(goods_id) REFERENCES tb_goods(id);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br></div></div><p>查看表结构模型图：</p> <p><img src="/javablog/public/assets/img/1701942354150.81cfeacc.png" alt="1701942354150"></p> <h3 id="_4-一对一"><a href="#_4-一对一" class="header-anchor">#</a> 4，一对一</h3> <p>一对一关系多用于表拆分，将一个实体中经常使用的字段放一张表，不经常使用的字段放另一张表，用于提升查询性能。实现方式：</p> <ul><li>在任意一方加入外键，关联另一方主键，并且设置外键为唯一(UNIQUE)</li></ul> <p>以 <code>用户表</code> 举例：</p> <p><img src="/javablog/public/assets/img/1701942414480.683761ee.png" alt="1701942414480"></p> <p>真正使用过程中发现 id、photo、nickname、age、gender 字段比较常用，此时就可以将这张表查分成两张表。</p> <p><img src="/javablog/public/assets/img/1701942429318.e7e01434.png" alt="1701942429318"></p> <p>建表语句：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>create table tb_user_desc (
+	id int primary key auto_increment,
+	city varchar(20),
+	edu varchar(10),
+	income int,
+	status char(2),
+	des varchar(100)
+);
+
+create table tb_user (
+	id int primary key auto_increment,
+	photo varchar(100),
+	nickname varchar(50),
+	age int,
+	gender char(1),
+	desc_id int unique,
+	-- 添加外键
+	CONSTRAINT fk_user_desc FOREIGN KEY(desc_id) REFERENCES tb_user_desc(id)	
+);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>查看表结构模型图：</p> <p><img src="/javablog/public/assets/img/1701942454444.eed9421e.png" alt="1701942454444"></p> <h3 id="_5-案例"><a href="#_5-案例" class="header-anchor">#</a> 5，案例</h3> <p>根据下图设计表及表和表之间的关系：</p> <p><img src="/javablog/public/assets/img/1701942522420.71a0418d.png" alt="1701942522420"></p> <p>经过分析，我们分为 <code>专辑表</code> <code>曲目表</code> <code>短评表</code> <code>用户表</code> 4张表。</p> <p><img src="/javablog/public/assets/img/1701942545726.89a96062.png" alt="1701942545726"></p> <p>一个专辑可以有多个曲目，一个曲目只能属于某一张专辑，所以专辑表和曲目表的关系是：</p> <ul><li>一对多</li></ul> <p>一个专辑可以被多个用户进行评论，一个用户可以对多个专辑进行评论，所以专辑表和用户表的关系是</p> <ul><li>多对多</li></ul> <p>一个用户可以发多个短评，一个短评只能是某一个人发的，所以用户表和短评表的关系是</p> <ul><li>一对多</li></ul> <p><img src="/javablog/public/assets/img/1701942663097.275ee844.png" alt="1701942663097"></p> <h2 id="三-多表查询"><a href="#三-多表查询" class="header-anchor">#</a> 三，多表查询</h2> <p>多表查询顾名思义就是从多张表中一次性的查询出我们想要的数据。准备环境：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>DROP TABLE IF EXISTS emp;
+DROP TABLE IF EXISTS dept;
+
+# 创建部门表
+CREATE TABLE dept(
+    did INT PRIMARY KEY AUTO_INCREMENT,
+    dname VARCHAR(20)
+);
+
+# 创建员工表
+CREATE TABLE emp (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(10),
+    gender CHAR(1), -- 性别
+    salary DOUBLE, -- 工资
+    join_date DATE, -- 入职日期
+    dep_id INT,
+    FOREIGN KEY (dep_id) REFERENCES dept(did) -- 外键，关联部门表(部门表的主键)
+);
+-- 添加部门数据
+INSERT INTO dept (dNAME) VALUES ('研发部'),('市场部'),('财务部'),('销售部');
+-- 添加员工数据
+INSERT INTO emp(NAME,gender,salary,join_date,dep_id) VALUES
+('孙悟空','男',7200,'2013-02-24',1),
+('猪八戒','男',3600,'2010-12-02',2),
+('唐僧','男',9000,'2008-08-08',2),
+('白骨精','女',5000,'2015-10-07',3),
+('蜘蛛精','女',4500,'2011-03-14',1),
+('小白龙','男',2500,'2011-02-14',null);	
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p>执行下面的多表查询语句：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select * from emp , dept;  -- 从emp和dept表中查询所有的字段数据
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>结果如下：</p> <p><img src="/javablog/public/assets/img/1701942929303.5c15c776.png" alt="1701942929303"></p> <p>从上面的结果我们看到有一些无效的数据，如 <code>孙悟空</code> 这个员工属于1号部门，但也同时关联的2、3、4号部门。所以我们要通过限制员工表中的 <code>dep_id</code> 字段的值和部门表 <code>did</code> 字段的值相等来消除这些无效的数据，</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select * from emp , dept where emp.dep_id = dept.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行后结果如下：</p> <p><img src="/javablog/public/assets/img/1701942963312.6abbd107.png" alt="1701942963312"></p> <p>上面语句就是连接查询，那么多表查询都有哪些呢？</p> <ul><li><p>连接查询</p> <ul><li>内连接查询：相当于查询AB交集数据</li> <li>外连接查询
+<ul><li>左外连接查询：相当于查询A表所有数据和交集部门数据</li> <li>右外连接查询：相当于查询B表所有数据和交集部分数据</li></ul></li></ul></li> <li><p>子查询</p></li></ul> <p>图示：</p> <p><img src="/javablog/public/assets/img/1701943054088.049d1e05.png" alt="1701943054088"></p> <h3 id="_1-内连接查询"><a href="#_1-内连接查询" class="header-anchor">#</a> 1，内连接查询</h3> <p>内连接相当于查询 A B 交集数据。语法：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 隐式内连接
+SELECT 字段列表 FROM 表1,表2… WHERE 条件;
+
+-- 显示内连接
+SELECT 字段列表 FROM 表1 [INNER] JOIN 表2 ON 条件;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>隐式内连接：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>SELECT
+	*
+FROM
+	emp,
+	dept
+WHERE
+	emp.dep_id = dept.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>执行结果如下：</p> <p>查询 emp的 name， gender，dept表的dname：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>SELECT
+	emp. NAME,
+	emp.gender,
+	dept.dname
+FROM
+	emp,
+	dept
+WHERE
+	emp.dep_id = dept.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>执行语句如下：</p> <p>上面语句中使用表名指定字段所属有点麻烦，sql也支持给表指别名，上述语句可以改进为：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>SELECT
+	t1. NAME,
+	t1.gender,
+	t2.dname
+FROM
+	emp t1,
+	dept t2
+WHERE
+	t1.dep_id = t2.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>显式内连接：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select * from emp inner join dept on emp.dep_id = dept.did;
+-- 上面语句中的inner可以省略，可以书写为如下语句
+select * from emp  join dept on emp.dep_id = dept.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>执行结果如下：</p> <h3 id="_2-外连接查询"><a href="#_2-外连接查询" class="header-anchor">#</a> 2，外连接查询</h3> <p>语法：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 左外连接（相当于查询A表所有数据和交集部分数据）
+SELECT 字段列表 FROM 表1 LEFT [OUTER] JOIN 表2 ON 条件;
+
+-- 右外连接（相当于查询B表所有数据和交集部分数据）
+SELECT 字段列表 FROM 表1 RIGHT [OUTER] JOIN 表2 ON 条件;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>图示：</p> <p><img src="/javablog/public/assets/img/1701943255272.d4eb8f43.png" alt="1701943255272"></p> <p>查询emp表所有数据和对应的部门信息（左外连接）：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select * from emp left join dept on emp.dep_id = dept.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行结果：</p> <p>结果显示查询到了左表（emp）中所有的数据及两张表能关联的数据。</p> <p>查询dept表所有数据和对应的员工信息（右外连接）：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select * from emp right join dept on emp.dep_id = dept.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行结果：</p> <p>结果显示查询到了右表（dept）中所有的数据及两张表能关联的数据。</p> <p>要查询出部门表中所有的数据，也可以通过左外连接实现，只需要将两个表的位置进行互换：：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select * from dept left join emp on emp.dep_id = dept.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_3-子查询"><a href="#_3-子查询" class="header-anchor">#</a> 3，子查询</h3> <p>查询中嵌套查询，称嵌套查询为子查询。举个例子：查询工资高于猪八戒的员工信息。实现这个需求，我们就可以通过二步实现，第一步：先查询出来 猪八戒的工资</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select salary from emp where name = '猪八戒'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>第二步：查询工资高于猪八戒的员工信息：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select * from emp where salary &gt; 3600;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>第二步中的3600可以通过第一步的sql查询出来，所以将3600用第一步的sql语句进行替换：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>select * from emp where salary &gt; (select salary from emp where name = '猪八戒');
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>这就是查询语句中嵌套查询语句。子查询根据查询结果不同，作用不同</p> <ul><li>子查询语句结果是单行单列，子查询语句作为条件值，使用 =  !=  &gt;  &lt;  等进行条件判断</li> <li>子查询语句结果是多行单列，子查询语句作为条件值，使用 in 等关键字进行条件判断</li> <li>子查询语句结果是多行多列，子查询语句作为虚拟表</li></ul> <p>查询 '财务部' 和 '市场部' 所有的员工信息：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 查询 '财务部' 或者 '市场部' 所有的员工的部门did
+select did from dept where dname = '财务部' or dname = '市场部';
+
+select * from emp where dep_id in (select did from dept where dname = '财务部' or dname = '市场部');
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>查询入职日期是 '2011-11-11' 之后的员工信息和部门信息：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 查询入职日期是 '2011-11-11' 之后的员工信息
+select * from emp where join_date &gt; '2011-11-11' ;
+-- 将上面语句的结果作为虚拟表和dept表进行内连接查询
+select * from (select * from emp where join_date &gt; '2011-11-11' ) t1, dept where t1.dep_id = dept.did;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="_4-案例"><a href="#_4-案例" class="header-anchor">#</a> 4，案例</h3> <p>环境准备：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>DROP TABLE IF EXISTS emp;
+DROP TABLE IF EXISTS dept;
+DROP TABLE IF EXISTS job;
+DROP TABLE IF EXISTS salarygrade;
+
+-- 部门表
+CREATE TABLE dept (
+  did INT PRIMARY KEY PRIMARY KEY, -- 部门id
+  dname VARCHAR(50), -- 部门名称
+  loc VARCHAR(50) -- 部门所在地
+);
+
+-- 职务表，职务名称，职务描述
+CREATE TABLE job (
+  id INT PRIMARY KEY,
+  jname VARCHAR(20),
+  description VARCHAR(50)
+);
+
+-- 员工表
+CREATE TABLE emp (
+  id INT PRIMARY KEY, -- 员工id
+  ename VARCHAR(50), -- 员工姓名
+  job_id INT, -- 职务id
+  mgr INT , -- 上级领导
+  joindate DATE, -- 入职日期
+  salary DECIMAL(7,2), -- 工资
+  bonus DECIMAL(7,2), -- 奖金
+  dept_id INT, -- 所在部门编号
+  CONSTRAINT emp_jobid_ref_job_id_fk FOREIGN KEY (job_id) REFERENCES job (id),
+  CONSTRAINT emp_deptid_ref_dept_id_fk FOREIGN KEY (dept_id) REFERENCES dept (id)
+);
+-- 工资等级表
+CREATE TABLE salarygrade (
+  grade INT PRIMARY KEY,   -- 级别
+  losalary INT,  -- 最低工资
+  hisalary INT -- 最高工资
+);
+				
+-- 添加4个部门
+INSERT INTO dept(did,dname,loc) VALUES 
+(10,'教研部','北京'),
+(20,'学工部','上海'),
+(30,'销售部','广州'),
+(40,'财务部','深圳');
+
+-- 添加4个职务
+INSERT INTO job (id, jname, description) VALUES
+(1, '董事长', '管理整个公司，接单'),
+(2, '经理', '管理部门员工'),
+(3, '销售员', '向客人推销产品'),
+(4, '文员', '使用办公软件');
+
+-- 添加员工
+INSERT INTO emp(id,ename,job_id,mgr,joindate,salary,bonus,dept_id) VALUES 
+(1001,'孙悟空',4,1004,'2000-12-17','8000.00',NULL,20),
+(1002,'卢俊义',3,1006,'2001-02-20','16000.00','3000.00',30),
+(1003,'林冲',3,1006,'2001-02-22','12500.00','5000.00',30),
+(1004,'唐僧',2,1009,'2001-04-02','29750.00',NULL,20),
+(1005,'李逵',4,1006,'2001-09-28','12500.00','14000.00',30),
+(1006,'宋江',2,1009,'2001-05-01','28500.00',NULL,30),
+(1007,'刘备',2,1009,'2001-09-01','24500.00',NULL,10),
+(1008,'猪八戒',4,1004,'2007-04-19','30000.00',NULL,20),
+(1009,'罗贯中',1,NULL,'2001-11-17','50000.00',NULL,10),
+(1010,'吴用',3,1006,'2001-09-08','15000.00','0.00',30),
+(1011,'沙僧',4,1004,'2007-05-23','11000.00',NULL,20),
+(1012,'李逵',4,1006,'2001-12-03','9500.00',NULL,30),
+(1013,'小白龙',4,1004,'2001-12-03','30000.00',NULL,20),
+(1014,'关羽',4,1007,'2002-01-23','13000.00',NULL,10);
+
+-- 添加5个工资等级
+INSERT INTO salarygrade(grade,losalary,hisalary) VALUES 
+(1,7000,12000),
+(2,12010,14000),
+(3,14010,20000),
+(4,20010,30000),
+(5,30010,99990);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br></div></div><p>查询所有员工信息。查询员工编号，员工姓名，工资，职务名称，职务描述：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>/*
+	分析：
+		1. 员工编号，员工姓名，工资 信息在emp 员工表中
+		2. 职务名称，职务描述 信息在 job 职务表中
+		3. job 职务表 和 emp 员工表 是 一对多的关系 emp.job_id = job.id
+*/
+-- 方式一 ：隐式内连接
+SELECT
+	emp.id,
+	emp.ename,
+	emp.salary,
+	job.jname,
+	job.description
+FROM
+	emp,
+	job
+WHERE
+	emp.job_id = job.id;
+
+-- 方式二 ：显式内连接
+SELECT
+	emp.id,
+	emp.ename,
+	emp.salary,
+	job.jname,
+	job.description
+FROM
+	emp
+INNER JOIN job ON emp.job_id = job.id;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p>查询员工编号，员工姓名，工资，职务名称，职务描述，部门名称，部门位置：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>/*
+	分析：
+		1. 员工编号，员工姓名，工资 信息在emp 员工表中
+		2. 职务名称，职务描述 信息在 job 职务表中
+		3. job 职务表 和 emp 员工表 是 一对多的关系 emp.job_id = job.id
+
+		4. 部门名称，部门位置 来自于 部门表 dept
+		5. dept 和 emp 一对多关系 dept.id = emp.dept_id
+*/
+
+-- 方式一 ：隐式内连接
+SELECT
+	emp.id,
+	emp.ename,
+	emp.salary,
+	job.jname,
+	job.description,
+	dept.dname,
+	dept.loc
+FROM
+	emp,
+	job,
+	dept
+WHERE
+	emp.job_id = job.id
+	and dept.id = emp.dept_id
+;
+
+-- 方式二 ：显式内连接
+SELECT
+	emp.id,
+	emp.ename,
+	emp.salary,
+	job.jname,
+	job.description,
+	dept.dname,
+	dept.loc
+FROM
+	emp
+INNER JOIN job ON emp.job_id = job.id
+INNER JOIN dept ON dept.id = emp.dept_id
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><p>查询员工姓名，工资，工资等级：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>/*
+	分析：
+		1. 员工姓名，工资 信息在emp 员工表中
+		2. 工资等级 信息在 salarygrade 工资等级表中
+		3. emp.salary &gt;= salarygrade.losalary  and emp.salary &lt;= salarygrade.hisalary
+*/
+SELECT
+	emp.ename,
+	emp.salary,
+	t2.*
+FROM
+	emp,
+	salarygrade t2
+WHERE
+	emp.salary &gt;= t2.losalary
+AND emp.salary &lt;= t2.hisalary
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>查询员工姓名，工资，职务名称，职务描述，部门名称，部门位置，工资等级：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>/*
+	分析：
+		1. 员工编号，员工姓名，工资 信息在emp 员工表中
+		2. 职务名称，职务描述 信息在 job 职务表中
+		3. job 职务表 和 emp 员工表 是 一对多的关系 emp.job_id = job.id
+
+		4. 部门名称，部门位置 来自于 部门表 dept
+		5. dept 和 emp 一对多关系 dept.id = emp.dept_id
+		6. 工资等级 信息在 salarygrade 工资等级表中
+		7. emp.salary &gt;= salarygrade.losalary  and emp.salary &lt;= salarygrade.hisalary
+*/
+SELECT
+	emp.id,
+	emp.ename,
+	emp.salary,
+	job.jname,
+	job.description,
+	dept.dname,
+	dept.loc,
+	t2.grade
+FROM
+	emp
+INNER JOIN job ON emp.job_id = job.id
+INNER JOIN dept ON dept.id = emp.dept_id
+INNER JOIN salarygrade t2 ON emp.salary BETWEEN t2.losalary and t2.hisalary;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p>查询出部门编号、部门名称、部门位置、部门人数：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>/*
+	分析：
+		1. 部门编号、部门名称、部门位置 来自于部门 dept 表
+		2. 部门人数: 在emp表中 按照dept_id 进行分组，然后count(*)统计数量
+		3. 使用子查询，让部门表和分组后的表进行内连接
+*/
+-- 根据部门id分组查询每一个部门id和员工数
+select dept_id, count(*) from emp group by dept_id;
+
+SELECT
+	dept.id,
+	dept.dname,
+	dept.loc,
+	t1.count
+FROM
+	dept,
+	(
+		SELECT
+			dept_id,
+			count(*) count
+		FROM
+			emp
+		GROUP BY
+			dept_id
+	) t1
+WHERE
+	dept.id = t1.dept_id
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><h2 id="四-作业"><a href="#四-作业" class="header-anchor">#</a> 四，作业</h2> <h2 id="五-事务"><a href="#五-事务" class="header-anchor">#</a> 五，事务</h2> <h3 id="_1-什么是事务"><a href="#_1-什么是事务" class="header-anchor">#</a> 1，什么是事务</h3> <p>数据库的事务（Transaction）是一种机制、一个操作序列，包含了一组数据库操作命令。事务把所有的命令作为一个整体一起向系统提交或撤销操作请求，即这一组数据库命令要么同时成功，要么同时失败。事务是一个不可分割的工作逻辑单元。</p> <p>这些概念不好理解，接下来举例说明，张三和李四账户中各有100块钱，现李四需要转换500块钱给张三，具体的转账操作为</p> <ul><li>第一步：查询李四账户余额</li> <li>第二步：从李四账户金额 -500</li> <li>第三步：给张三账户金额 +500</li></ul> <p>现在假设在转账过程中第二步完成后出现了异常第三步没有执行，就会造成李四账户金额少了500，而张三金额并没有多500；这样的系统是有问题的。如果解决呢？使用事务可以解决上述问题</p> <p><img src="/javablog/public/assets/img/1701943853992.c885af9b.png" alt="1701943853992"></p> <p>从上图可以看到在转账前开启事务，如果出现了异常回滚事务，三步正常执行就提交事务，这样就可以完美解决问题。</p> <h3 id="_2-语法"><a href="#_2-语法" class="header-anchor">#</a> 2，语法</h3> <p>开启事务：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>START TRANSACTION;
+或者  
+BEGIN;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>提交事务：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>commit;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>回滚事务：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>rollback;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_3-代码验证"><a href="#_3-代码验证" class="header-anchor">#</a> 3，代码验证</h3> <p>环境准备：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>DROP TABLE IF EXISTS account;
+
+-- 创建账户表
+CREATE TABLE account(
+	id int PRIMARY KEY auto_increment,
+	name varchar(10),
+	money double(10,2)
+);
+
+-- 添加数据
+INSERT INTO account(name,money) values('张三',1000),('李四',1000);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>不加事务演示问题：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 转账操作
+-- 1. 查询李四账户金额是否大于500
+
+-- 2. 李四账户 -500
+UPDATE account set money = money - 500 where name = '李四';
+
+出现异常了...  -- 此处不是注释，在整体执行时会出问题，后面的sql则不执行
+-- 3. 张三账户 +500
+UPDATE account set money = money + 500 where name = '张三';
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>整体执行结果肯定会出问题，我们查询账户表中数据，发现李四账户少了500。</p> <p>添加事务sql如下：</p> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>-- 开启事务
+BEGIN;
+-- 转账操作
+-- 1. 查询李四账户金额是否大于500
+
+-- 2. 李四账户 -500
+UPDATE account set money = money - 500 where name = '李四';
+
+出现异常了...  -- 此处不是注释，在整体执行时会出问题，后面的sql则不执行
+-- 3. 张三账户 +500
+UPDATE account set money = money + 500 where name = '张三';
+
+-- 提交事务
+COMMIT;
+
+-- 回滚事务
+ROLLBACK;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>上面sql中的执行成功进选择执行提交事务，而出现问题则执行回滚事务的语句。以后我们肯定不可能这样操作，而是在java中进行操作，在java中可以抓取异常，没出现异常提交事务，出现异常回滚事务。</p> <h3 id="_4-事务的四大特征"><a href="#_4-事务的四大特征" class="header-anchor">#</a> 4，事务的四大特征</h3> <p>事务有四在特征：</p> <ul><li>原子性（Atomicity）: 事务是不可分割的最小操作单位，要么同时成功，要么同时失败</li> <li>一致性（Consistency） : 事务完成时，必须使所有的数据都保持一致状态</li> <li>隔离性（Isolation） : 多个事务之间，操作的可见性</li> <li>持久性（Durability） : 事务一旦提交或回滚，它对数据库中的数据的改变就是永久的</li></ul> <p>注意：</p> <ul><li><p>mysql中事务是自动提交的。也就是说我们不添加事务执行sql语句，语句执行完毕会自动的提交事务。</p></li> <li><p>可以通过下面语句查询默认提交方式：</p></li></ul> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>  SELECT @@autocommit;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><ul><li>查询到的结果是1 则表示自动提交，结果是0表示手动提交。当然也可以通过下面语句修改提交方式</li></ul> <div class="language-mysql line-numbers-mode"><pre class="language-text"><code>  set @@autocommit = 0;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">12/5/2023, 5:32:18 PM</span></div></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-7115df4a data-v-1c636796><li class="level-2" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#一-约束" class="sidebar-link reco-side-一-约束" data-v-7115df4a>一，约束</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_1-什么是约束" class="sidebar-link reco-side-_1-什么是约束" data-v-7115df4a>1，什么是约束</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_2-分类" class="sidebar-link reco-side-_2-分类" data-v-7115df4a>2，分类</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_3-非空约束" class="sidebar-link reco-side-_3-非空约束" data-v-7115df4a>3，非空约束</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_4-唯一约束" class="sidebar-link reco-side-_4-唯一约束" data-v-7115df4a>4，唯一约束</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_5-主键约束" class="sidebar-link reco-side-_5-主键约束" data-v-7115df4a>5，主键约束</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_6-默认约束" class="sidebar-link reco-side-_6-默认约束" data-v-7115df4a>6，默认约束</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_7-约束练习" class="sidebar-link reco-side-_7-约束练习" data-v-7115df4a>7，约束练习</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_8-外键约束" class="sidebar-link reco-side-_8-外键约束" data-v-7115df4a>8，外键约束</a></li><li class="level-2" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#二-数据库设计" class="sidebar-link reco-side-二-数据库设计" data-v-7115df4a>二，数据库设计</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_1-什么是数据库设计" class="sidebar-link reco-side-_1-什么是数据库设计" data-v-7115df4a>1，什么是数据库设计</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_2-一对多" class="sidebar-link reco-side-_2-一对多" data-v-7115df4a>2，一对多</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_3-多对多" class="sidebar-link reco-side-_3-多对多" data-v-7115df4a>3，多对多</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_4-一对一" class="sidebar-link reco-side-_4-一对一" data-v-7115df4a>4，一对一</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_5-案例" class="sidebar-link reco-side-_5-案例" data-v-7115df4a>5，案例</a></li><li class="level-2" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#三-多表查询" class="sidebar-link reco-side-三-多表查询" data-v-7115df4a>三，多表查询</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_1-内连接查询" class="sidebar-link reco-side-_1-内连接查询" data-v-7115df4a>1，内连接查询</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_2-外连接查询" class="sidebar-link reco-side-_2-外连接查询" data-v-7115df4a>2，外连接查询</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_3-子查询" class="sidebar-link reco-side-_3-子查询" data-v-7115df4a>3，子查询</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_4-案例" class="sidebar-link reco-side-_4-案例" data-v-7115df4a>4，案例</a></li><li class="level-2" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#四-作业" class="sidebar-link reco-side-四-作业" data-v-7115df4a>四，作业</a></li><li class="level-2" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#五-事务" class="sidebar-link reco-side-五-事务" data-v-7115df4a>五，事务</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_1-什么是事务" class="sidebar-link reco-side-_1-什么是事务" data-v-7115df4a>1，什么是事务</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_2-语法" class="sidebar-link reco-side-_2-语法" data-v-7115df4a>2，语法</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_3-代码验证" class="sidebar-link reco-side-_3-代码验证" data-v-7115df4a>3，代码验证</a></li><li class="level-3" data-v-7115df4a><a href="/javablog/public/blogs/javaweb/02.html#_4-事务的四大特征" class="sidebar-link reco-side-_4-事务的四大特征" data-v-7115df4a>4，事务的四大特征</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-65133105 data-v-65133105><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-65133105><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-65133105></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-65133105></path></svg></div></div></div>
+    <script src="/javablog/public/assets/js/app.c0a5f9ce.js" defer></script><script src="/javablog/public/assets/js/18.c0914709.js" defer></script><script src="/javablog/public/assets/js/1.4a2aebf2.js" defer></script><script src="/javablog/public/assets/js/27.9c5919b3.js" defer></script>
+  </body>
+</html>
