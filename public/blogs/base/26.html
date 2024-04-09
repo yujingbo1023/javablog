@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>26-Ant Design Pro | 码路全栈开发</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/javablog/public/favicon.ico">
+    <meta name="description" content="快来玩java全栈呀">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/javablog/public/assets/css/0.styles.0bd56f36.css" as="style"><link rel="preload" href="/javablog/public/assets/js/app.e980d0b6.js" as="script"><link rel="preload" href="/javablog/public/assets/js/48.059c4058.js" as="script"><link rel="preload" href="/javablog/public/assets/js/1.3c422ec2.js" as="script"><link rel="preload" href="/javablog/public/assets/js/41.73a2910a.js" as="script"><link rel="prefetch" href="/javablog/public/assets/js/10.931d9dd8.js"><link rel="prefetch" href="/javablog/public/assets/js/11.dc0e3a1e.js"><link rel="prefetch" href="/javablog/public/assets/js/12.c2437405.js"><link rel="prefetch" href="/javablog/public/assets/js/13.07f0a2fc.js"><link rel="prefetch" href="/javablog/public/assets/js/14.6ae17348.js"><link rel="prefetch" href="/javablog/public/assets/js/15.314e82bc.js"><link rel="prefetch" href="/javablog/public/assets/js/16.3b7f2195.js"><link rel="prefetch" href="/javablog/public/assets/js/17.d13e82f0.js"><link rel="prefetch" href="/javablog/public/assets/js/18.a1af6386.js"><link rel="prefetch" href="/javablog/public/assets/js/19.b87dab46.js"><link rel="prefetch" href="/javablog/public/assets/js/20.b88e6fd8.js"><link rel="prefetch" href="/javablog/public/assets/js/21.09bc67ad.js"><link rel="prefetch" href="/javablog/public/assets/js/22.f9afbf5c.js"><link rel="prefetch" href="/javablog/public/assets/js/23.8856d421.js"><link rel="prefetch" href="/javablog/public/assets/js/24.aa476aa5.js"><link rel="prefetch" href="/javablog/public/assets/js/25.1f28b864.js"><link rel="prefetch" href="/javablog/public/assets/js/26.11ad0149.js"><link rel="prefetch" href="/javablog/public/assets/js/27.6a75afe2.js"><link rel="prefetch" href="/javablog/public/assets/js/28.47135831.js"><link rel="prefetch" href="/javablog/public/assets/js/29.db76639a.js"><link rel="prefetch" href="/javablog/public/assets/js/3.093a6b1d.js"><link rel="prefetch" href="/javablog/public/assets/js/30.9981474e.js"><link rel="prefetch" href="/javablog/public/assets/js/31.469e2eee.js"><link rel="prefetch" href="/javablog/public/assets/js/32.89753853.js"><link rel="prefetch" href="/javablog/public/assets/js/33.9cdf77dc.js"><link rel="prefetch" href="/javablog/public/assets/js/34.aeaa2c49.js"><link rel="prefetch" href="/javablog/public/assets/js/35.0b5e213a.js"><link rel="prefetch" href="/javablog/public/assets/js/36.fc2150ca.js"><link rel="prefetch" href="/javablog/public/assets/js/37.61337e23.js"><link rel="prefetch" href="/javablog/public/assets/js/38.944b1570.js"><link rel="prefetch" href="/javablog/public/assets/js/39.101a0cc1.js"><link rel="prefetch" href="/javablog/public/assets/js/4.d7af73c5.js"><link rel="prefetch" href="/javablog/public/assets/js/40.1a02e84a.js"><link rel="prefetch" href="/javablog/public/assets/js/42.c2868b21.js"><link rel="prefetch" href="/javablog/public/assets/js/43.090c0a6d.js"><link rel="prefetch" href="/javablog/public/assets/js/44.5b510976.js"><link rel="prefetch" href="/javablog/public/assets/js/45.6d1a3268.js"><link rel="prefetch" href="/javablog/public/assets/js/46.8d2da50a.js"><link rel="prefetch" href="/javablog/public/assets/js/47.701dd58d.js"><link rel="prefetch" href="/javablog/public/assets/js/49.53b9cd34.js"><link rel="prefetch" href="/javablog/public/assets/js/5.7ad8de63.js"><link rel="prefetch" href="/javablog/public/assets/js/50.ccd5b5a6.js"><link rel="prefetch" href="/javablog/public/assets/js/51.17323579.js"><link rel="prefetch" href="/javablog/public/assets/js/52.6ef2b5a6.js"><link rel="prefetch" href="/javablog/public/assets/js/53.f9f4a256.js"><link rel="prefetch" href="/javablog/public/assets/js/54.02deeb9b.js"><link rel="prefetch" href="/javablog/public/assets/js/55.3e939024.js"><link rel="prefetch" href="/javablog/public/assets/js/56.2624fb7f.js"><link rel="prefetch" href="/javablog/public/assets/js/57.e079974e.js"><link rel="prefetch" href="/javablog/public/assets/js/58.cd5be038.js"><link rel="prefetch" href="/javablog/public/assets/js/59.d1433e10.js"><link rel="prefetch" href="/javablog/public/assets/js/6.d04f1c3f.js"><link rel="prefetch" href="/javablog/public/assets/js/60.53845a82.js"><link rel="prefetch" href="/javablog/public/assets/js/61.9d637426.js"><link rel="prefetch" href="/javablog/public/assets/js/62.80ad72d7.js"><link rel="prefetch" href="/javablog/public/assets/js/63.e3b685b3.js"><link rel="prefetch" href="/javablog/public/assets/js/64.5fb12b79.js"><link rel="prefetch" href="/javablog/public/assets/js/65.2d4c583e.js"><link rel="prefetch" href="/javablog/public/assets/js/66.49f3369c.js"><link rel="prefetch" href="/javablog/public/assets/js/67.157453e5.js"><link rel="prefetch" href="/javablog/public/assets/js/68.a8ec7910.js"><link rel="prefetch" href="/javablog/public/assets/js/69.73734689.js"><link rel="prefetch" href="/javablog/public/assets/js/7.fa2a1422.js"><link rel="prefetch" href="/javablog/public/assets/js/70.9735e0ca.js"><link rel="prefetch" href="/javablog/public/assets/js/71.dfd0b6e8.js"><link rel="prefetch" href="/javablog/public/assets/js/72.5c25a4d8.js"><link rel="prefetch" href="/javablog/public/assets/js/73.898e3be4.js"><link rel="prefetch" href="/javablog/public/assets/js/74.9a5149ef.js"><link rel="prefetch" href="/javablog/public/assets/js/75.02e00569.js"><link rel="prefetch" href="/javablog/public/assets/js/76.3aed6ea1.js"><link rel="prefetch" href="/javablog/public/assets/js/77.54e0a6b6.js"><link rel="prefetch" href="/javablog/public/assets/js/78.a8b1aa75.js"><link rel="prefetch" href="/javablog/public/assets/js/79.df661720.js"><link rel="prefetch" href="/javablog/public/assets/js/8.3301a782.js"><link rel="prefetch" href="/javablog/public/assets/js/80.f2f28b09.js"><link rel="prefetch" href="/javablog/public/assets/js/81.0eebf5f1.js"><link rel="prefetch" href="/javablog/public/assets/js/82.3e515a22.js"><link rel="prefetch" href="/javablog/public/assets/js/83.7d0893d9.js"><link rel="prefetch" href="/javablog/public/assets/js/9.7adcffa4.js">
+    <link rel="stylesheet" href="/javablog/public/assets/css/0.styles.0bd56f36.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>码路全栈开发</h3> <p class="description" data-v-59e6cb88>快来玩java全栈呀</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/javablog/public/" class="home-link router-link-active"><img src="/javablog/public/logo.png" alt="码路全栈开发" class="logo"> <span class="site-name">码路全栈开发</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javase/" class="nav-link"><i class="undefined"></i>
+  javase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/javablog/public/avatar.png" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    码路
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>73</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>13</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javase/" class="nav-link"><i class="undefined"></i>
+  javase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>26-Ant Design Pro</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">26-Ant Design Pro</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>码路</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>12/15/2028</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>js</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="一-antd-design-pro介绍"><a href="#一-antd-design-pro介绍" class="header-anchor">#</a> 一，antd design pro介绍</h2> <h3 id="_1-相关链接"><a href="#_1-相关链接" class="header-anchor">#</a> 1，相关链接</h3> <h4 id="_1-学习antd-pro相关的链接"><a href="#_1-学习antd-pro相关的链接" class="header-anchor">#</a> 1）学习antd pro相关的链接</h4> <p>umi Max : https://umijs.org/docs/max/introduce</p> <p><img src="/javablog/public/assets/img/1712645249726.654b4247.png" alt="1712645249726"></p> <p>antdesing pro : https://pro.ant.design/zh-CN/</p> <p><img src="/javablog/public/assets/img/1712645316517.42089e27.png" alt="1712645316517"></p> <p>点击预览：https://preview.pro.ant.design/dashboard/analysis</p> <p><img src="/javablog/public/assets/img/1712645438550.f4d4ecfb.png" alt="1712645438550"></p> <p>还可以参考：https://preview.pro.antdv.com/dashboard/workplace</p> <p><img src="/javablog/public/assets/img/1712645706373.34990288.png" alt="1712645706373"></p> <p>点击开始试用： https://pro.ant.design/zh-CN/docs/overview</p> <p><img src="/javablog/public/assets/img/1712645494733.c82b8ae2.png" alt="1712645494733"></p> <p>ProComponents : https://procomponents.ant.design/</p> <p><img src="/javablog/public/assets/img/1712645816195.adcb69a2.png" alt="1712645816195"></p> <p>antd : https://ant-design.antgroup.com/docs/react/introduce-cn?from=msidevs.net</p> <p><img src="/javablog/public/assets/img/1712646034337.8d0872cc.png" alt="1712646034337"></p> <h4 id="_2-开源项目相关的链接"><a href="#_2-开源项目相关的链接" class="header-anchor">#</a> 2）开源项目相关的链接</h4> <p>作者的github地址：https://github.com/newbee-ltd</p> <p><img src="/javablog/public/assets/img/1712646130948.399ca443.png" alt="1712646130948"></p> <p>APP： https://github.com/newbee-ltd/newbee-mall-vue3-app?tab=readme-ov-file</p> <p>预览：http://47.99.134.126:5008/#/home</p> <p><img src="/javablog/public/assets/img/1712646178549.8f35013b.png" alt="1712646178549"></p> <p>后台：https://github.com/newbee-ltd/vue3-admin</p> <p>预览：http://vue3-admin.newbee.ltd/#/introduce    admin  123456</p> <p><img src="/javablog/public/assets/img/1712646257716.71048312.png" alt="1712646257716"></p> <h3 id="_2-通过umi脚手架创建antd-pro项目"><a href="#_2-通过umi脚手架创建antd-pro项目" class="header-anchor">#</a> 2，通过umi脚手架创建antd pro项目</h3> <p>创建项目：</p> <p><img src="/javablog/public/assets/img/1712646445080.83540ac4.png" alt="1712646445080"></p> <p><img src="/javablog/public/assets/img/1712646547667.37df182c.png" alt="1712646547667"></p> <p>启动项目：</p> <p><img src="/javablog/public/assets/img/1712646667339.d17995cf.png" alt="1712646667339"></p> <p><img src="/javablog/public/assets/img/1712646718240.7c3e7225.png" alt="1712646718240"></p> <p>使用vscode打开项目：</p> <p><img src="/javablog/public/assets/img/1712646680905.0561a18b.png" alt="1712646680905"></p> <p><img src="/javablog/public/assets/img/1712646843643.3ba818b3.png" alt="1712646843643"></p> <h3 id="_3-通过antd-pro脚手架创建项目"><a href="#_3-通过antd-pro脚手架创建项目" class="header-anchor">#</a> 3，通过antd pro脚手架创建项目</h3> <p><img src="/javablog/public/assets/img/1712646969096.948bb81c.png" alt="1712646969096"></p> <p>安装脚手架：</p> <p><img src="/javablog/public/assets/img/1712647031848.7f5e884a.png" alt="1712647031848"></p> <p>创建项目：</p> <p><img src="/javablog/public/assets/img/1712647177439.42f2347b.png" alt="1712647177439"></p> <p>安装依赖：</p> <p><img src="/javablog/public/assets/img/1712647247550.78e3efe1.png" alt="1712647247550"></p> <p>运行项目：</p> <p><img src="/javablog/public/assets/img/1712647481424.3deedc60.png" alt="1712647481424"></p> <p><img src="/javablog/public/assets/img/1712647750320.878e97f7.png" alt="1712647750320"></p> <p><img src="/javablog/public/assets/img/1712647534321.47419151.png" alt="1712647534321"></p> <p><img src="/javablog/public/assets/img/1712647704955.43b98529.png" alt="1712647704955"></p> <h2 id="二-解读-antd-pro源码"><a href="#二-解读-antd-pro源码" class="header-anchor">#</a> 二，解读 antd pro源码</h2> <h3 id="_1-webpack配置"><a href="#_1-webpack配置" class="header-anchor">#</a> 1，webpack配置</h3> <p>对于pro中的配置两块，一块是webpack的配置，一块是运行时配置</p> <p><img src="/javablog/public/assets/img/1712649074634.a70a2544.png" alt="1712649074634"></p> <p>先研究webpack的配置：</p> <div class="language-ts line-numbers-mode"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@umijs/max'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> join <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'path'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> defaultSettings <span class="token keyword">from</span> <span class="token string">'./defaultSettings'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> routes <span class="token keyword">from</span> <span class="token string">'./routes'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> <span class="token constant">REACT_APP_ENV</span> <span class="token operator">=</span> <span class="token string">'dev'</span><span class="token punctuation">,</span> <span class="token constant">NODE_ENV</span> <span class="token punctuation">}</span> <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">//============== 在umi中作的一些配置  ===============</span>
+  <span class="token comment">// 打包后的文件会带个hash,处理浏览器缓存问题</span>
+  hash<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token comment">// 配置浏览器的兼容性 </span>
+  targets<span class="token operator">:</span> <span class="token punctuation">{</span>
+    ie<span class="token operator">:</span> <span class="token number">11</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 配置路由表 </span>
+  routes<span class="token punctuation">,</span>
+  <span class="token comment">// 问号传参时，可以通过query传参</span>
+  historyWithQuery<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 配置网站的标题</span>
+  title<span class="token operator">:</span> <span class="token string">'XXX后台系统'</span><span class="token punctuation">,</span>
+  <span class="token comment">// 配置路由模式</span>
+  history<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'hash'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 开发环境生成sourceMap，生成环境不生成sourceMap</span>
+  devtool<span class="token operator">:</span> <span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'development'</span> <span class="token operator">?</span> <span class="token string">'eval'</span> <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token comment">// 配置图片的打包方式,大于10KB,单独打包成一个图片,如果小于10KB,打包Base64</span>
+  inlineLimit<span class="token operator">:</span> <span class="token number">10000</span><span class="token punctuation">,</span>
+  <span class="token comment">// 配置js的压缩方式</span>
+  jsMinifier<span class="token operator">:</span> <span class="token string">'terser'</span><span class="token punctuation">,</span>
+  jsMinifierOptions<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 配置打包后资源的导入路径 默认是/</span>
+  publicPath<span class="token operator">:</span> <span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'development'</span> <span class="token operator">?</span> <span class="token string">&quot;/&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;/abc/&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 配置代理解决跨域</span>
+  proxy<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">'/api'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string-property property">'target'</span><span class="token operator">:</span> <span class="token string">'http://jsonplaceholder.typicode.com/'</span><span class="token punctuation">,</span>
+      <span class="token string-property property">'changeOrigin'</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token string-property property">'pathRewrite'</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token string-property property">'^/api'</span><span class="token operator">:</span> <span class="token string">''</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">//============== 以下都是max的插件配置 ===============</span>
+  <span class="token comment">// {} 表示开始model</span>
+  model<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  initialState<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  layout<span class="token operator">:</span> <span class="token punctuation">{</span>
+    locale<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>defaultSettings<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  moment2dayjs<span class="token operator">:</span> <span class="token punctuation">{</span>
+    preset<span class="token operator">:</span> <span class="token string">'antd'</span><span class="token punctuation">,</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'duration'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  locale<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// default zh-CN</span>
+    <span class="token keyword">default</span><span class="token operator">:</span> <span class="token string">'zh-CN'</span><span class="token punctuation">,</span>
+    antd<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment">// default true, when it is true, will use `navigator.language` overwrite default</span>
+    baseNavigator<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  antd<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  request<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  access<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  headScripts<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// 解决首次加载时白屏的问题</span>
+    <span class="token punctuation">{</span> src<span class="token operator">:</span> <span class="token string">'/scripts/loading.js'</span><span class="token punctuation">,</span> async<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+  <span class="token comment">//================ pro 插件配置 =================</span>
+  presets<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'umi-presets-pro'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  openAPI<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      requestLibPath<span class="token operator">:</span> <span class="token string">&quot;import { request } from '@umijs/max'&quot;</span><span class="token punctuation">,</span>
+      schemaPath<span class="token operator">:</span> <span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'oneapi.json'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      mock<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      requestLibPath<span class="token operator">:</span> <span class="token string">&quot;import { request } from '@umijs/max'&quot;</span><span class="token punctuation">,</span>
+      schemaPath<span class="token operator">:</span> <span class="token string">'https://gw.alipayobjects.com/os/antfincdn/CA1dOm%2631B/openapi.json'</span><span class="token punctuation">,</span>
+      projectName<span class="token operator">:</span> <span class="token string">'swagger'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  mfsu<span class="token operator">:</span> <span class="token punctuation">{</span>
+    strategy<span class="token operator">:</span> <span class="token string">'normal'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  esbuildMinifyIIFE<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  requestRecord<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+
+
+  <span class="token comment">//================ 其它配置 =================</span>
+  theme<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">'root-entry-name'</span><span class="token operator">:</span> <span class="token string">'variable'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  ignoreMomentLocale<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  fastRefresh<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br></div></div><p>defaultSettings.ts  默认的设置：</p> <p><img src="/javablog/public/assets/img/1712651034837.d7cfcfd8.png" alt="1712651034837"></p> <h3 id="_2-请求的二次封装"><a href="#_2-请求的二次封装" class="header-anchor">#</a> 2，请求的二次封装</h3> <p>如果关闭mock，如下：</p> <p><img src="/javablog/public/assets/img/1712652363455.20871912.png" alt="1712652363455"></p> <p><img src="/javablog/public/assets/img/1712652390312.b653243f.png" alt="1712652390312"></p> <p>测试登录：</p> <p><img src="/javablog/public/assets/img/1712652426198.cd85d15d.png" alt="1712652426198"></p> <p>想把mock关闭，/weblcome就访问不了了。又想要访问后台首页面，操作：</p> <p><img src="/javablog/public/assets/img/1712652992529.852b754f.png" alt="1712652992529"></p> <p><img src="/javablog/public/assets/img/1712653331771.77cbcba6.png" alt="1712653331771"></p> <p>测试之：</p> <p><img src="/javablog/public/assets/img/1712653432556.83923251.png" alt="1712653432556"></p> <p><img src="/javablog/public/assets/img/1712653452019.9a1dd775.png" alt="1712653452019"></p> <p>默认情况下，请求的二次封装，位置如下：</p> <p><img src="/javablog/public/assets/img/1712653515182.c8f0a540.png" alt="1712653515182"></p> <p>看一下，它里面封装的内容，我们不使用它的封装，我们自己写。</p> <div class="language-ts line-numbers-mode"><pre class="language-ts"><code><span class="token keyword">export</span> <span class="token keyword">const</span> errorConfig<span class="token operator">:</span> RequestConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 错误处理： umi@3 的错误处理方案。</span>
+  errorConfig<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 错误抛出</span>
+    <span class="token function-variable function">errorThrower</span><span class="token operator">:</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> success<span class="token punctuation">,</span> data<span class="token punctuation">,</span> errorCode<span class="token punctuation">,</span> errorMessage<span class="token punctuation">,</span> showType <span class="token punctuation">}</span> <span class="token operator">=</span>
+        res <span class="token keyword">as</span> <span class="token builtin">unknown</span> <span class="token keyword">as</span> ResponseStructure<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>success<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> error<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>errorMessage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        error<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'BizError'</span><span class="token punctuation">;</span>
+        error<span class="token punctuation">.</span>info <span class="token operator">=</span> <span class="token punctuation">{</span> errorCode<span class="token punctuation">,</span> errorMessage<span class="token punctuation">,</span> showType<span class="token punctuation">,</span> data <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> error<span class="token punctuation">;</span> <span class="token comment">// 抛出自制的错误</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 错误接收及处理</span>
+    <span class="token function-variable function">errorHandler</span><span class="token operator">:</span> <span class="token punctuation">(</span>error<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span> opts<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>opts<span class="token operator">?.</span>skipErrorHandler<span class="token punctuation">)</span> <span class="token keyword">throw</span> error<span class="token punctuation">;</span>
+      <span class="token comment">// 我们的 errorThrower 抛出的错误。</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">'BizError'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> errorInfo<span class="token operator">:</span> ResponseStructure <span class="token operator">|</span> <span class="token keyword">undefined</span> <span class="token operator">=</span> error<span class="token punctuation">.</span>info<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>errorInfo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> <span class="token punctuation">{</span> errorMessage<span class="token punctuation">,</span> errorCode <span class="token punctuation">}</span> <span class="token operator">=</span> errorInfo<span class="token punctuation">;</span>
+          <span class="token keyword">switch</span> <span class="token punctuation">(</span>errorInfo<span class="token punctuation">.</span>showType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> ErrorShowType<span class="token punctuation">.</span><span class="token constant">SILENT</span><span class="token operator">:</span>
+              <span class="token comment">// do nothing</span>
+              <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> ErrorShowType<span class="token punctuation">.</span><span class="token constant">WARN_MESSAGE</span><span class="token operator">:</span>
+              message<span class="token punctuation">.</span><span class="token function">warning</span><span class="token punctuation">(</span>errorMessage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> ErrorShowType<span class="token punctuation">.</span><span class="token constant">ERROR_MESSAGE</span><span class="token operator">:</span>
+              message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>errorMessage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> ErrorShowType<span class="token punctuation">.</span><span class="token constant">NOTIFICATION</span><span class="token operator">:</span>
+              notification<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                description<span class="token operator">:</span> errorMessage<span class="token punctuation">,</span>
+                message<span class="token operator">:</span> errorCode<span class="token punctuation">,</span>
+              <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> ErrorShowType<span class="token punctuation">.</span><span class="token constant">REDIRECT</span><span class="token operator">:</span>
+              <span class="token comment">// TODO: redirect</span>
+              <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">default</span><span class="token operator">:</span>
+              message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>errorMessage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Axios 的错误</span>
+        <span class="token comment">// 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围</span>
+        message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Response status:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 请求已经成功发起，但没有收到响应</span>
+        <span class="token comment">// \`error.request\` 在浏览器中是 XMLHttpRequest 的实例，</span>
+        <span class="token comment">// 而在node.js中是 http.ClientRequest 的实例</span>
+        message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'None response! Please retry.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 发送请求时出了点问题</span>
+        message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Request error, please retry.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// 请求拦截器</span>
+  requestInterceptors<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">(</span>config<span class="token operator">:</span> RequestOptions<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 拦截请求配置，进行个性化处理。</span>
+      <span class="token keyword">const</span> url <span class="token operator">=</span> config<span class="token operator">?.</span>url<span class="token operator">?.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">'?token = 123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span> <span class="token operator">...</span>config<span class="token punctuation">,</span> url <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// 响应拦截器</span>
+  responseInterceptors<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 拦截响应数据，进行个性化处理</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> data <span class="token punctuation">}</span> <span class="token operator">=</span> response <span class="token keyword">as</span> <span class="token builtin">unknown</span> <span class="token keyword">as</span> ResponseStructure<span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token operator">?.</span>success <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'请求失败！'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br></div></div><p>在app.tsx中使用到了上面的二次封装，如下：</p> <p><img src="/javablog/public/assets/img/1712653600950.ee30877f.png" alt="1712653600950"></p> <p>直接在app.tsx中封装：</p> <p><img src="/javablog/public/assets/img/1712654289307.90535139.png" alt="1712654289307"></p> <div class="language-tsx line-numbers-mode"><pre class="language-tsx"><code><span class="token keyword">export</span> <span class="token keyword">const</span> request <span class="token operator">=</span> <span class="token punctuation">{</span>
+  timeout<span class="token operator">:</span><span class="token number">60000</span><span class="token punctuation">,</span> <span class="token comment">// 超时处理，请求超过1分钟，就取消请求</span>
+  <span class="token comment">// 错误统一处理</span>
+  errorConfig<span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token comment">// 错误接收及处理</span>
+    <span class="token function">errorHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;网络繁忙，请稍后再试~&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 请求拦截器</span>
+  requestInterceptors<span class="token operator">:</span><span class="token punctuation">[</span>
+    <span class="token punctuation">(</span>config<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 在请求拦截器中带个token(除了登录接口)</span>
+      <span class="token keyword">const</span> token <span class="token operator">=</span> <span class="token string">&quot;xxx&quot;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>token <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>url <span class="token operator">!==</span> <span class="token string">&quot;/api/adminUser/login&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        config<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'token'</span><span class="token punctuation">]</span> <span class="token operator">=</span> token<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> config<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// 响应拦截器</span>
+  responseInterceptors<span class="token operator">:</span><span class="token punctuation">[</span>
+    <span class="token comment">// 不对响应的数据作数据</span>
+     <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><p>可以把它的二次封装删除了：</p> <p><img src="/javablog/public/assets/img/1712654435996.26c5518c.png" alt="1712654435996"></p> <p><img src="/javablog/public/assets/img/1712654545176.eeb259df.png" alt="1712654545176"></p> <h3 id="_3-分析运行时配置"><a href="#_3-分析运行时配置" class="header-anchor">#</a> 3，分析运行时配置</h3> <p>运行时配置都在app.tsx中，如下：</p> <div class="language-tsx line-numbers-mode"><pre class="language-tsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Footer<span class="token punctuation">,</span> Question<span class="token punctuation">,</span> SelectLang<span class="token punctuation">,</span> AvatarDropdown<span class="token punctuation">,</span> AvatarName <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/components'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> LinkOutlined <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@ant-design/icons'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token keyword">type</span> <span class="token punctuation">{</span> Settings <span class="token keyword">as</span> LayoutSettings <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@ant-design/pro-components'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SettingDrawer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@ant-design/pro-components'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token keyword">type</span> <span class="token punctuation">{</span> RunTimeLayoutConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@umijs/max'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> message<span class="token punctuation">,</span> notification <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'antd'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> history<span class="token punctuation">,</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@umijs/max'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> defaultSettings <span class="token keyword">from</span> <span class="token string">'../config/defaultSettings'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> currentUser <span class="token keyword">as</span> queryCurrentUser <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/services/ant-design-pro/api'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> isDev <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'development'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> loginPath <span class="token operator">=</span> <span class="token string">'/user/login'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// getInitialState 获取初始化状态</span>
+<span class="token comment">// 调用完getInitialState 得到一个对象</span>
+<span class="token comment">//   不是登录页面的路由:  { fetchUserInfo currentUser settings: defaultSettings, }</span>
+<span class="token comment">//   是登录页面的路由:  { fetchUserInfo settings: defaultSettings, }</span>
+<span class="token comment">// getInitialState这个方法,只有页面加载时(第一次访问)才会执行, </span>
+<span class="token comment">// 如果你跳转的不是登录页面,就去调接口获取登录者的用户信息,存放到了initialState.currentUser</span>
+<span class="token comment">// 如果访问的是登录页,得到  { fetchUserInfo   settings: defaultSettings, }</span>
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getInitialState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;66666666666666666666666666666666&quot;</span><span class="token punctuation">)</span>
+  <span class="token comment">// fetchUserInfo</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">fetchUserInfo</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 调用接口去获取用户信息（现在的接口是mock出来的，已经把mock关闭了）</span>
+    <span class="token comment">// try {</span>
+    <span class="token comment">//   const msg = await queryCurrentUser({</span>
+    <span class="token comment">//     skipErrorHandler: true,</span>
+    <span class="token comment">//   });</span>
+    <span class="token comment">//   return msg.data;  // msg.data 就是表示用户信息  {username:&quot;malu&quot;,age:18,avatar:&quot;xxxx&quot;,address:&quot;xxx&quot;}</span>
+    <span class="token comment">// } catch (error) {</span>
+    <span class="token comment">//   history.push(loginPath);</span>
+    <span class="token comment">// }</span>
+    <span class="token comment">// return undefined;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      username<span class="token operator">:</span><span class="token string">&quot;malu&quot;</span><span class="token punctuation">,</span>age<span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span>avatar<span class="token operator">:</span><span class="token string">&quot;xxxx&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token comment">// 如果不是登录页面，执行</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> location <span class="token punctuation">}</span> <span class="token operator">=</span> history<span class="token punctuation">;</span>
+  <span class="token comment">// 访问的路径是 /welcome  /goods  /list   如果不是登录页面</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>location<span class="token punctuation">.</span>pathname <span class="token operator">!==</span> loginPath<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// currentUser 用户信息  {username:&quot;malu&quot;,age:18,avatar:&quot;xxxx&quot;}</span>
+    <span class="token keyword">const</span> currentUser <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetchUserInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 调接口获取用户信息</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      fetchUserInfo<span class="token punctuation">,</span>  <span class="token comment">// 方法 </span>
+      currentUser<span class="token punctuation">,</span>   <span class="token comment">//  {username:&quot;malu&quot;,age:18,avatar:&quot;xxxx&quot;}</span>
+      settings<span class="token operator">:</span> defaultSettings<span class="token punctuation">,</span> 
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 访问的是登录页面</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    fetchUserInfo<span class="token punctuation">,</span>
+    settings<span class="token operator">:</span> defaultSettings<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// layout </span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">layout</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> initialState<span class="token punctuation">,</span> setInitialState <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment">// render是渲染的意思  Question问题的意思  SelectLang选择语言（国际化）</span>
+    <span class="token comment">// actionsRender 渲染的是顶部header 右边那一块的内容  先不要去看 Question 和 SelectLang</span>
+    <span class="token function-variable function">actionsRender</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Question</span></span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>doc<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span><span class="token punctuation">,</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">SelectLang</span></span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>SelectLang<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment">// avatar 头像的意思</span>
+    <span class="token comment">// initialState?.currentUser?.avatar  当前登录者的头像</span>
+    <span class="token comment">// &lt;AvatarName /&gt; 名字组件</span>
+    <span class="token comment">// AvatarDropdown  下拉菜单</span>
+    avatarProps<span class="token operator">:</span> <span class="token punctuation">{</span>
+      src<span class="token operator">:</span> initialState<span class="token operator">?.</span>currentUser<span class="token operator">?.</span>avatar<span class="token punctuation">,</span>
+      title<span class="token operator">:</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">AvatarName</span></span> <span class="token punctuation">/&gt;</span></span><span class="token punctuation">,</span>
+      <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token punctuation">(</span>_<span class="token punctuation">,</span> avatarChildren<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">AvatarDropdown</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>avatarChildren<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">AvatarDropdown</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 水印 把当前登录者的名字当成水印</span>
+    waterMarkProps<span class="token operator">:</span> <span class="token punctuation">{</span>
+      content<span class="token operator">:</span> initialState<span class="token operator">?.</span>currentUser<span class="token operator">?.</span>name<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 渲染底部</span>
+    <span class="token function-variable function">footerRender</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Footer</span></span> <span class="token punctuation">/&gt;</span></span><span class="token punctuation">,</span>
+    <span class="token comment">// 路由变化时调用 onPageChange</span>
+    <span class="token function-variable function">onPageChange</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> location <span class="token punctuation">}</span> <span class="token operator">=</span> history<span class="token punctuation">;</span>
+      <span class="token comment">// 如果没有登录，重定向到 login</span>
+      <span class="token comment">// initialState 是初始化状态  currentUser是当前登录的用户信息</span>
+      <span class="token comment">// 当登录成功后，把当前登录者的用户信息存储到了initialState</span>
+      <span class="token comment">//  currentUser: {username:&quot;malu&quot;,age:18,avatar:&quot;xxxx&quot;,address:&quot;xxx&quot;}</span>
+      <span class="token comment">// 点击登录，调用了两个接口</span>
+      <span class="token comment">//     1）登录接口  </span>
+      <span class="token comment">//     2）获取用户信息  currentUser</span>
+      <span class="token comment">// const loginPath = '/user/login';</span>
+      <span class="token comment">// initialState里面没有用户信息 并且 你访问的不是/user/login(/welcome)</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>initialState<span class="token operator">?.</span>currentUser <span class="token operator">&amp;&amp;</span> location<span class="token punctuation">.</span>pathname <span class="token operator">!==</span> loginPath<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 跳转到 '/user/login'</span>
+        <span class="token comment">// history.push(loginPath);</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 整个layout组件的背景图片</span>
+    bgLayoutImgList<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        src<span class="token operator">:</span> <span class="token string">'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/D2LWSqNny4sAAAAAAAAAAAAAFl94AQBr'</span><span class="token punctuation">,</span>
+        left<span class="token operator">:</span> <span class="token number">85</span><span class="token punctuation">,</span>
+        bottom<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+        height<span class="token operator">:</span> <span class="token string">'303px'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        src<span class="token operator">:</span> <span class="token string">'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/C2TWRpJpiC0AAAAAAAAAAAAAFl94AQBr'</span><span class="token punctuation">,</span>
+        bottom<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">68</span><span class="token punctuation">,</span>
+        right<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">45</span><span class="token punctuation">,</span>
+        height<span class="token operator">:</span> <span class="token string">'303px'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        src<span class="token operator">:</span> <span class="token string">'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/F6vSTbj8KpYAAAAAAAAAAAAAFl94AQBr'</span><span class="token punctuation">,</span>
+        bottom<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        left<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        width<span class="token operator">:</span> <span class="token string">'331px'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment">// 如果是开发模式,就会在左下角显示一个连接</span>
+    links<span class="token operator">:</span> isDev
+      <span class="token operator">?</span> <span class="token punctuation">[</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>openapi<span class="token punctuation">&quot;</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/umi/plugin/openapi<span class="token punctuation">&quot;</span></span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>_blank<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">LinkOutlined</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">OpenAPI 文档</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span>
+      <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment">// </span>
+    menuHeaderRender<span class="token operator">:</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span>
+    <span class="token comment">// 自定义 403 页面</span>
+    <span class="token comment">// unAccessible   Accessible有权限的     unAccessible没有权限 </span>
+    <span class="token comment">// unAccessible: &lt;div&gt;unAccessible&lt;/div&gt;,</span>
+    <span class="token comment">// 增加一个 loading 的状态   Drawer是抽屉的意思  SettingDrawer</span>
+    <span class="token function-variable function">childrenRender</span><span class="token operator">:</span> <span class="token punctuation">(</span>children<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// if (initialState?.loading) return &lt;PageLoading /&gt;;</span>
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+          </span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token plain-text">
+          </span><span class="token punctuation">{</span>isDev <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">SettingDrawer</span></span>
+              <span class="token attr-name">disableUrlParams</span>
+              <span class="token attr-name">enableDarkTheme</span>
+              <span class="token attr-name">settings</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>initialState<span class="token operator">?.</span>settings<span class="token punctuation">}</span></span>
+              <span class="token attr-name">onSettingChange</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>settings<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+                <span class="token function">setInitialState</span><span class="token punctuation">(</span><span class="token punctuation">(</span>preInitialState<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+                  <span class="token operator">...</span>preInitialState<span class="token punctuation">,</span>
+                  settings<span class="token punctuation">,</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span><span class="token punctuation">}</span></span>
+            <span class="token punctuation">/&gt;</span></span>
+          <span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>initialState<span class="token operator">?.</span>settings<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> request <span class="token operator">=</span> <span class="token punctuation">{</span>
+  timeout<span class="token operator">:</span><span class="token number">60000</span><span class="token punctuation">,</span> <span class="token comment">// 超时处理，请求超过1分钟，就取消请求</span>
+  <span class="token comment">// 错误统一处理</span>
+  errorConfig<span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token comment">// 错误接收及处理</span>
+    <span class="token function">errorHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;网络繁忙，请稍后再试~&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 请求拦截器</span>
+  requestInterceptors<span class="token operator">:</span><span class="token punctuation">[</span>
+    <span class="token punctuation">(</span>config<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 在请求拦截器中带个token(除了登录接口)</span>
+      <span class="token keyword">const</span> token <span class="token operator">=</span> <span class="token string">&quot;xxx&quot;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>token <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>url <span class="token operator">!==</span> <span class="token string">&quot;/api/adminUser/login&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        config<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'token'</span><span class="token punctuation">]</span> <span class="token operator">=</span> token<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> config<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// 响应拦截器</span>
+  responseInterceptors<span class="token operator">:</span><span class="token punctuation">[</span>
+    <span class="token comment">// 不对响应的数据作数据</span>
+     <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br><span class="line-number">183</span><br><span class="line-number">184</span><br><span class="line-number">185</span><br><span class="line-number">186</span><br><span class="line-number">187</span><br><span class="line-number">188</span><br></div></div><h3 id="_4-分析compoents中的组件"><a href="#_4-分析compoents中的组件" class="header-anchor">#</a> 4，分析compoents中的组件</h3> <p>再删除一些内容：</p> <p><img src="/javablog/public/assets/img/1712656398423.87d5f480.png" alt="1712656398423"></p> <p>分析access.ts，如下：</p> <p><img src="/javablog/public/assets/img/1712656729558.42b1cc3a.png" alt="1712656729558"></p> <div class="language-ts line-numbers-mode"><pre class="language-ts"><code><span class="token comment">// export default function access(initialState: { currentUser?: API.CurrentUser } | undefined) {</span>
+<span class="token comment">//   const { currentUser } = initialState ?? {};</span>
+<span class="token comment">//   return {</span>
+<span class="token comment">//     canAdmin: currentUser &amp;&amp; currentUser.access === 'admin',</span>
+<span class="token comment">//   };</span>
+<span class="token comment">// }</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">access</span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> currentUser <span class="token operator">=</span> initialState<span class="token operator">?.</span>currentUser
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment">// { username:&quot;malu&quot;,age:18,...  access: 'admin'}</span>
+    <span class="token comment">// canAdmin:true, </span>
+
+    <span class="token comment">// { username:&quot;malu&quot;,age:18,...  access: 'baoan'}</span>
+    <span class="token comment">// canAdmin:false</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>components中封装了一些通用级别的组件：</p> <p><img src="/javablog/public/assets/img/1712657035122.2adbfee2.png" alt="1712657035122"></p> <p><img src="/javablog/public/assets/img/1712657116852.c26642a0.png" alt="1712657116852"></p> <p>components里面的组件，大家自行研究一下。</p> <h2 id="三-配置路由"><a href="#三-配置路由" class="header-anchor">#</a> 三，配置路由</h2> <h3 id="_1-分析路由"><a href="#_1-分析路由" class="header-anchor">#</a> 1，分析路由</h3> <p>基于下面的模板进行配置：</p> <p><img src="/javablog/public/assets/img/1712662139585.c8de02a7.png" alt="1712662139585"></p> <p>把源码中的组件备份一下：</p> <p><img src="/javablog/public/assets/img/1712662298077.14da1fcd.png" alt="1712662298077"></p> <p>分析：</p> <p><img src="/javablog/public/assets/img/1712662544426.b262f60d.png" alt="1712662544426"></p> <p>规划路由：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>Dashboard   /dashboard
+    /dashboard ===&gt;  /dashboard/sysinfo
+    系统介绍   /dashboard/sysinfo
+    Dashboard   /dashboard/dashboard
+    添加商品   /dashboard/addgoods
+首页配置   /home
+    /home ===&gt;  /home/banner
+    轮播图配置   /home/banner
+    热销商品配置   /home/hotsale
+    新品上线配置   /home/new
+    为你推荐配置   /home/recommend
+模块管理   /module
+    /module ===&gt;  /module/classify
+    分类管理   /module/classify
+    商品管理   /module/goods
+    会员管理   /module/member
+    订单管理   /module/order
+系统管理   /sys
+    /sys ===&gt;  /sys/changepwd
+    修改密码   /sys/changepwd
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>规划组件：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>dashboard 
+     SysInfo.jsx
+     Dashboard.jsx
+     AddGoods.jsx
+home 
+     Banner.jsx
+     HotSale.jsx
+     New.jsx
+     Recommend.jsx
+module 
+     Classify.jsx
+     Goods.jsx
+     Member.jsx
+     Order.jsx
+sys
+	 ChangePwd.jsx
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>组件的样子：</p> <div class="language-jsx line-numbers-mode"><pre class="language-jsx"><code><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PageContainer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@ant-design/pro-components'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">HotSale</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">PageContainer</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+        热销商品
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">PageContainer</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> HotSale<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>到此项目中的组件就创建完毕了：</p> <p><img src="/javablog/public/assets/img/1712663697895.624be734.png" alt="1712663697895"></p> <h3 id="_2-配置路由"><a href="#_2-配置路由" class="header-anchor">#</a> 2，配置路由</h3> <p>要使用图标，还需要安装图标：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>pnpm install @ant-design/icons --save
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>就是配置路由表：</p> <p><img src="/javablog/public/assets/img/1712665574512.8e59d234.png" alt="1712665574512"></p> <div class="language-ts line-numbers-mode"><pre class="language-ts"><code><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    redirect<span class="token operator">:</span> <span class="token string">'/dashboard/sysinfo'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/dashboard'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Dashboard'</span><span class="token punctuation">,</span>
+    icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    routes<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/dashboard'</span><span class="token punctuation">,</span>
+        redirect<span class="token operator">:</span> <span class="token string">'/dashboard/sysinfo'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/dashboard/sysinfo'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'系统介绍'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./dashboard/SysInfo'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/dashboard/dashboard'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'Dashboard'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./dashboard/Dashboard'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/dashboard/addgoods'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'添加商品'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./dashboard/AddGoods'</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/home'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'首页配置'</span><span class="token punctuation">,</span>
+    icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    routes<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/home'</span><span class="token punctuation">,</span>
+        redirect<span class="token operator">:</span> <span class="token string">'/home/banner'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/home/banner'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'轮播图配置'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./home/Banner'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/home/hotsale'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'热销商品配置'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./home/HotSale'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/home/new'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'新品上线配置'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./home/New'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/home/recommend'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'为你推荐配置'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./home/Recommend'</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/module'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'模块管理'</span><span class="token punctuation">,</span>
+    icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    routes<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/module'</span><span class="token punctuation">,</span>
+        redirect<span class="token operator">:</span> <span class="token string">'/module/classify'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/module/classify'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'分类管理'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./module/Classify'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/module/goods'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'商品管理'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./module/Goods'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/module/member'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'会员管理'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./module/Member'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/module/order'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'订单管理'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./module/Order'</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/sys'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'系统管理'</span><span class="token punctuation">,</span>
+    icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    routes<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/sys'</span><span class="token punctuation">,</span>
+        redirect<span class="token operator">:</span> <span class="token string">'/sys/changepwd'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token operator">:</span> <span class="token string">'/sys/changepwd'</span><span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token string">'修改密码'</span><span class="token punctuation">,</span>
+        icon<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        component<span class="token operator">:</span> <span class="token string">'./sys/ChangePwd'</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'/login'</span><span class="token punctuation">,</span>
+    layout<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> <span class="token string">'Login'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'*'</span><span class="token punctuation">,</span>
+    layout<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> <span class="token string">'./404'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br></div></div><p>效果如下：</p> <p><img src="/javablog/public/assets/img/1712665652162.f02fc62d.png" alt="1712665652162"></p> <h3 id=""><a href="#" class="header-anchor">#</a></h3></div></section> <footer class="page-edit"><!----> <!----></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#一-antd-design-pro介绍" class="sidebar-link reco-side-一-antd-design-pro介绍" data-v-b57cc07c>一，antd design pro介绍</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_1-相关链接" class="sidebar-link reco-side-_1-相关链接" data-v-b57cc07c>1，相关链接</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_2-通过umi脚手架创建antd-pro项目" class="sidebar-link reco-side-_2-通过umi脚手架创建antd-pro项目" data-v-b57cc07c>2，通过umi脚手架创建antd pro项目</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_3-通过antd-pro脚手架创建项目" class="sidebar-link reco-side-_3-通过antd-pro脚手架创建项目" data-v-b57cc07c>3，通过antd pro脚手架创建项目</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#二-解读-antd-pro源码" class="sidebar-link reco-side-二-解读-antd-pro源码" data-v-b57cc07c>二，解读 antd pro源码</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_1-webpack配置" class="sidebar-link reco-side-_1-webpack配置" data-v-b57cc07c>1，webpack配置</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_2-请求的二次封装" class="sidebar-link reco-side-_2-请求的二次封装" data-v-b57cc07c>2，请求的二次封装</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_3-分析运行时配置" class="sidebar-link reco-side-_3-分析运行时配置" data-v-b57cc07c>3，分析运行时配置</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_4-分析compoents中的组件" class="sidebar-link reco-side-_4-分析compoents中的组件" data-v-b57cc07c>4，分析compoents中的组件</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#三-配置路由" class="sidebar-link reco-side-三-配置路由" data-v-b57cc07c>三，配置路由</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_1-分析路由" class="sidebar-link reco-side-_1-分析路由" data-v-b57cc07c>1，分析路由</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#_2-配置路由" class="sidebar-link reco-side-_2-配置路由" data-v-b57cc07c>2，配置路由</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/base/26.html#" class="sidebar-link reco-side-" data-v-b57cc07c></a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/javablog/public/assets/js/app.e980d0b6.js" defer></script><script src="/javablog/public/assets/js/48.059c4058.js" defer></script><script src="/javablog/public/assets/js/1.3c422ec2.js" defer></script><script src="/javablog/public/assets/js/41.73a2910a.js" defer></script>
+  </body>
+</html>
