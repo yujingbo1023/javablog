@@ -1,0 +1,650 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>30</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:first-child { margin-top: -20px; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  @page { margin: 20mm 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root { --side-bar-bg-color: #fafafa; --control-text-color: #777; }
+html { font-size: 16px; }
+body { font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; }
+#write { max-width: 860px; margin: 0px auto; padding: 30px 30px 100px; }
+#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
+a { color: rgb(65, 131, 196); }
+h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
+h1 tt, h1 code { font-size: inherit; }
+h2 tt, h2 code { font-size: inherit; }
+h3 tt, h3 code { font-size: inherit; }
+h4 tt, h4 code { font-size: inherit; }
+h5 tt, h5 code { font-size: inherit; }
+h6 tt, h6 code { font-size: inherit; }
+h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+h3 { font-size: 1.5em; line-height: 1.43; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 1em; color: rgb(119, 119, 119); }
+p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
+li > ol, li > ul { margin: 0px; }
+hr { height: 2px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; overflow: hidden; box-sizing: content-box; }
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0px; }
+ul:last-child, ol:last-child { margin-bottom: 0px; }
+blockquote { border-left: 4px solid rgb(223, 226, 229); padding: 0px 15px; color: rgb(119, 119, 119); }
+blockquote blockquote { padding-right: 0px; }
+table { padding: 0px; word-break: initial; }
+table tr { border-top: 1px solid rgb(223, 226, 229); margin: 0px; padding: 0px; }
+table tr:nth-child(2n), thead { background-color: rgb(248, 248, 248); }
+table tr th { font-weight: bold; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(223, 226, 229); border-right-color: rgb(223, 226, 229); border-left-color: rgb(223, 226, 229); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; text-align: left; margin: 0px; padding: 6px 13px; }
+table tr td { border: 1px solid rgb(223, 226, 229); text-align: left; margin: 0px; padding: 6px 13px; }
+table tr th:first-child, table tr td:first-child { margin-top: 0px; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
+.CodeMirror-lines { padding-left: 4px; }
+.code-tooltip { box-shadow: rgba(0, 28, 36, 0.3) 0px 1px 1px 0px; border-top: 1px solid rgb(238, 242, 242); }
+.md-fences, code, tt { border: 1px solid rgb(231, 234, 237); background-color: rgb(248, 248, 248); border-radius: 3px; padding: 2px 4px 0px; font-size: 0.9em; }
+code { background-color: rgb(243, 244, 244); padding: 0px 2px; }
+.md-fences { margin-bottom: 15px; margin-top: 15px; padding-top: 8px; padding-bottom: 6px; }
+.md-task-list-item > input { margin-left: -1.3em; }
+@media print {
+  html { font-size: 13px; }
+  table, pre { break-inside: avoid; }
+  pre { word-wrap: break-word; }
+}
+.md-fences { background-color: rgb(248, 248, 248); }
+#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
+.mathjax-block > .code-tooltip { bottom: 0.375rem; }
+.md-mathjax-midline { background: rgb(250, 250, 250); }
+#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
+#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+.md-image > .md-meta { border-radius: 3px; padding: 2px 0px 0px 4px; font-size: 0.9em; color: inherit; }
+.md-tag { color: rgb(167, 167, 167); opacity: 1; }
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+.sidebar-tabs { border-bottom: none; }
+#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
+#typora-quick-open-item { background-color: rgb(250, 250, 250); border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+header, .context-menu, .megamenu-content, footer { font-family: "Segoe UI", Arial, sans-serif; }
+.file-node-content:hover .file-node-icon, .file-node-content:hover .file-node-open-state { visibility: visible; }
+.mac-seamless-mode #typora-sidebar { background-color: var(--side-bar-bg-color); }
+.md-lang { color: rgb(180, 101, 77); }
+.html-for-mac .context-menu { --item-hover-bg-color: #E6F0FE; }
+#md-notification .btn { border: 0px; }
+.dropdown-menu .divider { border-color: rgb(229, 229, 229); }
+
+
+
+
+
+ .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><h3><a name='header-n0' class='md-header-anchor '></a>1，Vue路由</h3><p>&nbsp;</p><p><strong>路由相关概念：</strong></p><ul><li>Vue Router 是 Vue.js 的官方路由。它与 Vue.js 核心深度集成，让用 Vue.js 构建单页应用变得轻而易举。</li><li>单页面应用也称为SPA(Single Page Application)，它主要是网页的界面渲染在一个静态的页面上，当用户要从当前界面跳到另一个界面的时候，在这个过程中，不需要重新加载整个页面，所以页面之间的切换十分快速</li><li>多页面在进行页面切换时十分缓慢，在路由进行跳转的时候会加载所有的资源，而且页面重复代码多。</li><li>对比之下，单页面原理是JavaScript动态修改内容而已，资源只需要局部的刷新，因此SPA具有极高的流畅度，有利于提升用户体验。</li></ul><p>&nbsp;</p><p>单页面VS多页面：</p><figure><table><thead><tr><th>&nbsp;</th><th>单页面(SPA)</th><th>多页面(MPA)</th></tr></thead><tbody><tr><td>组成</td><td>外壳页面和多个页面片段</td><td>多个完整页面构成</td></tr><tr><td>资源共用</td><td>共用、只需在外壳部分加载</td><td>不共用，每个页面都需要加载</td></tr><tr><td>刷新方式</td><td>页面局部刷新或更改</td><td>整页刷新</td></tr><tr><td>URL模式</td><td>a.com/#/one 或者 a.com/one</td><td>a.com/one.html</td></tr><tr><td>用户体验</td><td>页面切换快，体验好</td><td>页面切换慢，体验差</td></tr><tr><td>数据传递</td><td>容易(路由或者组件之间传递)</td><td>依赖URL传参、本地存储传参</td></tr><tr><td>SEO</td><td>不利于SEO（后续有其他解决方案）</td><td>利于SEO</td></tr><tr><td>维护成本</td><td>相对容易</td><td>相对复杂</td></tr></tbody></table></figure><p>&nbsp;</p><p><strong>路由作用</strong></p><ul><li>页面与页面之前的切换，是通过不同的地址访问的，地址对应着要显示的组件。而实现这个页面切换显示的功能就是路由的作用</li></ul><p>&nbsp;</p><h3><a name='header-n58' class='md-header-anchor '></a>2，项目中引入路由</h3><p>用 Vue + Vue Router 创建单页应用非常简单：通过 Vue.js，我们已经用组件组成了我们的应用。当加入 Vue Router 时，我们需要做的就是将我们的组件映射到路由上，让 Vue Router 知道在哪里渲染它们</p><p>&nbsp;</p><p>安装：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.88193px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">npm install vue-router@4 --save</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p>&nbsp;</p><p>实现路由功能：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="js" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="js"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.88193px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> { <span class="cm-def">createApp</span> } <span class="cm-keyword">from</span> <span class="cm-string">'vue'</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">App</span> <span class="cm-keyword">from</span> <span class="cm-string">'./App.vue'</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> { <span class="cm-def">createRouter</span>,<span class="cm-def">createWebHashHistory</span> } <span class="cm-keyword">from</span> <span class="cm-string">"vue-router"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">Home</span> <span class="cm-keyword">from</span> <span class="cm-string">"./pages/Home.vue"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">About</span> <span class="cm-keyword">from</span> <span class="cm-string">"./pages/About.vue"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">routes</span> <span class="cm-operator">=</span> [</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">path</span>:<span class="cm-string">"/"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">component</span>:<span class="cm-variable">Home</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; },</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">path</span>:<span class="cm-string">"/about"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">component</span>:<span class="cm-variable">About</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">router</span> <span class="cm-operator">=</span> <span class="cm-variable">createRouter</span>({</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-comment">// 路由地址访问方式 #  /</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-comment">// 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">history</span>: <span class="cm-variable">createWebHashHistory</span>(),</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">routes</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">})</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">app</span> <span class="cm-operator">=</span> <span class="cm-variable">createApp</span>(<span class="cm-variable">App</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">app</span>.<span class="cm-property">use</span>(<span class="cm-variable">router</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">app</span>.<span class="cm-property">mount</span>(<span class="cm-string">'#app'</span>)</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 547px;"></div><div class="CodeMirror-gutters" style="display: none; height: 547px;"></div></div></div></pre><p>&nbsp;</p><p>Home组件：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="vue"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="vue"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.98611px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h3</span><span class="cm-tag cm-bracket">&gt;</span>Home首页<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h3</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 68px;"></div><div class="CodeMirror-gutters" style="display: none; height: 68px;"></div></div></div></pre><p>&nbsp;</p><p>About组件：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="vue"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="vue"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.98611px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h3</span><span class="cm-tag cm-bracket">&gt;</span>About关于页面<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h3</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 68px;"></div><div class="CodeMirror-gutters" style="display: none; height: 68px;"></div></div></div></pre><p>&nbsp;</p><p>App组件：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="vue"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="vue"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.98611px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-comment">&lt;!-- 路由匹配到的组件将渲染在这里 --&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">router-link</span> <span class="cm-attribute">to</span>=<span class="cm-string">"/"</span><span class="cm-tag cm-bracket">&gt;</span>Home<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">router-link</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">router-link</span> <span class="cm-attribute">to</span>=<span class="cm-string">"/about"</span><span class="cm-tag cm-bracket">&gt;</span>About<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">router-link</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">router-view</span><span class="cm-tag cm-bracket">&gt;&lt;/</span><span class="cm-tag">router-view</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 137px;"></div><div class="CodeMirror-gutters" style="display: none; height: 137px;"></div></div></div></pre><p>&nbsp;</p><p><code>router-view</code></p><ul><li><code>router-view</code> 将显示与 url 对应的组件。你可以把它放在任何地方，以适应你的布局</li></ul><p>&nbsp;</p><p><code>router-link</code></p><ul><li><p>请注意，我们没有使用常规的 <code>a</code> 标签，而是使用一个自定义组件 <code>router-link</code> 来创建链接。这使得 Vue Router 可以在不重新加载页面的情况下更改 URL，处理 URL 的生成以及编码</p><p>&nbsp;</p></li></ul><h3><a name='header-n86' class='md-header-anchor '></a>3，编程式导航</h3><p>&nbsp;</p><p>除了使用 <code>&lt;router-link&gt;</code> 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。在 Vue 实例中，你可以通过 <code>$router</code> 访问路由实例。因此你可以调用 <code>this.$router.push</code>。</p><p>&nbsp;</p><p>选项式API：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="vue"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="vue"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.98611px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h3</span><span class="cm-tag cm-bracket">&gt;</span>Home首页<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h3</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">@click</span>=<span class="cm-string">"clickHandler"</span><span class="cm-tag cm-bracket">&gt;</span>跳转到About页面<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">export</span> <span class="cm-keyword">default</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">methods</span>:{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">clickHandler</span>(){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-keyword">this</span>.<span class="cm-property">$router</span>.<span class="cm-property">push</span>(<span class="cm-string">"/about"</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 296px;"></div><div class="CodeMirror-gutters" style="display: none; height: 296px;"></div></div></div></pre><p>&nbsp;</p><p>组合式API：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="vue"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="vue"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.98611px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h3</span><span class="cm-tag cm-bracket">&gt;</span>About关于页面<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h3</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">@click</span>=<span class="cm-string">"clickHandler"</span><span class="cm-tag cm-bracket">&gt;</span>跳转到首页<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span> <span class="cm-attribute">setup</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> { <span class="cm-def">useRouter</span> } <span class="cm-keyword">from</span> <span class="cm-string">'vue-router'</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">router</span> <span class="cm-operator">=</span> <span class="cm-variable">useRouter</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">function</span> <span class="cm-def">clickHandler</span>(){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">router</span>.<span class="cm-property">push</span>(<span class="cm-string">"/"</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 251px;"></div><div class="CodeMirror-gutters" style="display: none; height: 251px;"></div></div></div></pre><p>&nbsp;</p><p>&nbsp;</p><h3><a name='header-n97' class='md-header-anchor '></a>4，带参数的动态路由匹配</h3><p>很多时候，我们需要将给定匹配模式的路由映射到同一个组件。例如，我们可能有一个 <code>User</code> 组件，它应该对所有用户进行渲染，但用户 ID 不同。在 Vue Router 中，我们可以在路径中使用一个动态字段来实现，我们称之为 <em>路径参数</em></p><p>&nbsp;</p><p>router/index.js</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="js"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="js"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.88193px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// router/index.js</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">routes</span> <span class="cm-operator">=</span> [</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">path</span>:<span class="cm-string">"/"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">component</span>:<span class="cm-variable">Home</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-meta">...</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">path</span>:<span class="cm-string">"/details/:name"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">component</span>:<span class="cm-variable">Details</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">]</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 273px;"></div><div class="CodeMirror-gutters" style="display: none; height: 273px;"></div></div></div></pre><p>&nbsp;</p><p>App.vue：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n104" mdtype="fences" style="break-inside: unset;">&lt;template&gt;
+  &lt;h3&gt;列表&lt;/h3&gt;
+  &lt;ul&gt;
+    &lt;li v-for="(item,index) in user.names" :key="index"&gt;
+      &lt;router-link :to="'/details/' + item"&gt;{{ item }}&lt;/router-link&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { reactive } from "vue"
+const user = reactive({
+  names:["ityls","malu","wc"]
+})
+&lt;/script&gt;
+</pre><p>&nbsp;</p><p>选项式API:</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n107" mdtype="fences" style="break-inside: unset;">&lt;template&gt;
+  &lt;h3&gt;详情&lt;/h3&gt;
+  &lt;p&gt;{{ name }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data(){
+    return{
+      name:""
+     }
+   },
+  mounted(){
+    this.name = this.$route.params.name
+   }
+}
+&lt;/script&gt;
+</pre><p>&nbsp;</p><p>组合式API：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n110" mdtype="fences">&lt;template&gt;
+  &lt;h3&gt;详情&lt;/h3&gt;
+  &lt;p&gt;{{ name }}&lt;/p&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { useRoute  } from "vue-router"
+import { ref } from "vue"
+const route = useRoute()
+const name = ref("")
+name.value = route.params.name;
+&lt;/script&gt;
+</pre><p>&nbsp;</p><p>可选参数：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n113" mdtype="fences">{
+  path:"/details/:name?",
+  component:Details
+}
+</pre><p>&nbsp;</p><p>&nbsp;</p><h3><a name='header-n116' class='md-header-anchor '></a>5，嵌套路由</h3><p>一些应用程序的 UI 由多层嵌套的组件组成。在这种情况下，URL 的片段通常对应于特定的嵌套组件结构。</p><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n119" mdtype="fences">&lt;template&gt;
+  &lt;h3&gt;新闻&lt;/h3&gt;
+  &lt;router-link to="/news/sport"&gt;Sport&lt;/router-link&gt; | 
+  &lt;router-link to="/news/yule"&gt;Yule&lt;/router-link&gt;
+  &lt;router-view&gt;&lt;/router-view&gt;
+&lt;/template&gt;
+</pre><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n121" mdtype="fences">&lt;template&gt;
+  &lt;h3&gt;体育新闻&lt;/h3&gt;
+&lt;/template&gt;
+</pre><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n123" mdtype="fences">&lt;template&gt;
+  &lt;h3&gt;娱乐新闻&lt;/h3&gt;
+&lt;/template&gt;
+</pre><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n125" mdtype="fences" style="break-inside: unset;">{
+  path:"/news",
+    component:News,
+      children:[
+         {
+          path:"sport",
+          component:SportNews
+         },
+         {
+          path:"yule",
+          component:YuleNews
+         }
+       ]
+}
+</pre><p>&nbsp;</p><h3><a name='header-n127' class='md-header-anchor '></a>6，重定向和别名</h3><p>重定向也是通过 <code>routes</code> 配置来完成</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n129" mdtype="fences" style="break-inside: unset;">{
+  path:"/news",
+    component:News,
+      redirect:"/news/sport",
+        children:[
+           {
+            path:"sport",
+            component:SportNews
+           },
+           {
+            path:"yule",
+            component:YuleNews
+           }
+         ]
+}
+</pre><p>&nbsp;</p><p>别名：重定向是指当用户访问 <code>/home</code> 时，URL 会被 <code>/</code> 替换，然后匹配成 <code>/</code>。那么什么是别名呢</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n132" mdtype="fences">{
+  alias:"yl",
+  path:"yule",
+  component:YuleNews
+}
+</pre><p>&nbsp;</p><h3><a name='header-n134' class='md-header-anchor '></a>7，命名路由</h3><p>除了 <code>path</code> 之外，你还可以为任何路由提供 <code>name</code>。这有以下优点</p><ul><li>没有硬编码的 URL</li><li><code>params</code> 的自动编码/解码</li><li>防止你在 url 中出现打字错误</li></ul><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n144" mdtype="fences">{
+  name:"About",
+  path:"/about",
+  component:About
+}
+</pre><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n146" mdtype="fences">this.$router.push({
+    name:"About"
+})
+</pre><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="html" contenteditable="false" cid="n148" mdtype="fences">&lt;router-link :to="{ name:'Details',params:{ name:item } }"&gt;{{ item }}&lt;/router-link&gt;
+</pre><p>&nbsp;</p><p>&nbsp;</p><h3><a name='header-n151' class='md-header-anchor '></a>8，命名视图</h3><p>有时候想同时 (同级) 展示多个视图，而不是嵌套展示，例如创建一个布局，有 <code>sidebar</code> (侧导航) 和 <code>main</code> (主内容) 两个视图，这个时候命名视图就派上用场了。你可以在界面中拥有多个单独命名的视图，而不是只有一个单独的出口。如果 <code>router-view</code> 没有设置名字，那么默认为 <code>default</code></p><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n154" mdtype="fences" style="break-inside: unset;">const routes = [
+   {
+     name:"Home",
+     path:"/",
+     components:{
+       default:Home,
+       // 它们与 `&lt;router-view&gt;` 上的 `name` 属性匹配
+       AD
+     }
+   },
+   {
+     name:"About",
+     path:"/about",
+     components:{
+       default:About,
+       AD
+     }
+   }
+]
+</pre><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n156" mdtype="fences">&lt;template&gt;
+  &lt;router-link to="/"&gt;Home&lt;/router-link&gt; | 
+  &lt;router-link to="/about"&gt;About&lt;/router-link&gt;
+  &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;router-view name="AD"&gt;&lt;/router-view&gt;
+&lt;/template&gt;
+</pre><p>&nbsp;</p><p>&nbsp;</p><h3><a name='header-n159' class='md-header-anchor '></a>9，不同的路由模型</h3><p>在创建路由器实例时，<code>history</code> 配置允许我们在不同的历史模式中进行选择</p><p>&nbsp;</p><p><strong>Hash 模式:</strong></p><p>hash 模式是用 <code>createWebHashHistory()</code> 创建的</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n164" mdtype="fences">import { createRouter, createWebHashHistory } from 'vue-router'
+
+const router = createRouter({
+ history: createWebHashHistory(),
+ routes: [
+  //...
+  ],
+})
+</pre><p>&nbsp;</p><p><strong>HTML5 模式:</strong></p><p>用 <code>createWebHistory()</code> 创建 HTML5 模式，推荐使用这个模式</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n168" mdtype="fences">import { createRouter, createWebHistory } from 'vue-router'
+
+
+const router = createRouter({
+ history: createWebHistory(),
+ routes: [
+  //...
+  ],
+})
+</pre><p>&nbsp;</p><p>当使用这种历史模式时，URL 会看起来很 &quot;正常&quot;，例如 <code>https://example.com/user/id</code>。漂亮!</p><p>不过，问题来了。由于我们的应用是一个单页的客户端应用，如果没有适当的服务器配置，用户在浏览器中直接访问 <code>https://example.com/user/id</code>，就会得到一个 404 错误。这就丑了。</p><p>不用担心：要解决这个问题，你需要做的就是在你的服务器上添加一个简单的回退路由。如果 URL 不匹配任何静态资源，它应提供与你的应用程序中的 <code>index.html</code> 相同的页面。漂亮依旧!</p><p>解决方案：</p><p><a href='https://router.vuejs.org/zh/guide/essentials/history-mode.html#html5-%E6%A8%A1%E5%BC%8F' target='_blank' class='url'>https://router.vuejs.org/zh/guide/essentials/history-mode.html#html5-%E6%A8%A1%E5%BC%8F</a></p><p>&nbsp;</p><h3><a name='header-n176' class='md-header-anchor '></a>10，导航守卫</h3><p>正如其名，vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。这里有很多方式植入路由导航中：全局的，单个路由独享的，或者组件级的</p><p>&nbsp;</p><p><strong>全局前置守卫：</strong></p><p>你可以使用 <code>router.beforeEach</code> 注册一个全局前置守卫,当一个导航触发时，就会触发全局前置守卫</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n181" mdtype="fences">router.beforeEach((to, from, next) =&gt; {
+  // 返回 false 以取消导航
+  next()
+})
+</pre><p>&nbsp;</p><p><strong>全局解析守卫:</strong></p><p>你可以用 <code>router.beforeResolve</code> 注册一个全局守卫。这和 <code>router.beforeEach</code> 类似</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="" contenteditable="false" cid="n185" mdtype="fences">router.beforeResolve((to,from,next) =&gt; {
+  next()
+})
+</pre><p>&nbsp;</p><p><strong>全局后置钩子:</strong></p><p>你可以直接在路由配置上定义 <code>beforeEnter</code> 守卫,在导航结束之后触发</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n189" mdtype="fences">router.afterEach((to,from) =&gt; {
+  
+})
+</pre><p>&nbsp;</p><p><strong>路由独享的守卫:</strong></p><p>你可以直接在路由配置上定义 <code>beforeEnter</code> 守卫,<code>beforeEnter</code> 守卫 <strong>只在进入路由时触发</strong></p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n193" mdtype="fences">{
+  name: "List",
+  path: "/list",
+  component: List,
+    beforeEnter:(to,from) =&gt; {
+      return true;
+       }
+}
+</pre><p>&nbsp;</p><p><strong>组件内的守卫:</strong></p><p>你可以在路由组件内直接定义路由导航守卫</p><ul><li><code>beforeRouteEnter</code></li><li><code>beforeRouteUpdate</code></li><li><code>beforeRouteLeave</code></li></ul><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n204" mdtype="fences" style="break-inside: unset;">&lt;template&gt;
+  &lt;h3&gt;Home首页&lt;/h3&gt;
+&lt;/template&gt;
+&lt;script&gt;
+
+
+export default {
+  beforeRouteEnter(to, from){
+    // 在渲染该组件的对应路由被验证前调用
+    // 不能获取组件实例 `this` ！
+    // 因为当守卫执行时，组件实例还没被创建！
+    console.log(to,from)
+   },
+  beforeRouteUpdate(to,from){
+    // 在当前路由改变，但是该组件被复用时调用
+    // 举例来说，对于一个带有动态参数的路径 `/users/:id`，在 `/users/1` 和 `/users/2` 之间跳转的时候，
+    // 由于会渲染同样的 `UserDetails` 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+    // 因为在这种情况发生的时候，组件已经挂载好了，导航守卫可以访问组件实例 `this`
+   },
+  beforeRouteLeave(to,from){
+    // 在导航离开渲染该组件的对应路由时调用
+    // 与 `beforeRouteUpdate` 一样，它可以访问组件实例 `this`
+   }
+}
+&lt;/script&gt;
+
+</pre><p>&nbsp;</p><p><strong>完整的导航解析流程:</strong></p><ol start='' ><li>导航被触发。</li><li>在失活的组件里调用 <code>beforeRouteLeave</code> 守卫。</li><li>调用全局的 <code>beforeEach</code> 守卫。</li><li>在重用的组件里调用 <code>beforeRouteUpdate</code> 守卫(2.2+)。</li><li>在路由配置里调用 <code>beforeEnter</code>。</li><li>解析异步路由组件。</li><li>在被激活的组件里调用 <code>beforeRouteEnter</code>。</li><li>调用全局的 <code>beforeResolve</code> 守卫(2.5+)。</li><li>导航被确认。</li><li>调用全局的 <code>afterEach</code> 钩子。</li><li>触发 DOM 更新。</li><li>调用 <code>beforeRouteEnter</code> 守卫中传给 <code>next</code> 的回调函数，创建好的组件实例会作为回调函数的参数传入</li></ol><p>&nbsp;</p><h3><a name='header-n233' class='md-header-anchor '></a>11，路由元信息</h3><p>&nbsp;</p><p>有时，你可能希望将任意信息附加到路由上，如过渡名称、谁可以访问路由等，这些事情可以通过接收属性对象的<code>meta</code>属性来实现。定义路由的时候你可以配置 <code>meta</code> 字段,这个<code>meta</code>就是路由元信息，<strong>利用meta配合导航守卫完成判断用户是否登录在允许打开用户中心页面</strong></p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n236" mdtype="fences" style="break-inside: unset;">import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import UserInfoView from "../views/UserInfoView.vue"
+import LoginView from "../views/LoginView.vue"
+const router = createRouter({
+ history: createWebHistory(import.meta.env.BASE_URL),
+ routes: [
+   {
+       path: '/',
+       name: 'home',
+       component: HomeView
+   },
+   {
+       path: '/login',
+       name: 'login',
+       component: LoginView
+   },
+   {
+       path: '/about',
+       name: 'about',
+       component: () =&gt; import('../views/AboutView.vue'),
+       meta:{
+        requiresAuth:false
+        }
+       },
+   {
+       path: '/userinfo',
+       name: 'userinfo',
+       component: UserInfoView,
+       meta:{
+        requiresAuth:true
+        }
+       }
+  ]
+})
+router.beforeEach((to,from,next) =&gt;{
+ let token = false;
+ if(to.meta.requiresAuth){
+  if(!token){
+   next({
+    path:"/login"
+    })
+   }else{
+   next()
+   }
+  }else{
+  next()
+  }
+ 
+})
+export default router
+</pre><p>&nbsp;</p><p>&nbsp;</p><h3><a name='header-n239' class='md-header-anchor '></a>12，过渡动效</h3><p>想要在你的路径组件上使用转场，并对导航进行动画处理，你需要使用 <code>v-slot</code> API 和 <code>Transition</code> API</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n241" mdtype="fences" style="break-inside: unset;">&lt;template&gt;
+ &lt;RouterLink to="/"&gt;Home&lt;/RouterLink&gt; | 
+ &lt;RouterLink to="/about"&gt;About&lt;/RouterLink&gt; |
+ &lt;RouterLink to="/userinfo"&gt;用户中心&lt;/RouterLink&gt;
+ &lt;router-view v-slot="{ Component }"&gt;
+  &lt;Transition name="fade" &gt;
+   &lt;component :is="Component"&gt;&lt;/component&gt;
+  &lt;/Transition&gt;
+ &lt;/router-view&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { RouterLink, RouterView} from 'vue-router'
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.fade-enter-active,
+.fade-leave-active {
+ transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+ opacity: 0;
+}
+&lt;/style&gt;
+</pre><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="vue" contenteditable="false" cid="n243" mdtype="fences">&lt;router-view v-slot="{ Component,route }"&gt;
+  &lt;Transition :name="route.meta.transition ? 'fade' : ''" &gt;
+    &lt;component :is="Component"&gt;&lt;/component&gt;
+  &lt;/Transition&gt;
+&lt;/router-view&gt;
+</pre><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n245" mdtype="fences">{
+   path: '/about',
+   name: 'about',
+   component: () =&gt; import('../views/AboutView.vue'),
+   meta:{
+    transition:true
+    }
+}
+</pre><p>&nbsp;</p><h3><a name='header-n247' class='md-header-anchor '></a>13，滚动行为</h3><p>使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 vue-router 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动。</p><p>&nbsp;</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n250" mdtype="fences" style="break-inside: unset;">const router = createRouter({
+ history: createWebHistory(import.meta.env.BASE_URL),
+ routes: [
+   {
+   path: '/',
+   name: 'home',
+   component: HomeView
+   }
+  ],
+ scrollBehavior (to, from, savedPosition) {
+  if (savedPosition) {
+   return savedPosition
+   } else {
+   return { top: 0 }
+   }
+  }
+})
+</pre><p>&nbsp;</p><p>延迟滚动：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n253" mdtype="fences">scrollBehavior (to, from, savedPosition) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      resolve({ left: 0, top: 400 })
+     }, 500)
+   })
+}
+</pre><p>&nbsp;</p><p>&nbsp;</p><h3><a name='header-n256' class='md-header-anchor '></a>14，路由懒加载</h3><p>当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就会更加高效</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n258" mdtype="fences">// 将
+// import LoginView from "../views/LoginView.vue"
+// 替换成
+const LoginView = () =&gt; import("../views/LoginView.vue")
+</pre><p>&nbsp;</p><p>或者：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n261" mdtype="fences">{
+  path: '/login',
+  name: 'login',
+  component: () =&gt; import("../views/LoginView.vue")
+}
+</pre><p>&nbsp;</p><p>&nbsp;</p><h3><a name='header-n264' class='md-header-anchor '></a>15，动态路由</h3><p>对路由的添加通常是通过 <code>routes</code> 选项来完成的，但是在某些情况下，你可能想在应用程序已经运行的时候添加或删除路由</p><p>&nbsp;</p><p><strong>添加路由：</strong>用 <code>router.addRoute()</code>新增加路由配置</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n268" mdtype="fences">router.addRoute({
+ path:"/news",
+ name:"News",
+ component:News
+})
+</pre><p>&nbsp;</p><p><strong>添加多个路由：</strong></p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n271" mdtype="fences" style="break-inside: unset;">const currentRouter = [
+  {
+  path:"/news",
+  name:"News",
+  component:News
+  },
+  {
+  path: '/about',
+  name: 'about',
+  component:About
+  }
+]
+
+
+for(let i = 0;i&lt;currentRouter.length;i++){
+ router.addRoute(currentRouter[i])
+}
+</pre><p>&nbsp;</p><p><strong>删除路由：</strong>通过路由名字进行删除</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n274" mdtype="fences">router.removeRoute("about")
+</pre><p>&nbsp;</p><p><strong>添加嵌套路由:</strong></p><p>要将嵌套路由添加到现有的路由中，可以将路由的 <em>name</em> 作为第一个参数</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n278" mdtype="fences">router.addRoute("News",{
+ path:"yule",
+ component:Yule
+})
+</pre><p>&nbsp;</p><h3><a name='header-n280' class='md-header-anchor '></a>16，路由高亮</h3><p>&nbsp;</p><p>在实现导航的时候，我们需要给导航添加高亮</p><p>&nbsp;</p><p><strong>active-class:</strong>链接激活时，应用于渲染的 <code>&lt;a&gt;</code> 的 class</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="html" contenteditable="false" cid="n285" mdtype="fences">&lt;RouterLink active-class="active" to="/"&gt;Home&lt;/RouterLink&gt; | 
+&lt;RouterLink active-class="active" to="/about"&gt;About&lt;/RouterLink&gt;
+</pre><p>&nbsp;</p><p><strong>linkActiveClass:</strong>全局配置</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n288" mdtype="fences">const router = createRouter({
+  linkActiveClass:"active"
+})
+</pre><p>&nbsp;</p><p><strong>exact-active-class:</strong>链接精准激活时，应用于渲染的 <code>&lt;a&gt;</code> 的 class</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="js" contenteditable="false" cid="n291" mdtype="fences">&lt;RouterLink exact-active-class="active" to="/"&gt;Home&lt;/RouterLink&gt; | 
+&lt;RouterLink exact-active-class="active" to="/about"&gt;About&lt;/RouterLink&gt;
+</pre><p>&nbsp;</p><p><strong>linkExactActiveClass:</strong>全局配置</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="" contenteditable="false" cid="n294" mdtype="fences">const router = createRouter({
+  linkExactActiveClass:"active"
+})
+</pre><p>&nbsp;</p></div>
+</body>
+</html>
