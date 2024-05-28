@@ -1,3 +1,13 @@
+---
+title: 01-nacos
+date: 2028-12-15
+sticky: 1
+sidebar: 'auto'
+tags:
+ - nacos
+categories:
+ - springcloudalibaba
+---
 
 
 ### 1，架构演变
