@@ -614,27 +614,357 @@ public class PaymentApplication
 
 
 
+引入依赖：
+
+![1716870478653](./assets/1716870478653.png)
+
+```xml
+<dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+     <groupId>com.alibaba.cloud</groupId>
+     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+</dependencies>
+```
+
+
+
+编写配置文件：在resources文件下创建application.yml配置文件。
+
+![1716870561629](./assets/1716870561629.png)
+
+```yml
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      discovery:
+        # 配置 Nacos注册中心地址
+        server-addr: 103.38.81.223:8848
+server:
+  port: 8006
+```
+
+
+
+编写启动类：
+
+```java
+package com.ityls;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@Slf4j
+@EnableDiscoveryClient
+@SpringBootApplication
+public class OrderApplication
+{
+    public static void main( String[] args )
+    {
+        SpringApplication.run(OrderApplication.class,args);
+        log.info("************** 订单服务启动成功 ************");
+    }
+}
+```
+
+
+
+测试：
+
+![1716870649246](./assets/1716870649246.png)
+
+![1716870672495](./assets/1716870672495.png)
+
+
+
 ### 10，用CP模式和AP模式来保持注册中心的数据一致性
+
+![1716870725388](./assets/1716870725388.png)
+
+**CAP理论：**
+
+著名的CAP理论指出，一个分布式系统不可能同时满足C(一致性)、A(可用性)和P(分区容错性)。由于分区容错性P在是分布式系统中必须要保证的，因此我们只能在A和C之间进行权衡。
+
+
+
+**服务注册中心对比：**
+
+|                 | Nacos                      | Eureka      | Consul            | CoreDNS | Zookeeper   |
+| --------------- | -------------------------- | ----------- | ----------------- | ------- | ----------- |
+| 一致性协议      | CP+AP                      | AP          | CP                | /       | CP          |
+| 健康检查        | TCP/HTTP/MySQL/Client Beat | Client Beat | TCP/HTTP/gRPC/Cmd | /       | Client Beat |
+| 负载均衡        | 权重/DSL/metadata/CMDB     | Ribbon      | Fabio             | RR      | /           |
+| 雪崩保护        | 支持                       | 支持        | 不支持            | 不支持  | 不支持      |
+| 自动注销实例    | 支持                       | 支持        | 不支持            | 不支持  | 支持        |
+| 访问协议        | HTTP/DNS/UDP               | HTTP        | HTTP/DNS          | DNS     | TCP         |
+| 监听支持        | 支持                       | 支持        | 支持              | 不支持  | 支持        |
+| 多数据中心      | 支持                       | 支持        | 支持              | 不支持  | 不支持      |
+| 跨注册中心      | 支持                       | 不支持      | 支持              | 不支持  | 不支持      |
+| SpringCloud集成 | 支持                       | 支持        | 支持              | 不支持  | 不支持      |
+| Dubbo集成       | 支持                       | 不支持      | 不支持            | 不支持  | 支持        |
+| K8s集成         | 支持                       | 不支持      | 支持              | 支持    | 不支持      |
+
+
+
+**Nacos的AP模式和CP模式切换：**
+
+Nacos是可以在AP模式和CP模式之间进行切换的，默认为AP。 （1）切换为CP模式。
+
+```
+curl -X PUT "http://localhost:8848/nacos/v1/ns/operator/switches?entry=serverMode&value=CP"
+```
+
+（2）切换为AP模式。
+
+```
+curl -X PUT "http://localhost:8848/nacos/v1/ns/operator/switches?entry=serverMode&value=AP"
+```
+
+
+
+**选用何种模式：**
+
+一般来说，如果不需要存储服务级别的信息且服务实例是通过nacos-client注册，并能够保持心跳上报，那么就可以选择AP模式。当前主流的服务如Spring cloud和 Dubbo服务，都适用于AP模式。AP模式为了服务的可能性而减弱了一致性，因此AP模式下只支持注册临时实例。
+
+
+
+**实际开发选择：**
+
+- 追求CP: 用户请求支付,等待支付订单生成以及库存系统数据更新,再给用户返回结果 追求强一致性 缺点:用户体验差。
+
+- 追求AP: 用户请求支付,立即给用户响应结果,异步处理库存系统 放弃强一致性,采用最终一致性。
 
 
 
 ### 11，为什么需要分布式配置中心
 
+我们现在有一个项目，使用SpringBoot进行开发的，配置文件的话我们知道是一个叫做application.yml的文件。
+
+![1716871075543](./assets/1716871075543.png)
+
+配置：
+
+```yml
+#业务参数相关配置
+spring:
+ # 数据源配置
+  datasource:
+   type: com.alibaba.druid.pool.DruidDataSource
+   driverClassName: com.mysql.cj.jdbc.Driver
+   druid:
+   # 主库数据源
+    master:
+     url: jdbc:mysql://192.168.47.100:3306/test
+     username: root
+     password: root
+```
+
+
+
+**需求一：**
+
+由于业务的变动，用户在以前进行注册的时候默认的数据库在`192.168.47.100`，但是该节点数据库出现问题，需要把IP这个改成`192.168.47.101`。因为，业务的流量还是比较大的，所以，没有办法在白天流量高峰期修改配置文件，进行重启！
+
+> 就辛苦开发的小哥，他们需要等到半夜里凌晨三四点的时候，没有流量的时候，小心翼翼的去修改application.properties配置文件，必将系统进行重启。开发小哥是在忍受不了这种变更了，修改一个配置就需要如此周折的去完成这件事情！忍无可忍。
+
+
+
+**需求二：**
+
+我们在进行业务开发的时候，一般会有多个环境，至少应该有三个：开发、测试、线上。那这三个环境之间的配置文件肯定是有不同的，比如说他们之间的数据库是肯定不同的！
+
+![1716871176684](./assets/1716871176684.png)
+
+分别需要设置的命令如下：
+
+```
+java -jar -Dspring.profiles.active=dev nssas.jar
+和
+java -jar -Dspring.profiles.active=test nssas.jar
+和
+java -jar -Dspring.profiles.active=prod nssas.jar
+```
+
+运维小哥的工作量直接翻了一倍多，想想还有十几个项目需要这样进行修改，运维小哥悄悄的拿起了抽屉里准备了很久的xxx走向了开发小哥。
+
+
+
+**主要缺点：**
+
+- **不支持配置文件的动态更新**：在实际的业务开发过程中，需要动态地更新配置文件，比如切换业务功能开关、变更图片服务器地址、变更数据库连接信息等。在传统配置模式下,需要修改本地配置文件并重新打包，然后重启应用并发布，这样才能保证配置文件能够生效。但这样会导致该服务在重启阶段不可用，从而影响服务整体的可用率。
+- **不支持配置集中式管理**：在微服务架构中，为了保证某些核心服务的高性能会部署几百个节点。如果在每个节点上都维护一个本地配置文件，则不管是对运维人员或者开发人员而言,成本都是巨大的。
+- **不支持多环境部署**：如果通过底层框架来维护不同环境的信息，则成本也是非常高的。
+
+
+
+分布式配置管理就是弥补上述不足的方法，把各个服务的某些配置信息统一交给第三方中间件来维护，分布式配置管理上的数据变变更，需要实时地推送到相对应的应用服务节点上。
+
+![1716871284749](./assets/1716871284749.png)
+
+
+
+nacos中就有配置管理：
+
+![1716871336671](./assets/1716871336671.png)
+
+
+
 
 
 ### 12，了解主流的配置中心
+
+主流的分布式配置中心有以下三种，其中，Nacos是Alibaba开源的分布式配置中心。
+
+
+
+nacos是Sping Cloud alibaba技术栈中的一个组件，前面我们已经使用它做过服务注册中心。其实它也集成了服务配置的功能，我们可以直接使用它作为服务配置中心。
+
+![1716871397984](./assets/1716871397984.png)
+
+
+
+**应用和配置中心间的数据同步通常如下三种模式:**
+
+- **Pull模式**：让应用开后长轮询，即定时地从配置中心拉取最新的配置信息，并更新到应用的内存中。
+- **Push模式**：在配置中心配置数据变更之后，主动推送配置数据到指定的应用，应用更新到本地内存中。
+- **混合模式**：应用和配置中心通过“事件机制＋监听器”模式保持长连接。如果应用监听的配置信息发生了变化，则配置中心发布对应类型的事件。应用只有在监听到该事件之后,才会处理对应的配置信息，并更新到应用本地。
+
+
+
+**分布式配置中心对比：**
+
+![1716871397984](./assets/111.png)
 
 
 
 ### 13，Namespace命名空间
 
+现如今，在微服务体系中，一个系统往往被拆分为多个服务，每个服务都有自己的配置文件，然后每个系统往往还会准备开发环境、测试环境、正式环境。
+
+![1716871634030](./assets/1716871634030.png)
+
+问题：我们来说算一算，假设某系统有10个微服务，那么至少有10个配置文件吧，三个环境（dev/test/prod），那就有30个配置文件需要进行管理。
+
+- 解决：namespace可以帮助我们进行多环境下的管理和隔离
+
+
+
+用于进行租户粒度的配置隔离。不同的命名空间下，可以存在相同的 Group 或 Data ID 的配置。Namespace 的常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源（如配置、服务）隔离等。默认namespace=public的保留空间,不支持删除;默认情况下。
+
+![1716871751616](./assets/1716871751616.png)
+
+
+
+Nacos给的最佳实践表明，最外层的namespace是可以用于区分部署环境的，比如test，dev，prod等。
+
+![1716871783380](./assets/1716871783380.png)
+
+注意：命名空间可用于进行不同环境的配置隔离。一般一个环境划分到一个命名空间。
+
+
+
+**新建dev/test的Namespace:**
+
+![1716871947771](./assets/1716871947771.png)
+
+
+
+**查看命名空间：**
+
+![1716872021248](./assets/1716872021248.png)
+
+
+
+
+
 
 
 ### 14，DataID配置
 
+Data ID 通常用于组织划分系统的配置集。一个系统或者应用可以包含多个配置集，每个配置集都可以被一个有意义的名称标识。
+
+
+
+注意：在系统中，一个配置文件通常就是一个配置集。一般微服务的配置就是一个配置集。
+
+
+
+**dataId的拼接格式：**
+
+![1716872083768](./assets/1716872083768.png)
+
+**解释：**
+
+- **prefix**：默认为 spring.application.name 的值。
+- **spring.profiles.active**：即为当前环境对应的 profile。
+- **file-extension**：文件后缀
+
+
+
+当activeprofile为空时：
+
+![1716872494714](./assets/1716872494714.png)
+
+
+
+
+
+**新建dev配置DataID：**
+
+![1716872561225](./assets/1716872561225.png)
+
+![1716873253927](./assets/1716873253927.png)
+
+![1716873311127](./assets/1716873311127.png)
+
+
+
+同样，创建支付模块的Data Id，如下：
+
+![1716873328840](./assets/1716873328840.png)
+
+
+
+![1716873360897](./assets/1716873360897.png)
+
+
+
 
 
 ### 15，Group分组方案
+
+当您在 Nacos上创建一个配置时，如果未填写配置分组的名称，则配置分组的名称默认采用DEFAULT_GROUP 。
+
+![1716872925452](./assets/1716872925452.png)
+
+**通过Group实现环境区分:**
+
+![1716873102515](./assets/1716873102515.png)
+
+
+
+![1716873389757](./assets/1716873389757.png)
+
+
+
+再创建一个，如下：
+
+![1716873477299](./assets/1716873477299.png)
+
+
+
+![1716873521080](./assets/1716873521080.png)
+
+
 
 
 
@@ -642,7 +972,165 @@ public class PaymentApplication
 
 
 
+**Nacos给出了两种Namespace的实践方案：**
+
+- 面向一个租户
+- 面向多个租户
+
+
+
+**面向一个租户：**
+
+- 从一个租户(用户)的角度来看，如果有多套不同的环境，那么这个时候可以根据指定的环境来创建不同的 namespce，以此来实现多环境的隔离。
+- 例如，你可能有dev，test和prod三个不同的环境，那么使用一套 nacos 集群可以分别建以下三个不同的 namespace。
+
+![1716873630017](./assets/1716873630017.png)
+
+这里的单租户同样也适于小型项目，或者是项目不太多时的实施方案，通过定义不同的环境，不同环境的项目在不同的Namespace下进行管理，不同环境之间通过Namespace进行隔离。
+
+
+
+
+
+**面向多个租户：**
+
+当多个项目同时使用该Nacos集群时，还可以通过Group进行Namespace内的细化分组。这里以`Namespace：dev`为例，在Namespace中通过不同Group进行同一环境中不同项目的`再分类`。
+
+![1716873698469](./assets/1716873698469.png)
+
+通过上面的理论分析，可以看出方案二有很好的扩展性
+
+
+
 ### 17，将应用对接Nacos配置中心
+
+
+
+**创建工程ityls-payment-config：**
+
+![1716873974923](./assets/1716873974923.png)
+
+
+
+依赖：
+
+```xml
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!-- 注册中心 --> 
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+    </dependency>
+    <!-- 服务发现和注册 --> 
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+  </dependencies>
+```
+
+
+
+启动类：
+
+```java
+@Slf4j
+@EnableDiscoveryClient
+@SpringBootApplication
+public class PaymentConfig
+{
+    public static void main(String[] args)
+    {
+        SpringApplication.run(PaymentConfig.class,args);
+        log.info("******************** 支付服务启动成功 ***************");
+    }
+}
+```
+
+
+
+新建命名空间dev，在配置管理->配置列表里面切换dev环境，创建payment-dev.yaml文件。
+
+![1716874246967](./assets/1716874246967.png)
+
+![1716874255432](./assets/1716874255432.png)
+
+
+
+创建配置文件名为`bootstrap.yml`,注意是bootstrap.yml，而不是`application`。
+
+![1716874651634](./assets/1716874651634.png)
+
+注意：
+
+- `spring.application.name`：可以看到必须可少的配置项
+- `spring.cloud.nacos.discovery.server-addr`：指定注册中心的地址，如果你不需要注册该服务，也可以去掉该项，并删除discovery依赖
+- `spring.cloud.nacos.config.server-addr`：指定配置中心的地址
+- `file-extension`：指定配置中心中配置文件的格式
+
+```yaml
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 103.38.81.223:8848
+        namespace: 4f974c3e-fa26-4cc3-9aed-2db3b30a11b0
+        file-extension: yaml
+        prefix: ${spring.application.name}
+        group: DEFAULT_GROUP
+  application:
+    name: payment
+  profiles:
+    active: dev
+```
+
+Nacos同SpringCloud-Config一样，在项目初始化时，要保证先从配置中心进行配置拉取，拉取配置之后，才能保证项目的正常启动。SpringBoot中配置文件的加载是存在优先级顺序的，bootstrap优先级高于application。
+
+- bootstrap.yml（bootstrap.properties）用来在程序引导时执行，应用于更加早期配置信息读取，如可以使用来配置application.yml中使用到参数等
+- application.yml（application.properties) 应用程序特有配置信息，可以用来配置后续各个模块中需使用的公共参数等。
+- bootstrap.yml 先于 application.yml 加载
+
+
+
+上面的配置是为了保证服务的正常注册和配置获取，以及配置`DataID`的正确性
+
+![1716874906857](./assets/1716874906857.png)
+
+```java
+@RestController
+public class HelloController {
+  @Value("${hello.message}")
+  private String hello;
+
+  @GetMapping("/hello")
+  public String hello(){
+    return hello;
+   }
+}
+```
+
+
+
+测试：
+
+![1716874957465](./assets/1716874957465.png)
+![1716875038784](./assets/1716875038784.png)
+
+
+
+
+
+如何出错了，肯定配置写错了，检查5步曲
+
+1. 检查命名空间
+2. 检查文件名字是否对应
+3. 检查环境
+4. 检查文件后缀是否一致
+5. 检查Group是否一致
 
 
 
@@ -650,7 +1138,64 @@ public class PaymentApplication
 
 
 
+**配置动态刷新：**
+
+配置的动态刷新，仅需要使用@RefreshScope注解即可。
+
+```java
+@RestController
+/* 只需要在需要动态读取配置的类上添加此注解就可以 */
+@RefreshScope 
+public class HelloController {
+  @Value("${hello.message}")
+  private String hello;
+
+  @GetMapping("/hello")
+  public String hello(){
+    return hello;
+   }
+}
+```
+
+
+
+测试：
+
+![1716877109490](./assets/1716877109490.png)
+
+
+
+
+
+
+
 ### 19，Nacos集群架构介绍
+
+![1716877147341](./assets/1716877147341.png)
+
+
+
+**为什么需要搭建Nacos集群：**
+
+在实际开发过程中，如果使用Nacos 的话，为了确保高可用，我们一般都会对其进行集群的部署。 Nacos 规定集群中 Nacos 节点的数量需要大于等于 3 个 ；同时，单机模式下 Nacos 的数据默认保存在其内嵌数据库中 deby ，不方便观察数据存储的基本情况。而且如果集群中启动多个默认配置下的Nacos 节点，数据存储是存在一致性问题的。为了解决这个问题， Nacos采用了集中式存储的方式来支持集群化部署，目前只支持 MySQL 的存储。
+
+
+
+**Nacos支持三种部署模式：**
+
+- 单机模式 - 用于测试和单机试用。
+- 集群模式 - 用于生产环境，确保高可用。
+- 多集群模式 - 用于多数据中心场景。
+
+
+
+**集群模式：**
+
+![1716877252592](./assets/1716877252592.png)
+
+
+
+
 
 
 
@@ -658,21 +1203,204 @@ public class PaymentApplication
 
 
 
+**初始化数据库：**
+
+Nacos的数据库脚本文件在我们下载Nacos-server时的压缩包中就有进入`\nacos\conf`目录，初始化文件：`mysql-schema.sql`此处我创建一个名为 `mynacos` 的数据库，然后执行初始化脚本，成功后会生成 `11` 张表;
+
+
+
+数据库：
+
+![1716877630619](./assets/1716877630619.png)
+
+
+
+创建数据库，导入表：
+
+![1716877688483](./assets/1716877688483.png)
+
+
+
+**修改配置文件：**
+
+这里是需要修改Nacos-server的配置文件Nacos-server其实就是一个Java工程或者说是一个Springboot项目，他的配置文件在nacos\conf目录下，名为 application.properties，在文件底部添加数据源配置：
+
+![1716878342426](./assets/1716878342426.png)
+
+```
+spring.datasource.platform=mysql
+
+db.num=1
+db.url.0=jdbc:mysql://127.0.0.1:3307/mynacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+db.user=root
+db.password=root
+```
+
+
+
+**启动Nacos-server和Nacos-config:**
+
+先启动Nacos-server，启动成功后进入Nacos控制台，此时的Nacos控制台中焕然一新，之前的数据都不见了。因为加入了新的数据源，Nacos从mysql中读取所有的配置文件，而我们刚刚初始化的数据库是干干净净的，自然不会有什么数据和信息显示。
+
+![1716878494045](./assets/1716878494045.png)
+
+![1716878593906](./assets/1716878593906.png)
+
+看后台：
+
+![1716879080967](./assets/1716879080967.png)
+
+在公共空间(public)中新建一个配置文件DataID: `nacos-config.yml`, 配置内容如下：
+
+![1716879228933](./assets/1716879228933.png)
+
+```yml
+server: 
+    port: 9989
+nacos:
+    config: 配置文件已持久化到数据库中...
+```
+
+![1716879249826](./assets/1716879249826.png)
+
+
+
+**验证是否持久化到数据库中:**
+
+![1716879281561](./assets/1716879281561.png)
+
+
+
+
+
+
+
 ### 21，Nacos集群配置
 
+![1716879428439](./assets/1716879428439.png)
 
 
 
+**准备工作:**
+
+将Nacos复制三份前提一定是要关闭Nacos。
 
 
 
+**集群启动：**
+
+在本地通过3个端口模拟3台机器，端口分别是：8848，8858，8868。
+
+![1716879536944](./assets/1716879536944.png)
+
+![1716879654649](./assets/1716879654649.png)
+
+![1716879768572](./assets/1716879768572.png)
+
+![1716879865631](./assets/1716879865631.png)
+
+```
+#copy3份解压后的nacos，修改各自的application.properties中的端口号，分别为：8848，8858，8868
+server.port=8848
+server.port=8858
+server.port=8868
+```
 
 
 
+**各自的conf目录下放cluster.conf文件，文件内容为：**
+
+![1716879950640](./assets/1716879950640.png)
+
+![1716880044035](./assets/1716880044035.png)
+
+```
+103.38.81.223:8848
+103.38.81.223:8858
+103.38.81.223:8868
+```
 
 
 
+**启动Nacos服务:**
 
+```
+./startup.sh 
+```
+
+![1716880306291](./assets/1716880306291.png)
+
+
+
+启动不起来，可能不是内存不够了：
+
+![1716883913214](./assets/1716883913214.png)
+
+
+
+修改内存大小：
+
+![1716884475112](./assets/1716884475112.png)
+
+
+
+由于我的机器内存太小，我就启动两台nacos：
+
+![1716885697743](./assets/1716885697743.png)
+
+![1716884879595](./assets/1716884879595.png)
+
+
+
+**使用Nginx作负载均衡访问集群的Nacos，环境安装：**
+
+```
+yum -y install gcc make automake pcre-devel zlib zlib-devel openssl openssl-devel
+```
+
+
+
+**安装Nginx:**
+
+```
+./configure make && make install
+```
+
+
+
+**配置nginx.conf文件:**
+
+```
+#定义upstream名字，下面会引用
+upstream nacos {  
+    #指定后端服务器地址
+    server 192.168.47.100:8848;    
+    server 192.168.47.100:8858; 
+    server 192.168.47.100:8868;   
+}
+ 
+server {
+ listen 80;
+ server_name localhost;
+ location / {
+   proxy_pass http://nacos;    #引用upstream
+  }
+}
+```
+
+
+
+**重启Nginx:**
+
+```
+./nginx -s relaod
+```
+
+
+
+**通过访问Nginx就可以实现Nacos访问的负载均衡:**
+
+![1716885715077](./assets/1716885715077.png)
 
 
 
