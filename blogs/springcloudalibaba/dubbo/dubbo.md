@@ -926,6 +926,8 @@ CREATE TABLE user
 
 ![1716908917470](./assets/1716908917470.png)
 
+![1716942976520](./assets/1716942976520.png)
+
 
 
 创建用户实体类：
@@ -934,6 +936,7 @@ CREATE TABLE user
 @Data
 public class User implements Serializable {
   // 用户id
+  @TableId(type = IdType.AUTO)
   private Long id;
   // 用户名字
   private String name;
@@ -946,7 +949,7 @@ public class User implements Serializable {
 
 操作：
 
-![1716909008848](./assets/1716909008848.png)
+![1716942435679](./assets/1716942435679.png)
 
 
 
@@ -1156,6 +1159,209 @@ CommonResult findByUser(User user);
 
 
 
+**添加更新用户业务接口:**
+
+![1716941234637](./assets/1716941234637.png)
+
+```java
+package com.ityls.service;
+
+import com.ityls.common.CommonResult;
+import com.ityls.entity.User;
+
+public interface IUserService {
+    // 添加用户功能
+    CommonResult save(User user);
+
+    // 查询用户
+    CommonResult findByUser(User user);
+
+    // 更新用户
+    CommonResult updateUser(User user);
+}
+```
+
+
+
+
+
+**在 provider 中实现更新用户业务接口:**
+
+![1716941336172](./assets/1716941336172.png)
+
+```java
+    @Override
+    public CommonResult updateUser(User user) {
+        CommonResult commonResult = new CommonResult();
+        // 1、条件构造器
+        LambdaUpdateWrapper<User> uluw = new LambdaUpdateWrapper<>();
+        uluw.set(user.getName() != null ,User::getName,user.getName());
+        uluw.set(user.getAge() != null ,User::getAge,user.getAge());
+        if (user.getId() == null){
+            //结果编号
+            commonResult.setCode(500);
+            // 结果信息
+            commonResult.setMessage("用户id为空~");
+            return commonResult;
+        }
+        uluw.eq(User::getId,user.getId());
+        // 更新用户
+        int update = userMapper.update(null, uluw);
+        if (update > 0){
+            //结果编号
+            commonResult.setCode(200);
+            // 结果信息
+            commonResult.setMessage("success");
+        }else {
+            //结果编号
+            commonResult.setCode(500);
+            // 结果信息
+            commonResult.setMessage("更新失败");
+        }
+
+        return commonResult;
+    }
+```
+
+
+
+**添加删除用户业务接口:**
+
+![1716941521557](./assets/1716941521557.png)
+
+```java
+    // 删除用户
+    CommonResult deleteUser(Long userid);
+```
+
+
+
+**在provider中实现删除用户业务接口:**
+
+![1716941605813](./assets/1716941605813.png)
+
+```java
+    @Override
+    public CommonResult deleteUser(Long userid) {
+        CommonResult commonResult = new CommonResult();
+        if (userid == null){
+            // 结果编码
+            commonResult.setCode(500);
+            // 结果描述
+            commonResult.setMessage("用户id为空~");
+            return commonResult;
+        }
+        // 1、根据用户id删除用户
+        int i = userMapper.deleteById(userid);
+        if( i > 0){
+            commonResult.setCode(200);
+            commonResult.setMessage("success");
+        }else {
+            commonResult.setCode(500);
+            commonResult.setMessage("删除失败~");
+        }
+        return commonResult;
+    }
+```
+
+
+
+
+
+**Apifox介绍:**
+
+[Apifox](https://apifox.com/) 是集 API 文档、API 调试、API Mock、API 自动化测试多项实用功能为一体的 API 管理平台，定位为 `Postman + Swagger + Mock + JMeter`。
+
+![1716941781215](./assets/1716941781215.png)
+
+**创建项目：**
+
+![1716942063485](./assets/1716942063485.png)
+
+
+
+**导入数据：**
+
+![1716942154580](./assets/1716942154580.png)
+
+![1716942185478](./assets/1716942185478.png)
+
+
+
+
+
+**选择运行环境：**
+
+![1716942236262](./assets/1716942236262.png)
+
+
+
+**测试：**
+
+![1716942262590](./assets/1716942262590.png)
+
+![1716942300512](./assets/1716942300512.png)
+
+![1716942320854](./assets/1716942320854.png)
+
+
+
+其它接口测试都OK。
+
+
+
+
+
+**集成Thymeleaf，添加依赖：**
+
+![1716943077306](./assets/1716943077306.png)
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+```
+
+
+
+**配置视图解析器，默认：**
+
+spring-boot很多配置都有默认配置,比如默认页面映射路径为
+
+```
+classpath:/templates/*.html 
+```
+
+
+
+同样静态文件路径为
+
+```
+classpath:/static/
+```
+
+
+
+操作：
+
+![1716943170694](./assets/1716943170694.png)
+
+
+
+在application.properties（或者application.yml）中可以配置thymeleaf模板解析器属性.就像使用springMVC的JSP解析器配置一样
+
+![1716943324313](./assets/1716943324313.png)
+
+```yml
+#thymeleaf start
+spring.thymeleaf.mode=HTML5
+spring.thymeleaf.encoding=UTF-8
+spring.thymeleaf.content-type=text/html 
+#开发时关闭缓存,不然没法看到实时页面
+spring.thymeleaf.cache=false
+#thymeleaf end
+```
 
 
 
@@ -1167,22 +1373,198 @@ CommonResult findByUser(User user);
 
 
 
+准备页面：
+
+![1716943470242](./assets/1716943470242.png)
+
+
+
+创建两个Controller，如下：
+
+![1716943622942](./assets/1716943622942.png)
+
+
+
+剔除依赖：
+
+![1716943804475](./assets/1716943804475.png)
+
+```xml
+        <dependency>
+            <groupId>com.ityls</groupId>
+            <artifactId>ityls-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+```
 
 
 
 
 
+```java
+package com.ityls.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+/**
+ * 首页控制器
+ */
+@Controller
+public class IndexController {
+
+    /**
+     * 跳转页面   /index   /result
+     * @param page
+     * @return
+     */
+    @GetMapping("/{page}")
+    public String index(@PathVariable String page){
+        return page;
+    }
+}
+```
 
 
 
+```java
+package com.ityls.controller;
+
+import com.ityls.common.CommonResult;
+import com.ityls.entity.User;
+import com.ityls.service.IUserService;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.management.JMException;
+import java.util.List;
+
+/**
+ * 用户控制器
+ */
+@Controller
+@RequestMapping("/user")
+public class UserController {
+
+    @DubboReference
+    private IUserService iUserService;
+
+    /**
+     * 添加功能
+     * @param user
+     * @return
+     */
+    @PostMapping("/adduser")
+    public String adduser(User user){
+        // 添加用户
+        CommonResult save = iUserService.save(user);
+        // 判断是否添加成功
+        if(save.getCode() == 200){
+            return "redirect:/ok";
+        }else {
+            return "redirect:/error";
+        }
+    }
+
+
+    /**
+     * 查询用户
+     * @return
+     */
+    @GetMapping("/showuser")
+    public ModelAndView findByAll(){
+        ModelAndView modelAndView = new ModelAndView();
+        // 查询用户
+        User user = new User();
+        CommonResult result = iUserService.findByUser(user);
+        modelAndView.addObject("users",result.getData());
+        modelAndView.setViewName("showuser");
+        return modelAndView;
+
+    }
+
+    /**
+     * 跳转到更新页面
+     * @param id 用户id
+     * @return
+     */
+    @GetMapping("/toupdate")
+    public ModelAndView  toupdate(Long id){
+        ModelAndView modelAndView = new ModelAndView();
+        // 根据用户id查询用户
+        User user = new User();
+        user.setId(id);
+        CommonResult result = iUserService.findByUser(user);
+        // 返回页面
+        modelAndView.setViewName("update");
+        // 判断是否查询成功
+        if (result.getCode() == 200){
+            List<User> data = (List<User>) result.getData();
+            if (data != null && !data.isEmpty()){
+                // 数据
+                modelAndView.addObject("user",data.get(0));
+            }
+        }
+        return modelAndView;
+
+    }
+
+
+    /**
+     * 更新用户
+     * @param user
+     * @return
+     */
+    @PostMapping("/update")
+    public String update(User user){
+        // 1、更新用户
+        CommonResult commonResult = iUserService.updateUser(user);
+        // 2、判断
+        if (commonResult.getCode() == 200){
+            return "redirect:/ok";
+        }else {
+            return "redirect:/error";
+        }
+
+    }
+
+
+    /**
+     * 删除用户
+     * @param id 用户id
+     * @return
+     */
+    @GetMapping("/delete")
+    public String delete(Long id){
+        //1、删除用户
+        CommonResult commonResult = iUserService.deleteUser(id);
+        // 2、判断
+        if (commonResult.getCode() == 200){
+            return "redirect:/ok";
+        }else {
+            return "redirect:/error";
+        }
+    }
+
+}
+```
 
 
 
+测试：OK
 
-
-
-
-
+![1716943959898](./assets/1716943959898.png)
 
 
 
