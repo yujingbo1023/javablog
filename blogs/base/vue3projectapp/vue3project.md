@@ -1034,5 +1034,1957 @@ const onBeautyInfo = ()=>{
 
 
 
+把首页面轮播图的小点变色：
 
+![1717463580676](./assets/1717463580676.png)
+
+
+
+在APP组件修改样式：
+
+![1717463639425](./assets/1717463639425.png)
+
+
+
+分析：
+
+![1717463749147](./assets/1717463749147.png)
+
+
+
+分析vant-list组件：
+
+![1717464772128](./assets/1717464772128.png)
+
+
+
+封装API接口：
+
+![1717464817325](./assets/1717464817325.png)
+
+```js
+// 美业快讯
+export function getBeauty(params){
+    return axios({
+        url:"/api/api/beauty",
+        method:"get",
+        params
+    })
+}
+```
+
+
+
+在组件中的load事件中调用之：
+
+![1717465335397](./assets/1717465335397.png)
+
+```js
+const onLoad = ()=>{
+  // console.log("load...")
+  getBeauty({page:page.value}).then(res=>{
+    // console.log("--res:",res)
+    if (res.data.status === 200) {
+      page.value++
+      list.value = list.value.concat(res.data.data)
+    }
+    loading.value = false;
+    // 数据全部加载完成
+    if (res.data.status === 500) {
+      finished.value = true;
+    }
+  })
+}
+```
+
+![1717465159671](./assets/1717465159671.png)
+
+
+
+渲染数据：
+
+```vue
+<template>
+  <BeautyHeader title="美业快讯" />
+  <div class="beauty-banner">
+    <img src="../../assets/images/banner1.jpg" alt="">
+  </div>
+  <!-- 列表数据 -->
+  <van-list v-model:loading="loading"  :finished="finished" finished-text="没有更多了"  @load="onLoad">
+    <div class="beauty-item" v-for="(item,index) in list" :key="index">
+      <img :src="item.image" alt="">
+      <div class="beauty-item-desc">
+        <p>{{ item.title }}</p>
+        <span>{{ item.descs }}</span>
+      </div>
+    </div>
+  </van-list>
+</template>
+<script setup>
+import {ref,reactive} from "vue"
+import { getBeauty } from "../../api/Home/index"
+import BeautyHeader from "../../components/PubHeaderComponent.vue"
+
+const loading = ref(false);
+const finished = ref(false);
+const page = ref(1);
+const list = ref([])
+
+const onLoad = ()=>{
+  console.log("load...")
+  getBeauty({page:page.value}).then(res=>{
+    // console.log("--res:",res)
+    if (res.data.status === 200) {
+      page.value++
+      list.value = list.value.concat(res.data.data)
+    }
+    // 手动把laoding变成false
+    loading.value = false;
+
+    // 数据全部加载完成
+    if (res.data.status === 500) {
+      finished.value = true;
+    }
+  })
+}
+
+</script>
+<style lang="less" scoped>
+.beauty-banner {
+  img {
+    width: 100%;
+  }
+}
+.beauty-item{
+  display: flex;
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f3f4f5;
+  img{
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+  }
+  .beauty-item-desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    p{
+      font-size: 15px;
+      padding: 10px 0;
+    }
+    span{
+      display: block;
+      font-size: 14px;
+      color: #999;
+      padding: 10px 0;
+    }
+  }
+}
+</style>
+```
+
+
+
+测试：
+
+![1717465372139](./assets/1717465372139.png)
+
+
+
+### 11，最新商铺
+
+目标：
+
+![1717465482869](./assets/1717465482869.png)
+
+
+
+实现最新商铺：
+
+![1717466223423](./assets/1717466223423.png)
+
+```html
+  <!-- 最新商铺 -->
+  <div class="roll">
+    <div class="roll-header">
+      <h3>最新商铺</h3>
+      <span class="all">查看全部<span class="iconfont icon-jiantouyou"></span></span>
+    </div>
+    <div class="roll-main">
+      <div class="new-shop-content">
+      <div class="new-shop-item">
+        <img src="../../assets/images/shop1.jpg" alt="">
+        <p class="new-shop-title">塔顶田在县城发大水个任务塔顶在人国慢焯在人有的和在经要经以在有</p>
+        <span class="new-shop-price">1000元/月</span>
+      </div>
+      <div class="new-shop-item">
+        <img src="../../assets/images/shop1.jpg" alt="">
+        <p class="new-shop-title">塔顶田在县城发大水个任务塔顶在人国慢焯在人有的和在经要经以在有</p>
+        <span class="new-shop-price">1000元/月</span>
+      </div>
+      <div class="new-shop-item">
+        <img src="../../assets/images/shop1.jpg" alt="">
+        <p class="new-shop-title">塔顶田在县城发大水个任务塔顶在人国慢焯在人有的和在经要经以在有</p>
+        <span class="new-shop-price">1000元/月</span>
+      </div>
+    </div>
+    </div>
+  </div>
+```
+
+
+
+样式：
+
+```css
+.roll{
+  background: #fff;
+  .roll-header {
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    h3 {
+        flex: 1;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: left;
+        padding-left: 10px;
+    }
+    .all {
+        flex: 1;
+        text-align: right;
+        font-size: 14px;
+        color: #999;
+        padding-right: 10px;
+
+        span {
+            font-size: 12px;
+        }
+    }
+  }
+  .roll-main{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+// 最新商品样式
+.new-shop-content {
+  display: flex;
+
+  .new-shop-item {
+    margin-right: 15px;
+
+    img {
+      display: block;
+      width: 230px;
+      height: 130px;
+    }
+
+    .new-shop-title {
+      white-space: normal;
+      word-break: break-word;
+      font-size: 14px;
+      text-align: left;
+      padding: 10px;
+    }
+
+    .new-shop-price {
+      display: block;
+      font-size: 14px;
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+      padding-top: 0px;
+      color: #820085;
+    }
+  }
+}
+```
+
+
+
+效果：
+
+![1717466293192](./assets/1717466293192.png)
+
+
+
+ajax请求数据：
+
+![1717466340045](./assets/1717466340045.png)
+
+```js
+// 最新商铺
+export function getNewGoods(){
+    return axios({
+        url:"/api/api/newgoods",
+        method:"get"
+    })
+}
+```
+
+
+
+在组件中使用：
+
+![1717466551663](./assets/1717466551663.png)
+
+
+
+```js
+const newGoods = ref([]);
+
+onMounted(()=>{
+  getNewGoods().then(res => {
+    if (res.data.status === 200) {
+      newGoods.value = res.data.data
+    }
+  })
+})
+```
+
+
+
+查看：
+
+![1717466614840](./assets/1717466614840.png)
+
+
+
+使用之：
+
+![1717466662296](./assets/1717466662296.png)
+
+
+
+测试：
+
+![1717466680818](./assets/1717466680818.png)
+
+
+
+把滚动视图抽离出去：
+
+![1717467015248](./assets/1717467015248.png)
+
+```vue
+<template>
+    <div class="roll">
+        <div class="roll-header">
+            <h3>{{ rollInfo.title }}</h3>
+            <span class="all">{{ rollInfo.all }}<span class="iconfont icon-jiantouyou"></span></span>
+        </div>
+        <div class="roll-main">
+            <slot>默认内容</slot>
+        </div>
+    </div>
+</template>
+<script setup>
+import { ref, reactive } from "vue"
+
+const props = defineProps({
+    rollInfo:Object
+})
+
+</script>
+<style lang="less" scoped>
+.roll{
+  background: #fff;
+  .roll-header {
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    h3 {
+        flex: 1;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: left;
+        padding-left: 10px;
+    }
+    .all {
+        flex: 1;
+        text-align: right;
+        font-size: 14px;
+        color: #999;
+        padding-right: 10px;
+
+        span {
+            font-size: 12px;
+        }
+    }
+  }
+  .roll-main{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+</style>
+
+```
+
+
+
+
+
+使用组件：
+
+![1717467203477](./assets/1717467203477.png)
+
+
+
+代码如下：
+
+```vue
+  <!-- 最新商铺 -->
+  <RollComponent :rollInfo="newShopInfo">
+    <div class="new-shop-content">
+      <div class="new-shop-item" v-for="(item, index) in newGoods" :key="index">
+        <img :src="item.image" alt="">
+        <p class="new-shop-title">{{ item.title }}</p>
+        <span class="new-shop-price">{{ item.price }}元/月</span>
+      </div>
+    </div>
+  </RollComponent>
+```
+
+
+
+使用骨架屏：
+
+![1717467446918](./assets/1717467446918.png)
+
+![1717467532854](./assets/1717467532854.png)
+
+测试：
+
+![1717467575671](./assets/1717467575671.png)
+
+
+
+完整代码：
+
+```vue
+<template>
+  <TopNavComponent />
+  <SwiperComponent :images="banners" />
+  <div class="nav">
+    <div class="item" @click="onItem(item.id)" v-for="(item, index) in navData" :key="item.id">
+      <img :src="item.image" alt="">
+      <span>{{ item.text }}</span>
+    </div>
+  </div>
+  <!-- 资讯 -->
+  <div class="info" @click="onBeautyInfo">
+    <h3>美甲咨询</h3>
+    <p>年会不能错过的款，美呆了~</p>
+    <span class="iconfont icon-jiantouyou"></span>
+  </div>
+  <!-- 推荐 -->
+  <div class="recommend">
+    <div class="hot">
+      <h3>热门活动</h3>
+    </div>
+    <div class="opt">
+      <h3>优选店铺</h3>
+    </div>
+  </div>
+
+  <!-- 最新商铺 -->
+  <RollComponent :rollInfo="newShopInfo">
+    <div class="new-shop-content" v-if="newGoodsLoading">
+      <div class="new-shop-item" v-for="(item, index) in newGoods" :key="index">
+        <img :src="item.image" alt="">
+        <p class="new-shop-title">{{ item.title }}</p>
+        <span class="new-shop-price">{{ item.price }}元/月</span>
+      </div>
+    </div>
+    <div class="skeleton-newShop" v-else>
+      <div class="skeleton-item">
+        <van-skeleton-image class="image" />
+        <van-skeleton-paragraph />
+        <van-skeleton-paragraph />
+      </div>
+      <div class="skeleton-item">
+        <van-skeleton-image class="image" />
+        <van-skeleton-paragraph />
+        <van-skeleton-paragraph />
+      </div>
+    </div>
+  </RollComponent>
+
+</template>
+<script setup>
+import { ref, reactive, onMounted } from "vue"
+import TopNavComponent from "../../components/TopNavCompponent.vue"
+import SwiperComponent from "@/components/SwiperComponent.vue";
+import RollComponent from "@/components/RollComponent.vue"
+
+import nav1 from "../../assets/images/nav1.png"
+import nav2 from "../../assets/images/nav2.png"
+import nav3 from "../../assets/images/nav3.png"
+import nav4 from "../../assets/images/nav4.png"
+import nav5 from "../../assets/images/nav5.png"
+
+
+import { getCaroursel, getNewGoods } from "../../api/Home/index"
+import { useRouter } from "vue-router"
+
+// ====================================== 轮播图
+const router = useRouter()
+const banners = ref([]);
+
+onMounted(async () => {
+  const res = await getCaroursel();
+  // console.log("res:",res)
+  if (res.data.status === 200) {
+    banners.value = res.data.data
+  }
+})
+
+// ====================================== 导航数据
+const navData = [
+  {
+    id: 1,
+    text: "转让出租",
+    image: nav1
+  },
+  {
+    id: 2,
+    text: "招聘求职",
+    image: nav2
+  },
+  {
+    id: 3,
+    text: "流行产品",
+    image: nav3
+  },
+  {
+    id: 4,
+    text: "培训课程",
+    image: nav4
+  },
+  {
+    id: 5,
+    text: "批发进货",
+    image: nav5
+  }
+]
+
+// ====================================== 最新商铺
+const newGoods = ref([]);
+const newGoodsLoading = ref(false);
+
+const newShopInfo = {
+  title: "最新商铺",
+  all: "查看全部"
+}
+
+onMounted(() => {
+  getNewGoods().then(res => {
+    if (res.data.status === 200) {
+      newGoodsLoading.value = true
+      newGoods.value = res.data.data
+    }
+  })
+})
+
+const onItem = (id) => {
+}
+// 点击资讯
+const onBeautyInfo = () => {
+  router.push("/beauty")
+}
+
+
+</script>
+<style lang="less" scoped>
+.nav {
+  background: #fff;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  clear: both;
+
+  .item {
+    width: 20%;
+    float: left;
+    // text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 40px;
+    }
+
+    span {
+      display: block;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.info {
+  background: #fff;
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  border-top: 1px solid #f3f4f5;
+
+  h3 {
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+    padding: 0 20px;
+    border-right: 1px solid #f3f4f5;
+  }
+
+  p {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  span {
+    flex: 1;
+    text-align: right;
+    padding-right: 10px;
+  }
+}
+
+.recommend {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 5px;
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+
+  div {
+    flex: 1;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hot {
+    background: url("../../assets/images/home-cb1.png");
+    background-position: center;
+    background-size: cover;
+    margin-right: 5px;
+  }
+
+  .opt {
+    background: url("../../assets/images/home-cb2.png");
+    background-position: center;
+    background-size: cover;
+    margin-left: 5px;
+  }
+}
+
+
+
+// 最新商品样式
+.new-shop-content {
+  display: flex;
+
+  .new-shop-item {
+    margin-right: 15px;
+
+    img {
+      display: block;
+      width: 230px;
+      height: 130px;
+    }
+
+    .new-shop-title {
+      white-space: normal;
+      word-break: break-word;
+      font-size: 14px;
+      text-align: left;
+      padding: 10px;
+    }
+
+    .new-shop-price {
+      display: block;
+      font-size: 14px;
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+      padding-top: 0px;
+      color: #820085;
+    }
+  }
+}
+
+// 骨架屏
+.skeleton-newShop {
+  height: 208px;
+  width: 100%;
+  display: flex;
+
+  .skeleton-item {
+    margin: 10px;
+    width: 230px;
+
+    image {
+      width: 230px;
+    }
+  }
+}
+</style>
+```
+
+
+
+### 12，广告和人才
+
+广告：
+
+![1717467974673](./assets/1717467974673.png)
+
+```html
+  <!-- 广告 -->
+  <div class="ad">
+    <img src="../../assets/images/ad.png" alt="">
+  </div>
+```
+
+```css
+// 广告图
+.ad {
+  background: #fff;
+  margin: 5px auto;
+
+  img {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+}
+```
+
+
+
+人才库，封装API接口：
+
+![1717468328472](./assets/1717468328472.png)
+
+
+
+```js
+// 人才库
+export function getPersonStore(){
+    return axios({
+        url:"/api/api/personstore",
+        method:"get"
+    })
+}
+```
+
+
+
+在组件中调用：
+
+![1717468442046](./assets/1717468442046.png)
+
+
+
+查看：
+
+![1717468475781](./assets/1717468475781.png)
+
+
+
+渲染数据：
+
+![1717468646478](./assets/1717468646478.png)
+
+```html
+  <!-- 人才库 -->
+  <RollComponent :rollInfo="personInfo">
+    <div class="person-content">
+      <div class="person-item" v-for="(item, index) in personStore" :key="index">
+        <img :src="item.image" alt="">
+        <p>{{ item.name }}</p>
+        <span>{{ item.desc }}元/月</span>
+      </div>
+    </div>
+  </RollComponent>
+```
+
+
+
+```css
+// 人才库
+.person-content {
+  display: flex;
+
+  .person-item {
+    margin-left: 10px;
+
+    img {
+      width: 110px;
+      height: 170px;
+      border-radius: 5px;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    span {
+      display: block;
+      font-size: 14px;
+      color: #999;
+      padding-bottom: 10px;
+    }
+  }
+}
+```
+
+
+
+### 13，为你推荐
+
+
+
+封装API接口：
+
+![1717468757829](./assets/1717468757829.png)
+
+```js
+// 为你推荐
+export function getRecommendgoods(){
+    return axios({
+        url:"/api/api/recommendgoods",
+        method:"get"
+    })
+}
+```
+
+
+
+在组件中调用接口：
+
+![1717469008621](./assets/1717469008621.png)
+
+```js
+const recommendGoods = ref([]);
+const recommendGoodsLoading = ref(false);
+const recommendTitle = "为你推荐";
+
+onMounted(() => {
+  getRecommendgoods().then(res => {
+    if (res.data.status === 200) {
+      recommendGoodsLoading.value = true;
+      recommendGoods.value = res.data.data
+    }
+  })
+})
+```
+
+
+
+把为你推荐封装成一个组件：
+
+![1717469283060](./assets/1717469283060.png)
+
+```vue
+<template>
+    <h3 class="title">{{ recommendTitle }}</h3>
+    <div class="card">
+        <div class="card-item" v-for="(item) in cardData" :key="item.id" @click="onGoodsItem(item.id)">
+            <img class="item-goods" :src="item.image" alt="">
+            <p class="item-name">{{ item.title }}</p>
+            <div class="item-desc">
+                <span class="price">￥{{ item.price }}.00</span>
+                <span class="iconfont icon-gouwucheman"></span>
+            </div>
+        </div>
+    </div>
+</template>
+<script setup>
+import {ref,reactive} from "vue"
+import { useRouter } from "vue-router"
+
+const router = useRouter()
+
+const props = defineProps({
+    cardData:Array,
+    recommendTitle:string
+})
+
+const onGoodsItem = (id)=>{
+    router.push({
+        name:"goodsDetails",
+        params:{ id }
+    })
+}
+</script>
+<style lang="less" scoped>
+.title {
+    text-align: center;
+    font-weight: 400;
+    color: #999;
+    font-size: 14px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+
+    &::before {
+        content: "";
+        width: 50px;
+        border-bottom: 1px solid #999;
+        margin: auto;
+    }
+
+    &::after {
+        content: "";
+        width: 50px;
+        border-bottom: 1px solid #999;
+        margin: auto;
+    }
+}
+
+.card {
+    background: #fff;
+    padding: 20px 10px;
+    overflow: hidden;
+    clear: both;
+
+    .card-item {
+        width: 49%;
+        float: left;
+        margin: 10px 0;
+
+        .item-goods {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .item-name {
+            font-size: 14px;
+            margin: 5px 0;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .item-desc {
+            display: flex;
+            padding: 5px 10px;
+            box-sizing: border-box;
+
+            .price {
+                flex: 1;
+                font-size: 12px;
+                text-align: left;
+            }
+
+            .iconfont {
+                flex: 1;
+                font-size: 12px;
+                text-align: right;
+                color: #999;
+            }
+        }
+    }
+
+    .card-item:nth-child(even) {
+        margin-left: 2%;
+    }
+}
+</style>
+```
+
+
+
+使用组件：
+
+![1717469511660](./assets/1717469511660.png)
+
+
+
+```vue
+<template>
+  <TopNavComponent />
+  <SwiperComponent :images="banners" />
+  <div class="nav">
+    <div class="item" @click="onItem(item.id)" v-for="(item, index) in navData" :key="item.id">
+      <img :src="item.image" alt="">
+      <span>{{ item.text }}</span>
+    </div>
+  </div>
+  <!-- 资讯 -->
+  <div class="info" @click="onBeautyInfo">
+    <h3>美甲咨询</h3>
+    <p>年会不能错过的款，美呆了~</p>
+    <span class="iconfont icon-jiantouyou"></span>
+  </div>
+  <!-- 推荐 -->
+  <div class="recommend">
+    <div class="hot">
+      <h3>热门活动</h3>
+    </div>
+    <div class="opt">
+      <h3>优选店铺</h3>
+    </div>
+  </div>
+
+  <!-- 最新商铺 -->
+  <RollComponent :rollInfo="newShopInfo">
+    <div class="new-shop-content" v-if="newGoodsLoading">
+      <div class="new-shop-item" v-for="(item, index) in newGoods" :key="index">
+        <img :src="item.image" alt="">
+        <p class="new-shop-title">{{ item.title }}</p>
+        <span class="new-shop-price">{{ item.price }}元/月</span>
+      </div>
+    </div>
+    <div class="skeleton-newShop" v-else>
+      <div class="skeleton-item">
+        <van-skeleton-image class="image" />
+        <van-skeleton-paragraph />
+        <van-skeleton-paragraph />
+      </div>
+      <div class="skeleton-item">
+        <van-skeleton-image class="image" />
+        <van-skeleton-paragraph />
+        <van-skeleton-paragraph />
+      </div>
+    </div>
+  </RollComponent>
+
+  <!-- 广告 -->
+  <div class="ad">
+    <img src="../../assets/images/ad.png" alt="">
+  </div>
+  
+  <!-- 人才库 -->
+  <RollComponent :rollInfo="personInfo">
+    <div class="person-content">
+      <div class="person-item" v-for="(item, index) in personStore" :key="index">
+        <img :src="item.image" alt="">
+        <p>{{ item.name }}</p>
+        <span>{{ item.desc }}元/月</span>
+      </div>
+    </div>
+  </RollComponent>
+
+  <!-- 广告 -->
+  <div class="ad">
+    <img src="../../assets/images/ad.png" alt="">
+  </div>
+
+  <!-- 为你推荐 -->
+  <div class="recommend-main">
+    <CardComponent :recommendTitle="recommendTitle" :cardData="recommendGoods" v-if="recommendGoodsLoading"/>
+    <van-empty 
+      v-else
+      image="https://fastly.jsdelivr.net/npm/@vant/assets/custom-empty-image.png" 
+      image-size="80"
+      description="等待加载..." />
+  </div>
+</template>
+<script setup>
+import { ref, reactive, onMounted } from "vue"
+import TopNavComponent from "../../components/TopNavCompponent.vue"
+import SwiperComponent from "@/components/SwiperComponent.vue";
+import RollComponent from "@/components/RollComponent.vue"
+import CardComponent from "@/components/CardComponent.vue";
+
+import nav1 from "../../assets/images/nav1.png"
+import nav2 from "../../assets/images/nav2.png"
+import nav3 from "../../assets/images/nav3.png"
+import nav4 from "../../assets/images/nav4.png"
+import nav5 from "../../assets/images/nav5.png"
+
+
+import { getCaroursel, getNewGoods,getPersonStore,getRecommendgoods } from "../../api/Home/index"
+import { useRouter } from "vue-router"
+
+// ====================================== 轮播图
+const router = useRouter()
+const banners = ref([]);
+
+onMounted(async () => {
+  const res = await getCaroursel();
+  // console.log("res:",res)
+  if (res.data.status === 200) {
+    banners.value = res.data.data
+  }
+})
+
+// ====================================== 导航数据
+const navData = [
+  {
+    id: 1,
+    text: "转让出租",
+    image: nav1
+  },
+  {
+    id: 2,
+    text: "招聘求职",
+    image: nav2
+  },
+  {
+    id: 3,
+    text: "流行产品",
+    image: nav3
+  },
+  {
+    id: 4,
+    text: "培训课程",
+    image: nav4
+  },
+  {
+    id: 5,
+    text: "批发进货",
+    image: nav5
+  }
+]
+
+// ====================================== 最新商铺
+const newGoods = ref([]);
+const newGoodsLoading = ref(false);
+
+const newShopInfo = {
+  title: "最新商铺",
+  all: "查看全部"
+}
+
+onMounted(() => {
+  getNewGoods().then(res => {
+    if (res.data.status === 200) {
+      newGoodsLoading.value = true
+      newGoods.value = res.data.data
+    }
+  })
+})
+
+// ====================================== 人才
+
+const personStore = ref([]);
+
+const personInfo = {
+  title: "人才库",
+  all: "查看全部"
+}
+
+onMounted(() => {
+  getPersonStore().then(res => {
+    if (res.data.status === 200) {
+      personStore.value = res.data.data
+    }
+  })
+})
+
+// ====================================== 为你推荐
+const recommendGoods = ref([]);
+const recommendGoodsLoading = ref(false);
+const recommendTitle = "为你推荐";
+
+onMounted(() => {
+  getRecommendgoods().then(res => {
+    if (res.data.status === 200) {
+      recommendGoodsLoading.value = true;
+      recommendGoods.value = res.data.data
+    }
+  })
+})
+
+
+const onItem = (id) => {
+}
+// 点击资讯
+const onBeautyInfo = () => {
+  router.push("/beauty")
+}
+
+
+</script>
+<style lang="less" scoped>
+.nav {
+  background: #fff;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  clear: both;
+
+  .item {
+    width: 20%;
+    float: left;
+    // text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 40px;
+    }
+
+    span {
+      display: block;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.info {
+  background: #fff;
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  border-top: 1px solid #f3f4f5;
+
+  h3 {
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+    padding: 0 20px;
+    border-right: 1px solid #f3f4f5;
+  }
+
+  p {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  span {
+    flex: 1;
+    text-align: right;
+    padding-right: 10px;
+  }
+}
+
+.recommend {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 5px;
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+
+  div {
+    flex: 1;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hot {
+    background: url("../../assets/images/home-cb1.png");
+    background-position: center;
+    background-size: cover;
+    margin-right: 5px;
+  }
+
+  .opt {
+    background: url("../../assets/images/home-cb2.png");
+    background-position: center;
+    background-size: cover;
+    margin-left: 5px;
+  }
+}
+
+
+// 最新商品样式
+.new-shop-content {
+  display: flex;
+
+  .new-shop-item {
+    margin-right: 15px;
+
+    img {
+      display: block;
+      width: 230px;
+      height: 130px;
+    }
+
+    .new-shop-title {
+      white-space: normal;
+      word-break: break-word;
+      font-size: 14px;
+      text-align: left;
+      padding: 10px;
+    }
+
+    .new-shop-price {
+      display: block;
+      font-size: 14px;
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+      padding-top: 0px;
+      color: #820085;
+    }
+  }
+}
+
+// 骨架屏
+.skeleton-newShop {
+  height: 208px;
+  width: 100%;
+  display: flex;
+
+  .skeleton-item {
+    margin: 10px;
+    width: 230px;
+
+    image {
+      width: 230px;
+    }
+  }
+}
+
+// 广告图
+.ad {
+  background: #fff;
+  margin: 5px auto;
+
+  img {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+}
+
+// 人才库
+.person-content {
+  display: flex;
+
+  .person-item {
+    margin-left: 10px;
+
+    img {
+      width: 110px;
+      height: 170px;
+      border-radius: 5px;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    span {
+      display: block;
+      font-size: 14px;
+      color: #999;
+      padding-bottom: 10px;
+    }
+  }
+}
+</style>
+```
+
+
+
+### 14，商品详情
+
+
+
+目标：
+
+![1717469683444](./assets/1717469683444.png)
+
+
+
+
+
+
+
+创建组件：
+
+![1717469777940](./assets/1717469777940.png)
+
+
+
+配置路由：
+
+![1717469834062](./assets/1717469834062.png)
+
+
+
+测试：
+
+![1717469874694](./assets/1717469874694.png)
+
+![1717469901504](./assets/1717469901504.png)
+
+
+
+封装API接口：
+
+![1717469978326](./assets/1717469978326.png)
+
+```js
+import axios from "../../utils/request"
+
+/**
+ * 商品详情
+ */
+export function getGoodsDetails(params) {
+    return axios({
+        url: "/api/api/goods/details",
+        method: "get",
+        params
+    })
+}
+```
+
+
+
+调用接口：
+
+![1717470196166](./assets/1717470196166.png)
+
+```vue
+<template>
+  <div class="">
+    商品详情
+  </div>
+</template>
+<script setup>
+import {ref,reactive,onMounted} from "vue"
+import { useRoute, useRouter } from "vue-router"
+
+import { getGoodsDetails } from "../../api/Goods/index"
+
+const route = useRoute()
+const router = useRouter()
+
+const title = "商品详情"
+const goodsDetails = ref({})
+
+onMounted(async () => {
+  let res = await getGoodsDetails({id:route.params.id})
+  if (res.status === 200) {
+    goodsDetails.value = res.data.data
+  }
+})
+</script>
+<style lang="less" scoped>
+
+</style>
+```
+
+测试数据是否获取到：
+
+![1717470287352](./assets/1717470287352.png)
+
+
+
+渲染数据：
+
+![1717470396803](./assets/1717470396803.png)
+
+```vue
+<template>
+  <GoodsDetailsHeader :title="title" />
+  <div class="details-container">
+    <div class="dc-goods">
+      <img class="goods-image" :src="goodsDetails?.image" alt="">
+      <p class="goods-title">{{ goodsDetails?.title }}</p>
+      <p><span class="goods-price">￥{{ goodsDetails?.price }}.00</span><span class="goods-price-old">￥500</span></p>
+    </div>
+    <div class="other">
+      <span class="s1">快递：免邮费</span>
+      <span class="s2">好评率：99%</span>
+      <span class="s3">销量：3000</span>
+    </div>
+  </div>
+</template>
+<script setup>
+import { ref, reactive, onMounted } from "vue"
+import { useRoute, useRouter } from "vue-router"
+
+import GoodsDetailsHeader from "../../components/PubHeaderComponent.vue"
+
+import { getGoodsDetails } from "../../api/Goods/index"
+
+const route = useRoute()
+const router = useRouter()
+
+const title = "商品详情"
+const goodsDetails = ref({})
+
+onMounted(async () => {
+  let res = await getGoodsDetails({ id: route.params.id })
+  if (res.status === 200) {
+    goodsDetails.value = res.data.data
+  }
+})
+</script>
+<style lang="less" scoped>
+.details-container {
+  .dc-goods {
+    background: #fff;
+
+    .goods-image {
+      width: 100%;
+    }
+
+    .goods-title {
+      padding: 10px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    p {
+      padding-bottom: 10px;
+
+      .goods-price {
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 16px;
+        color: #F23D52;
+      }
+
+      .goods-price-old {
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 12px;
+        color: #999;
+        text-decoration: line-through;
+      }
+    }
+
+  }
+
+  .other {
+    background: #fff;
+    display: flex;
+    padding: 10px;
+
+    span {
+      flex: 1;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .s1 {
+      text-align: left;
+    }
+
+    .s2 {
+      text-align: center;
+    }
+
+    .s3 {
+      text-align: right;
+    }
+  }
+}
+</style>
+```
+
+
+
+选择规格组件封装：
+
+![1717471246377](./assets/1717471246377.png)
+
+
+
+开始封装：
+
+![1717471573378](./assets/1717471573378.png)
+
+```vue
+<template>
+    <div class="item">
+        <p class="title">{{ item.text }}</p>
+        <div class="text" v-if="!image">
+            <span class="text-desc">{{ item.desc }}</span>
+            <span class="iconfont icon-jiantouyou"></span>
+        </div>
+        <div class="mixin" v-else>
+            <img src="../../../assets/images/icon.png" alt="">
+            <span class="iconfont icon-jiantouyou"></span>
+        </div>
+    </div>
+</template>
+<script setup>
+import { ref, reactive } from "vue"
+
+const props = defineProps({
+    item: Object,
+    image: Boolean
+})
+
+</script>
+<style lang="less" scoped>
+.item {
+    width: 100%;
+    background: #fff;
+    padding: 0 10px;
+    border-bottom: 1px solid #f3f4f5;
+    border-top: 1px solid #f3f4f5;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    .title {
+        flex: 1;
+        font-size: 14px;
+        padding-left: 10px;
+        text-align: left;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .text {
+        .text-desc {
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .iconfont {
+            font-size: 15px;
+        }
+    }
+
+    .mixin {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        img {
+            width: 50px;
+            height: 50px;
+            padding: 10px 0;
+            margin-right: 10px;
+        }
+
+        .iconfont {
+            font-size: 15px;
+        }
+    }
+}
+</style>
+
+```
+
+
+
+使用组件：
+
+![1717471763193](./assets/1717471763193.png)
+
+
+
+分析用户评价模块：
+
+![1717471860097](./assets/1717471860097.png)
+
+
+
+先实现用户评价部分UI：
+
+![1717472320481](./assets/1717472320481.png)
+
+
+
+```html
+  <!-- 用户评价 -->
+  <div class="comment-container">
+    <div class="comment">
+      <div class="comment-header">
+        <div class="title">用户评价(999+)</div>
+        <div class="percent">
+          <span class="text-desc">98%好评</span>
+          <span class="iconfont icon-jiantouyou"></span>
+        </div>
+      </div>
+    </div>
+    <!-- 用户评价需要封装成一组件 -->
+    <div class="more" @click="onListMore">
+      <div>查看更多</div>
+    </div>
+  </div>
+```
+
+
+
+```css
+// 用户评价
+.comment{
+  background: #fff;
+  border-bottom: 1px solid #f3f4f5;
+  .comment-header{
+    display: flex;
+    padding: 10px;
+    .title{
+      flex: 1;
+      font-size: 14px;
+      text-align: left;
+    }
+    .percent{
+      flex: 1;
+      text-align: right;
+      color: #999;
+      .text-desc {
+        font-size: 12px;
+      }
+      .iconfont {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.more {
+  background: #fff;
+  padding: 10px;
+  border-top: 1px solid #f3f4f5;
+
+  div {
+    text-align: center;
+    font-size: 14px;
+  }
+}
+```
+
+
+
+把中间的用户评价封装成一个组件：
+
+![1717472400258](./assets/1717472400258.png)
+
+
+
+封装API接口：
+
+![1717472498960](./assets/1717472498960.png)
+
+```js
+/**
+ * 商品详情评价
+ */
+export function getGoodsComment(params){
+    return axios({
+        url:"/api/api/comment/goods",
+        method:"get",
+        params
+    })
+}
+```
+
+
+
+调用接口：
+
+![1717472621540](./assets/1717472621540.png)
+
+
+
+测试：
+
+![1717472665354](./assets/1717472665354.png)
+
+
+
+
+
+封装一个组件：
+
+![1717472849295](./assets/1717472849295.png)
+
+```vue
+<template>
+    <div class="comment-container">
+        <div class="comment-header">
+            <div class="header-image">
+                <img :src="comment.icon" alt="">
+            </div>
+            <div class="header-user">
+                <span>{{ comment.name }}</span>
+                <van-rate class="rate" v-model="comment.rate" :size="12" readonly />
+            </div>
+            <div class="time">
+                <span>{{ comment.time }}</span>
+            </div>
+        </div>
+        <div class="comment-body">
+            <div class="body-text">
+                <span>{{ comment.text }}</span>
+            </div>
+            <div class="body-image">
+                <img :src="item" alt="" v-for="(item,index) in comment.images" :key="index">
+            </div>
+        </div>
+    </div>
+</template>
+<script setup>
+import {ref,reactive} from "vue"
+    const props = defineProps({
+        comment:Object
+    })
+</script>
+<style lang="less" scoped>
+
+.comment-container{
+    background: #fff;
+    .comment-header{
+        display: flex;
+        padding: 10px;
+        box-sizing: border-box;
+        .header-image{
+            img{
+                width: 40px;
+                height: 40px;
+            }
+        }
+        .header-user{
+            padding-left: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            span{
+                font-size: 15px;
+            }
+        }
+        .time{
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            span{
+                font-size: 13px;
+                color: #999;
+                padding-top: 5px;
+            }
+        }
+    }
+    .comment-body{
+        padding: 10px;
+        padding-top: 0;
+        padding-left: 50px;
+        .body-text{
+            span{
+                font-size: 14px;
+            }
+        }
+        .body-image{
+            margin-top: 5px;
+            img{
+                width: 50px;
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+</style>
+
+```
+
+
+
+使用：
+
+![1717472912570](./assets/1717472912570.png)
+
+
+
+### 15，所有评论
+
+
+
+点击查看更多，进行中路由跳转：
+
+![1717473022260](./assets/1717473022260.png)
+
+
+
+创建所有评价的组件：
+
+![1717473063367](./assets/1717473063367.png)
+
+
+
+配置路由：
+
+![1717473107998](./assets/1717473107998.png)
+
+
+
+测试：
+
+![1717473121447](./assets/1717473121447.png)
+
+
+
+封装API接口：
+
+![1717473191583](./assets/1717473191583.png)
+
+```js
+/**
+ * 商品全部评价
+ */
+export function getGoodsCommentAll(){
+    return axios({
+        url:"/api/api/comment/all",
+        method:"get"
+    })
+}
+```
+
+
+
+调用之：
+
+![1717473313250](./assets/1717473313250.png)
+
+```vue
+<template>
+  <CommentListHeader title="全部评价"/>
+  <CommentView :comment="item" v-for="(item,index) in comment" :key="index"/>
+</template>
+<script setup>
+import {ref,reactive,onMounted} from "vue"
+import CommentListHeader from "../../components/PubHeaderComponent.vue"
+import { getGoodsCommentAll } from "../../api/Goods/index"
+import CommentView from "./CommentView.vue";
+
+const comment = ref([])
+
+onMounted(async () =>{
+    const res = await getGoodsCommentAll()
+    if(res.data.status == 200){
+        comment.value = res.data.data
+    }
+})
+
+</script>
+<style lang="less" scoped>
+
+</style>
+```
+
+
+
+底部实现：
+
+![1717473519737](./assets/1717473519737.png)
 
