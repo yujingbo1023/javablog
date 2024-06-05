@@ -2988,3 +2988,759 @@ onMounted(async () =>{
 
 ![1717473519737](./assets/1717473519737.png)
 
+
+
+### 16，实现dropdown-menu
+
+效果如下：
+
+![1717554792922](./assets/1717554792922.png)
+
+
+
+代码：
+
+![1717554808268](./assets/1717554808268.png)
+
+```vue
+<template>
+  <TopNavComponent/>
+  <van-dropdown-menu>
+    <van-dropdown-item title="位置"  ref="location" >
+        <div class="list" @click="onLocation">
+          <h3 value="area" :class="[active == 'area' ? 'active' : '']">区域</h3>
+          <h3 value="subway" :class="[active == 'subway' ? 'active' : '']">地铁</h3>
+        </div>
+        <div class="item">
+          <van-cell-group v-if="active == 'area'">
+            <van-cell :class="[params.location === item ? 'activeBtn' : '']" :value="item" v-for="(item, index) in areas" :key="index" @click="onItem(item)" />
+          </van-cell-group>
+          <van-cell-group v-if="active == 'subway'">
+            <van-cell :class="[params.location === item ? 'activeBtn' : '']" :value="item" v-for="(item, index) in subways" :key="index" @click="onItem(item)" />
+          </van-cell-group>
+        </div>
+    </van-dropdown-item>
+    <van-dropdown-item title="租金" ref="price">
+      <van-cell-group>
+        <van-cell value="不限" :class="[params.price === '不限' ? 'activeBtn' : '']" @click="onPrice('不限')"/>
+        <van-cell value="2000元以下" :class="[params.price === '2000' ? 'activeBtn' : '']" @click="onPrice('2000')" />
+        <van-cell value="2000-2500元" :class="[params.price === '2500' ? 'activeBtn' : '']" @click="onPrice('2500')" />
+        <van-cell value="2500-3000元" :class="[params.price === '3000' ? 'activeBtn' : '']" @click="onPrice('3000')" />
+      </van-cell-group>
+    </van-dropdown-item>
+    <van-dropdown-item title="类型" ref="type">
+      <div class="container">
+        <div class="title">商铺类型</div>
+        <div class="btn" :class="[params.type === item ? 'activeBtn' : '']" v-for="(item, index) in types" :key="index" @click="onType(item)">{{ item }}</div>
+      </div>
+    </van-dropdown-item>
+    <van-dropdown-item title="更多" ref="more">
+      <div class="container">
+        <div class="title">{{ mores1.title }}</div>
+        <div class="btn" :class="[selectBtn1 === childItem ? 'activeBtn' : '']" v-for="(childItem, childIndex) in mores1.btns"
+          :key="childIndex" @click="onMore1(childItem)">{{ childItem }}</div>
+      </div>
+      <div class="container">
+        <div class="title">{{ mores2.title }}</div>
+        <div class="btn" :class="[selectBtn2 === childItem ? 'activeBtn' : '']" v-for="(childItem, childIndex) in mores2.btns"
+          :key="childIndex" @click="onMore2(childItem)">{{ childItem }}</div>
+      </div>
+      <div class="container btnL">
+        <div class="clearBtn" @click="clearBtn">清空筛选</div>
+        <div class="sureBtn" @click="sureBtn">确定</div>
+      </div>
+    </van-dropdown-item>
+  </van-dropdown-menu>
+</template>
+<script setup>
+import TopNavComponent from "../../components/TopNavCompponent.vue";
+
+import {ref,reactive} from "vue"
+
+const areas = ["不限", "东城区", "西城区", "朝阳区", "海淀区", "昌平区"]
+const subways = ["不限", "一号线", "二号线", "五号线", "六号线", "昌平线"]
+const types = ["不限", "商场/超市", "商业街", "社区底商","商场/超市2", "商业街2", "社区底商2",]
+const mores1 = {
+  title: "面积",
+  btns: ["不限", "20m²以下", "20m²-50m²", "50m²-100m²", "100m²以上"]
+}
+const mores2 = {
+  title: "楼层",
+  btns: ["不限", "地下", "一层", "二层", "二层以上"]
+}
+const more = ref(null);
+const type = ref(null);
+const location = ref(null)
+const price = ref(null)
+const selectBtn1 = ref('不限')
+const selectBtn2 = ref('不限')
+
+const params = reactive({
+  location: "不限",
+  price: "不限",
+  type: "不限"
+})
+
+const active = ref("area")
+
+const onLocation = (e)=>{
+  active.value = e.target.getAttribute("value")
+}
+const onItem = (item)=>{
+  params.location = item;
+  console.log(item)
+  console.log("params:",params)
+  location.value.toggle();
+}
+const onPrice = (value)=>{
+  params.price = value;
+  console.log(value)
+  console.log("params:",params)
+  price.value.toggle()
+}
+const onType = (item)=>{
+  console.log(item)
+  params.type = item;
+  type.value.toggle();
+  console.log("params:",params)
+}
+const onMore1 = (item)=>{
+  console.log(item)
+  selectBtn1.value = item;
+}
+const onMore2 = (item)=>{
+  console.log(item)
+  selectBtn2.value = item;
+}
+const clearBtn = ()=>{
+  selectBtn1.value="不限"
+  selectBtn2.value="不限"
+}
+const sureBtn = ()=>{
+  more.value.toggle()
+}
+</script>
+<style lang="less" scoped>
+.list{
+  width: 50%;
+  float: left;
+  background: #f3f4f5;
+  h3 {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
+  h3.active {
+    background: #fff;
+  }
+}
+.item{
+  width: 50%;
+  float: left;
+}
+.item-cell{
+  text-align: left;
+}
+.container {
+  background: #fff;
+  overflow: hidden;
+  clear: both;
+  .title {
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .btn {
+    float: left;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #f3f4f5;
+    margin: 10px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 0;
+    border-radius: 5px;
+  }
+  .clearBtn {
+    width: 30%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #f3f4f5;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .sureBtn {
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #684886;
+    color: #fff;
+    border-radius: 5px;
+    margin: 10px;
+  }
+}
+.btnL {
+  display: flex;
+  justify-content: center;
+}
+.activeBtn {
+  background-color: #684886 !important;
+  color: #fff;
+}
+</style>
+```
+
+
+
+App.vue:
+
+![1717554863611](./assets/1717554863611.png)
+
+```vue
+// 筛选的下拉菜单
+.van-dropdown-item__content {
+  background-color: #f3f4f5 !important;
+}
+
+// cell去掉flex
+.van-cell__value{
+  flex:none !important;
+}
+```
+
+
+
+### 17，选址的商铺列表
+
+封装API接口：
+
+![1717555058990](./assets/1717555058990.png)
+
+```js
+import axios from "../../utils/request"
+
+// 商铺列表
+export function getPlaceList(params){
+    return axios({
+        url:"/api/api/place",
+        method:"get",
+        params
+    })
+}
+
+/**
+ * 商铺详情
+ */
+export function getPlaceDetails(params){
+    return axios({
+        url:`/api/api/place/details?id=${params.id}`,
+        method:"get"
+    })
+}
+```
+
+
+
+调用商铺列表接口：
+
+![1717555496883](./assets/1717555496883.png)
+
+
+
+![1717555519130](./assets/1717555519130.png)
+
+
+
+```css
+.content{
+  padding: 10px;
+  background-color: #fff;
+  .place-item{
+    border-bottom: 1px solid #f3f4f5;
+    padding: 10px 0;
+    display: flex;
+    img{
+      width: 150px;
+      border-radius: 5px;
+    }
+    .place-item-desc{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 10px;
+      p{
+        font-size: 14px;
+        margin: 5px 0;
+      }
+      .descs{
+        display: block;
+        font-size: 14px;
+        color:#999;
+        margin: 5px 0;
+      }
+      .price{
+        display: block;
+        font-size: 14px;
+        color: #ff4444;
+        margin: 5px 0;
+      }
+    }
+  }
+}
+```
+
+
+
+点击某个商铺就要去商铺的详情了：
+
+![1717555599317](./assets/1717555599317.png)
+
+
+
+实现方法：
+
+![1717555685967](./assets/1717555685967.png)
+
+
+
+测试：
+
+![1717555707258](./assets/1717555707258.png)
+
+
+
+然后，创建组件，配置路由：
+
+![1717555759115](./assets/1717555759115.png)
+
+![1717555782088](./assets/1717555782088.png)
+
+
+
+再次测试：
+
+![1717555801555](./assets/1717555801555.png)
+
+
+
+### 18，商铺的详情
+
+目标：
+
+![1717556756165](./assets/1717556756165.png)
+
+
+
+参考代码：
+
+![1717556773354](./assets/1717556773354.png)
+
+```vue
+<template>
+    <div class="place-details-container">
+        <div class="pd-header">
+            <span @click="onBack" class="iconfont icon-fanhui"></span>
+            <img class="img" :src="placeDetails?.image" alt="">
+            <h3 class="title">{{ placeDetails?.title }}</h3>
+        </div>
+        <div class="pd-body">
+            <van-grid :column-num="3">
+                <van-grid-item>
+                    <span class="pad-grid-text">租金</span>
+                    <span class="pad-grid-price">{{ placeDetails?.price }}元</span>
+                </van-grid-item>
+                <van-grid-item>
+                    <span class="pad-grid-text">转让费</span>
+                    <span class="pad-grid-price">{{ placeDetails?.afee }}</span>
+                </van-grid-item>
+                <van-grid-item>
+                    <span class="pad-grid-text">面积</span>
+                    <span class="pad-grid-price">{{ placeDetails?.size }}</span>
+                </van-grid-item>
+            </van-grid>
+            <div class="pd-info">
+                <div class="pd-info-header">
+                    <div class="title">{{ placeDetails?.location }}</div>
+                    <div class="map" @click="onMap">地图<span class="iconfont icon-jiantouyou"></span></div>
+                </div>
+                <div class="pd-info-body">
+                    <div class="info-body-item">
+                        <div class="item-left">租赁类型：商铺转让</div>
+                        <div class="item-right">商铺类型：社区住宅底商</div>
+                    </div>
+                    <div class="info-body-item">
+                        <div class="item-left">所在楼层：一层</div>
+                        <div class="item-right">所在区县：石景山区</div>
+                    </div>
+                    <div class="info-body-item">
+                        <div class="item-left">所在环线：4-5环</div>
+                        <div class="item-right">所在商圈：鲁谷</div>
+                    </div>
+                </div>
+                <div class="pd-info-footer">
+                    <div class="btn">铺源详细信息</div>
+                </div>
+            </div>
+            <div class="facility">
+                <h3>配套设施</h3>
+                <div class="facility-list">
+                    <div class="facility-item">
+                        <span class="iconfont icon-shangshui-"></span>
+                        <span class="title">上水</span>
+                    </div>
+                    <div class="facility-item">
+                        <span class="iconfont icon-xiashui"></span>
+                        <span class="title">下水</span>
+                    </div>
+                    <div class="facility-item">
+                        <span class="iconfont icon-bingxiang"></span>
+                        <span class="title">冰箱</span>
+                    </div>
+                    <div class="facility-item">
+                        <span class="iconfont icon-washer"></span>
+                        <span class="title">洗衣机</span>
+                    </div>
+                    <div class="facility-item">
+                        <span class="iconfont icon-wifiwuxianwang"></span>
+                        <span class="title">WIFI</span>
+                    </div>
+                </div>
+            </div>
+            <div class="recommend">
+                <h3>商铺推荐</h3>
+                <div class="place-item" v-for="(item, index) in list" :key="index" @click="onPlaceItem(item.id)">
+                    <img :src="item.image" alt="">
+                    <div class="place-item-desc">
+                        <p>{{ item.title }}</p>
+                        <span class="descs">{{ item.descs }}</span>
+                        <span class="price">{{ item.price }}元/月</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pd-footer">
+            <div class="collect">
+                <span class="iconfont icon-shoucang"></span>
+                <span class="collect-text">收藏</span>
+            </div>
+            <div class="call">
+                <div class="btn">联系业主</div>
+            </div>
+        </div>
+    </div>
+</template>
+<script setup>
+import { ref, reactive, onMounted } from "vue"
+import { useRoute, useRouter } from "vue-router"
+import { getPlaceDetails, getPlaceList } from "../../api/Place/index"
+
+const route = useRoute()
+const router = useRouter()
+
+const onBack = () => {
+    window.history.back()
+}
+
+const placeDetails = ref({})
+
+onMounted(async () => {
+    const res = await getPlaceDetails({ id: route.params.id })
+    if (res.data.status === 200) {
+        placeDetails.value = res.data.data
+    }
+})
+const onMap = () => {
+    router.push("/placeMap")
+}
+
+onMounted(() => {
+    getPlaceList({ page: 1 }).then(res => {
+        if (res.data.status === 200) {
+            list.value = res.data.data
+        }
+    })
+})
+
+</script>
+<style lang="less" scoped>
+.place-details-container {
+    .pd-header {
+        background: #fff;
+
+        .iconfont {
+            position: absolute;
+            font-size: 18px;
+            padding: 10px;
+            font-weight: 700;
+        }
+
+        .img {
+            width: 100%;
+        }
+
+        .title {
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+
+    .pd-body {
+        .pad-grid-text {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .pad-grid-price {
+            font-size: 14px;
+            color: #ff4444;
+            margin-top: 10px;
+        }
+
+        .pd-info {
+            .pd-info-header {
+                display: flex;
+                margin: 20px 10px;
+
+                .title {
+                    flex: 1;
+                    text-align: left;
+                    font-size: 15px;
+                }
+
+                .map {
+                    flex: 1;
+                    display: flex;
+                    justify-content: flex-end;
+                    font-size: 14px;
+                    color: #999;
+
+                    span {
+                        font-size: 12px;
+                        padding-left: 5px;
+                    }
+                }
+            }
+
+            .pd-info-body {
+                background: #fff;
+                padding: 10px;
+
+                .info-body-item {
+                    display: flex;
+                    margin: 10px 0;
+
+                    .item-left {
+                        flex: 1;
+                        font-size: 14px;
+                    }
+
+                    .item-right {
+                        flex: 1;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .pd-info-footer {
+                background-color: #fff;
+                padding: 10px 0;
+
+                .btn {
+                    width: 90%;
+                    margin: 0 auto;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    border: 1px solid #684886;
+                    color: #684886;
+                }
+            }
+        }
+
+        .facility {
+            background: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 10px;
+
+            h3 {
+                font-size: 15px;
+            }
+
+            .facility-list {
+                display: flex;
+                margin: 10px 0;
+
+                .facility-item {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 15px;
+                    justify-content: center;
+                    align-items: center;
+
+                    .iconfont {
+                        font-size: 30px;
+                    }
+
+                    .title {
+                        font-size: 14px;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+
+        .recommend {
+            background: #fff;
+            margin-top: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+
+            h3 {
+                font-size: 15px;
+            }
+
+            .place-item {
+                border-bottom: 1px solid #f3f4f5;
+                padding: 10px 0;
+                display: flex;
+
+                img {
+                    width: 150px;
+                    border-radius: 5px;
+                }
+
+                .place-item-desc {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding-left: 10px;
+
+                    p {
+                        font-size: 14px;
+                        margin: 5px 0;
+                    }
+
+                    .descs {
+                        display: block;
+                        font-size: 14px;
+                        color: #999;
+                        margin: 5px 0;
+                    }
+
+                    .price {
+                        display: block;
+                        font-size: 14px;
+                        color: #ff4444;
+                        margin: 5px 0;
+                    }
+                }
+            }
+        }
+    }
+    .pd-footer{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: #fff;
+        display: flex;
+        .collect{
+            flex: 1;
+            .iconfont{
+                display: block;
+                text-align: center;
+                margin-top: 5px;
+                font-size: 20px;
+            }
+            .collect-text{
+                display: block;
+                text-align: center;
+                margin-top: 2px;
+                font-size: 14px;
+            }
+        }
+        .call{
+            flex:3;
+            padding: 0 10px;
+            .btn{
+                width: 100%;
+                text-align: center;
+                line-height: 40px;
+                margin-top: 5px;
+                background: #684886;
+                color: #fff;
+                font-size: 14px;
+            }
+        }
+    }
+}
+</style>
+```
+
+
+
+### 19，商城
+
+封装API接口：
+
+![1717556883726](./assets/1717556883726.png)
+
+
+
+
+
+目标：
+
+![1717557320369](./assets/1717557320369.png)
+
+
+
+
+
+代码可以去gitee上看一下。
+
+
+
+### 20，人才
+
+目标：
+
+![1717557575799](./assets/1717557575799.png)
+
+![1717557627190](./assets/1717557627190.png)
+
+代码可以去gitee上看一下。
+
+
+
+### 21，登录和注册
+
+不需要输入验证码，直接注册。代码可以去gitee上看一下，不需要写，因为之前写完了。
+
+![1717558241876](./assets/1717558241876.png)
+
+
+
+### 22，我的模块
+
+目标：
+
+![1717558488915](./assets/1717558488915.png)
+
+代码可以去gitee上看一下。
+
+
+
