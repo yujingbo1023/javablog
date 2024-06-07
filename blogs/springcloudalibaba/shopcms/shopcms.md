@@ -2690,25 +2690,628 @@ public class AccessDeniedExceptionHandler {
 
 
 
+### 23，商品品牌的CRUD
+
+
+
+在管理商品时，除了商品名，价格，商品介绍等基本字段外，还需要给商品关联品牌，商品类型，商品规格等对象。比如Iphone15pro的品牌是苹果。商品类型属性手机通讯=>手机=>手机。规格有机身颜色：原色钛金属，机身内存：256G。品牌，商品类型，商品规格都需要我们在后台进行管理。
+
+
+
+接下来我们编写品牌相关的CRUD方法，首先在**通用模块**编写品牌服务接口：
+
+![1717723050691](assets/1717723050691.png)
+
+```java
+public interface BrandService {
+    Brand findById(Long id);
+    List<Brand> findAll();
+    void add(Brand brand);
+    void update(Brand brand);
+    void delete(Long id);
+    Page<Brand> search(Brand brand, int page, int size);
+}
+```
+
+
+
+在**商品服务模块**编写品牌服务实现类：
+
+![1717723434985](assets/1717723434985.png)
+
+```java
+@DubboService
+@Transactional
+public class BrandServiceImpl implements BrandService {
+
+    @Autowired
+    private BrandMapper brandMapper;
+
+    @Override
+    public Brand findById(Long id) {
+        // if (id == 0){
+        //     int i = 1/0; // 模拟系统异常
+        // }else if (id == -1){
+        //     throw new BusException(CodeEnum.PARAMETER_ERROR); // 模拟业务异常
+        // }
+        return brandMapper.selectById(id);
+    }
+
+    @Override
+    public List<Brand> findAll() {
+        return brandMapper.selectList(null);
+    }
+
+    @Override
+    public void add(Brand brand) {
+        brandMapper.insert(brand);
+    }
+
+    @Override
+    public void update(Brand brand) {
+        brandMapper.updateById(brand);
+    }
+
+    @Override
+    public void delete(Long id) {
+        brandMapper.deleteById(id);
+    }
+
+    @Override
+    public Page<Brand> search(Brand brand, int page, int size) {
+        QueryWrapper<Brand> queryWrapper = new QueryWrapper();
+        if(brand != null && StringUtils.hasText(brand.getName())){
+            queryWrapper.like("name",brand.getName());
+        }
+        Page<Brand> page1 = brandMapper.selectPage(new Page(page, size), queryWrapper);
+        return page1;
+    }
+}
+```
 
 
 
 
 
+在**后台管理API模块**编写品牌控制器：
+
+![1717723591185](assets/1717723591185.png)
+
+```java
+@RestController
+@RequestMapping("/brand")
+public class BrandController {
+    // 远程注入
+    @DubboReference
+    private BrandService brandService;
+
+
+    @GetMapping("/findById")
+    public BaseResult findById(Long id){
+        Brand brand = brandService.findById(id);
+        return BaseResult.ok(brand);
+    }
+
+    @GetMapping("/all")
+    public BaseResult<List<Brand>> findAll() {
+        List<Brand> brands = brandService.findAll();
+        return BaseResult.ok(brands);
+    }
+
+    @PostMapping("/add")
+    public BaseResult add(@RequestBody Brand brand) {
+        brandService.add(brand);
+        return BaseResult.ok();
+    }
+
+    @PutMapping("/update")
+    public BaseResult update(@RequestBody Brand brand) {
+        brandService.update(brand);
+        return BaseResult.ok();
+    }
+
+    @DeleteMapping("/delete")
+    public BaseResult delete(Long id) {
+        brandService.delete(id);
+        return BaseResult.ok();
+    }
+
+    @GetMapping("/search")
+    public BaseResult<Page<Brand>> search(Brand brand, int page, int size) {
+        Page<Brand> page1 = brandService.search(brand, page, size);
+        return BaseResult.ok(page1);
+    }
+}
+```
 
 
 
+测试：
+
+![1717724288093](assets/1717724288093.png)
+
+![1717724329523](assets/1717724329523.png)
+
+![1717724385676](assets/1717724385676.png)
+
+![1717724406255](assets/1717724406255.png)
+
+![1717724416718](assets/1717724416718.png)
+
+![1717724446526](assets/1717724446526.png)
 
 
 
+### 24，商品类型的CRUD
+
+商品类型的实体类：
+
+![1717724643103](assets/1717724643103.png)
 
 
 
+数据库：
+
+![1717724679123](assets/1717724679123.png)
 
 
 
+接下来我们编写商品类型相关的CRUD方法，首先在**通用模块**编写商品类型服务接口：
+
+![1717724729614](assets/1717724729614.png)
+
+```java
+// 商品类型
+public interface ProductTypeService {
+    // 新增商品类型
+    void add(ProductType productType);
+    // 修改商品类型
+    void update(ProductType productType);
+    // 根据id查询商品类型
+    ProductType findById(Long id);
+    // 删除商品类型
+    void delete(Long id);
+    // 分页查询
+    Page<ProductType> search(ProductType productType, int page, int size);
+    // 根据条件查询商品类型
+    List<ProductType> findProductType(ProductType productType);
+}
+```
 
 
+
+在**商品服务模块**编写商品类型Mapper:
+
+![1717724873146](assets/1717724873146.png)
+
+```java
+public interface ProductTypeMapper extends BaseMapper<ProductType> {
+}
+```
+
+
+
+在**商品服务模块**编写商品类型服务实现类:
+
+![1717725580443](assets/1717725580443.png)
+
+
+
+```java
+@DubboService
+@Transactional
+public class ProductTypeServiceImpl implements ProductTypeService {
+
+    @Autowired
+    private ProductTypeMapper productTypeMapper;
+
+    @Override
+    public void add(ProductType productType) {
+        ProductType productTypeParent = productTypeMapper.selectById(productType.getParentId());
+        if(productTypeParent == null){
+            productType.setLevel(1);
+        }else if(productTypeParent.getLevel() <3){
+            productType.setLevel(productTypeParent.getLevel()+1);
+        }else if(productTypeParent.getLevel() == 3){
+            throw new BusException(CodeEnum.INSERT_PRODUCT_TYPE_ERROR);
+        }
+        productTypeMapper.insert(productType);
+    }
+
+    @Override
+    public void update(ProductType productType) {
+        ProductType productTypeParent = productTypeMapper.selectById(productType.getParentId());
+        if(productTypeParent == null){
+            productType.setLevel(1);
+        }else if(productTypeParent.getLevel() <3){
+            productType.setLevel(productTypeParent.getLevel()+1);
+        }else if(productTypeParent.getLevel() == 3){
+            throw new BusException(CodeEnum.INSERT_PRODUCT_TYPE_ERROR);
+        }
+        productTypeMapper.updateById(productType);
+    }
+
+    @Override
+    public ProductType findById(Long id) {
+        return productTypeMapper.selectById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        QueryWrapper<ProductType> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("parentId",id);
+        List<ProductType> productTypes = productTypeMapper.selectList(queryWrapper);
+        if (!CollectionUtils.isEmpty(productTypes)){
+            // 删除商品类型异常
+            // DELETE_PRODUCT_TYPE_ERROR(603, "此商品类型下面有子类型");
+            throw new BusException(CodeEnum.DELETE_PRODUCT_TYPE_ERROR);
+        }
+        productTypeMapper.deleteById(id);
+    }
+
+    @Override
+    public Page<ProductType> search(ProductType productType, int page, int size) {
+        QueryWrapper<ProductType> queryWrapper = new QueryWrapper();
+        if(productType != null){
+            // 类型名不为空时
+            if(StringUtils.hasText(productType.getName())){
+                queryWrapper.like("name",productType.getName());
+            }
+            // 上级类型id不为空时
+            if (productType.getParentId() != null){
+                queryWrapper.eq("parentId",productType.getParentId());
+            }
+        }
+
+        return productTypeMapper.selectPage(new Page(page,size),queryWrapper);
+    }
+
+    @Override
+    public List<ProductType> findProductType(ProductType productType) {
+        QueryWrapper<ProductType> queryWrapper = new QueryWrapper();
+        if(productType != null){
+            // 类型名不为空时
+            if(StringUtils.hasText(productType.getName())){
+                queryWrapper.like("name",productType.getName());
+            }
+            // 上级类型id不为空时
+            if (productType.getParentId() != null){
+                queryWrapper.eq("parentId",productType.getParentId());
+            }
+        }
+        return productTypeMapper.selectList(queryWrapper);
+    }
+}
+```
+
+在**后台管理API模块**编写商品类型控制器：
+
+![1717727438983](assets/1717727438983.png)
+
+
+
+测试：
+
+![1717727675125](assets/1717727675125.png)
+
+
+
+### 25，商品规格CRUD
+
+
+
+商品格式的实体类：
+
+![1717727833665](assets/1717727833665.png)
+
+![1717727870631](assets/1717727870631.png)
+
+
+
+数据库：
+
+![1717727928182](assets/1717727928182.png)
+
+
+
+编写接口：
+
+![1717728420321](assets/1717728420321.png)
+
+```java
+public interface SpecificationService {
+    // 新增商品规格
+    void add(Specification specification);
+    // 修改商品规格
+    void update(Specification specification);
+    // 删除商品规格
+    void delete(Long[] ids);
+    // 根据id查询商品规格
+    Specification findById(Long id);
+    // 分页查询商品规格
+    Page<Specification> search(int apge, int size);
+    // 查询某种商品类型下的所有规格
+    List<Specification> findByProductTypeId(Long id);
+    // 新增商品规格
+    void addOption(SpecificationOptions specificationOptions);
+    // 删除商品规格项
+    void deleteOption(Long[] ids);
+}
+```
+
+
+
+在**商品服务模块**编写商品规格和商品规格项Mapper:
+
+![1717728501974](assets/1717728501974.png)
+
+```java
+public interface SpecificationMapper extends BaseMapper<Specification> {
+    Specification findById(Long id);
+    // 根据商品类型查询商品规格
+    List<Specification> findByProductTypeId(Long productTypeId);
+}
+```
+
+![1717728523389](assets/1717728523389.png)
+
+```java
+public interface SpecificationOptionMapper extends BaseMapper<SpecificationOption> {
+}
+```
+
+
+
+在`resources`中创建`SpecificationMapper`的同级包，编写映射文件`SpecificationMapper.xml`
+
+![1717729120273](assets/1717729120273.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ityls.shoping_goods_service.mapper.SpecificationMapper">
+    <resultMap id="specificationMapper" type="com.ityls.shoping_common.pojo.Specification">
+        <id property="id" column="bid"></id>
+        <result property="specName" column="specName"></result>
+        <result property="productTypeId" column="productTypeId"></result>
+        <collection property="specificationOptions" column="specId" ofType="com.ityls.shoping_common.pojo.SpecificationOption">
+            <id property="id" column="oid"></id>
+            <result property="optionName" column="optionName"></result>
+            <result property="specId" column="specId"></result>
+        </collection>
+    </resultMap>
+    <select id="findById" parameterType="long" resultMap="specificationMapper">
+        SELECT
+            ml_specification.id AS bid,
+            ml_specification.specName,
+            ml_specification.productTypeId,
+            ml_specification_option.id AS oid,
+            ml_specification_option.optionName,
+            ml_specification_option.specId
+        FROM ml_specification
+                 LEFT JOIN ml_specification_option
+                           on ml_specification.id = ml_specification_option.specId
+        where ml_specification.id = #{id}
+    </select>
+
+
+    <select id="findByProductTypeId" parameterType="long" resultMap="specificationMapper">
+        SELECT
+            ml_specification.id AS bid,
+            ml_specification.specName,
+            ml_specification.productTypeId,
+            ml_specification_option.id AS oid,
+            ml_specification_option.optionName,
+            ml_specification_option.specId
+        FROM ml_specification
+                 LEFT JOIN ml_specification_option
+                           on ml_specification.id = ml_specification_option.specId
+        where ml_specification.productTypeId = #{productTypeId}
+    </select>
+</mapper>
+```
+
+
+
+在**商品服务模块**编写商品规格服务实现类:
+
+![1717729447752](assets/1717729447752.png)
+
+```java
+@DubboService
+@Transactional
+public class SpecificationServiceImpl implements SpecificationService {
+
+    @Autowired
+    private SpecificationMapper specificationMapper;
+
+    @Autowired
+    private SpecificationOptionMapper specificationOptionMapper;
+
+    @Override
+    public void add(Specification specification) {
+        specificationMapper.insert(specification);
+    }
+
+    @Override
+    public void update(Specification specification) {
+        specificationMapper.updateById(specification);
+    }
+
+    @Override
+    public void delete(Long[] ids) {
+        for (Long id : ids) {
+            // 删除商品规格项
+            QueryWrapper<SpecificationOption> queryWrapper = new QueryWrapper();
+            queryWrapper.eq("specId",id);
+            specificationOptionMapper.delete(queryWrapper);
+            // 删除商品规格
+            specificationMapper.deleteById(id);
+        }
+    }
+
+    @Override
+    public Specification findById(Long id) {
+        return specificationMapper.findById(id);
+    }
+
+    @Override
+    public Page<Specification> search(int page, int size) {
+        return specificationMapper.selectPage(new Page(page,size),null);
+    }
+
+    @Override
+    public List<Specification> findByProductTypeId(Long id) {
+        return specificationMapper.findByProductTypeId(id);
+    }
+
+    @Override
+    public void addOption(SpecificationOptions specificationOptions) {
+        String[] optionNames = specificationOptions.getOptionName();
+        Long specId = specificationOptions.getSpecId();
+        for (String optionName : optionNames) {
+            SpecificationOption specificationOption = new SpecificationOption();
+            specificationOption.setSpecId(specId);
+            specificationOption.setOptionName(optionName);
+            specificationOptionMapper.insert(specificationOption);
+        }
+    }
+
+    @Override
+    public void deleteOption(Long[] ids) {
+        specificationOptionMapper.deleteBatchIds(Arrays.asList(ids));
+    }
+}
+```
+
+
+
+编写控制器：
+
+![1717729676431](assets/1717729676431.png)
+
+
+
+```java
+package com.ityls.shoping_manager_api.controller;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ityls.shoping_common.pojo.Specification;
+import com.ityls.shoping_common.pojo.SpecificationOptions;
+import com.ityls.shoping_common.result.BaseResult;
+import com.ityls.shoping_common.service.SpecificationService;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * 商品规格
+ */
+@RestController
+@RequestMapping("/specification")
+public class SpecificationController {
+    @DubboReference
+    private SpecificationService specificationService;
+
+    /**
+     * 新增商品规格
+     * @param specification 商品规格对象
+     * @return 执行结果
+     */
+    @PostMapping("/add")
+    public BaseResult add(@RequestBody Specification specification){
+        specificationService.add(specification);
+        return BaseResult.ok();
+    }
+
+    /**
+     * 修改商品规格
+     * @param specification 商品规格对象
+     * @return 执行结果
+     */
+    @PutMapping("/update")
+    public BaseResult update(@RequestBody Specification specification){
+        specificationService.update(specification);
+        return BaseResult.ok();
+    }
+
+    /**
+     * 删除商品规格
+     * @param ids 规格id数组
+     * @return 执行结果
+     */
+    @DeleteMapping("/delete")
+    public BaseResult delete(Long[] ids){
+        specificationService.delete(ids);
+        return BaseResult.ok();
+    }
+
+    /**
+     * 根据id查询商品规格
+     * @param id 商品规格id
+     * @return 查询结果
+     */
+    @GetMapping("/findById")
+    public BaseResult<Specification> findById(Long id){
+        Specification specification = specificationService.findById(id);
+        return BaseResult.ok(specification);
+    }
+
+    /**
+     * 分页查询商品规格
+     * @param page 页码
+     * @param size 每页条数
+     * @return 查询结果
+     */
+    @GetMapping("/search")
+    public BaseResult<Page<Specification>> search(int page,int size){
+        Page<Specification> page1 = specificationService.search(page, size);
+        return BaseResult.ok(page1);
+    }
+
+    /**
+     * 查询商品类型下的所有规格
+     * @param id 商品类型id
+     * @return 查询结果
+     */
+    @GetMapping("/findByProductTypeId")
+    public BaseResult<List<Specification>> findByProductTypeId(Long id){
+        List<Specification> specifications = specificationService.findByProductTypeId(id);
+        return BaseResult.ok(specifications);
+    }
+
+    /**
+     * 新增商品规格项
+     * @param specificationOptions 商品规格项集合
+     * @return 执行结果
+     */
+    @PostMapping("/addOption")
+    public BaseResult addOption(@RequestBody SpecificationOptions specificationOptions){
+        specificationService.addOption(specificationOptions);
+        return BaseResult.ok();
+    }
+
+    /**
+     * 删除商品规格项
+     * @param ids 商品规格项id集合
+     * @return 执行结果
+     */
+    @DeleteMapping("/deleteOption")
+    public BaseResult deleteOption(Long[] ids){
+        specificationService.deleteOption(ids);
+        return BaseResult.ok();
+    }
+}
+```
+
+
+
+测试：
+
+![1717729853070](assets/1717729853070.png)
 
 
 
