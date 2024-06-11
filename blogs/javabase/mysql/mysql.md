@@ -2,9 +2,9 @@
 title: mysql(新版)
 date: 2028-12-15
 sticky: 1
-sidebar: 'javabase'
+sidebar: 'mysql'
 tags:
- - javabase
+ - mysql
 categories:
  - javabase
 ---
@@ -657,9 +657,637 @@ alter table emp drop column commission_pct;
 
 
 
+#### a）非空约束
+
+非空约束用于保证列中所有数据不能有NULL值。添加约束：
+
+```sql
+-- 创建表时添加非空约束
+CREATE TABLE 表名(
+   列名 数据类型 NOT NULL,
+   …
+); 
+
+-- 建完表后添加非空约束
+ALTER TABLE 表名 MODIFY 字段名 数据类型 NOT NULL;
+```
 
 
-### 7，DQL
+
+操作一下：
+
+![1718088543226](./assets/1718088543226.png)
+
+
+
+删除约束：
+
+```sql
+ALTER TABLE 表名 MODIFY 字段名 数据类型;
+```
+
+
+
+#### b）唯一约束
+
+唯一约束用于保证列中所有数据各不相同。添加约束语法：  id:1   id:2   id:3 
+
+```sql
+-- 创建表时添加唯一约束
+CREATE TABLE 表名(
+   列名 数据类型 UNIQUE [AUTO_INCREMENT],
+   -- AUTO_INCREMENT: 当不指定值时自动增长
+   …
+); 
+CREATE TABLE 表名(
+   列名 数据类型,
+   …
+   [CONSTRAINT] [约束名称] UNIQUE(列名)
+); 
+
+-- 建完表后添加唯一约束
+ALTER TABLE 表名 MODIFY 字段名 数据类型 UNIQUE;
+```
+
+![1718088812791](./assets/1718088812791.png)
+
+
+
+删除约束：
+
+```sql
+ALTER TABLE 表名 DROP INDEX 字段名;
+```
+
+
+
+#### c）主键约束
+
+键是一行数据的唯一标识，要求非空且唯一。一张表只能有一个主键。添加约束语法：
+
+```sql
+-- 创建表时添加主键约束
+CREATE TABLE 表名(
+   列名 数据类型 PRIMARY KEY [AUTO_INCREMENT],
+   …
+); 
+CREATE TABLE 表名(
+   列名 数据类型,
+   [CONSTRAINT] [约束名称] PRIMARY KEY(列名)
+); 
+
+-- 建完表后添加主键约束
+ALTER TABLE 表名 ADD PRIMARY KEY(字段名);
+```
+
+![1718088993473](./assets/1718088993473.png)
+
+
+
+删除约束：
+
+```sql
+ALTER TABLE 表名 DROP PRIMARY KEY;
+```
+
+
+
+#### d）默认约束
+
+保存数据时，未指定值则采用默认值，添加约束语法：
+
+```sql
+-- 创建表时添加默认约束
+CREATE TABLE 表名(
+   列名 数据类型 DEFAULT 默认值,
+   …
+); 
+
+-- 建完表后添加默认约束
+ALTER TABLE 表名 ALTER 列名 SET DEFAULT 默认值;
+```
+
+![1718089084434](./assets/1718089084434.png)
+
+
+
+删除约束：
+
+```sql
+ALTER TABLE 表名 ALTER 列名 DROP DEFAULT;
+```
+
+
+
+#### e）约束练习
+
+需求：
+
+```sql
+-- 员工表
+CREATE TABLE emp (
+	id INT,  -- 员工id，主键且自增长
+    ename VARCHAR(50), -- 员工姓名，非空且唯一
+    joindate DATE,  -- 入职日期，非空
+    salary DOUBLE(7,2),  -- 工资，非空
+    bonus DOUBLE(7,2)  -- 奖金，如果没有将近默认为0
+);
+```
+
+
+
+上面一定给出了具体的要求，我们可以根据要求创建这张表，并为每一列添加对应的约束。建表语句如下：
+
+```sql
+-- 员工表
+CREATE TABLE emp (
+    id INT PRIMARY KEY AUTO_INCREMENT,  -- 员工id，主键且自增长
+    ename VARCHAR(50) NOT NULL UNIQUE, -- 员工姓名，非空且唯一
+    joindate DATE NOT NULL,  -- 入职日期，非空
+    salary DOUBLE(7,2) NOT NULL,  -- 工资，非空
+    bonus DOUBLE(7,2) DEFAULT 0  -- 奖金，如果没有将近默认为0
+);
+```
+
+
+
+通过上面语句可以创建带有约束的 `emp` 表，约束能不能发挥作用呢。接下来我们一一进行验证，先添加一条没有问题的数据：
+
+```sql
+INSERT INTO emp(id,ename,joindate,salary,bonus) values(1,'张三','1999-11-11',8800,5000);
+```
+
+![1718089329274](./assets/1718089329274.png)
+
+
+
+验证主键约束，非空且唯一：
+
+```sql
+INSERT INTO emp(id,ename,joindate,salary,bonus) values(null,'malu','1999-11-11',8800,5000);
+```
+
+![1718089427545](./assets/1718089427545.png)
+
+
+
+
+
+从上面的结果可以看到，字段 `id` 不能为null。那我们重新添加一条数据，如下：
+
+```sql
+INSERT INTO emp(id,ename,joindate,salary,bonus) values(1,'wc','1999-11-11',8800,5000);
+```
+
+![1718089482830](./assets/1718089482830.png)
+
+从上面结果可以看到，1这个值重复了。所以主键约束是用来限制数据非空且唯一的。那我们再添加一条符合要求的数据
+
+```sql
+INSERT INTO emp(id,ename,joindate,salary,bonus) values(3,'李四','1999-11-11',8800,5000);
+```
+
+![1718089544321](./assets/1718089544321.png)
+
+验证非空约束：
+
+```sql
+INSERT INTO emp(id,ename,joindate,salary,bonus) values(null,null,'1999-11-11',8800,5000);
+```
+
+![1718089599086](./assets/1718089599086.png)
+
+从上面结果可以看到， `ename` 字段的非空约束生效了。
+
+
+
+
+
+验证唯一约束：
+
+```sql
+INSERT INTO emp(id,ename,joindate,salary,bonus) VALUES(NULL,'李四','1999-11-11',8800,5000);
+```
+
+![1718089661552](./assets/1718089661552.png)
+
+从上面结果可以看到， `ename` 字段的唯一约束生效了。
+
+
+
+验证默认约束：
+
+```sql
+INSERT INTO emp(id,ename,joindate,salary) values(null,'王五','1999-11-11',8800);
+```
+
+![1718089767190](./assets/1718089767190.png)
+
+
+
+默认约束只有在不给值时才会采用默认值。如果给了null，那值就是null值。
+
+```sql
+INSERT INTO emp(id,ename,joindate,salary,bonus) values(null,'赵六','1999-11-11',8800,null);
+```
+
+![1718089817868](./assets/1718089817868.png)
+
+
+
+### 7，DQL(非常重要)
+
+准备数据：
+
+```sql
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : mysql
+ Source Server Type    : MySQL
+ Source Server Version : 50712
+ Source Host           : localhost:3306
+ Source Schema         : test
+
+ Target Server Type    : MySQL
+ Target Server Version : 50712
+ File Encoding         : 65001
+
+ Date: 08/11/2021 15:11:40
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for countries
+-- ----------------------------
+DROP TABLE IF EXISTS `countries`;
+CREATE TABLE `countries`  (
+  `COUNTRY_ID` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Primary key of countries table.',
+  `COUNTRY_NAME` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Country name',
+  `REGION_ID` int NULL DEFAULT NULL COMMENT 'Region ID for the country. Foreign key to region_id column in the departments table.',
+  PRIMARY KEY (`COUNTRY_ID`) USING BTREE,
+  INDEX `COUNTR_REG_FK`(`REGION_ID`) USING BTREE,
+  CONSTRAINT `COUNTR_REG_FK` FOREIGN KEY (`REGION_ID`) REFERENCES `regions` (`REGION_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'country table. Contains 25 rows. References with locations table.' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of countries
+-- ----------------------------
+INSERT INTO `countries` VALUES ('AR', 'Argentina', 2.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('AU', 'Australia', 3.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('BE', 'Belgium', 1.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('BR', 'Brazil', 2.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('CA', 'Canada', 2.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('CH', 'Switzerland', 1.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('CN', 'China', 3.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('DE', 'Germany', 1.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('DK', 'Denmark', 1.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('EG', 'Egypt', 4.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('FR', 'France', 1.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('IL', 'Israel', 4.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('IN', 'India', 3.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('IT', 'Italy', 1.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('JP', 'Japan', 3.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('KW', 'Kuwait', 4.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('ML', 'Malaysia', 3.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('MX', 'Mexico', 2.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('NG', 'Nigeria', 4.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('NL', 'Netherlands', 1.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('SG', 'Singapore', 3.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('UK', 'United Kingdom', 1.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('US', 'United States of America', 2.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('ZM', 'Zambia', 4.000000000000000000000000000000);
+INSERT INTO `countries` VALUES ('ZW', 'Zimbabwe', 4.000000000000000000000000000000);
+
+-- ----------------------------
+-- Table structure for departments
+-- ----------------------------
+DROP TABLE IF EXISTS `departments`;
+CREATE TABLE `departments`  (
+  `DEPARTMENT_ID` int NOT NULL COMMENT 'Primary key column of departments table.',
+  `DEPARTMENT_NAME` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'A not null column that shows name of a department. Administration,\nMarketing, Purchasing, Human Resources, Shipping, IT, Executive, Public\nRelations, Sales, Finance, and Accounting. ',
+  `MANAGER_ID` int NULL DEFAULT NULL COMMENT 'Manager_id of a department. Foreign key to employee_id column of employees table. The manager_id column of the employee table references this column.',
+  `LOCATION_ID` int NULL DEFAULT NULL COMMENT 'Location id where a department is located. Foreign key to location_id column of locations table.',
+  PRIMARY KEY (`DEPARTMENT_ID`) USING BTREE,
+  INDEX `DEPT_LOCATION_IX`(`LOCATION_ID`) USING BTREE,
+  INDEX `DEPT_MGR_FK`(`MANAGER_ID`) USING BTREE,
+  CONSTRAINT `DEPT_LOC_FK` FOREIGN KEY (`LOCATION_ID`) REFERENCES `locations` (`LOCATION_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `DEPT_MGR_FK` FOREIGN KEY (`MANAGER_ID`) REFERENCES `employees` (`EMPLOYEE_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'Departments table that shows details of departments where employees\nwork. Contains 27 rows; references with locations, employees, and job_history tables.' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of departments
+-- ----------------------------
+INSERT INTO `departments` VALUES (10, 'Administration', 200, 1700);
+INSERT INTO `departments` VALUES (20, 'Marketing', 201, 1800);
+INSERT INTO `departments` VALUES (30, 'Purchasing', 114, 1700);
+INSERT INTO `departments` VALUES (40, 'Human Resources', 203, 2400);
+INSERT INTO `departments` VALUES (50, 'Shipping', 121, 1500);
+INSERT INTO `departments` VALUES (60, 'IT', 103, 1400);
+INSERT INTO `departments` VALUES (70, 'Public Relations', 204, 2700);
+INSERT INTO `departments` VALUES (80, 'Sales', 145, 2500);
+INSERT INTO `departments` VALUES (90, 'Executive', 100, 1700);
+INSERT INTO `departments` VALUES (100, 'Finance', 108, 1700);
+INSERT INTO `departments` VALUES (110, 'Accounting', 205, 1700);
+INSERT INTO `departments` VALUES (120, 'Treasury', NULL, 1700);
+INSERT INTO `departments` VALUES (130, 'Corporate Tax', NULL, 1700);
+INSERT INTO `departments` VALUES (140, 'Control And Credit', NULL, 1700);
+INSERT INTO `departments` VALUES (150, 'Shareholder Services', NULL, 1700);
+INSERT INTO `departments` VALUES (160, 'Benefits', NULL, 1700);
+INSERT INTO `departments` VALUES (170, 'Manufacturing', NULL, 1700);
+INSERT INTO `departments` VALUES (180, 'Construction', NULL, 1700);
+INSERT INTO `departments` VALUES (190, 'Contracting', NULL, 1700);
+INSERT INTO `departments` VALUES (200, 'Operations', NULL, 1700);
+INSERT INTO `departments` VALUES (210, 'IT Support', NULL, 1700);
+INSERT INTO `departments` VALUES (220, 'NOC', NULL, 1700);
+INSERT INTO `departments` VALUES (230, 'IT Helpdesk', NULL, 1700);
+INSERT INTO `departments` VALUES (240, 'Government Sales', NULL, 1700);
+INSERT INTO `departments` VALUES (250, 'Retail Sales', NULL, 1700);
+INSERT INTO `departments` VALUES (260, 'Recruiting', NULL, 1700);
+INSERT INTO `departments` VALUES (270, 'Payroll', NULL, 1700);
+
+-- ----------------------------
+-- Table structure for employees
+-- ----------------------------
+DROP TABLE IF EXISTS `employees`;
+CREATE TABLE `employees`  (
+  `EMPLOYEE_ID` int NOT NULL COMMENT 'Primary key of employees table.',
+  `FIRST_NAME` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'First name of the employee. A not null column.',
+  `LAST_NAME` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Last name of the employee. A not null column.',
+  `EMAIL` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Email id of the employee',
+  `PHONE_NUMBER` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Phone number of the employee; includes country code and area code',
+  `HIRE_DATE` datetime NOT NULL COMMENT 'Date when the employee started on this job. A not null column.',
+  `JOB_ID` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Current job of the employee; foreign key to job_id column of the\njobs table. A not null column.',
+  `SALARY` float(8, 2) NULL DEFAULT NULL COMMENT 'Monthly salary of the employee. Must be greater\nthan zero (enforced by constraint emp_salary_min)',
+  `COMMISSION_PCT` int NULL DEFAULT NULL COMMENT 'Commission percentage of the employee; Only employees in sales\ndepartment elgible for commission percentage',
+  `MANAGER_ID` int NULL DEFAULT NULL COMMENT 'Manager id of the employee; has same domain as manager_id in\ndepartments table. Foreign key to employee_id column of employees table.\n(useful for reflexive joins and CONNECT BY query)',
+  `DEPARTMENT_ID` int NULL DEFAULT NULL COMMENT 'Department id where employee works; foreign key to department_id\ncolumn of the departments table',
+  PRIMARY KEY (`EMPLOYEE_ID`) USING BTREE,
+  INDEX `EMP_DEPARTMENT_IX`(`DEPARTMENT_ID`) USING BTREE,
+  INDEX `EMP_JOB_IX`(`JOB_ID`) USING BTREE,
+  INDEX `EMP_MANAGER_IX`(`MANAGER_ID`) USING BTREE,
+  INDEX `EMP_NAME_IX`(`LAST_NAME`, `FIRST_NAME`) USING BTREE,
+  CONSTRAINT `EMP_DEPT_FK` FOREIGN KEY (`DEPARTMENT_ID`) REFERENCES `departments` (`DEPARTMENT_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `EMP_JOB_FK` FOREIGN KEY (`JOB_ID`) REFERENCES `jobs` (`JOB_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `EMP_MANAGER_FK` FOREIGN KEY (`MANAGER_ID`) REFERENCES `employees` (`EMPLOYEE_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'employees table. Contains 107 rows. References with departments,\njobs, job_history tables. Contains a self reference.' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of employees
+-- ----------------------------
+INSERT INTO `employees` VALUES (100, 'Steven', 'King', 'SKING', '515.123.4567', '2003-06-17 00:00:00', 'AD_PRES', 24000.00, NULL, NULL, 90);
+INSERT INTO `employees` VALUES (101, 'Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '2005-09-21 00:00:00', 'AD_VP', 17000.00, NULL, 100, 90);
+INSERT INTO `employees` VALUES (102, 'Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '2001-01-13 00:00:00', 'AD_VP', 17000.00, NULL, 100, 90);
+INSERT INTO `employees` VALUES (103, 'Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '2006-01-03 00:00:00', 'IT_PROG', 9000.00, NULL, 102, 60);
+INSERT INTO `employees` VALUES (104, 'Bruce', 'Ernst', 'BERNST', '590.423.4568', '2007-05-21 00:00:00', 'IT_PROG', 6000.00, NULL, 103, 60);
+INSERT INTO `employees` VALUES (105, 'David', 'Austin', 'DAUSTIN', '590.423.4569', '2005-06-25 00:00:00', 'IT_PROG', 4800.00, NULL, 103, 60);
+INSERT INTO `employees` VALUES (106, 'Valli', 'Pataballa', 'VPATABAL', '590.423.4560', '2006-02-05 00:00:00', 'IT_PROG', 4800.00, NULL, 103, 60);
+INSERT INTO `employees` VALUES (107, 'Diana', 'Lorentz', 'DLORENTZ', '590.423.5567', '2007-02-07 00:00:00', 'IT_PROG', 4200.00, NULL, 103, 60);
+INSERT INTO `employees` VALUES (108, 'Nancy', 'Greenberg', 'NGREENBE', '515.124.4569', '2002-08-17 00:00:00', 'FI_MGR', 12008.00, NULL, 101, 100);
+INSERT INTO `employees` VALUES (109, 'Daniel', 'Faviet', 'DFAVIET', '515.124.4169', '2002-08-16 00:00:00', 'FI_ACCOUNT', 9000.00, NULL, 108, 100);
+INSERT INTO `employees` VALUES (110, 'John', 'Chen', 'JCHEN', '515.124.4269', '2005-09-28 00:00:00', 'FI_ACCOUNT', 8200.00, NULL, 108, 100);
+INSERT INTO `employees` VALUES (111, 'Ismael', 'Sciarra', 'ISCIARRA', '515.124.4369', '2005-09-30 00:00:00', 'FI_ACCOUNT', 7700.00, NULL, 108, 100);
+INSERT INTO `employees` VALUES (112, 'Jose Manuel', 'Urman', 'JMURMAN', '515.124.4469', '2006-03-07 00:00:00', 'FI_ACCOUNT', 7800.00, NULL, 108, 100);
+INSERT INTO `employees` VALUES (113, 'Luis', 'Popp', 'LPOPP', '515.124.4567', '2007-12-07 00:00:00', 'FI_ACCOUNT', 6900.00, NULL, 108, 100);
+INSERT INTO `employees` VALUES (114, 'Den', 'Raphaely', 'DRAPHEAL', '515.127.4561', '2002-12-07 00:00:00', 'PU_MAN', 11000.00, NULL, 100, 30);
+INSERT INTO `employees` VALUES (115, 'Alexander', 'Khoo', 'AKHOO', '515.127.4562', '2003-05-18 00:00:00', 'PU_CLERK', 3100.00, NULL, 114, 30);
+INSERT INTO `employees` VALUES (116, 'Shelli', 'Baida', 'SBAIDA', '515.127.4563', '2005-12-24 00:00:00', 'PU_CLERK', 2900.00, NULL, 114, 30);
+INSERT INTO `employees` VALUES (117, 'Sigal', 'Tobias', 'STOBIAS', '515.127.4564', '2005-07-24 00:00:00', 'PU_CLERK', 2800.00, NULL, 114, 30);
+INSERT INTO `employees` VALUES (118, 'Guy', 'Himuro', 'GHIMURO', '515.127.4565', '2006-11-15 00:00:00', 'PU_CLERK', 2600.00, NULL, 114, 30);
+INSERT INTO `employees` VALUES (119, 'Karen', 'Colmenares', 'KCOLMENA', '515.127.4566', '2007-08-10 00:00:00', 'PU_CLERK', 2500.00, NULL, 114, 30);
+INSERT INTO `employees` VALUES (120, 'Matthew', 'Weiss', 'MWEISS', '650.123.1234', '2004-07-18 00:00:00', 'ST_MAN', 8000.00, NULL, 100, 50);
+INSERT INTO `employees` VALUES (121, 'Adam', 'Fripp', 'AFRIPP', '650.123.2234', '2005-04-10 00:00:00', 'ST_MAN', 8200.00, NULL, 100, 50);
+INSERT INTO `employees` VALUES (122, 'Payam', 'Kaufling', 'PKAUFLIN', '650.123.3234', '2003-05-01 00:00:00', 'ST_MAN', 7900.00, NULL, 100, 50);
+INSERT INTO `employees` VALUES (123, 'Shanta', 'Vollman', 'SVOLLMAN', '650.123.4234', '2005-10-10 00:00:00', 'ST_MAN', 6500.00, NULL, 100, 50);
+INSERT INTO `employees` VALUES (124, 'Kevin', 'Mourgos', 'KMOURGOS', '650.123.5234', '2007-11-16 00:00:00', 'ST_MAN', 5800.00, NULL, 100, 50);
+INSERT INTO `employees` VALUES (125, 'Julia', 'Nayer', 'JNAYER', '650.124.1214', '2005-07-16 00:00:00', 'ST_CLERK', 3200.00, NULL, 120, 50);
+INSERT INTO `employees` VALUES (126, 'Irene', 'Mikkilineni', 'IMIKKILI', '650.124.1224', '2006-09-28 00:00:00', 'ST_CLERK', 2700.00, NULL, 120, 50);
+INSERT INTO `employees` VALUES (127, 'James', 'Landry', 'JLANDRY', '650.124.1334', '2007-01-14 00:00:00', 'ST_CLERK', 2400.00, NULL, 120, 50);
+INSERT INTO `employees` VALUES (128, 'Steven', 'Markle', 'SMARKLE', '650.124.1434', '2008-03-08 00:00:00', 'ST_CLERK', 2200.00, NULL, 120, 50);
+INSERT INTO `employees` VALUES (129, 'Laura', 'Bissot', 'LBISSOT', '650.124.5234', '2005-08-20 00:00:00', 'ST_CLERK', 3300.00, NULL, 121, 50);
+INSERT INTO `employees` VALUES (130, 'Mozhe', 'Atkinson', 'MATKINSO', '650.124.6234', '2005-10-30 00:00:00', 'ST_CLERK', 2800.00, NULL, 121, 50);
+INSERT INTO `employees` VALUES (131, 'James', 'Marlow', 'JAMRLOW', '650.124.7234', '2005-02-16 00:00:00', 'ST_CLERK', 2500.00, NULL, 121, 50);
+INSERT INTO `employees` VALUES (132, 'TJ', 'Olson', 'TJOLSON', '650.124.8234', '2007-04-10 00:00:00', 'ST_CLERK', 2100.00, NULL, 121, 50);
+INSERT INTO `employees` VALUES (133, 'Jason', 'Mallin', 'JMALLIN', '650.127.1934', '2004-06-14 00:00:00', 'ST_CLERK', 3300.00, NULL, 122, 50);
+INSERT INTO `employees` VALUES (134, 'Michael', 'Rogers', 'MROGERS', '650.127.1834', '2006-08-26 00:00:00', 'ST_CLERK', 2900.00, NULL, 122, 50);
+INSERT INTO `employees` VALUES (135, 'Ki', 'Gee', 'KGEE', '650.127.1734', '2007-12-12 00:00:00', 'ST_CLERK', 2400.00, NULL, 122, 50);
+INSERT INTO `employees` VALUES (136, 'Hazel', 'Philtanker', 'HPHILTAN', '650.127.1634', '2008-02-06 00:00:00', 'ST_CLERK', 2200.00, NULL, 122, 50);
+INSERT INTO `employees` VALUES (137, 'Renske', 'Ladwig', 'RLADWIG', '650.121.1234', '2003-07-14 00:00:00', 'ST_CLERK', 3600.00, NULL, 123, 50);
+INSERT INTO `employees` VALUES (138, 'Stephen', 'Stiles', 'SSTILES', '650.121.2034', '2005-10-26 00:00:00', 'ST_CLERK', 3200.00, NULL, 123, 50);
+INSERT INTO `employees` VALUES (139, 'John', 'Seo', 'JSEO', '650.121.2019', '2006-02-12 00:00:00', 'ST_CLERK', 2700.00, NULL, 123, 50);
+INSERT INTO `employees` VALUES (140, 'Joshua', 'Patel', 'JPATEL', '650.121.1834', '2006-04-06 00:00:00', 'ST_CLERK', 2500.00, NULL, 123, 50);
+INSERT INTO `employees` VALUES (141, 'Trenna', 'Rajs', 'TRAJS', '650.121.8009', '2003-10-17 00:00:00', 'ST_CLERK', 3500.00, NULL, 124, 50);
+INSERT INTO `employees` VALUES (142, 'Curtis', 'Davies', 'CDAVIES', '650.121.2994', '2005-01-29 00:00:00', 'ST_CLERK', 3100.00, NULL, 124, 50);
+INSERT INTO `employees` VALUES (143, 'Randall', 'Matos', 'RMATOS', '650.121.2874', '2006-03-15 00:00:00', 'ST_CLERK', 2600.00, NULL, 124, 50);
+INSERT INTO `employees` VALUES (144, 'Peter', 'Vargas', 'PVARGAS', '650.121.2004', '2006-07-09 00:00:00', 'ST_CLERK', 2500.00, NULL, 124, 50);
+INSERT INTO `employees` VALUES (145, 'John', 'Russell', 'JRUSSEL', '011.44.1344.429268', '2004-10-01 00:00:00', 'SA_MAN', 14000.00, 0.40, 100, 80);
+INSERT INTO `employees` VALUES (146, 'Karen', 'Partners', 'KPARTNER', '011.44.1344.467268', '2005-01-05 00:00:00', 'SA_MAN', 13500.00, 0.30, 100, 80);
+INSERT INTO `employees` VALUES (147, 'Alberto', 'Errazuriz', 'AERRAZUR', '011.44.1344.429278', '2005-03-10 00:00:00', 'SA_MAN', 12000.00, 0.30, 100, 80);
+INSERT INTO `employees` VALUES (148, 'Gerald', 'Cambrault', 'GCAMBRAU', '011.44.1344.619268', '2007-10-15 00:00:00', 'SA_MAN', 11000.00, 0.30, 100, 80);
+INSERT INTO `employees` VALUES (149, 'Eleni', 'Zlotkey', 'EZLOTKEY', '011.44.1344.429018', '2008-01-29 00:00:00', 'SA_MAN', 10500.00, 0.20, 100, 80);
+INSERT INTO `employees` VALUES (150, 'Peter', 'Tucker', 'PTUCKER', '011.44.1344.129268', '2005-01-30 00:00:00', 'SA_REP', 10000.00, 0.30, 145, 80);
+INSERT INTO `employees` VALUES (151, 'David', 'Bernstein', 'DBERNSTE', '011.44.1344.345268', '2005-03-24 00:00:00', 'SA_REP', 9500.00, 0.25, 145, 80);
+INSERT INTO `employees` VALUES (152, 'Peter', 'Hall', 'PHALL', '011.44.1344.478968', '2005-08-20 00:00:00', 'SA_REP', 9000.00, 0.25, 145, 80);
+INSERT INTO `employees` VALUES (153, 'Christopher', 'Olsen', 'COLSEN', '011.44.1344.498718', '2006-03-30 00:00:00', 'SA_REP', 8000.00, 0.20, 145, 80);
+INSERT INTO `employees` VALUES (154, 'Nanette', 'Cambrault', 'NCAMBRAU', '011.44.1344.987668', '2006-12-09 00:00:00', 'SA_REP', 7500.00, 0.20, 145, 80);
+INSERT INTO `employees` VALUES (155, 'Oliver', 'Tuvault', 'OTUVAULT', '011.44.1344.486508', '2007-11-23 00:00:00', 'SA_REP', 7000.00, 0.15, 145, 80);
+INSERT INTO `employees` VALUES (156, 'Janette', 'King', 'JKING', '011.44.1345.429268', '2004-01-30 00:00:00', 'SA_REP', 10000.00, 0.35, 146, 80);
+INSERT INTO `employees` VALUES (157, 'Patrick', 'Sully', 'PSULLY', '011.44.1345.929268', '2004-03-04 00:00:00', 'SA_REP', 9500.00, 0.35, 146, 80);
+INSERT INTO `employees` VALUES (158, 'Allan', 'McEwen', 'AMCEWEN', '011.44.1345.829268', '2004-08-01 00:00:00', 'SA_REP', 9000.00, 0.35, 146, 80);
+INSERT INTO `employees` VALUES (159, 'Lindsey', 'Smith', 'LSMITH', '011.44.1345.729268', '2005-03-10 00:00:00', 'SA_REP', 8000.00, 0.30, 146, 80);
+INSERT INTO `employees` VALUES (160, 'Louise', 'Doran', 'LDORAN', '011.44.1345.629268', '2005-12-15 00:00:00', 'SA_REP', 7500.00, 0.30, 146, 80);
+INSERT INTO `employees` VALUES (161, 'Sarath', 'Sewall', 'SSEWALL', '011.44.1345.529268', '2006-11-03 00:00:00', 'SA_REP', 7000.00, 0.25, 146, 80);
+INSERT INTO `employees` VALUES (162, 'Clara', 'Vishney', 'CVISHNEY', '011.44.1346.129268', '2005-11-11 00:00:00', 'SA_REP', 10500.00, 0.25, 147, 80);
+INSERT INTO `employees` VALUES (163, 'Danielle', 'Greene', 'DGREENE', '011.44.1346.229268', '2007-03-19 00:00:00', 'SA_REP', 9500.00, 0.15, 147, 80);
+INSERT INTO `employees` VALUES (164, 'Mattea', 'Marvins', 'MMARVINS', '011.44.1346.329268', '2008-01-24 00:00:00', 'SA_REP', 7200.00, 0.10, 147, 80);
+INSERT INTO `employees` VALUES (165, 'David', 'Lee', 'DLEE', '011.44.1346.529268', '2008-02-23 00:00:00', 'SA_REP', 6800.00, 0.10, 147, 80);
+INSERT INTO `employees` VALUES (166, 'Sundar', 'Ande', 'SANDE', '011.44.1346.629268', '2008-03-24 00:00:00', 'SA_REP', 6400.00, 0.10, 147, 80);
+INSERT INTO `employees` VALUES (167, 'Amit', 'Banda', 'ABANDA', '011.44.1346.729268', '2008-04-21 00:00:00', 'SA_REP', 6200.00, 0.10, 147, 80);
+INSERT INTO `employees` VALUES (168, 'Lisa', 'Ozer', 'LOZER', '011.44.1343.929268', '2005-03-11 00:00:00', 'SA_REP', 11500.00, 0.25, 148, 80);
+INSERT INTO `employees` VALUES (169, 'Harrison', 'Bloom', 'HBLOOM', '011.44.1343.829268', '2006-03-23 00:00:00', 'SA_REP', 10000.00, 0.20, 148, 80);
+INSERT INTO `employees` VALUES (170, 'Tayler', 'Fox', 'TFOX', '011.44.1343.729268', '2006-01-24 00:00:00', 'SA_REP', 9600.00, 0.20, 148, 80);
+INSERT INTO `employees` VALUES (171, 'William', 'Smith', 'WSMITH', '011.44.1343.629268', '2007-02-23 00:00:00', 'SA_REP', 7400.00, 0.15, 148, 80);
+INSERT INTO `employees` VALUES (172, 'Elizabeth', 'Bates', 'EBATES', '011.44.1343.529268', '2007-03-24 00:00:00', 'SA_REP', 7300.00, 0.15, 148, 80);
+INSERT INTO `employees` VALUES (173, 'Sundita', 'Kumar', 'SKUMAR', '011.44.1343.329268', '2008-04-21 00:00:00', 'SA_REP', 6100.00, 0.10, 148, 80);
+INSERT INTO `employees` VALUES (174, 'Ellen', 'Abel', 'EABEL', '011.44.1644.429267', '2004-05-11 00:00:00', 'SA_REP', 11000.00, 0.30, 149, 80);
+INSERT INTO `employees` VALUES (175, 'Alyssa', 'Hutton', 'AHUTTON', '011.44.1644.429266', '2005-03-19 00:00:00', 'SA_REP', 8800.00, 0.25, 149, 80);
+INSERT INTO `employees` VALUES (176, 'Jonathon', 'Taylor', 'JTAYLOR', '011.44.1644.429265', '2006-03-24 00:00:00', 'SA_REP', 8600.00, 0.20, 149, 80);
+INSERT INTO `employees` VALUES (177, 'Jack', 'Livingston', 'JLIVINGS', '011.44.1644.429264', '2006-04-23 00:00:00', 'SA_REP', 8400.00, 0.20, 149, 80);
+INSERT INTO `employees` VALUES (178, 'Kimberely', 'Grant', 'KGRANT', '011.44.1644.429263', '2007-05-24 00:00:00', 'SA_REP', 7000.00, 0.15, 149, NULL);
+INSERT INTO `employees` VALUES (179, 'Charles', 'Johnson', 'CJOHNSON', '011.44.1644.429262', '2008-01-04 00:00:00', 'SA_REP', 6200.00, 0.10, 149, 80);
+INSERT INTO `employees` VALUES (180, 'Winston', 'Taylor', 'WTAYLOR', '650.507.9876', '2006-01-24 00:00:00', 'SH_CLERK', 3200.00, NULL, 120, 50);
+INSERT INTO `employees` VALUES (181, 'Jean', 'Fleaur', 'JFLEAUR', '650.507.9877', '2006-02-23 00:00:00', 'SH_CLERK', 3100.00, NULL, 120, 50);
+INSERT INTO `employees` VALUES (182, 'Martha', 'Sullivan', 'MSULLIVA', '650.507.9878', '2007-06-21 00:00:00', 'SH_CLERK', 2500.00, NULL, 120, 50);
+INSERT INTO `employees` VALUES (183, 'Girard', 'Geoni', 'GGEONI', '650.507.9879', '2008-02-03 00:00:00', 'SH_CLERK', 2800.00, NULL, 120, 50);
+INSERT INTO `employees` VALUES (184, 'Nandita', 'Sarchand', 'NSARCHAN', '650.509.1876', '2004-01-27 00:00:00', 'SH_CLERK', 4200.00, NULL, 121, 50);
+INSERT INTO `employees` VALUES (185, 'Alexis', 'Bull', 'ABULL', '650.509.2876', '2005-02-20 00:00:00', 'SH_CLERK', 4100.00, NULL, 121, 50);
+INSERT INTO `employees` VALUES (186, 'Julia', 'Dellinger', 'JDELLING', '650.509.3876', '2006-06-24 00:00:00', 'SH_CLERK', 3400.00, NULL, 121, 50);
+INSERT INTO `employees` VALUES (187, 'Anthony', 'Cabrio', 'ACABRIO', '650.509.4876', '2007-02-07 00:00:00', 'SH_CLERK', 3000.00, NULL, 121, 50);
+INSERT INTO `employees` VALUES (188, 'Kelly', 'Chung', 'KCHUNG', '650.505.1876', '2005-06-14 00:00:00', 'SH_CLERK', 3800.00, NULL, 122, 50);
+INSERT INTO `employees` VALUES (189, 'Jennifer', 'Dilly', 'JDILLY', '650.505.2876', '2005-08-13 00:00:00', 'SH_CLERK', 3600.00, NULL, 122, 50);
+INSERT INTO `employees` VALUES (190, 'Timothy', 'Gates', 'TGATES', '650.505.3876', '2006-07-11 00:00:00', 'SH_CLERK', 2900.00, NULL, 122, 50);
+INSERT INTO `employees` VALUES (191, 'Randall', 'Perkins', 'RPERKINS', '650.505.4876', '2007-12-19 00:00:00', 'SH_CLERK', 2500.00, NULL, 122, 50);
+INSERT INTO `employees` VALUES (192, 'Sarah', 'Bell', 'SBELL', '650.501.1876', '2004-02-04 00:00:00', 'SH_CLERK', 4000.00, NULL, 123, 50);
+INSERT INTO `employees` VALUES (193, 'Britney', 'Everett', 'BEVERETT', '650.501.2876', '2005-03-03 00:00:00', 'SH_CLERK', 3900.00, NULL, 123, 50);
+INSERT INTO `employees` VALUES (194, 'Samuel', 'McCain', 'SMCCAIN', '650.501.3876', '2006-07-01 00:00:00', 'SH_CLERK', 3200.00, NULL, 123, 50);
+INSERT INTO `employees` VALUES (195, 'Vance', 'Jones', 'VJONES', '650.501.4876', '2007-03-17 00:00:00', 'SH_CLERK', 2800.00, NULL, 123, 50);
+INSERT INTO `employees` VALUES (196, 'Alana', 'Walsh', 'AWALSH', '650.507.9811', '2006-04-24 00:00:00', 'SH_CLERK', 3100.00, NULL, 124, 50);
+INSERT INTO `employees` VALUES (197, 'Kevin', 'Feeney', 'KFEENEY', '650.507.9822', '2006-05-23 00:00:00', 'SH_CLERK', 3000.00, NULL, 124, 50);
+INSERT INTO `employees` VALUES (198, 'Donald', 'OConnell', 'DOCONNEL', '650.507.9833', '2007-06-21 00:00:00', 'SH_CLERK', 2600.00, NULL, 124, 50);
+INSERT INTO `employees` VALUES (199, 'Douglas', 'Grant', 'DGRANT', '650.507.9844', '2008-01-13 00:00:00', 'SH_CLERK', 2600.00, NULL, 124, 50);
+INSERT INTO `employees` VALUES (200, 'Jennifer', 'Whalen', 'JWHALEN', '515.123.4444', '2003-09-17 00:00:00', 'AD_ASST', 4400.00, NULL, 101, 10);
+INSERT INTO `employees` VALUES (201, 'Michael', 'Hartstein', 'MHARTSTE', '515.123.5555', '2004-02-17 00:00:00', 'MK_MAN', 13000.00, NULL, 100, 20);
+INSERT INTO `employees` VALUES (202, 'Pat', 'Fay', 'PFAY', '603.123.6666', '2005-08-17 00:00:00', 'MK_REP', 6000.00, NULL, 201, 20);
+INSERT INTO `employees` VALUES (203, 'Susan', 'Mavris', 'SMAVRIS', '515.123.7777', '2002-06-07 00:00:00', 'HR_REP', 6500.00, NULL, 101, 40);
+INSERT INTO `employees` VALUES (204, 'Hermann', 'Baer', 'HBAER', '515.123.8888', '2002-06-07 00:00:00', 'PR_REP', 10000.00, NULL, 101, 70);
+INSERT INTO `employees` VALUES (205, 'Shelley', 'Higgins', 'SHIGGINS', '515.123.8080', '2002-06-07 00:00:00', 'AC_MGR', 12008.00, NULL, 101, 110);
+INSERT INTO `employees` VALUES (206, 'William', 'Gietz', 'WGIETZ', '515.123.8181', '2002-06-07 00:00:00', 'AC_ACCOUNT', 8300.00, NULL, 205, 110);
+
+-- ----------------------------
+-- Table structure for job_history
+-- ----------------------------
+DROP TABLE IF EXISTS `job_history`;
+CREATE TABLE `job_history`  (
+  `EMPLOYEE_ID` int NOT NULL COMMENT 'A not null column in the complex primary key employee_id+start_date.\nForeign key to employee_id column of the employee table',
+  `START_DATE` datetime NOT NULL COMMENT 'A not null column in the complex primary key employee_id+start_date.\nMust be less than the end_date of the job_history table. (enforced by\nconstraint jhist_date_interval)',
+  `END_DATE` datetime NOT NULL COMMENT 'Last day of the employee in this job role. A not null column. Must be\ngreater than the start_date of the job_history table.\n(enforced by constraint jhist_date_interval)',
+  `JOB_ID` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Job role in which the employee worked in the past; foreign key to\njob_id column in the jobs table. A not null column.',
+  `DEPARTMENT_ID` int NULL DEFAULT NULL COMMENT 'Department id in which the employee worked in the past; foreign key to deparment_id column in the departments table',
+  PRIMARY KEY (`EMPLOYEE_ID`, `START_DATE`) USING BTREE,
+  INDEX `JHIST_DEPARTMENT_IX`(`DEPARTMENT_ID`) USING BTREE,
+  INDEX `JHIST_EMPLOYEE_IX`(`EMPLOYEE_ID`) USING BTREE,
+  INDEX `JHIST_JOB_IX`(`JOB_ID`) USING BTREE,
+  CONSTRAINT `JHIST_DEPT_FK` FOREIGN KEY (`DEPARTMENT_ID`) REFERENCES `departments` (`DEPARTMENT_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `JHIST_EMP_FK` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `employees` (`EMPLOYEE_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `JHIST_JOB_FK` FOREIGN KEY (`JOB_ID`) REFERENCES `jobs` (`JOB_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'Table that stores job history of the employees. If an employee\nchanges departments within the job or changes jobs within the department,\nnew rows get inserted into this table with old job information of the\nemployee. Contains a complex primary key: employee_id+start_date.\nContains 25 rows. References with jobs, employees, and departments tables.' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of job_history
+-- ----------------------------
+INSERT INTO `job_history` VALUES (101, '1997-09-21 00:00:00', '2001-10-27 00:00:00', 'AC_ACCOUNT', 110);
+INSERT INTO `job_history` VALUES (101, '2001-10-28 00:00:00', '2005-03-15 00:00:00', 'AC_MGR', 110);
+INSERT INTO `job_history` VALUES (102, '2001-01-13 00:00:00', '2006-07-24 00:00:00', 'IT_PROG', 60);
+INSERT INTO `job_history` VALUES (114, '2006-03-24 00:00:00', '2007-12-31 00:00:00', 'ST_CLERK', 50);
+INSERT INTO `job_history` VALUES (122, '2007-01-01 00:00:00', '2007-12-31 00:00:00', 'ST_CLERK', 50);
+INSERT INTO `job_history` VALUES (176, '2006-03-24 00:00:00', '2006-12-31 00:00:00', 'SA_REP', 80);
+INSERT INTO `job_history` VALUES (176, '2007-01-01 00:00:00', '2007-12-31 00:00:00', 'SA_MAN', 80);
+INSERT INTO `job_history` VALUES (200, '1995-09-17 00:00:00', '2001-06-17 00:00:00', 'AD_ASST', 90);
+INSERT INTO `job_history` VALUES (200, '2002-07-01 00:00:00', '2006-12-31 00:00:00', 'AC_ACCOUNT', 90);
+INSERT INTO `job_history` VALUES (201, '2004-02-17 00:00:00', '2007-12-19 00:00:00', 'MK_REP', 20);
+
+-- ----------------------------
+-- Table structure for jobs
+-- ----------------------------
+DROP TABLE IF EXISTS `jobs`;
+CREATE TABLE `jobs`  (
+  `JOB_ID` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Primary key of jobs table.',
+  `JOB_TITLE` varchar(35) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'A not null column that shows job title, e.g. AD_VP, FI_ACCOUNTANT',
+  `MIN_SALARY` int NULL DEFAULT NULL COMMENT 'Minimum salary for a job title.',
+  `MAX_SALARY` int NULL DEFAULT NULL COMMENT 'Maximum salary for a job title',
+  PRIMARY KEY (`JOB_ID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'jobs table with job titles and salary ranges. Contains 19 rows.\nReferences with employees and job_history table.' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jobs
+-- ----------------------------
+INSERT INTO `jobs` VALUES ('AC_ACCOUNT', 'Public Accountant', 4200, 9000);
+INSERT INTO `jobs` VALUES ('AC_MGR', 'Accounting Manager', 8200, 16000);
+INSERT INTO `jobs` VALUES ('AD_ASST', 'Administration Assistant', 3000, 6000);
+INSERT INTO `jobs` VALUES ('AD_PRES', 'President', 20080, 40000);
+INSERT INTO `jobs` VALUES ('AD_VP', 'Administration Vice President', 15000, 30000);
+INSERT INTO `jobs` VALUES ('FI_ACCOUNT', 'Accountant', 4200, 9000);
+INSERT INTO `jobs` VALUES ('FI_MGR', 'Finance Manager', 8200, 16000);
+INSERT INTO `jobs` VALUES ('HR_REP', 'Human Resources Representative', 4000, 9000);
+INSERT INTO `jobs` VALUES ('IT_PROG', 'Programmer', 4000, 10000);
+INSERT INTO `jobs` VALUES ('MK_MAN', 'Marketing Manager', 9000, 15000);
+INSERT INTO `jobs` VALUES ('MK_REP', 'Marketing Representative', 4000, 9000);
+INSERT INTO `jobs` VALUES ('PR_REP', 'Public Relations Representative', 4500, 10500);
+INSERT INTO `jobs` VALUES ('PU_CLERK', 'Purchasing Clerk', 2500, 5500);
+INSERT INTO `jobs` VALUES ('PU_MAN', 'Purchasing Manager', 8000, 15000);
+INSERT INTO `jobs` VALUES ('SA_MAN', 'Sales Manager', 10000, 20080);
+INSERT INTO `jobs` VALUES ('SA_REP', 'Sales Representative', 6000, 12008);
+INSERT INTO `jobs` VALUES ('SH_CLERK', 'Shipping Clerk', 2500, 5500);
+INSERT INTO `jobs` VALUES ('ST_CLERK', 'Stock Clerk', 2008, 5000);
+INSERT INTO `jobs` VALUES ('ST_MAN', 'Stock Manager', 5500, 8500);
+
+-- ----------------------------
+-- Table structure for locations
+-- ----------------------------
+DROP TABLE IF EXISTS `locations`;
+CREATE TABLE `locations`  (
+  `LOCATION_ID` int NOT NULL COMMENT 'Primary key of locations table',
+  `STREET_ADDRESS` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Street address of an office, warehouse, or production site of a company.\nContains building number and street name',
+  `POSTAL_CODE` varchar(12) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Postal code of the location of an office, warehouse, or production site\nof a company. ',
+  `CITY` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'A not null column that shows city where an office, warehouse, or\nproduction site of a company is located. ',
+  `STATE_PROVINCE` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'State or Province where an office, warehouse, or production site of a\ncompany is located.',
+  `COUNTRY_ID` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Country where an office, warehouse, or production site of a company is\nlocated. Foreign key to country_id column of the countries table.',
+  PRIMARY KEY (`LOCATION_ID`) USING BTREE,
+  INDEX `LOC_CITY_IX`(`CITY`) USING BTREE,
+  INDEX `LOC_COUNTRY_IX`(`COUNTRY_ID`) USING BTREE,
+  INDEX `LOC_STATE_PROVINCE_IX`(`STATE_PROVINCE`) USING BTREE,
+  CONSTRAINT `LOC_C_ID_FK` FOREIGN KEY (`COUNTRY_ID`) REFERENCES `countries` (`COUNTRY_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'Locations table that contains specific address of a specific office,\nwarehouse, and/or production site of a company. Does not store addresses /\nlocations of customers. Contains 23 rows; references with the\ndepartments and countries tables. ' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of locations
+-- ----------------------------
+INSERT INTO `locations` VALUES (1000, '1297 Via Cola di Rie', '00989', 'Roma', NULL, 'IT');
+INSERT INTO `locations` VALUES (1100, '93091 Calle della Testa', '10934', 'Venice', NULL, 'IT');
+INSERT INTO `locations` VALUES (1200, '2017 Shinjuku-ku', '1689', 'Tokyo', 'Tokyo Prefecture', 'JP');
+INSERT INTO `locations` VALUES (1300, '9450 Kamiya-cho', '6823', 'Hiroshima', NULL, 'JP');
+INSERT INTO `locations` VALUES (1400, '2014 Jabberwocky Rd', '26192', 'Southlake', 'Texas', 'US');
+INSERT INTO `locations` VALUES (1500, '2011 Interiors Blvd', '99236', 'South San Francisco', 'California', 'US');
+INSERT INTO `locations` VALUES (1600, '2007 Zagora St', '50090', 'South Brunswick', 'New Jersey', 'US');
+INSERT INTO `locations` VALUES (1700, '2004 Charade Rd', '98199', 'Seattle', 'Washington', 'US');
+INSERT INTO `locations` VALUES (1800, '147 Spadina Ave', 'M5V 2L7', 'Toronto', 'Ontario', 'CA');
+INSERT INTO `locations` VALUES (1900, '6092 Boxwood St', 'YSW 9T2', 'Whitehorse', 'Yukon', 'CA');
+INSERT INTO `locations` VALUES (2000, '40-5-12 Laogianggen', '190518', 'Beijing', NULL, 'CN');
+INSERT INTO `locations` VALUES (2100, '1298 Vileparle (E)', '490231', 'Bombay', 'Maharashtra', 'IN');
+INSERT INTO `locations` VALUES (2200, '12-98 Victoria Street', '2901', 'Sydney', 'New South Wales', 'AU');
+INSERT INTO `locations` VALUES (2300, '198 Clementi North', '540198', 'Singapore', NULL, 'SG');
+INSERT INTO `locations` VALUES (2400, '8204 Arthur St', NULL, 'London', NULL, 'UK');
+INSERT INTO `locations` VALUES (2500, 'Magdalen Centre, The Oxford Science Park', 'OX9 9ZB', 'Oxford', 'Oxford', 'UK');
+INSERT INTO `locations` VALUES (2600, '9702 Chester Road', '09629850293', 'Stretford', 'Manchester', 'UK');
+INSERT INTO `locations` VALUES (2700, 'Schwanthalerstr. 7031', '80925', 'Munich', 'Bavaria', 'DE');
+INSERT INTO `locations` VALUES (2800, 'Rua Frei Caneca 1360 ', '01307-002', 'Sao Paulo', 'Sao Paulo', 'BR');
+INSERT INTO `locations` VALUES (2900, '20 Rue des Corps-Saints', '1730', 'Geneva', 'Geneve', 'CH');
+INSERT INTO `locations` VALUES (3000, 'Murtenstrasse 921', '3095', 'Bern', 'BE', 'CH');
+INSERT INTO `locations` VALUES (3100, 'Pieter Breughelstraat 837', '3029SK', 'Utrecht', 'Utrecht', 'NL');
+INSERT INTO `locations` VALUES (3200, 'Mariano Escobedo 9991', '11932', 'Mexico City', 'Distrito Federal,', 'MX');
+
+-- ----------------------------
+-- Table structure for regions
+-- ----------------------------
+DROP TABLE IF EXISTS `regions`;
+CREATE TABLE `regions`  (
+  `REGION_ID` int NOT NULL,
+  `REGION_NAME` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`REGION_ID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of regions
+-- ----------------------------
+INSERT INTO `regions` VALUES (1.000000000000000000000000000000, 'Europe');
+INSERT INTO `regions` VALUES (2.000000000000000000000000000000, 'Americas');
+INSERT INTO `regions` VALUES (3.000000000000000000000000000000, 'Asia');
+INSERT INTO `regions` VALUES (4.000000000000000000000000000000, 'Middle East and Africa');
+
+SET FOREIGN_KEY_CHECKS = 1;
+```
+
+
+
+表：
+
+![1718090687957](./assets/1718090687957.png)
+
+
+
+
 
 #### a）select基本查询介绍
 
@@ -669,17 +1297,11 @@ alter table emp drop column commission_pct;
 
 SELECT 语句从数据库中返回信息。使用一个 SELECT 语句，可以做下面的事：
 
-- **列选择：**能够使用 SELECT 语句的列选择功能选择表中的列，这些列是想
+- **列选择：**能够使用 SELECT 语句的列选择功能选择表中的列，这些列是想要用查询返回的。当查询时，能够返回列中的数据。
 
-  要用查询返回的。当查询时，能够返回列中的数据。
+- **行选择：**能够使用 SELECT 语句的行选择功能选择表中的行，这些行是想要用查询返回的。能够使用不同的标准限制看见的行。
 
-- **行选择：**能够使用 SELECT 语句的行选择功能选择表中的行，这些行是想
-
-  要用查询返回的。能够使用不同的标准限制看见的行。
-
-- **连接：**能够使用 SELECT 语句的连接功能来集合数据，这些数据被存储在不
-
-  同的表中，在它们之间可以创建连接，查询出我们所关心的数据。
+- **连接：**能够使用 SELECT 语句的连接功能来集合数据，这些数据被存储在不同的表中，在它们之间可以创建连接，查询出我们所关心的数据。
 
 
 
@@ -715,6 +1337,8 @@ SELECT 语句从数据库中返回信息。使用一个 SELECT 语句，可以�
 select * from departments;
 ```
 
+![1718090967187](./assets/1718090967187.png)
+
 
 
 选择指定列：
@@ -728,6 +1352,8 @@ select * from departments;
 ```sql
 select department_name from departments;
 ```
+
+![1718091022175](./assets/1718091022175.png)
 
 
 
@@ -747,6 +1373,8 @@ select department_name from departments;
 select employees_id,last_name, 12*salary from employees;
 ```
 
+![1718091251835](./assets/1718091251835.png)
+
 
 
 运算符的优先级：
@@ -765,13 +1393,15 @@ select employees_id,last_name, 12*salary from employees;
 select employees_id,last_name, 12*salary+100 from employees;
 ```
 
-
+![1718091428707](./assets/1718091428707.png)
 
 计算 employees 表中的员工薪水加 100 以后的全年薪水是多少，并显示他们的员工ID与名字。
 
 ```sql
 select employees_id,last_name, 12*(salary+100) from employees;
 ```
+
+![1718091497320](./assets/1718091497320.png)
 
 
 
@@ -792,10 +1422,10 @@ select employees_id,last_name, 12*(salary+100) from employees;
 计算年薪包含佣金：
 
 ```sql
-select 12*salary*commission_pct from employees;
+select 12*salary+commission_pct from employees;
 ```
 
-
+![1718091752101](./assets/1718091752101.png)
 
 
 
@@ -818,7 +1448,7 @@ select last_name as name from employees;
 select last_name name from employees;
 ```
 
-
+![1718091862641](./assets/1718091862641.png)
 
 
 
@@ -833,6 +1463,8 @@ SELECT  表别名.列名 FROM  表名 as 表别名 WHERE  条件;
 ```sql
 select emp.last_name name from employees emp;
 ```
+
+![1718091925714](./assets/1718091925714.png)
 
 
 
@@ -858,6 +1490,8 @@ SELECT DISTINCT 列名 FROM 表名;
 select distinct department_id from employees;
 ```
 
+![1718092029838](./assets/1718092029838.png)
+
 
 
 #### g）查询中的行选择
@@ -880,6 +1514,8 @@ SELECT * |  投影列 FROM  表名 WHERE  选择条件;
 select department_name,location_id from departments where department_id =4;
 ```
 
+![1718092273016](./assets/1718092273016.png)
+
 
 
 #### h）mysql中的比较条件
@@ -896,7 +1532,7 @@ select department_name,location_id from departments where department_id =4;
 select last_name,salary from employees where salary >= 3000;
 ```
 
-
+![1718092389350](./assets/1718092389350.png)
 
 
 
@@ -906,7 +1542,7 @@ select last_name,salary from employees where salary >= 3000;
 select last_name,salary from employees where salary<>5000;
 ```
 
-
+![1718092434767](./assets/1718092434767.png)
 
 
 
@@ -928,7 +1564,7 @@ select last_name,salary from employees where salary<>5000;
 select employee_id,last_name,salary from employees where salary between 3000 and 8000;
 ```
 
-
+![1718092549475](./assets/1718092549475.png)
 
 
 
@@ -946,6 +1582,8 @@ select employee_id,last_name,salary from employees where salary between 3000 and
 select employee_id,last_name,salary from employees where salary in(5000,6000,8000);
 ```
 
+![1718092626732](./assets/1718092626732.png)
+
 
 
 使用LIKE条件:
@@ -959,6 +1597,8 @@ select employee_id,last_name,salary from employees where salary in(5000,6000,800
 ```sql
 select last_name from employees where last_name like '_e%';
 ```
+
+![1718092766591](./assets/1718092766591.png)
 
 
 
@@ -976,6 +1616,8 @@ NULL 条件，包括 IS NULL 条件和 IS NOT NULL 条件。IS NULL 条件用于
 select employee_id,last_name,commission_pct from employees where commission_pct is null;
 ```
 
+![1718092862082](./assets/1718092862082.png)
+
 
 
 找出 employees 表中那些有佣金的雇员ID、名字与佣金:
@@ -983,6 +1625,8 @@ select employee_id,last_name,commission_pct from employees where commission_pct 
 ```sql
 select employee_id,last_name,commission_pct from employees where commission_pct is not null;
 ```
+
+![1718092903374](./assets/1718092903374.png)
 
 
 
@@ -1008,6 +1652,10 @@ select employee_id,last_name,commission_pct from employees where commission_pct 
 select last_name,salary from employees where salary = 8000 and last_name like '%e%';
 ```
 
+![1718093101913](./assets/1718093101913.png)
+
+
+
 
 
 查询 employees 表中雇员薪水是 8000 的或者名字中含有e 的雇员名字与薪水:
@@ -1016,6 +1664,8 @@ select last_name,salary from employees where salary = 8000 and last_name like '%
 select last_name,salary from employees where salary = 8000 or last_name like '%e%';
 ```
 
+![1718093135270](./assets/1718093135270.png)
+
 
 
 查询 employees 表中雇员名字中不包含 u 的雇员的名字:
@@ -1023,6 +1673,8 @@ select last_name,salary from employees where salary = 8000 or last_name like '%e
 ```sql
 select last_name from employees where last_name not like '%u%';
 ```
+
+![1718093185960](./assets/1718093185960.png)
 
 
 
@@ -1078,6 +1730,8 @@ select employee_id,last_name,salary from employees order by salary;
 select employee_id,last_name,salary from employees order by salary asc;
 ```
 
+![1718093567763](./assets/1718093567763.png)
+
 
 
 查询 employees 表中的所有雇员，显示他们的ID与名字，并按雇员名字降序排序:
@@ -1085,6 +1739,8 @@ select employee_id,last_name,salary from employees order by salary asc;
 ```sql
 select employee_id,last_name from employees order by last_name desc;
 ```
+
+![1718093625524](./assets/1718093625524.png)
 
 
 
@@ -1098,7 +1754,7 @@ select employee_id,last_name from employees order by last_name desc;
 select employee_id,last_name ,12*salary annsal from employees order by annsal;
 ```
 
-
+![1718093682302](./assets/1718093682302.png)
 
 多列排序：
 
@@ -1111,6 +1767,8 @@ select employee_id,last_name ,12*salary annsal from employees order by annsal;
 ```sql
 select department_id,salary from employees order by department_id asc ,salary desc;
 ```
+
+![1718093794664](./assets/1718093794664.png)
 
 
 
