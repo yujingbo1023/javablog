@@ -2700,7 +2700,7 @@ public class AccessDeniedExceptionHandler {
 
 接下来我们编写品牌相关的CRUD方法，首先在**通用模块**编写品牌服务接口：
 
-![1717723050691](assets/1717723050691.png)
+![1717723050691](./assets/1717723050691.png)
 
 ```java
 public interface BrandService {
@@ -2717,7 +2717,7 @@ public interface BrandService {
 
 在**商品服务模块**编写品牌服务实现类：
 
-![1717723434985](assets/1717723434985.png)
+![1717723434985](./assets/1717723434985.png)
 
 ```java
 @DubboService
@@ -2775,7 +2775,7 @@ public class BrandServiceImpl implements BrandService {
 
 在**后台管理API模块**编写品牌控制器：
 
-![1717723591185](assets/1717723591185.png)
+![1717723591185](./assets/1717723591185.png)
 
 ```java
 @RestController
@@ -2828,17 +2828,17 @@ public class BrandController {
 
 测试：
 
-![1717724288093](assets/1717724288093.png)
+![1717724288093](./assets/1717724288093.png)
 
-![1717724329523](assets/1717724329523.png)
+![1717724329523](./assets/1717724329523.png)
 
-![1717724385676](assets/1717724385676.png)
+![1717724385676](./assets/1717724385676.png)
 
-![1717724406255](assets/1717724406255.png)
+![1717724406255](./assets/1717724406255.png)
 
-![1717724416718](assets/1717724416718.png)
+![1717724416718](./assets/1717724416718.png)
 
-![1717724446526](assets/1717724446526.png)
+![1717724446526](./assets/1717724446526.png)
 
 
 
@@ -2846,19 +2846,19 @@ public class BrandController {
 
 商品类型的实体类：
 
-![1717724643103](assets/1717724643103.png)
+![1717724643103](./assets/1717724643103.png)
 
 
 
 数据库：
 
-![1717724679123](assets/1717724679123.png)
+![1717724679123](./assets/1717724679123.png)
 
 
 
 接下来我们编写商品类型相关的CRUD方法，首先在**通用模块**编写商品类型服务接口：
 
-![1717724729614](assets/1717724729614.png)
+![1717724729614](./assets/1717724729614.png)
 
 ```java
 // 商品类型
@@ -2882,7 +2882,7 @@ public interface ProductTypeService {
 
 在**商品服务模块**编写商品类型Mapper:
 
-![1717724873146](assets/1717724873146.png)
+![1717724873146](./assets/1717724873146.png)
 
 ```java
 public interface ProductTypeMapper extends BaseMapper<ProductType> {
@@ -2893,7 +2893,7 @@ public interface ProductTypeMapper extends BaseMapper<ProductType> {
 
 在**商品服务模块**编写商品类型服务实现类:
 
-![1717725580443](assets/1717725580443.png)
+![1717725580443](./assets/1717725580443.png)
 
 
 
@@ -2986,13 +2986,13 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
 在**后台管理API模块**编写商品类型控制器：
 
-![1717727438983](assets/1717727438983.png)
+![1717727438983](./assets/1717727438983.png)
 
 
 
 测试：
 
-![1717727675125](assets/1717727675125.png)
+![1717727675125](./assets/1717727675125.png)
 
 
 
@@ -3002,21 +3002,21 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
 商品格式的实体类：
 
-![1717727833665](assets/1717727833665.png)
+![1717727833665](./assets/1717727833665.png)
 
-![1717727870631](assets/1717727870631.png)
+![1717727870631](./assets/1717727870631.png)
 
 
 
 数据库：
 
-![1717727928182](assets/1717727928182.png)
+![1717727928182](./assets/1717727928182.png)
 
 
 
 编写接口：
 
-![1717728420321](assets/1717728420321.png)
+![1717728420321](./assets/1717728420321.png)
 
 ```java
 public interface SpecificationService {
@@ -3043,7 +3043,7 @@ public interface SpecificationService {
 
 在**商品服务模块**编写商品规格和商品规格项Mapper:
 
-![1717728501974](assets/1717728501974.png)
+![1717728501974](./assets/1717728501974.png)
 
 ```java
 public interface SpecificationMapper extends BaseMapper<Specification> {
@@ -3053,7 +3053,7 @@ public interface SpecificationMapper extends BaseMapper<Specification> {
 }
 ```
 
-![1717728523389](assets/1717728523389.png)
+![1717728523389](./assets/1717728523389.png)
 
 ```java
 public interface SpecificationOptionMapper extends BaseMapper<SpecificationOption> {
@@ -3064,7 +3064,7 @@ public interface SpecificationOptionMapper extends BaseMapper<SpecificationOptio
 
 在`resources`中创建`SpecificationMapper`的同级包，编写映射文件`SpecificationMapper.xml`
 
-![1717729120273](assets/1717729120273.png)
+![1717729120273](./assets/1717729120273.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -3117,7 +3117,7 @@ public interface SpecificationOptionMapper extends BaseMapper<SpecificationOptio
 
 在**商品服务模块**编写商品规格服务实现类:
 
-![1717729447752](assets/1717729447752.png)
+![1717729447752](./assets/1717729447752.png)
 
 ```java
 @DubboService
@@ -3190,7 +3190,7 @@ public class SpecificationServiceImpl implements SpecificationService {
 
 编写控制器：
 
-![1717729676431](assets/1717729676431.png)
+![1717729676431](./assets/1717729676431.png)
 
 
 
@@ -3311,11 +3311,1583 @@ public class SpecificationController {
 
 测试：
 
-![1717729853070](assets/1717729853070.png)
+![1717729853070](./assets/1717729853070.png)
 
 
 
 
+
+
+
+
+
+### 26，文件服务模块
+
+![1718099198738](./assets/1718099198738.png)
+
+
+
+创建名为`shopping_file_service`的SpringBoot工程，添加相关依赖。
+
+![1718099355790](./assets/1718099355790.png)
+
+pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ityls</groupId>
+        <artifactId>shoping</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.ityls</groupId>
+    <artifactId>shoping_file_service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>shoping_file_service</name>
+    <description>shoping_file_service</description>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.ityls</groupId>
+            <artifactId>shoping_common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- dubbo -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-registry-nacos</artifactId>
+        </dependency>
+        <!-- nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- FastDFS -->
+        <dependency>
+            <groupId>com.github.tobato</groupId>
+            <artifactId>fastdfs-client</artifactId>
+            <version>1.26.5</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+
+
+给`shopping`工程设置子模块
+
+```xml
+<!-- 子模块  -->
+<modules>
+  <!-- 文件服务 -->
+  <module>shopping_file_service</module>
+</modules>
+```
+
+
+
+在Nacos配置中心创建配置文件`shoping_file_service-dev.yaml`
+
+```yml
+# 端口号
+server:
+  port: 9003
+
+
+# 日志格式
+logging:
+  pattern:
+   console: '%d{HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
+
+
+spring:
+  application:
+   name: shoping_file_service #服务名
+  cloud:
+   nacos:
+    discovery:
+     server-addr: 103.38.81.223:8848 # 注册中心地址
+
+
+dubbo:
+  application:
+   name: shoping_file_service #服务名
+   serialize-check-status: DISABLE
+   check-serializable: false
+  protocol:
+   name: dubbo # 通讯协议
+   port: -1 # 端口号，-1表示自动扫描可用端口。
+  registry:
+   address: nacos://103.38.81.223:8848 # 注册中心
+
+
+fdfs:
+  so-timeout: 3000
+  connect-timeout: 6000
+  tracker-list: # TrackerList路径
+   - 103.38.81.223:22122
+  fileUrl: http://103.38.81.223:80 # 自定义配置，文件访问路径
+```
+
+
+
+编写配置文件`bootstrap.yml`，连接配置中心
+
+![1718099650804](./assets/1718099650804.png)
+
+```yml
+spring:
+  profiles:
+    # 环境
+    active: dev
+  cloud:
+    nacos:
+      # 注册中心
+      config:
+        server-addr: 103.38.81.223:8848 #注册中心地址
+        namespace: 77ddc55c-22b2-4a35-b5a2-58ffb9589f85 #命名空间
+        file-extension: yaml #文件名后缀
+        prefix: shoping_file_service
+```
+
+
+
+启动类忽略数据源自动配置:
+
+![1718099736090](./assets/1718099736090.png)
+
+```java
+@EnableDiscoveryClient
+@EnableDubbo
+@RefreshScope
+@Import(FdfsClientConfig.class) // 手动导入FastDFS配置类
+@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
+public class ShopingFileServiceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ShopingFileServiceApplication.class, args);
+    }
+}
+```
+
+
+
+在**通用模块**添加文件服务接口:
+
+![1718099862590](./assets/1718099862590.png)
+
+```java
+// 文件服务
+public interface FileService {
+    /**
+     * 上传文件
+     * @param fileBytes 图片文件转成的字节数组
+     * @param fileName 文件名
+     * @return 上传后的文件访问路径
+     */
+    String uploadImage(byte[] fileBytes,String fileName);
+
+
+    /**
+     * 删除文件
+     * @param filePath 文件路径
+     */
+    void delete(String filePath);
+}
+```
+
+
+
+在**文件服务模块**创建文件服务接口实现类
+
+![1718102345777](./assets/1718102345777.png)
+
+![1718102363730](./assets/1718102363730.png)
+
+```java
+@DubboService
+@Transactional
+public class FileServiceImpl  implements FileService {
+
+    @Autowired
+    private FastFileStorageClient fastFileStorageClient;
+
+    @Value("${fdfs.fileUrl}")
+    private String fileUrl; // Nginx访问FastDFS中文件的路径
+
+    @Override
+    public String uploadImage(byte[] fileBytes, String fileName) {
+        if (fileBytes.length != 0) {
+            try {
+                // 1.将文件的字节数组转为输入流
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(fileBytes);
+                // 2.获取文件的后缀名
+                String fileSuffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+                // 3.上传文件
+                StorePath storePath = fastFileStorageClient.uploadFile(inputStream, inputStream.available(), fileSuffix, null);
+                // 4.返回图片路径
+                String imageUrl = fileUrl + "/"+storePath.getFullPath();
+                return imageUrl;
+            }catch (Exception e){
+                throw new BusException(CodeEnum.UPLOAD_FILE_ERROR);
+            }
+        } else {
+            throw new BusException(CodeEnum.UPLOAD_FILE_ERROR);
+        }
+    }
+
+    @Override
+    public void delete(String filePath) {
+        fastFileStorageClient.deleteFile(filePath);
+    }
+}
+```
+
+
+
+
+
+在**后台管理Api模块**编写文件控制器：
+
+![1718102799998](./assets/1718102799998.png)
+
+```java
+package com.ityls.shoping_manager_api.controller;
+
+import com.ityls.shoping_common.result.BaseResult;
+import com.ityls.shoping_common.service.FileService;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+
+@RestController
+@RequestMapping("/file")
+public class FileController {
+    @DubboReference
+    private FileService fileService;
+
+    /**
+     * 上传文件
+     * @param file 文件
+     * @return 文件路径
+     * @throws IOException
+     */
+    @PostMapping("/uploadImage")
+    public BaseResult<String> upload(MultipartFile file) throws IOException {
+        // MultipartFile对象不能再服务间传递，必须转为byte数组
+        byte[] bytes = file.getBytes();
+        String url = fileService.uploadImage(bytes, file.getOriginalFilename());
+        return BaseResult.ok(url);
+    }
+
+    /**
+     * 删除文件
+     * @param filePath 文件路径
+     * @return 操作结果
+     */
+    @DeleteMapping("/delete")
+    public BaseResult delete(String filePath){
+        fileService.delete(filePath);
+        return BaseResult.ok();
+    }
+}
+```
+
+
+
+测试：
+
+![1718103958795](./assets/1718103958795.png)
+
+![1718104035517](./assets/1718104035517.png)
+
+
+
+### 27，新增商品，修改商品，商品上下架
+
+在**通用模块**添加商品服务接口：
+
+![1718107575113](./assets/1718107575113.png)
+
+```java
+public interface GoodsService {
+    // 新增商品
+    void add(Goods goods);
+    // 修改商品
+    void update(Goods goods);
+    // 根据id查询商品详情
+    Goods findById(Long id);
+    // 上架/下架商品
+    void putAway(Long id,Boolean isMarketable);
+    // 分页查询
+    Page<Goods> search(Goods goods, int page, int size);
+}
+```
+
+
+
+新增商品时，需要新增商品数据，商品图片数据，商品_规格项数据。需要创建`GoodsMapper`和`GoodsImageMapper`
+
+![1718107789880](./assets/1718107789880.png)
+
+```java
+public interface GoodsMapper extends BaseMapper<Goods> {
+    // 添加商品_规格项数据
+    void addGoodsSpecificationOption(@Param("gid") Long gid, @Param("optionId")Long optionId);
+}
+```
+
+![1718107837753](./assets/1718107837753.png)
+
+```java
+public interface GoodsImageMapper extends BaseMapper<GoodsImage> {
+
+}
+```
+
+编写映射文件`GoodsMapper.xml`
+
+![1718107909503](./assets/1718107909503.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ityls.shoping_goods_service.mapper.GoodsMapper">
+    <insert id="addGoodsSpecificationOption">
+        INSERT INTO ml_goods_specification_option VALUES(#{gid},#{optionId})
+    </insert>
+</mapper>
+```
+
+
+
+编写商品服务接口实现类:
+
+![1718108034462](./assets/1718108034462.png)
+
+```java
+@DubboService
+@Transactional
+public class GoodsServiceImpl implements GoodsService {
+
+    @Autowired
+    private GoodsMapper goodsMapper;
+    @Autowired
+    private GoodsImageMapper goodsImageMapper;
+
+    @Override
+    public void add(Goods goods) {
+        // 插入商品数据
+        goodsMapper.insert(goods);
+
+        // 插入图片数据
+        Long goodsId = goods.getId(); // 获取商品主键
+        List<GoodsImage> images = goods.getImages(); // 商品图片
+        for (GoodsImage image : images) {
+            image.setGoodsId(goodsId); // 给图片设置商品id
+            goodsImageMapper.insert(image); //插入图片
+        }
+
+        // 插入商品_规格项数据
+        // 1.获取规格
+        List<Specification> specifications = goods.getSpecifications();
+        // 2.获取规格项
+        List<SpecificationOption> options = new ArrayList(); //规格项集合
+        // 遍历规格，获取规格中的所有规格项
+        for (Specification specification : specifications) {
+            options.addAll(specification.getSpecificationOptions());
+        }
+        // 3.遍历规格项，插入商品_规格项数据
+        for (SpecificationOption option : options) {
+            goodsMapper.addGoodsSpecificationOption(goodsId, option.getId());
+        }
+    }
+
+    @Override
+    public void update(Goods goods) {
+
+    }
+
+    @Override
+    public Goods findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public void putAway(Long id, Boolean isMarketable) {
+
+    }
+
+    @Override
+    public Page<Goods> search(Goods goods, int page, int size) {
+        return null;
+    }
+}
+```
+
+
+
+编写商品控制器:
+
+![1718108123285](./assets/1718108123285.png)
+
+```java
+/**
+ * 商品
+ */
+@RestController
+@RequestMapping("/goods")
+public class GoodsController {
+    @DubboReference
+    private GoodsService goodsService;
+
+    /**
+     * 新增商品
+     *
+     * @param goods 商品实体
+     * @return 执行结果
+     */
+    @PostMapping("/add")
+    public BaseResult add(@RequestBody Goods goods) {
+        goodsService.add(goods);
+        return BaseResult.ok();
+    }
+}
+```
+
+
+
+测试接口：
+
+```json
+{
+    "goodsName":"iphone15",
+    "caption":"最新苹果手机",
+    "price":10000, 
+    "brandId":1,
+    "productType1Id":161,
+    "productType2Id":162,
+    "productType3Id":163,
+    "headerPic":"xxxxxxx",
+    "introduction":"最新苹果手",
+    "isMarketable":1,
+    "images":[{"imageTitle":"正面图","imageUrl":"aaa"},{"imageTitle":"侧面图","imageUrl":"bbb"}],
+    "specifications":[
+        {
+            "specificationOptions":[{"id":17},{"id":12}]
+        }
+    ]
+}
+```
+
+
+
+![1718109457312](./assets/1718109457312.png)
+
+
+
+
+
+修改商品时，修改商品图片和规格项，我们先删除旧的图片和规格项数据，再插入新的图片和规格项数据。首先我们在`GoodsMapper`中添加`删除商品下的所有规格项`方法。
+
+![1718109540989](./assets/1718109540989.png)
+
+```java
+    // 删除商品下的所有规格项
+    void deleteGoodsSpecificationOption(Long gid);
+```
+
+
+
+编写映射文件`GoodsMapper.xml`
+
+![1718109604561](./assets/1718109604561.png)
+
+```xml
+    <delete id="deleteGoodsSpecificationOption" parameterType="long">
+        DELETE FROM ml_goods_specification_option WHERE gid = #{gid}
+    </delete>
+```
+
+
+
+编写商品服务接口实现类:
+
+![1718109704709](./assets/1718109704709.png)
+
+```java
+    @Override
+    public void update(Goods goods) {
+        // 删除旧图片数据
+        Long goodsId = goods.getId(); // 商品id
+        QueryWrapper<GoodsImage> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("goodsId",goodsId);
+        goodsImageMapper.delete(queryWrapper);
+        // 删除旧规格项数据
+        goodsMapper.deleteGoodsSpecificationOption(goodsId);
+
+        // 插入商品数据
+        goodsMapper.updateById(goods);
+        // 插入图片数据
+        List<GoodsImage> images = goods.getImages(); // 商品图片
+        for (GoodsImage image : images) {
+            image.setGoodsId(goodsId); // 给图片设置商品id
+            goodsImageMapper.insert(image); // 插入图片
+        }
+        // 插入商品_规格项数据
+        List<Specification> specifications = goods.getSpecifications(); // 获取规格
+        List<SpecificationOption> options = new ArrayList(); // 规格项集合
+        // 遍历规格，获取规格中的所有规格项
+        for (Specification specification : specifications) {
+            options.addAll(specification.getSpecificationOptions());
+        }
+        // 遍历规格项，插入商品_规格项数据
+        for (SpecificationOption option : options) {
+            goodsMapper.addGoodsSpecificationOption(goodsId,option.getId());
+        }
+    }
+```
+
+
+
+编写商品控制器:
+
+![1718109763242](./assets/1718109763242.png)
+
+```java
+    /**
+     * 修改商品
+     *
+     * @param goods 商品实体
+     * @return 执行结果
+     */
+    @PutMapping("/update")
+    public BaseResult update(@RequestBody Goods goods) {
+        goodsService.update(goods);
+        return BaseResult.ok();
+    }
+```
+
+
+
+测试：
+
+```json
+{
+    "id":149187842867995,
+    "goodsName":"iphone15",
+    "caption":"最新苹果手机1111",
+    "price":10000, 
+    "brandId":1,
+    "productType1Id":161,
+    "productType2Id":162,
+    "productType3Id":163,
+    "headerPic":"xxxxxxx",
+    "introduction":"最新苹果手",
+    "isMarketable":1,
+    "images":[{"imageTitle":"正面图","imageUrl":"xxx"},{"imageTitle":"侧面图","imageUrl":"mmm"}],
+    "specifications":[
+        {
+            "specificationOptions":[{"id":17},{"id":12}]
+        }
+    ]
+}
+```
+
+
+
+![1718110069089](./assets/1718110069089.png)
+
+
+
+商品的上架与下架，在`GoodsMapper`中添加修改商品上架状态方法
+
+![1718110167300](./assets/1718110167300.png)
+
+
+
+编写映射文件`GoodsMapper.xml`
+
+![1718110205297](./assets/1718110205297.png)
+
+```xml
+    <update id="putAway">
+        UPDATE ml_goods SET isMarketable = #{isMarketable} WHERE id = #{id}
+    </update>
+```
+
+
+
+编写商品服务接口实现类
+
+```java
+    @Override
+    public void putAway(Long id, Boolean isMarketable) {
+        goodsMapper.putAway(id,isMarketable);
+    }
+```
+
+
+
+编写商品控制器
+
+![1718110315795](./assets/1718110315795.png)
+
+```java
+/**
+ * 上架/下架商品
+ *
+ * @param id 商品id
+ * @param isMarketable 是否上架
+ * @return 执行结果
+*/
+@PutMapping("/putAway")
+public BaseResult putAway(Long id,Boolean isMarketable) {
+  goodsService.putAway(id,isMarketable);
+  return BaseResult.ok();
+}
+```
+
+
+
+测试：
+
+![1718110463742](./assets/1718110463742.png)
+
+![1718110475647](./assets/1718110475647.png)
+
+
+
+
+
+
+
+### 28，商品详情
+
+根据id查询商品时，需要关联查询图片数据、规格数据等，所以需要进行多表的关联查询。在`GoodsMapper`中添加根据id查询商品详情方法
+
+![1718110810152](./assets/1718110810152.png)
+
+```java
+// 根据id查询商品详情
+Goods findById(Long id);
+```
+
+
+
+映射文件：
+
+![1718110922350](./assets/1718110922350.png)
+
+```xml
+    <resultMap id="goodsMapper" type="com.ityls.shoping_common.pojo.Goods">
+        <id property="id" column="bid"></id>
+        <result property="goodsName" column="goodsName"></result>
+        <result property="caption" column="caption"></result>
+        <result property="price" column="price"></result>
+        <result property="headerPic" column="headerPic"></result>
+        <result property="isMarketable" column="isMarketable"></result>
+        <result property="brandId" column="brandId"></result>
+        <result property="productType1Id" column="productType1Id"></result>
+        <result property="productType2Id" column="productType2Id"></result>
+        <result property="productType3Id" column="productType3Id"></result>
+        <result property="introduction" column="introduction"></result>
+        <collection property="images" column="bid" ofType="com.ityls.shoping_common.pojo.GoodsImage">
+            <id property="id" column="imageId"></id>
+            <result property="imageTitle" column="imageTitle"></result>
+            <result property="imageUrl" column="imageUrl"></result>
+        </collection>
+        <collection property="specifications" column="bid" ofType="com.ityls.shoping_common.pojo.Specification">
+            <id property="id" column="specificationId"></id>
+            <result property="specName" column="specName"></result>
+            <result property="productTypeId" column="productTypeId"></result>
+            <collection property="specificationOptions" column="specificationId" ofType="com.ityls.shoping_common.pojo.SpecificationOption">
+                <id property="id" column="optionId"></id>
+                <result property="optionName" column="optionName"></result>
+            </collection>
+        </collection>
+    </resultMap>
+
+
+    <select id="findById" resultMap="goodsMapper">
+        SELECT
+            ml_goods.`id` bid,
+            ml_goods.`goodsName` goodsName,
+            ml_goods.`caption` caption,
+            ml_goods.`price` price,
+            ml_goods.`headerPic` headerPic,
+            ml_goods.`introduction` introduction,
+            ml_goods.`isMarketable` isMarketable,
+            ml_goods.`brandId` brandId,
+            ml_goods.`productType1Id` productType1Id,
+            ml_goods.`productType2Id` productType2Id,
+            ml_goods.`productType3Id` productType3Id,
+            ml_goods_image.`id` imageId,
+            ml_goods_image.`imageTitle` imageTitle,
+            ml_goods_image.`imageUrl` imageUrl,
+            ml_specification.`id` specificationId,
+            ml_specification.`specName` specName,
+            ml_specification.`productTypeId` productTypeId,
+            ml_specification_option.`id` optionId,
+            ml_specification_option.`optionName` optionName
+        FROM
+            ml_goods,
+            ml_goods_specification_option,
+            ml_specification_option,
+            ml_specification,
+            ml_goods_image
+        WHERE ml_goods.`id` = ml_goods_specification_option.`gid`
+          AND ml_goods_specification_option.`optionId` = ml_specification_option.`id`
+          AND ml_specification.`id` = ml_specification_option.`specId`
+          AND ml_goods.`id` = ml_goods_image.`goodsId`
+          AND ml_goods.id = #{gid}
+    </select>
+```
+
+
+
+编写商品服务接口实现类
+
+![1718111046003](./assets/1718111046003.png)
+
+```java
+    @Override
+    public Goods findById(Long id) {
+        return goodsMapper.findById(id);
+    }
+```
+
+
+
+编写商品控制器:
+
+![1718111085926](./assets/1718111085926.png)
+
+```java
+    /**
+     * 根据id查询商品详情
+     *
+     * @param id 商品id
+     * @return 商品详情
+     */
+    @GetMapping("/findById")
+    public BaseResult<Goods> findById(Long id) {
+        Goods goods = goodsService.findById(id);
+        return BaseResult.ok(goods);
+    }
+```
+
+
+
+测试：
+
+![1718111195174](./assets/1718111195174.png)
+
+
+
+### 29，分页查询商品
+
+编写商品服务接口实现类
+
+![1718111321364](./assets/1718111321364.png)
+
+```java
+@Override
+public Page<Goods> search(Goods goods, int page, int size) {
+  QueryWrapper<Goods> queryWrapper = new QueryWrapper();
+  // 判断商品名不为空
+  if (goods != null && StringUtils.hasText(goods.getGoodsName())){
+    queryWrapper.like("goodsName",goods.getGoodsName());
+   }
+  Page<Goods> page1 = goodsMapper.selectPage(new Page(page, size), queryWrapper);
+  return page1;
+}
+```
+
+
+
+编写商品控制器:
+
+![1718111373996](./assets/1718111373996.png)
+
+```java
+    /**
+     * 分页查询
+     * @param goods 商品条件对象
+     * @param page 页码
+     * @param size 每页条数
+     * @return 查询结果
+     */
+    @GetMapping("/search")
+    public BaseResult<Page<Goods>> search(Goods goods, int page, int size) {
+        Page<Goods> page1 = goodsService.search(goods, page, size);
+        return BaseResult.ok(page1);
+    }
+```
+
+
+
+分页插件：
+
+![1718111739068](./assets/1718111739068.png)
+
+```java
+    // 分页插件
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        return interceptor;
+    }
+```
+
+
+
+测试：
+
+![1718111820509](./assets/1718111820509.png)
+
+
+
+
+
+测试（测试手机，手机通讯）：
+
+![1718112007629](./assets/1718112007629.png)
+
+
+
+
+
+### 30，秒杀商品管理
+
+在管理员新增商品后，可以将商品设置为秒杀商品。“秒杀”是网络卖家发布一些超低价格的商品，所有买家在同一时间网上抢购的一种销售方式。用户秒杀商品时，需要通过一些技术方案降低服务器的压力，这个我们编写用户端时再做介绍。管理员管理秒杀商品，需要先在数据库拿到相应的普通商品，再将该商品构造为秒杀商品添加到数据库中。接下来我们在**通用模块**编写秒杀商品服务接口：
+
+![1718112856711](./assets/1718112856711.png)
+
+```java
+package com.ityls.shoping_common.service;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ityls.shoping_common.pojo.SeckillGoods;
+
+public interface SeckillGoodsService {
+    /**
+     * 添加秒杀商品
+     *
+     * @param seckillGoods 秒杀商品实体
+     */
+    void add(SeckillGoods seckillGoods);
+
+
+    /**
+     * 修改秒杀商品
+     *
+     * @param seckillGoods 秒杀商品实体
+     */
+    void update(SeckillGoods seckillGoods);
+
+
+    /**
+     * 分页查询秒杀商品
+     *
+     * @param page 页数
+     * @param size 每页条数
+     * @return 查询结果
+     */
+    Page<SeckillGoods> findPage(int page, int size);
+}
+```
+
+
+
+在**商品服务模块**编写秒杀商品Mapper：
+
+![1718112902058](./assets/1718112902058.png)
+
+```java
+public interface SeckillGoodsMapper extends BaseMapper<SeckillGoods> {
+}
+```
+
+
+
+在**商品服务模块**编写秒杀商品服务实现类：
+
+![1718112959813](./assets/1718112959813.png)
+
+```java
+@DubboService
+public class SeckillGoodsServiceImpl implements SeckillGoodsService {
+    @Autowired
+    private SeckillGoodsMapper seckillGoodsMapper;
+
+
+    @Override
+    public void add(SeckillGoods seckillGoods) {
+        seckillGoodsMapper.insert(seckillGoods);
+    }
+
+
+    @Override
+    public void update(SeckillGoods seckillGoods) {
+        seckillGoodsMapper.updateById(seckillGoods);
+    }
+
+
+    @Override
+    public Page<SeckillGoods> findPage(int page, int size) {
+        return seckillGoodsMapper.selectPage(new Page(page, size), null);
+    }
+}
+```
+
+
+
+在**后台管理API模块**秒杀商品控制器：
+
+![1718113018848](./assets/1718113018848.png)
+
+```java
+/**
+ * 秒杀商品
+ */
+@RestController
+@RequestMapping("/seckillGoods")
+public class SeckillGoodsController {
+    @DubboReference
+    private SeckillGoodsService seckillGoodsService;
+
+
+    /**
+     * 添加秒杀商品
+     * @param seckillGoods 秒杀商品实体
+     * @return 操作结果
+     */
+    @PostMapping("/add")
+    public BaseResult add(@RequestBody SeckillGoods seckillGoods) {
+        seckillGoodsService.add(seckillGoods);
+        return BaseResult.ok();
+    }
+
+
+    /**
+     * 修改秒杀商品
+     * @param seckillGoods 秒杀商品实体
+     * @return 操作结果
+     */
+    @PutMapping("/update")
+    public BaseResult update(@RequestBody SeckillGoods seckillGoods) {
+        seckillGoodsService.update(seckillGoods);
+        return BaseResult.ok();
+    }
+
+
+    /**
+     * 分页查询秒杀商品
+     * @param page 页数
+     * @param size 每页条数
+     * @return 查询结果
+     */
+    @GetMapping("/findPage")
+    public BaseResult<Page<SeckillGoods>> findPage(int page, int size) {
+        Page<SeckillGoods> seckillGoodsPage = seckillGoodsService.findPage(page, size);
+        return BaseResult.ok(seckillGoodsPage);
+    }
+}
+```
+
+
+
+测试OK
+
+![1718113173164](./assets/1718113173164.png)
+
+
+
+
+
+### 31，广告模块CRUD
+
+
+
+创建名为`shoping_category_service`的SpringBoot工程，添加相关依赖。
+
+![1718113377625](./assets/1718113377625.png)
+
+pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ityls</groupId>
+        <artifactId>shoping</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.ityls</groupId>
+    <artifactId>shoping_category_service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>shoping_category_service</name>
+    <description>shoping_category_service</description>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+        <!-- MyBatisPlus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <!-- mysql驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ityls</groupId>
+            <artifactId>shoping_common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- dubbo -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-registry-nacos</artifactId>
+        </dependency>
+        <!-- nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+
+
+在Nacos配置中心创建配置文件`shoping_category_service-dev.yaml`
+
+```yml
+# 端口号
+server:
+  port: 9004
+
+
+# 日志格式
+logging:
+  pattern:
+   console: '%d{HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
+
+
+# 配置Mybatis-plus
+mybatis-plus:
+  global-config:
+   db-config:
+   # 表名前缀
+    table-prefix: ml_
+   # 主键生成策略为自增
+    id-type: auto
+  configuration:
+  # 关闭列名自动驼峰命名映射规则
+   map-underscore-to-camel-case: false
+   log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
+
+
+spring:
+  application:
+   name: shoping_category_service #服务名
+  cloud:
+   nacos:
+    discovery:
+     server-addr: 103.38.81.223:8848 # 注册中心地址
+ # 数据源
+  datasource:
+   driver-class-name: com.mysql.cj.jdbc.Driver
+   url: jdbc:mysql:///mlshoping?serverTimezone=UTC
+   username: root
+   password: root
+
+
+dubbo:
+  application:
+   name: shoping_category_service #服务名
+   serialize-check-status: DISABLE
+   check-serializable: false
+  protocol:
+   name: dubbo # 通讯协议
+   port: -1 # 端口号，-1表示自动扫描可用端口。
+  registry:
+   address: nacos://103.38.81.223:8848 # 注册中心
+```
+
+编写配置文件`bootstrap.yml`，连接配置中心
+
+![1718113630632](./assets/1718113630632.png)
+
+```yml
+spring:
+  profiles:
+    # 环境
+    active: dev
+  cloud:
+    nacos:
+      # 注册中心
+      config:
+        server-addr: 103.38.81.223:8848 #注册中心地址
+        namespace: 77ddc55c-22b2-4a35-b5a2-58ffb9589f85 #命名空间
+        file-extension: yaml #文件名后缀
+        prefix: shoping_category_service #文件名
+```
+
+
+
+启动类扫描Mapper包
+
+![1718113713376](./assets/1718113713376.png)
+
+
+
+
+
+接下来我们编写广告相关的CRUD方法，首先在**通用模块**编写广告服务接口：
+
+![1718113962696](./assets/1718113962696.png)
+
+```java
+// 广告服务
+public interface CategoryService {
+    // 增加广告
+    void add(Category category);
+    // 修改广告
+    void update(Category category);
+    // 修改广告状态
+    void updateStatus(Long id, Integer status);
+    // 删除广告
+    void delete(Long[] ids);
+    // 根据Id查询广告
+    Category findById(Long id);
+    // 分页查询广告
+    Page<Category> search(int page, int size);
+    // 查询全部启用广告
+    List<Category> findAll();
+}
+```
+
+
+
+创建广告Mapper接口
+
+![1718114012758](./assets/1718114012758.png)
+
+```java
+public interface CategoryMapper extends BaseMapper<Category> {
+}
+```
+
+
+
+创建广告服务实现类
+
+![1718114135683](./assets/1718114135683.png)
+
+```java
+package com.ityls.shoping_category_service.service;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ityls.shoping_category_service.mapper.CategoryMapper;
+import com.ityls.shoping_common.pojo.Category;
+import com.ityls.shoping_common.service.CategoryService;
+import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Arrays;
+import java.util.List;
+
+@DubboService
+public class CategoryServiceImpl implements CategoryService {
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+
+    @Override
+    public void add(Category category) {
+        categoryMapper.insert(category);
+    }
+
+    @Override
+    public void update(Category category) {
+        categoryMapper.updateById(category);
+    }
+
+    @Override
+    public void updateStatus(Long id, Integer status) {
+        Category category = categoryMapper.selectById(id);
+        category.setStatus(status);
+        categoryMapper.updateById(category);
+    }
+
+    @Override
+    public Category findById(Long id) {
+        return categoryMapper.selectById(id);
+    }
+
+    @Override
+    public void delete(Long[] ids) {
+        categoryMapper.deleteBatchIds(Arrays.asList(ids));
+    }
+
+    @Override
+    public Page<Category> search(int page, int size) {
+        return categoryMapper.selectPage(new Page(page,size),null);
+    }
+
+    @Override
+    public List<Category> findAll() {
+        // 从数据库查询所有启用的广告
+        QueryWrapper<Category> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("status",1);
+        List<Category> categories = categoryMapper.selectList(queryWrapper);
+        return categories;
+    }
+}
+```
+
+
+
+在**管理员Api模块**编写广告管理控制器
+
+![1718114239794](./assets/1718114239794.png)
+
+```java
+package com.ityls.shoping_manager_api.controller;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ityls.shoping_common.pojo.Category;
+import com.ityls.shoping_common.result.BaseResult;
+import com.ityls.shoping_common.service.CategoryService;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * 广告
+ */
+@RestController
+@RequestMapping("/category")
+public class CategoryController {
+    @DubboReference
+    private CategoryService categoryService;
+
+
+    /**
+     * 分页查询广告
+     *
+     * @param page 页码
+     * @param size 每页条数
+     * @return 查询结果
+     */
+    @GetMapping("/search")
+    public BaseResult<Page<Category>> search(int page, int size) {
+        Page<Category> page1 = categoryService.search(page, size);
+        return BaseResult.ok(page1);
+    }
+
+
+    /**
+     * 增加广告
+     *
+     * @param category 广告对象
+     * @return 操作结果
+     */
+    @PostMapping("/add")
+    public BaseResult add(@RequestBody Category category) {
+        categoryService.add(category);
+        return BaseResult.ok();
+    }
+
+
+    /**
+     * 修改广告
+     *
+     * @param category 广告对象
+     * @return 操作结果
+     */
+    @PutMapping("/update")
+    public BaseResult update(@RequestBody Category category) {
+        categoryService.update(category);
+        return BaseResult.ok();
+    }
+
+
+    /**
+     * 修改广告状态
+     *
+     * @param id   广告id
+     * @param status 广告状态 0:未启用 1:启用
+     * @return 操作结果
+     */
+    @PutMapping("/updateStatus")
+    public BaseResult updateStatus(Long id, Integer status) {
+        categoryService.updateStatus(id,status);
+        return BaseResult.ok();
+    }
+
+
+    /**
+     * 根据Id查询广告
+     *
+     * @param id 广告id
+     * @return 查询结果
+     */
+    @GetMapping("/findById")
+    public BaseResult<Category> findById(Long id) {
+        Category category = categoryService.findById(id);
+        return BaseResult.ok(category);
+    }
+
+
+    /**
+     * 删除广告
+     *
+     * @param ids 广告id集合
+     * @return 操作结果
+     */
+    @DeleteMapping("/delete")
+    public BaseResult delete(Long[] ids) {
+        categoryService.delete(ids);
+        return BaseResult.ok();
+    }
+}
+```
+
+
+
+测试OK。
+
+
+
+### 32， 广告用户API模块
+
+![1718114483750](./assets/1718114483750.png)
+
+前台用户在访问首页的时候是可以查看广告的，但前台项目无法使用后台项目的接口，因为后台项目接口需要管理员登录才能使用，且前台项目访问量大，我们需要专门编写一个api模块方便前台用户访问。
+
+
+
+创建名为`shoping_category_customer_api`的SpringBoot工程，添加相关依赖。
+
+![1718114628534](./assets/1718114628534.png)
+
+pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ityls</groupId>
+        <artifactId>shoping</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.ityls</groupId>
+    <artifactId>shoping_category_customer_api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>shoping_category_customer_api</name>
+    <description>shoping_category_customer_api</description>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ityls</groupId>
+            <artifactId>shoping_common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- dubbo -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-registry-nacos</artifactId>
+        </dependency>
+        <!-- nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+
+
+在Nacos配置中心编写配置文件`shoping_category_customer_api-dev.yaml`
+
+```yml
+# 端口号
+server:
+  port: 8002
+
+
+# 日志格式
+logging:
+  pattern:
+   console: '%d{HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
+
+
+# Nacos
+spring:
+  application:
+   name: shoping_category_customer_api
+  cloud:
+   nacos:
+    discovery:
+     server-addr: 103.38.81.223:8848
+
+
+dubbo:
+  application:
+  #项目名字
+   name: shoping_category_customer_api
+  protocol:
+   name: dubbo
+   port: -1
+  registry:
+  # 注册地址
+   address: nacos://103.38.81.223:8848
+```
+
+
+
+编写配置文件`bootstrap.yml`，连接配置中心
+
+![1718114791281](./assets/1718114791281.png)
+
+```yml
+spring:
+  profiles:
+    # 环境
+    active: dev
+  cloud:
+    nacos:
+      # 注册中心
+      config:
+        server-addr: 103.38.81.223:8848 #注册中心地址
+        namespace: 77ddc55c-22b2-4a35-b5a2-58ffb9589f85 #命名空间
+        file-extension: yaml #文件名后缀
+        prefix: shoping_category_customer_api #文件名
+```
+
+
+
+编写启动类，忽略数据源自动配置，向Nacos注册服务
+
+![1718114868427](./assets/1718114868427.png)
+
+```java
+@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
+@EnableDiscoveryClient //向注册中心注册该服务
+@RefreshScope // 配置动态刷新
+public class ShopingCategoryCustomerApiApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ShopingCategoryCustomerApiApplication.class, args);
+    }
+}
+```
+
+
+
+编写前台用户广告控制器
+
+![1718115105007](./assets/1718115105007.png)
+
+
+
+测试：
+
+![1718115216031](./assets/1718115216031.png)
 
 
 
