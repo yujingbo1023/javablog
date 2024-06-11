@@ -2,11 +2,11 @@
 title: mysql(新版)
 date: 2028-12-15
 sticky: 1
-sidebar: 'auto'
+sidebar: 'javabase'
 tags:
- - node
+ - javabase
 categories:
- - node
+ - javabase
 ---
 
 
