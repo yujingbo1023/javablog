@@ -1,5 +1,5 @@
 ---
-title: lombok(新版)
+title: lombok
 date: 2028-12-15
 sticky: 1
 sidebar: 'lombok'
