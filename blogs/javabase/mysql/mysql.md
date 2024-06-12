@@ -1810,10 +1810,10 @@ where salary not BETWEEN 5000 and 12000;
 显示所有在部门 20 和 50 中的雇员的名字和部门号，并以名字按字母顺序排序。
 
 ```sql
-LAST_NAME,DEPARTMENT_ID
+SELECT last_name, department_id
 FROM employees
-WHERE DEPARTMENT_ID IN (20,50)
-ORDER BY LAST_NAME asc;
+WHERE department_id IN (20,50)
+ORDER BY last_name ASC;
 ```
 
 
@@ -1882,6 +1882,12 @@ SALARY not IN(2500,3500,7000)
 
 
 ### 8，sql中的函数
+
+把函数当成别人封装好的功能块，你去调用这个函数，就可以实现某个功能。参考：
+
+https://blog.csdn.net/weixin_55076626/article/details/127341913
+
+
 
 ![1718064492868](./assets/1718064492868.png)
 
@@ -2104,10 +2110,10 @@ MySQL字符串日期格式为：‘YYYY-MM-DD HH:MI:SS’ 或 ‘YYYY/MM/DD HH:M
 
 
 
-向 employees 表中添加一条数据，雇员ID：400，名字：oldlu ，email：mailto:oldlu@qq.com ，入职时间：2049 年 5 月 5 日，工作部门：‘IT_PROG’。
+向 employees 表中添加一条数据，雇员ID：400，名字：malu，email：123@qq.com ，入职时间：2049 年 5 月 5 日，工作部门：‘IT_PROG’。
 
 ```sql
-insert into employees(EMPLOYEE_ID,last_name,email,HIRE_DATE,JOB_ID) values(400,'oldlu','oldlu@qq.com ', STR_TO_DATE('2049 年 5 月 5 日','%Y 年%m 月%d 日'),'IT_PROG');
+insert into employees(EMPLOYEE_ID,last_name,email,HIRE_DATE,JOB_ID) values(400,'malu','123@qq.com ', STR_TO_DATE('2049 年 5 月 5 日','%Y 年%m 月%d 日'),'IT_PROG');
 ```
 
 
@@ -2280,7 +2286,133 @@ FROM employees;
 
 
 
-### 9，多表查询
+### 9，多表查询（非常重要）
+
+
+
+补充一个概念：外键约束
+
+
+
+外键用来让两个表的数据之间建立链接，保证数据的一致性和完整性。如何理解上面的概念呢？如下图有两张表，员工表和部门表：
+
+![1718161419162](./assets/1718161419162.png)
+
+员工表中的dep_id字段是部门表的id字段关联，也就是说1号学生张三属于1号部门研发部的员工。现在我要删除1号部门，就会出现错误的数据（员工表中属于1号部门的数据）。而我们上面说的两张表的关系只是我们认为它们有关系，此时需要通过外键让这两张表产生数据库层面的关系，这样你要删除部门表中的1号部门的数据将无法删除。
+
+
+
+添加外键约束语法：
+
+```sql
+-- 创建表时添加外键约束
+CREATE TABLE 表名(
+   列名 数据类型,
+   …
+   [CONSTRAINT] [外键名称] FOREIGN KEY(外键列名) REFERENCES 主表(主表列名) 
+); 
+
+-- 建完表后添加外键约束
+ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);
+```
+
+
+
+删除外键约束：
+
+```sql
+ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;
+```
+
+
+
+据上述语法创建员工表和部门表，并添加上外键约束：
+
+```sql
+-- 删除表
+DROP TABLE IF EXISTS emp;
+DROP TABLE IF EXISTS dept;
+
+-- 部门表
+CREATE TABLE dept(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	dep_name VARCHAR(20),
+	addr VARCHAR(20)
+);
+-- 员工表 
+CREATE TABLE emp(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(20),
+	age INT,
+	dep_id INT,
+
+	-- 添加外键 dep_id,关联 dept 表的id主键
+	CONSTRAINT fk_emp_dept FOREIGN KEY(dep_id) REFERENCES dept(id)	
+);
+```
+
+
+
+创建好了两张表：
+
+![1718162106935](./assets/1718162106935.png)
+
+结构：
+
+![1718162118729](./assets/1718162118729.png)
+
+
+
+添加数据：
+
+```sql
+-- 添加 2 个部门
+insert into dept(dep_name,addr) values
+('研发部','广州'),('销售部', '深圳');
+
+-- 添加员工,dep_id 表示员工所在的部门
+INSERT INTO emp (NAME, age, dep_id) VALUES 
+('张三', 20, 1),
+('李四', 20, 1),
+('王五', 20, 1),
+('赵六', 20, 2),
+('孙七', 22, 2),
+('周八', 18, 2);
+```
+
+![1718162195249](./assets/1718162195249.png)
+
+
+
+此时删除 `研发部` 这条数据，会发现无法删除。
+
+![1718162330776](./assets/1718162330776.png)
+
+
+
+删除外键：
+
+```sql
+alter table emp drop FOREIGN key fk_emp_dept;
+```
+
+![1718162435775](./assets/1718162435775.png)
+
+
+
+此时，就可以删除研发部了。
+
+
+
+重新添加外键：
+
+```sql
+alter table emp add CONSTRAINT fk_emp_dept FOREIGN key(dep_id) REFERENCES dept(id);
+```
+
+
+
+
 
 #### a）多表查询介绍
 
@@ -2407,6 +2539,710 @@ AND d.location_id = l.location_id;
 
 
 
+#### c）非等值连接
+
+![1718151601118](./assets/1718151601118.png)
+
+**非等值连接**
+
+一个非等值连接是一种不同于等值操作的连接条件。 EMPLOYEES 表 和JOB_GRADES A 表之间的关系有一个非等值连接例子。在两个表之间的关系是EMPLOYEES 表中的 SALARY 列必须是 JOB_GRADES 表的 LOWEST_SALARY 和HIGHEST_SALARY 列之间的值。使用不同于等于 (=) 的操作符获得关系。
+
+![1718151675785](./assets/1718151675785.png)
+
+
+
+创建 job_grades 表，包含 lowest_sal ，highest_sal ，grade_level。
+
+```sql
+create table job_grades(lowest_sal int,highest_sal int ,grade_level varchar(30));
+```
+
+
+
+插入数据 1000 2999 A 2000 4999 B 5000 7999 C 8000 12000 D
+
+```sql
+insert into job_grades values(1000,2999,'A');
+insert into job_grades values(2000,4999,'B');
+insert into job_grades values(5000,7999,'C');
+insert into job_grades values(8000,12000,'D');
+```
+
+
+
+查询所有雇员的薪水级别。
+
+```sql
+select e.last_name,j.grade_level from employees e ,job_grades j where e.salary between j.lowest_sal and j.highest_sal;
+```
+
+
+
+#### d）自连接
+
+![1718151895540](./assets/1718151895540.png)
+
+
+
+**自连接**
+
+连接一个表到它自己。有时需要连接一个表到它自己。为了找到每个雇员的经理的名字，则需要连接EMPLOYEES 表到它自己，或执行一个自连接。
+
+![1718151933662](./assets/1718151933662.png)
+
+
+
+图片中的例子连接 EMPLOYEES 表到它自己。为了在 FROM 子句中模拟两个表，对于相同的表 EMPLOYEES，用两个别名，分别为 worker 和 manager。在该例中，WHERE 子句包含的连接意味着 “一个工人的经理号匹配该经理的雇员号”。
+
+
+
+查询每个雇员的经理的名字以及雇员的名字，雇员名字列别名为W，经理列别名为M。
+
+```sql
+SELECT
+worker.LAST_NAME W,manager.LAST_NAME M
+from employees worker,employees manager
+where worker.MANAGER_ID = manager.EMPLOYEE_ID;
+```
+
+
+
+查询Fox的经理是谁？显示他的名字。
+
+```sql
+SELECT
+worker.LAST_NAME,manager.LAST_NAME
+from employees worker,employees manager
+where worker.MANAGER_ID = manager.EMPLOYEE_ID
+AND
+worker.LAST_NAME = 'Fox';
+```
+
+
+
+#### e）交叉连接
+
+![1718152113415](./assets/1718152113415.png)
+
+
+
+使用交叉连接查询 employees 表与 departments 表。
+
+```sql
+select * from employees cross join departments;
+```
+
+
+
+#### f）自然连接
+
+![1718152188045](./assets/1718152188045.png)
+
+
+
+**自然连接**
+
+连接只能发生在两个表中有相同名字和数据类型的列上。如果列有相同的名字，但数据类型不同，NATURAL JOIN 语法会引起错误。
+
+
+
+**自然连接查询**
+
+![1718152297642](./assets/1718152297642.png)
+
+在图片例子中，LOCATIONS 表被用 LOCATION_ID 列连接到 DEPARTMENT表，这是在两个表中唯一名字相同的列。如果存在其它的同名同类型的列，自然连接会使用等值连接的方式连接他们，连接条件的关系为and。
+
+
+
+自然连接也可以被写为等值连接：
+
+```sql
+SELECT d.department_id, d.department_name,
+d.location_id , l.city
+FROM
+departments d , locations l
+WHERE
+d.location_id = l.location_id;
+```
+
+
+
+使用自然连接查询所有有部门的雇员的名字以及部门名称。
+
+```sql
+select e.last_name,d.department_name from employees e natural join departments d;
+```
+
+
+
+#### g）内连接
+
+![1718152473980](./assets/1718152473980.png)
+
+**语法：**
+
+- SELECT 查询列表;
+- FROM 表1 别名;
+- INNER JOIN 连接表(INNER关键字可省略);
+- ON 连接条件;
+
+
+
+**用ON子句指定连接条件**
+
+![1718152565913](./assets/1718152565913.png)
+
+
+
+**用ON子句指定更多的连接条件**
+
+![1718152627378](./assets/1718152627378.png)
+
+
+
+
+
+查询雇员名字为 Fox 的雇员 ID ，薪水与部门名称。
+
+```sql
+select e.employee_id,e.salary,d.department_name from employees e inner JOIN departments d on e.department_id = d.department_id where e.last_name = 'Fox';
+```
+
+
+
+#### h）左外连接与右外连接
+
+![1718152745343](./assets/1718152745343.png)
+
+**孤儿数据(Orphan Data)**
+
+孤儿数据是指被连接的列的值为空的数据。
+
+
+
+**左外连接(LEFT OUTER JOIN)：**
+
+![1718152892751](./assets/1718152892751.png)
+
+
+
+![1718152918343](./assets/1718152918343.png)
+
+
+
+**左外连接**
+
+左边的表 (EMPLOYEES) 中即使没有与 DEPARTMENTS 表中匹配的行，该查询也会取回 EMPLOYEES 表中所有的行。
+
+
+
+查询所有雇员的名字以及他们的部门名称，包含那些没有部门的雇员。
+
+```sql
+select e.last_name,d.department_name from employees e LEFT OUTER JOIN departments d on e.dept_id = d.department_id;
+```
+
+
+
+**右外连接(RIGTH OUTER JOIN)**
+
+![1718153057796](./assets/1718153057796.png)
+
+![1718153094846](./assets/1718153094846.png)
+
+
+
+
+
+**右外连接**
+
+右边的表 (DEPARTMENTS ) 中即使没有与 EMPLOYEES 表中匹配的行，该查询也会取回 DEPARTMENTS 表中所有的行。
+
+
+
+查询所有雇员的名字以及他们的部门名称，包含那些没有雇员的部门。
+
+```sql
+select  e.last_name,d.department_name from  employees  e RIGHT OUTER JOIN  departments  d on e.DEPARTMENT_ID = d.department_id;
+```
+
+
+
+#### i）全外连接
+
+![1718166661429](./assets/1718166661429.png)
+
+
+
+
+
+注意： MySQL 中不支持 FULL OUTER JOIN 连接
+
+可以使用 union 实现全完连接。
+
+- UNION: 可以将两个查询结果集合并，返回的行都是唯一的，如同对整个结果集合使用了 DISTINCT。
+- UNION ALL: 只是简单的将两个结果合并后就返回。这样，如果返回的两个结果集中有重复的数据， 那么返回的结果集就会包含重复的数据了。
+
+
+
+**语法结构**
+
+```sql
+(SELECT  投影列 FROM 表名 LEFT OUTER JOIN  表名 ON  连接条件) 
+UNION 
+(SELECT  投影列 FROM 表名 RIGHT OUTER JOIN  表名 ON  连接条件)
+```
+
+
+
+查询所有雇员的名字以及他们的部门名称，包含那些没有雇员的部门以及没有部门的雇 员。
+
+```sql
+(select e.last_name,d.department_name from employees e LEFT OUTER JOIN departments d on  e.department_id =  d.department_id) 
+UNION 
+(select  e1.last_name,d1.department_name from employees e1 RIGHT OUTER JOIN departments d1 on d1.department_id = e1.department_id)
+```
+
+
+
+#### j）连接查询实操
+
+写一个查询显示所有雇员的 last name、department id、and department name。
+
+```sql
+SELECT e.last_name, e.department_id, d.department_name
+FROM employees e,departments d
+WHERE e.department_id = d.department_id;
+
+SELECT e.last_name, e.department_id, d.department_name
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.department_id;
+```
+
+
+
+创建一个在部门 80 中的所有工作岗位的唯一列表，在输出中包括部门的地点
+
+```sql
+SELECT e.job_id, d.location_id
+FROM employees e,departments d
+WHERE e.department_id = d.department_id
+AND e.department_id = 80;
+
+SELECT e.job_id, d.location_id
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.department_id
+WHERE e.department_id = 80;
+```
+
+
+
+写一个查询显示所有有佣金的雇员的 last name、department name、location ID 和城市
+
+```sql
+SELECT e.last_name, d.department_name, d.location_id, l.city
+FROM employees e,departments d, locations l
+WHERE e.department_id = d.department_id
+AND d.location_id = l.location_id
+AND e.commission_pct IS NOT NULL;
+
+SELECT e.last_name, d.department_name, d.location_id, l.city
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.department_id
+INNER JOIN locations l
+ON d.location_id = l.location_id
+WHERE e.commission_pct IS NOT NULL;
+```
+
+
+
+显示所有在其 last names 中有一个小写 *a* 的雇员的 last name 和 departmentname。
+
+```sql
+SELECT e.last_name, d.department_name
+FROM employees e,departments d
+WHERE e.department_id = d.department_id
+AND e.last_name LIKE '%a%';
+
+
+SELECT e.last_name, d.department_name
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.department_id
+WHERE e.last_name LIKE '%a%';
+```
+
+
+
+用sql99的内连接写一个查询显示那些工作在 Toronto 的所有雇员的 last name、job、department number 和 department name。
+
+```sql
+SELECT e.last_name, e.job_id, e.department_id, d.department_name
+FROM employees e,departments d,locations l
+WHERE e.department_id = d.department_id
+AND d.location_id = l.location_id
+AND l.city = 'Toronto';
+
+
+SELECT e.last_name, e.job_id, e.department_id, d.department_name
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.department_id
+INNER JOIN locations l
+ON d.location_id = l.location_id
+WHERE l.city = 'Toronto';
+```
+
+
+
+显示雇员的 last name 和 employee number 连同他们的经理的 last name 和manager number。列标签分别为 Employee、Emp#、Manager 和 Mgr#
+
+```sql
+SELECT w.last_name '员工名字', w.employee_id '员工Id', m.last_name '经理名字', m.employee_id '经理id'
+FROM employees w
+INNER JOIN employees m
+ON w.manager_id = m.employee_id;
+```
+
+
+
+### 10，聚合函数
+
+#### a）什么是聚合函数
+
+![1718166934751](./assets/1718166934751.png)
+
+
+
+**聚合函数**
+
+聚合函数也称之为多行函数，组函数或分组函数。聚合函数不象单行函数，聚合函数对行的分组进行操作，对每组给出一个结果。如果在查询中没有指定分组，那么聚合函数则将查询到的结果集视为一组。
+
+
+
+**聚合函数类型**
+
+![1718167036728](./assets/1718167036728.png)
+
+
+
+
+
+聚合函数说明：
+
+| 函数名            | 描述                                                   | 实例                                                         |
+| ----------------- | ------------------------------------------------------ | ------------------------------------------------------------ |
+| AVG(expression)   | 返回一个表达式的平均值，expression 是一个字段          | 返回 Products 表中Price 字段的平均值：`SELECT AVG(Price) AS AveragePrice FROM Products;` |
+| COUNT(expression) | 返回查询的记录总数，expression 参数是一个字段或者 * 号 | 返回 Products 表中 products 字段总共有多少条记录：`SELECT COUNT(ProductID) AS NumberOfProducts FROM Products;` |
+| MAX(expression)   | 返回字段 expression 中的最大值                         | 返回数据表 Products 中字段 Price 的最大值：`SELECT MAX(Price) AS LargestPrice FROM Products;` |
+| MIN(expression)   | 返回字段 expression 中的最小值                         | 返回数据表 Products 中字段 Price 的最小值：`SELECT MIN(Price) AS MinPrice FROM Products;` |
+| SUM(expression)   | 返回指定字段的总和                                     | 计算 OrderDetails 表中字段 Quantity 的总和：`SELECT SUM(Quantity) AS TotalItemsOrdered FROM OrderDetails;` |
+
+
+
+**聚合函数使用方式**
+
+![1718167092595](./assets/1718167092595.png)
+
+
+
+**使用聚合函数的原则**
+
+- DISTINCT 使得函数只考虑不重复的值；
+- 所有聚合函数忽略空值。为了用一个值代替空值，用 IFNULL 或 COALESCE 函数。
+
+
+
+
+
+#### b）avg函数和sum函数
+
+**AVG(arg)函数：**对分组数据做平均值运算。arg:参数类型只能是数字类型。
+
+
+
+**SUM(arg)函数：**对分组数据求和。arg:参数类型只能是数字类型。
+
+
+
+计算员工表中工作编号含有REP的工作岗位的平均薪水与薪水总和。
+
+```sql
+SELECT AVG(salary),SUM(salary)
+FROM employees
+WHERE job_id LIKE '%REP%';
+```
+
+
+
+#### c）min函数和max函数
+
+**MIN(arg)函数：**求分组中最小数据。arg:参数类型可以是字符、数字、 日期。
+
+
+
+**MAX(arg)函数：**求分组中最大数据。arg:参数类型可以是字符、数字、 日期。
+
+
+
+查询员工表中入职时间最短与最长的员工，并显示他们的入职时间。
+
+```sql
+SELECT MIN(hire_date), MAX(hire_date) FROM employees;
+```
+
+
+
+#### d）count函数
+
+
+
+返回分组中的总行数。COUNT 函数有三种格式：
+
+- COUNT(*)：返回表中满足 SELECT 语句的所有列的行数，包括重复行，包括有空值列
+
+  的行。
+
+- COUNT(expr)：返回在列中的由 *expr* 指定的非空值的数。
+
+- COUNT(DISTINCT expr)：返回在列中的由 *expr* 指定的唯一的非空值的数。
+
+
+
+**使用 DISTINCT 关键字**
+
+- COUNT(DISTINCT expr) 返回对于表达式 *expr* 非空并且值不相同的行数
+- 显示 EMPLOYEES 表中不同部门数的值
+
+
+
+显示员工表中部门编号是80中有佣金的雇员人数。
+
+```sql
+SELECT COUNT(commission_pct) FROM employees WHERE department_id = 80;
+```
+
+
+
+显示员工表中的部门数。
+
+```sql
+SELECT COUNT(DISTINCT department_id) FROM employees;
+```
+
+
+
+在组函数中使用 IFNULL 函数。
+
+```sql
+SELECT AVG(IFNULL(commission_pct, 0)) FROM employees;
+```
+
+
+
+#### e）创建分组数据
+
+![1718167711829](./assets/1718167711829.png)
+
+**创建数据组**
+
+在没有进行数据分组之前，所有聚合函数是将结果集作为一个大的信息组进行处理。但是，有时，则需要将表的信息划分为较小的组，可以用 GROUP BY 子句实现。
+
+
+
+**GROUP BY 子句语法**
+
+![1718167792275](./assets/1718167792275.png)
+
+
+
+**原则**
+
+- 使用 WHERE 子句，可以在划分行成组以前过滤行。
+- 如果有WHERE子句，那么GROUP BY 子句必须在WHERE的子句后面。
+- 在 GROUP BY 子句中必须包含列。
+
+
+
+**GROUP BY 子句**
+
+![1718167847398](./assets/1718167847398.png)
+
+
+
+下面是包含一个 GROUP BY 子句 SELECT 语句的求值过程：
+
+- SELECT 子句指定要返回的列：
+
+- 在 EMPLOYEES 表中的部门号
+
+  − GROUP BY 子句中指定分组的所有薪水的平均值
+
+  − FROM 子句指定数据库必须访问的表：EMPLOYEES 表。
+
+- WHERE 子句指定被返回的行。因为无 WHERE 子句默认情况下所有行被返回。
+
+- GROUP BY 子句指定行怎样被分组。行用部门号分组，所以 AVG 函数被应用于薪水列，以计算每个部门的平均薪水。
+
+
+
+计算每个部门的员工总数。
+
+```sql
+SELECT DEPARTMENT_ID, COUNT(*) FROM employees GROUP BY DEPARTMENT_ID;
+```
+
+
+
+#### f）在多列上使用分组
+
+![1718168022894](./assets/1718168022894.png)
+
+**在组中分组**
+
+可以列出多个 GROUP BY 列返回组和子组的摘要结果。可以用 GROUP BY子句中的列的顺序确定结果的默认排序顺序。下面是图片中的 SELECT 语句中包含一个 GROUP BY 子句时的求值过程：
+
+- SELECT 子句指定被返回的列：
+
+  − 部门号在 EMPLOYEES 表中
+
+  − Job ID 在 EMPLOYEES 表中
+
+  − 在 GROUP BY 子句中指定的组中所有薪水的合计
+
+- FROM 子句指定数据库必须访问的表：EMPLOYEES 表。
+
+- GROUP BY 子句指定你怎样分组行：
+
+  − 首先，用部门号分组行。
+
+  − 第二，在部门号的分组中再用 job ID 分组行。
+
+如此 SUM 函数被用于每个部门号分组中的所有 job ID 的 salary 列。
+
+
+
+计算每个部门的不同工作岗位的员工总数。
+
+```sql
+SELECT e.DEPARTMENT_ID, e.JOB_ID,COUNT(*)FROM employees e
+GROUP BY e.DEPARTMENT_ID,e.JOB_ID;
+```
+
+
+
+#### g）约束分组结果
+
+![1718168250169](./assets/1718168250169.png)
+
+
+
+**HAVING** **子句**
+
+HAVING 子句是对查询出结果集分组后的结果进行过滤。
+
+
+
+**约束分组结果**
+
+用 WHERE 子句约束选择的行，用 HAVING 子句约束组。为了找到每个部门中的最高薪水，而且只显示最高薪水大于 $10,000 的那些部门，可以象下面这样做：
+
+1. 用部门号分组，在每个部门中找最大薪水。
+2. 返回那些有最高薪水大于 $10,000 的雇员的部门
+
+```sql
+SELECT department_id, MAX(salary) FROM employees GROUP BY department_id HAVING MAX(salary)>10000 ;
+```
+
+
+
+**HAVING子句语法**
+
+![1718168379921](./assets/1718168379921.png)
+
+显示那些合计薪水超过 13,000 的每个工作岗位的合计薪水。排除那些JOB_ID中含有REP的工作岗位，并且用合计月薪排序列表。
+
+```sql
+SELECT job_id, SUM(salary) PAYROLL FROM employees WHERE job_id NOT LIKE '%REP%'GROUP BY job_id HAVING SUM(salary) > 13000 ORDER BY SUM(salary);
+```
+
+
+
+#### h）聚合函数与数据分组练习
+
+显示所有雇员的最高、最低、合计和平均薪水，列标签分别为：Max、Min、Sum 和 Avg。四舍五入结果为最近的整数。
+
+```sql
+SELECT
+ROUND(MAX(e.SALARY)) max,ROUND(MIN(e.SALARY)) min,ROUND(SUM(e.SALARY)) sum ,
+ROUND(AVG(e.SALARY)) avg
+FROM employees e;
+```
+
+
+
+写一个查询显示每一工作岗位的人数。
+
+```sql
+SELECT
+e.JOB_ID,COUNT(*)
+FROM employees e
+GROUP BY e.JOB_ID;
+```
+
+
+
+确定经理人数，不需要列出他们，列标签是 Number of Managers。提示：用MANAGER_ID列决定经理号。
+
+```sql
+SELECT
+COUNT(DISTINCT e.MANAGER_ID)
+FROM employees e;
+```
+
+
+
+写一个查询显示最高和最低薪水之间的差。
+
+```sql
+SELECT
+MAX(e.SALARY) - MIN(e.SALARY)
+FROM employees e;
+```
+
+
+
+显示经理号和经理付给雇员的最低薪水。排除那些经理未知的人。排除最低薪水小于等于 $6,000 的组。按薪水降序排序输出。
+
+```sql
+SELECT e.MANAGER_ID,MIN(e.SALARY)
+FROM employees e
+WHERE e.MANAGER_ID is not null
+GROUP BY e.MANAGER_ID 
+HAVING min(e.SALARY) > 6000
+ORDER BY min(e.SALARY) desc;
+```
+
+
+
+写一个查询显示每个部门的名字、地点、人数和部门中所有雇员的平均薪水。四舍五入薪水到两位小数。
+
+```sql
+SELECT 
+d.DEPARTMENT_NAME,d.LOCATION_ID,COUNT(*),ROUND(AVG(e.SALARY))
+FROM employees e,departments d
+where e.DEPARTMENT_ID = d.DEPARTMENT_ID
+GROUP BY d.DEPARTMENT_NAME,d.LOCATION_ID
+```
+
+
+
+
+
+### 11，子查询
 
 
 
@@ -2418,42 +3254,84 @@ AND d.location_id = l.location_id;
 
 
 
+班级表：classes
+
+| clsid | clsname |
+| ----- | ------- |
+| 1     | 超越班  |
+| 2     | 火箭班  |
+| 3     | 先驱班  |
 
 
 
+学生表：student
+
+| sid  | sname  | sgender | sbrithday  | clsid |
+| ---- | ------ | ------- | ---------- | ----- |
+| 1    | 张三丰 | 男      | 1890-01-01 | 1     |
+| 2    | 张无忌 | 男      | 1992-12-12 | 1     |
+| 3    | 周芷若 | 女      | 1992-10-10 | 2     |
+| 4    | 赵敏   | 女      | 1992-07-07 | 2     |
+| 5    | 蛛儿   | 女      | 1994-06-06 | 3     |
+| 6    | 韦一笑 | 男      | 1972-08-19 | 3     |
 
 
 
+老师表：teachers
+
+| tid  | tname   |
+| ---- | ------- |
+| 1    | Malu    |
+| 2    | Admin   |
+| 3    | Wangcai |
 
 
 
+课程表：course
+
+| cid  | cname  | tid  |
+| ---- | ------ | ---- |
+| 1    | Java   | 1    |
+| 2    | Python | 2    |
+| 3    | 前端   | 3    |
 
 
 
+成绩表score
+
+| sid  | student_id | course_id | Number |
+| ---- | ---------- | --------- | ------ |
+| 1    | 1          | 1         | 90     |
+| 2    | 1          | 2         | 80     |
+| 3    | 1          | 3         | 60     |
+| 4    | 2          | 1         | 100    |
+| 5    | 2          | 3         | 100    |
+| 6    | 3          | 2         | 100    |
+| 7    | 4          | 3         | 59     |
+| 8    | 5          | 1         | 40     |
+| 9    | 5          | 2         | 60     |
+| 10   | 6          | 2         | 60     |
+| 11   | 6          | 3         | 80     |
 
 
 
+练习：
 
+- 创建表classes，clsid设置为主键并自增
 
+- 创建表student，sid设置为主键并自增，clsid设置为外键，参照表为classes表，参照列为clsid，外键名为pk_cls
 
+- 创建表course, 为course添加tid的外键约束，参照表为teacher表，外键名为pk_tea ， cid为主键并自增
 
+- 创建表teacher，tid为主键并自增
 
+- 创建表score，sid为主键并自增，student_id为外键，参照表student，参照列为sid，外键名自定义，coursed_id为外键，参照表为course，参照列为cid，外键名自定义。
 
+- 学生表添加三条数据：
 
+  ![1718180634297](./assets/1718180634297.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 
 
 
 
