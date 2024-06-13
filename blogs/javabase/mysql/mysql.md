@@ -2917,7 +2917,7 @@ ON w.manager_id = m.employee_id;
 
 
 
-**聚合函数**
+**聚合函数:**
 
 聚合函数也称之为多行函数，组函数或分组函数。聚合函数不象单行函数，聚合函数对行的分组进行操作，对每组给出一个结果。如果在查询中没有指定分组，那么聚合函数则将查询到的结果集视为一组。
 
@@ -3176,9 +3176,7 @@ SELECT job_id, SUM(salary) PAYROLL FROM employees WHERE job_id NOT LIKE '%REP%'G
 显示所有雇员的最高、最低、合计和平均薪水，列标签分别为：Max、Min、Sum 和 Avg。四舍五入结果为最近的整数。
 
 ```sql
-SELECT
-ROUND(MAX(e.SALARY)) max,ROUND(MIN(e.SALARY)) min,ROUND(SUM(e.SALARY)) sum ,
-ROUND(AVG(e.SALARY)) avg
+SELECT ROUND(MAX(salary)) `max`, ROUND(MIN(salary)) `min`,ROUND(SUM(salary)) `sum`, ROUND(AVG(salary)) `avg`
 FROM employees e;
 ```
 
@@ -3198,8 +3196,7 @@ GROUP BY e.JOB_ID;
 确定经理人数，不需要列出他们，列标签是 Number of Managers。提示：用MANAGER_ID列决定经理号。
 
 ```sql
-SELECT
-COUNT(DISTINCT e.MANAGER_ID)
+SELECT COUNT(DISTINCT e.manager_id) `Number of Managers`
 FROM employees e;
 ```
 
@@ -3246,11 +3243,436 @@ GROUP BY d.DEPARTMENT_NAME,d.LOCATION_ID
 
 
 
+#### a）什么是子查询
+
+**用子查询解决问题：**
+
+假如要写一个查询来找出挣钱比 Abel 的薪水还多的人。为了解决这个问题，需要两个查询：一个找出 Abel 的收入，第二个查询找出收入高于 Abel 的人。可以用组合两个查询的方法解决这个问题。内查询或子查询返回一个值给外查询或主查询。使用一个子查询相当于执行两个连续查询并且用第一个查询的结果作为第二个查询的搜索值。
+
+
+
+**子查询语法：**
+
+![1718239086694](./assets/1718239086694.png)
+
+
+
+**子查询：**
+
+子查询是一个 SELECT 语句，它是嵌在另一个 SELECT 语句中的子句。使用子查询可以用简单的语句构建功能强大的语句。
+
+可以将子查询放在许多的 SQL 子句中，包括：
+
+- WHERE 子句
+- HAVING 子句
+- FROM 子句
+
+
+
+**使用子查询：**
+
+![1718239131111](./assets/1718239131111.png)
 
 
 
 
 
+
+
+**使用子查询的原则：**
+
+- 子查询放在圆括号中。
+- 将子查询放在比较条件的右边。
+- 在单行子查询中用单行运算符，在多行子查询中用多行运算符。
+
+
+
+**子查询类型：**
+
+![1718239239091](./assets/1718239239091.png)
+
+
+
+
+
+查询与Fox同一部门的同事，并显示他们的名字与部门ID。
+
+```sql
+select e.LAST_NAME,e.DEPARTMENT_ID FROM employees e 
+where e.DEPARTMENT_ID = 
+(select e1.DEPARTMENT_ID from employees e1 where e1.last_name = 'Fox');
+```
+
+
+
+#### b）单行子查询
+
+**单行子查询：**
+
+![1718239369430](./assets/1718239369430.png)
+
+
+
+**单行子查询：**
+
+单行子查询是从内查询返回一行的查询。在该子查询类型中用一个单行操作符。
+
+
+
+查询 Fox的同事，但是不包含他自己。
+
+```sql
+SELECT e.last_name, e.department_id 
+FROM employees e 
+WHERE e.department_id = (SELECT e1.department_id FROM employees e1 WHERE e1.last_name='Fox')
+AND e.last_name <> 'Fox';
+```
+
+
+
+#### c）多行子查询
+
+多行子查询：
+
+![1718239687933](./assets/1718239687933.png)
+
+
+
+
+
+**多行子查询：**
+
+子查询返回多行被称为多行子查询。对多行子查询要使用多行运算符而不是单行运算符。
+
+
+
+**使用ANY运算符：**
+
+![1718239752971](./assets/1718239752971.png)
+
+
+
+**ANY 运算符：**ANY 运算符比较一个值与一个子查询返回的任意一个值。
+
+- < ANY 意思是小于最大值。
+- \> ANY 意思是大于最小值。
+- = ANY 等同于 IN。
+
+
+
+**使用ALL运算符：**
+
+![1718239841545](./assets/1718239841545.png)
+
+
+
+ALL 运算符比较一个值与子查询返回的全部值。
+
+- < ALL 意思是小于最小值。
+- \> ALL 意思是大于最大值，
+
+NOT 运算符可以与 IN运算符一起使用。
+
+
+
+
+
+**子查询中的空值：**
+
+![1718239893682](./assets/1718239893682.png)
+
+内查询返回的值含有空值，并因此整个查询无返回行，原因是用大于、小于或不等于比较Null值，都返回null。所以，只要空值可能是子查询结果集的一部分，就不能用 NOT IN 运算符。NOT IN 运算符相当于 <> ALL。
+
+注意，空值作为一个子查询结果集的一部分，如果使用 IN 操作符的话，不是一个问题。IN 操作符相当于 =ANY。
+
+```sql
+SELECT emp.last_name FROM employees emp WHERE emp.employee_id IN (SELECT mgr.manager_id FROM employees mgr);
+```
+
+
+
+查找各部门收入为部门最低的那些雇员。显示他们的名字，薪水以及部门 ID。
+
+```sql
+SELECT  em.last_name,em.salary,em.department_id 
+FROM  employees  em 
+WHERE  em.salary 
+	IN(SELECT MIN(e.salary) FROM employees e GROUP BY e.department_id) 
+GROUP BY em.department_id;
+```
+
+
+
+#### d）实操
+
+写一个查询显示与 Zlotkey 在同一部门的雇员的 last name 和 hire date，结果中不包括 Zlotkey。
+
+```sql
+SELECT
+e1.LAST_NAME,e1.HIRE_DATE
+FROM employees e1
+where e1.DEPARTMENT_ID = 
+(select e.DEPARTMENT_ID FROM employees e where e.LAST_NAME ='Zlotkey')
+AND e1.LAST_NAME <> 'Zlotkey';
+```
+
+创建一个查询显示所有其薪水高于平均薪水的雇员的雇员号和名字。按薪水的升序排序。
+
+```sql
+SELECT
+e1.EMPLOYEE_ID,e1.LAST_NAME
+FROM employees e1
+WHERE e1.SALARY >
+(select AVG(e.SALARY) from employees e)
+ORDER BY e1.SALARY;
+```
+
+写一个查询显示所有工作在有任一雇员的名字中包含一个 *u* 的部门的雇员的雇员号和名字。
+
+```sql
+SELECT
+e1.EMPLOYEE_ID,e1.LAST_NAME 
+FROM employees e1
+WHERE e1.DEPARTMENT_ID IN
+(SELECT e.DEPARTMENT_ID FROM employees e WHERE e.LAST_NAME like '%u%')
+```
+
+显示所有部门地点号 (department location ID ) 是 1700 的雇员的 last name、department number 和 job ID。
+
+```sql
+SELECT
+e.LAST_NAME,e.DEPARTMENT_ID,e.JOB_ID
+FROM employees e
+WHERE e.DEPARTMENT_ID IN
+(SELECT 
+d.DEPARTMENT_ID
+FROM departments d
+WHERE d.LOCATION_ID = 1700)
+```
+
+显示每个向 King 报告的雇员的名字和薪水。
+
+
+```sql
+SELECT 
+e1.LAST_NAME,e1.SALARY
+FROM employees e1
+where e1.MANAGER_ID IN
+(select e.EMPLOYEE_ID from employees e where e.LAST_NAME ='King')
+```
+
+显示在 Executive 部门的每个雇员的 department number、last name 和 job ID。
+
+```sql
+SELECT
+e.DEPARTMENT_ID,e.LAST_NAME,e.JOB_ID
+FROM employees e
+WHERE e.DEPARTMENT_ID =
+(select d.DEPARTMENT_ID FROM departments d WHERE d.DEPARTMENT_NAME = 'Executive');
+```
+
+
+
+
+
+### 12，索引
+
+
+
+#### a）索引介绍
+
+![1718255014928](assets/1718255014928.png)
+
+
+
+**索引介绍：**
+
+索引是对数据库表中的一列或多列值进行排序的一种结构，使用索引可以快速访问数据库表中的特定信息。索引是一种特殊的文件，它们包含着对数据表里所有记录的位置信息。更通俗的说，数据库索引好比是一本书前面的目录，能加快数据库的查询速度。MySQL 索引的建立对于MySQL 的高效运行是很重要的，索引可以大大提高 MySQL 的检索速度。
+
+
+
+**索引的作用**
+
+索引相当于图书上的目录，可以根据目录上的页码快速找到所需的内容，提高性能（查询速度）。
+
+
+
+**索引优点：**
+
+1. 通过创建唯一性索引，可以保证数据库表中的每一行数据的唯一性；
+2. 可以加快数据的检索速度；
+3. 可以加速表与表之间的连接；
+4. 在使用分组和排序进行检索的时候，可以减少查询中分组和排序的时间；
+
+
+
+**索引缺点**
+
+1. 创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加；
+2. 索引需要占用物理空间，数据量越大，占用空间越大；
+3. 会降低表的增删改的效率，因为每次增删改索引都需要进行动态维护；
+
+
+
+**什么时候需要创建索引**
+
+1. 频繁作为查询条件的字段应该创建索引；
+2. 查询中排序的字段创建索引将大大提高排序的速度（索引就是排序加快速查找）；
+3. 查询中统计或者分组的字段；
+
+
+
+**什么时候不需要创建索引**
+
+1. 频繁更新的字段不适合创建索引，因为每次更新不单单是更新记录，还会更新索引，保存索引文件；
+2. where条件里用不到的字段，不创建索引；
+3. 表记录太少，不需要创建索引；
+4. 经常增删改的表；
+5. 数据重复且分布平均的字段，因此为经常查询的和经常排序的字段建立索引。注意某些数据包含大量重复数据，因此他建立索引就没有太大的效果，例如性别字段，只有男女，不适合建立索引；
+
+
+
+**MySQL中的索引类型**
+
+- 普通索引：
+
+  最基本的索引，它没有任何限制。
+
+- 唯一索引：
+
+  索引列的值必须唯一，但允许有空值，如果是组合索引，则列值的组合必须唯一。
+
+- 主键索引：
+
+  特殊的索引，唯一的标识一条记录，不能为空，一般用primary key来约束。
+
+- 联合索引：
+
+  在多个字段上建立索引，能够加速查询到速度。
+
+
+
+
+
+
+
+
+
+#### b）普通索引
+
+是最基本的索引，它没有任何限制。在创建索引时，可以指定索引长度。length 为可选参数，表示索引的长度，只有字符串类型的字段才能指定索引长度，如果是 BLOB 和 TEXT 类型，必须指定 length。
+
+
+
+创建索引时需要注意：如果指定单列索引长度，length 必须小于这个字段所允许的最大字符个数。
+
+
+
+**查询索引：**
+
+```sql
+SHOW INDEX FROM table_name;
+```
+
+
+
+**直接创建索引:**
+
+```sql
+CREATE INDEX index_name ON table(column(length));
+```
+
+为 emp3 表中的 name 创建一个索引，索引名为 emp3_name_index；
+
+```sql
+create index emp3_name_index ON emp3(name);
+```
+
+
+
+**修改表添加索引:**
+
+```sql
+ALTER TABLE table_name ADD INDEX index_name (column(length));
+```
+
+修改 emp3 表，为 addrees 列添加索引，索引名为 emp3_address_index；
+
+```sql
+alter table emp3 add index emp3_address_index(address);
+```
+
+
+
+**创建表时指定索引列:**
+
+```sql
+CREATE TABLE `table` (
+COLUMN TYPE ,
+PRIMARY KEY (`id`),
+INDEX index_name (column(length))
+);
+```
+
+
+
+创建 emp4 表，包含 emp_id,name,address 列， 同时为 name 列创建索引 ，索引名为 emp4_name_index。
+
+```sql
+create table  emp4(emp_id int primary key auto_increment,name varchar(30),address varchar(50),index emp4_name_index(name));
+```
+
+
+
+**删除索引:**
+
+```sql
+DROP INDEX indexname ON tablename;
+```
+
+删除 mep3 表中索引名为 emp3_address_index 的索引。
+
+```sql
+drop index emp3_address_index on emp3;
+```
+
+
+
+
+
+
+
+
+
+#### c）唯一索引
+
+
+
+
+
+#### d）主键索引
+
+
+
+
+
+#### e）组合索引
+
+
+
+
+
+### 13，事务
+
+#### a）事务介绍
+
+
+
+#### b）使用事务
+
+
+
+#### c）事务并发问题与隔离级别
 
 
 
