@@ -3481,7 +3481,7 @@ WHERE e.DEPARTMENT_ID =
 
 #### a）索引介绍
 
-![1718255014928](assets/1718255014928.png)
+![1718255014928](./assets/1718255014928.png)
 
 
 
@@ -3560,6 +3560,21 @@ WHERE e.DEPARTMENT_ID =
 
 #### b）普通索引
 
+创建如下表：
+
+```sql
+-- 员工表
+CREATE TABLE emp (
+    id INT PRIMARY KEY AUTO_INCREMENT,  -- 员工id，主键且自增长
+    ename VARCHAR(50) NOT NULL UNIQUE, -- 员工姓名，非空且唯一
+    joindate DATE NOT NULL,  -- 入职日期，非空
+    salary DOUBLE(7,2) NOT NULL,  -- 工资，非空
+    bonus DOUBLE(7,2) DEFAULT 0  -- 奖金，如果没有将近默认为0
+);
+```
+
+
+
 是最基本的索引，它没有任何限制。在创建索引时，可以指定索引长度。length 为可选参数，表示索引的长度，只有字符串类型的字段才能指定索引长度，如果是 BLOB 和 TEXT 类型，必须指定 length。
 
 
@@ -3574,6 +3589,8 @@ WHERE e.DEPARTMENT_ID =
 SHOW INDEX FROM table_name;
 ```
 
+![1718261645043](./assets/1718261645043.png)
+
 
 
 **直接创建索引:**
@@ -3582,10 +3599,12 @@ SHOW INDEX FROM table_name;
 CREATE INDEX index_name ON table(column(length));
 ```
 
-为 emp3 表中的 name 创建一个索引，索引名为 emp3_name_index；
+
+
+为 emp表中的 salary 创建一个索引，索引名为 emp_salary_index；
 
 ```sql
-create index emp3_name_index ON emp3(name);
+create index emp_salary_index ON emp(salary);
 ```
 
 
@@ -3596,10 +3615,10 @@ create index emp3_name_index ON emp3(name);
 ALTER TABLE table_name ADD INDEX index_name (column(length));
 ```
 
-修改 emp3 表，为 addrees 列添加索引，索引名为 emp3_address_index；
+修改 emp 表，为 bonus 列添加索引，索引名为 emp_bonus_index；
 
 ```sql
-alter table emp3 add index emp3_address_index(address);
+alter table emp add index emp_bonus_index(bonus);
 ```
 
 
@@ -3616,10 +3635,16 @@ INDEX index_name (column(length))
 
 
 
-创建 emp4 表，包含 emp_id,name,address 列， 同时为 name 列创建索引 ，索引名为 emp4_name_index。
+创建 emp2 表，包含 emp_id,name,address 列， 同时为 name 列创建索引 ，索引名为 emp2_name_index。
 
 ```sql
-create table  emp4(emp_id int primary key auto_increment,name varchar(30),address varchar(50),index emp4_name_index(name));
+CREATE TABLE  
+	emp2(
+		emp_id INT PRIMARY KEY AUTO_INCREMENT,
+		NAME VARCHAR(30),
+		address VARCHAR(50),
+		INDEX emp2_name_index(NAME)
+);
 ```
 
 
@@ -3630,21 +3655,71 @@ create table  emp4(emp_id int primary key auto_increment,name varchar(30),addres
 DROP INDEX indexname ON tablename;
 ```
 
-删除 mep3 表中索引名为 emp3_address_index 的索引。
+删除 emp2 表中索引名为 emp2_name_index 的索引。
 
 ```sql
-drop index emp3_address_index on emp3;
+drop index emp2_name_index on emp2;
 ```
 
 
 
-
-
-
-
-
-
 #### c）唯一索引
+
+唯一索引与普通索引类似，不同的就是： 索引列的值必须唯一，但允许有空值。
+
+表如下：
+
+![1718262349260](./assets/1718262349260.png)
+
+![1718262389547](./assets/1718262389547.png)
+
+
+
+**创建唯一索引：**
+
+```sql
+CREATE UNIQUE INDEX indexName ON table(column(length));
+```
+
+为 emp2 表中的 name 创建一个唯一索引，索引名为 emp2_name_index。
+
+```sql
+create unique index emp2_name_index on emp2(name);
+```
+
+![1718262442459](./assets/1718262442459.png)
+
+
+
+**修改表添加唯一索引:**
+
+```sql
+ALTER TABLE table_name ADD UNIQUE indexName (column(length));
+```
+
+修改 emp2表，为 address列添加唯一索引，索引名为 emp2_address_index。
+
+```sql
+alter table emp2 add unique emp2_address_index(address);
+```
+
+
+
+**创建表时指定唯一索引:**
+
+```sql
+CREATE TABLE `table` (
+COLUMN TYPE ,
+PRIMARY KEY (`id`),
+UNIQUE index_name (column(length))
+);
+```
+
+创建 emp3 表，包含 emp_id,name,address 列，同时为 name 列创建唯一索引。索引名为emp5_name_index。
+
+```sql
+create table emp3(emp_id int primary key ,name varchar(30),address varchar(30),unique emp3_name_index(name));
+```
 
 
 
@@ -3652,11 +3727,85 @@ drop index emp3_address_index on emp3;
 
 #### d）主键索引
 
+主键索引是一种特殊的唯一索引，一个表只能有一个主键，不允许有空值。一般是在建表的时候同时创建主键索引。
 
+
+
+**修改表添加主键索引:**
+
+```sql
+ALTER TABLE  表名 ADD PRIMARY KEY(列名);
+```
+
+修改 emp 表为 employee_id 添加主键索引。
+
+```sql
+alter table emp add primary key(employee_id);
+```
+
+
+
+**创建表时指定主键索引:**
+
+```sql
+CREATE TABLE `table` (
+COLUMN TYPE ,
+PRIMARY KEY(column)
+);
+```
+
+创建 emp6 表，包含 emp_id,name,address 列，同时为 emp_id 列创建主键索引。
+
+```sql
+create table emp6(employee_id int primary key auto_increment,name varchar(20),address varchar(50));
+```
 
 
 
 #### e）组合索引
+
+组合索引是指使用多个字段创建的索引，只有在查询条件中使用了创建索引时的第一个字段，索引才会被使用(最左前缀原则)。
+
+
+
+**最左前缀原则:** 就是最左优先。如： 我们使用表中的 name ，address ，salary 创建组合索引，那么想要组合索引生效， 我们只能使用如下组合：
+
+- name/address/salary
+- name/address
+- name/
+
+如果使用 addrees/salary 或者是 salary 则索引不会生效。
+
+
+
+**添加组合索引：**
+
+```sql
+ALTER TABLE table_name ADD INDEX index_name (column(length),column(length));
+```
+
+修改 emp6 表，为 name ，address 列创建组合索引。
+
+```sql
+alter table emp6 add index emp6_index_n_a(name,address);
+```
+
+
+
+**创建表时创建组合索引:**
+
+```sql
+CREATE TABLE `table` (
+COLUMN TYPE ,
+INDEX index_name (column(length),column(length))
+);
+```
+
+创建 emp7 表，包含 emp_id,name,address 列，同时为 name,address 列创建组合索引。
+
+```sql
+create table emp7(emp_id int primary key auto_increment ,name varchar(20),address varchar(30),index emp7_index_n_a(name,address));
+```
 
 
 
@@ -3664,15 +3813,605 @@ drop index emp3_address_index on emp3;
 
 ### 13，事务
 
+
+
 #### a）事务介绍
+
+事务是指作为单个逻辑工作单元执行的一系列操作，要么完全地执行，要么完全地不执行。数据库的事务（Transaction）是一种机制、一个操作序列，包含了一组数据库操作命令。事务把所有的命令作为一个整体一起向系统提交或撤销操作请求，即这一组数据库命令要么同时成功，要么同时失败。事务是一个不可分割的工作逻辑单元。
+
+
+
+事务定义(Transaction)
+
+- 事务是一个最小的不可再分的工作单元；通常一个事务对应一个完整的业务(例如银行账户转账业务，该业务就是一个最小的工作单元)
+- 一个完整的业务需要批量的DML(insert、update、delete)语句共同联合完成
+- 事务只和DML语句有关，或者说DML语句才有事务。这个和业务逻辑有关，业务逻辑不同，DML语句的个数不同
+
+
+
+这些概念不好理解，接下来举例说明，张三和李四账户中各有1000块钱，现李四需要转500块钱给张三，具体的转账操作为
+
+- 第一步：查询李四账户余额
+- 第二步：从李四账户金额 -500
+- 第三步：给张三账户金额 +500
+
+
+
+现在假设在转账过程中第二步完成后出现了异常第三步没有执行，就会造成李四账户金额少了500，而张三金额并没有多500；这样的系统是有问题的。如果解决呢？使用事务可以解决上述问题
+
+![1718256734862](./assets/1718256734862.png)
+
+
+
+**事务四大特征(ACID)**
+
+- 原子性(ATOMICITY) ，事务是不可分割的最小操作单位，要么同时成功，要么同时失败
+- 一致性(CONSISTENCY)，事务完成时，必须使所有的数据都保持一致状态
+- 隔离性(ISOLATION)，一个事务的执行不能被其他事务干扰。多个事务之间，操作的可见性。
+- 持久性(DURABILITY)，事务一旦提交或回滚，它对数据库中的数据的改变就是永久的
+
+
+
+从上图可以看到在转账前开启事务，如果出现了异常回滚事务，三步正常执行就提交事务，这样就可以完美解决问题。mysql存储引擎有很多，小皮软件中mysql默认的存储引擎是不支持事务，有的是支持的。切换一下存储引擎：
+
+![1718256772560](./assets/1718256772560.png)
+
+![1718256784804](./assets/1718256784804.png)
+
+
+
+
+
+
 
 
 
 #### b）使用事务
 
+| TCL语句           | 描述     |
+| ----------------- | -------- |
+| start transaction | 事务开启 |
+| commit            | 事物提交 |
+| rollback          | 事物回滚 |
+
+
+
+开启事务：
+
+```
+START TRANSACTION;
+或者  
+BEGIN;
+```
+
+
+
+提交事务：
+
+```
+commit;
+```
+
+
+
+回滚事务：
+
+```
+rollback;
+```
+
+
+
+环境准备：
+
+```sql
+DROP TABLE IF EXISTS account;
+
+-- 创建账户表
+CREATE TABLE account(
+	id int PRIMARY KEY auto_increment,
+	name varchar(10),
+	money double(10,2)
+);
+
+-- 添加数据
+INSERT INTO account(name,money) values('张三',1000),('李四',1000);
+```
+
+![1718263510023](./assets/1718263510023.png)
+
+
+
+不加事务演示问题：
+
+```sql
+-- 转账操作
+-- 1. 查询李四账户金额是否大于500
+
+-- 2. 李四账户 -500
+UPDATE account set money = money - 500 where name = '李四';
+
+出现异常了...  -- 此处不是注释，在整体执行时会出问题，后面的sql则不执行
+
+-- 3. 张三账户 +500
+UPDATE account set money = money + 500 where name = '张三';
+```
+
+![1718263660099](./assets/1718263660099.png)
+
+
+
+mysql中事务是自动提交的。也就是说我们不添加事务执行sql语句，语句执行完毕会自动的提交事务。可以通过下面语句查询默认提交方式：
+
+```sql
+  SELECT @@autocommit;
+```
+
+![1718263919885](./assets/1718263919885.png)
+
+查询到的结果是1 则表示自动提交，结果是0表示手动提交。当然也可以通过下面语句修改提交方式
+
+```sql
+ set @@autocommit = 0;
+```
+
+
+
+
+
+添加事务sql如下：
+
+![1718265957804](./assets/1718265957804.png)
+
+```sql
+-- 开启事务
+BEGIN;
+
+-- 转账操作
+-- 1. 查询李四账户金额是否大于500
+
+-- 2. 李四账户 -500
+UPDATE ACCOUNT SET money = money - 500 WHERE NAME = '李四';
+
+出现异常了...  -- 此处不是注释，在整体执行时会出问题，后面的sql则不执行
+
+-- 3. 张三账户 +500
+UPDATE ACCOUNT SET money = money + 500 WHERE NAME = '张三';
+
+-- 回滚事务
+ROLLBACK;
+
+-- 提交事务
+COMMIT;
+```
+
 
 
 #### c）事务并发问题与隔离级别
+
+**脏读（读取未提交数据）**
+
+指一个事务读取了另外一个事务未提交的数据。A事务读取B事务尚未提交的数据，此时如果B事务发生错误并执行回滚操作，那么A事务读取到的数据就是脏数据。
+
+![1718257330568](./assets/1718257330568.png)
+
+
+
+
+
+**不可重复读（前后多次读取，数据内容不一致）：**
+
+在一个事务内读取表中的某一行数据，多次读取结果不同。
+
+事务A在执行读取操作，由整个事务A比较大，前后读取同一条数据需要经历很长的时间 。而在事务A第一次读取数据，比如此时读取了小明的年龄为20岁，事务B执行更改操作，将小明的年龄更改为30岁，此时事务A第二次读取到小明的年龄时，发现其年龄是30岁，和之前的数据不一样了，也就是数据不重复了，系统不可以读取到重复的数据，成为不可重复读。
+
+![1718257414363](./assets/1718257414363.png)
+
+
+
+**幻读（前后多次读取，数据总量不一致）：**
+
+是指在一个事务内读取到了别的事务插入的数据，导致前后读取数量总量不一致。
+
+事务A在执行读取操作，需要两次统计数据的总量，前一次查询数据总量后，此时事务B执行了新增数据的操作并提交后，这个时候事务A读取的数据总量和之前统计的不一样，就像产生了幻觉一样，平白无故的多了几条数据，成为幻读。
+
+![1718257479285](./assets/1718257479285.png)
+
+
+
+**事务的隔离级别：**
+
+事务的隔离级别用于决定如何控制并发用户读写数据的操作。数据库是允许多用户并发访问的，如果多个用户同时开启事务并对同一数据进行读写操作的话，有可能会出现脏读、不可重复读和幻读问题，所以MySQL中提供了四种隔离级别来解决上述问题。
+
+
+
+事务的隔离级别从低到高依次为：
+
+- READ UNCOMMITTED
+- READ COMMITTED
+- REPEATABLE READ
+- SERIALIZABLE
+
+
+
+隔离级别越低，越能支持高并发的数据库操作。
+
+![1718257603602](./assets/1718257603602.png)
+
+
+
+**查看MySQL默认事务隔离级别：**
+
+```sql
+SELECT @@transaction_isolation;
+```
+
+
+
+**设置事务隔离级别：**对当前session有效。
+
+```sql
+set session transaction isolation level read uncommitted;
+set session transaction isolation level read committed;
+set session transaction isolation level repeatable read;
+set session transaction isolation level serializable;
+```
+
+
+
+
+
+### 14，用户管理与其它
+
+
+
+#### a）mysql用户管理
+
+MySQL 是一个多用户的数据库系统，按权限，用户可以分为两种： root 用户，超级管理员，和由 root 用户创建的普通用户。
+
+
+
+**创建用户：**
+
+```sql
+CREATE USER username IDENTIFIED BY 'password';
+```
+
+创建一个 u_yls 的用户，并查看创建是否成功。
+
+```sql
+create user u_yls IDENTIFIED by 'yls';
+select user,host from mysql.user;
+```
+
+
+
+**查看用户：**
+
+```sql
+SELECT USER,HOST FROM mysql.user;
+```
+
+
+
+新用户创建完后是无法登陆的，需要分配权限。 
+
+GRANT 权限 ON 数据库.表 TO 用户名@登录主机 IDENTIFIED BY "密码"
+
+**登陆主机：**
+
+| **字段**  | **含义**                                                 |
+| --------- | -------------------------------------------------------- |
+| %         | 匹配所有主机                                             |
+| localhost | localhost 不会被解析成 IP 地址，直接通过 UNIXsocket 连接 |
+| 127.0.0.1 | 会通过 TCP/IP 协议连接，并且只能在本机访问               |
+| :: 1      | ::1 就是兼容支持 ipv6 的，表示同 ipv4 的 127.0.0. 1      |
+
+
+
+**权限列表：**
+
+| **权 限**               | **作用范围**         | **作 用**                     |
+| ----------------------- | -------------------- | ----------------------------- |
+| all [privileges]        | 服务器               | 所有权限                      |
+| select                  | 表、列               | 选择行                        |
+| insert                  | 表、列               | 插入行                        |
+| update                  | 表、列               | 更新行                        |
+| delete                  | 表                   | 删除行                        |
+| create                  | 数据库、表、索引     | 创建                          |
+| drop                    | 数据库、表、视图     | 删除                          |
+| reload                  | 服务器               | 允许使用flush语句             |
+| shutdown                | 服务器               | 关闭服务                      |
+| process                 | 服务器               | 查看线程信息                  |
+| file                    | 服务器               | 文件操作                      |
+| grant option            | 数据库、表、存储过程 | 授权                          |
+| references              | 数据库、表           | 外键约束的父表                |
+| index                   | 表                   | 创建/删除索引                 |
+| alter                   | 表                   | 修改表结构                    |
+| show databases          | 服务器               | 查看数据库名称                |
+| super                   | 服务器               | 超级权限                      |
+| create temporary tables | 表                   | 创建临时表                    |
+| lock tables             | 数据库               | 锁表                          |
+| execute                 | 存储过程             | 执行                          |
+| replication client      | 服务器               | 允许查看主/从/二进制日志状态  |
+| replication slave       | 服务器               | 主从复制                      |
+| create view             | 视图                 | 创建视图                      |
+| show view               | 视图                 | 查看视图                      |
+| create routine          | 存储过程             | 创建存储过程                  |
+| alter routine           | 存储过程             | 修改/删除存储过程             |
+| create user             | 服务器               | 创建用户                      |
+| event                   | 数据库               | 创建/更改/删除/查看事件       |
+| trigger                 | 表                   | 触发器                        |
+| create tablespace       | 服务器               | 创建/更改/删除表空间/日志文件 |
+| proxy                   | 服务器               | 代理成为其它用户              |
+| usage                   | 服务器               | 没有权限                      |
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' IDENTIFIED BY 'password'
+```
+
+为 u_yls用户分配只能查询 malu 库中的 emp 表，并且只能在本机登陆的权限。
+
+```sql
+grant select ON malu.emp to 'u_yls'@'localhost' IDENTIFIED by 'yls';
+```
+
+
+
+每当调整权限后，通常需要执行以下语句刷新权限。
+
+```sql
+FLUSH PRIVILEGES;
+```
+
+
+
+删除用户：
+
+```sql
+DROP USER username@localhost;
+```
+
+删除 u_yls 用户。
+
+```sql
+drop user 'u_yls'@'localhost';
+```
+
+
+
+
+
+#### b）可视化管理用户
+
+
+
+
+
+#### c）导入与导出数据
+
+
+
+
+
+#### d）分页查询
+
+
+
+**MySQL 分页查询原则：**
+
+- 在 MySQL 数据库中使用 LIMIT 子句进行分页查询。
+- MySQL 分页中开始位置为 0。
+- 分页子句在查询语句的最后侧。
+
+
+
+**LIMIT子句：**
+
+```sql
+SELECT  投影列 FROM  表名 WHERE  条件 ORDER BY LIMIT  开始位置，查询数量;
+```
+
+查询雇员表中所有数据按 id 排序，实现分页查询，每次返回两条结果。
+
+```sql
+select * from employees order by employees_id limit 0,2;
+```
+
+
+
+**LIMIT OFFSET子句：**
+
+```sql
+SELECT  投影列 FROM  表名 WHERE  条件 ORDER BY LIMIT  查询数量 OFFSET 开始位置;
+```
+
+查询雇员表中所有数据按 id 排序，使用 LIMIT OFFSET 实现分页查询，每次返回两条结果。
+
+```sql
+select * from employees order by employees_id limit 2 offset 4;
+```
+
+
+
+
+
+### 15，数据库范式与表关系
+
+
+
+#### a）数据库范式简介
+
+**什么是范式（NF = NormalForm）**
+
+- 范式是符合某一种设计要求的总结
+
+
+
+**在数据库中表的设计，必须保证其合理性**
+
+- 数据库表的设计关系整个系统的架构，关系到后续的开发效率和运行效率
+
+
+
+**如何设计合理的数据库表**
+
+- 结构合理
+- 冗余数据少
+- 尽量避免插入删除修改异常
+- 遵循一定的规则，在关系型数据库中这种规则就称为范式
+
+
+
+**关系型数据库有六种常见范式：**
+
+- 第一范式（1NF）
+- 第二范式（2NF）
+- 第三范式（3NF）
+- 巴斯-科德范式（BCNF）
+- 第四范式（4NF）
+- 第五范式（5NF）
+
+
+
+**各个范式是依次嵌套包含的：**
+
+在第一范式的基础上进一步满足更多规范要求的称为第二范式（2NF），其余范式以此类推。
+
+![1718259422748](./assets/1718259422748.png)
+
+范式越高，设计质量越高，在现实设计中也越难实现，一般数据库设计，达到**第三范式**就足够了
+
+**数据库范式中的概念**
+
+- 元组：可以理解为一张表中的每条记录，也就是每一行数据。
+
+- 属性：可以看作是“表的一列”。
+  - 主属性：在一个关系中，如一个属性是构成某一个候选关键字的属性集中的一个属性，则称它为主属性。例如：在关系——学生（学号，姓名，年龄，性别，班级）中，主属性是“学号”，那么其他的“姓名”、“年龄”、“性别”、“班级”就都可以称为非主属性。
+  - 非主属性：不包含在候选码中的属性称为非主属性，相对于主属性来定义的。
+
+
+
+#### b）第一范式（保证都列都是原子性）
+
+
+
+第一范式：
+
+- 最基本的范式，是其他范式的基础
+- 数据库表每列都是不可分割的基本数据项，同一列中不能有多个值，确保每列保持原子性
+
+![1718259624155](./assets/1718259624155.png)
+
+
+
+**根据第一范式设计表：**
+
+![1718259678716](./assets/1718259678716.png)
+
+**第一范式存在的问题：**数据冗余
+
+![1718259740562](./assets/1718259740562.png)
+
+
+
+**第一范式存在的问题：**插入数据异常
+
+![1718259794711](./assets/1718259794711.png)
+
+
+
+**第一范式存在的问题：**修改数据复杂
+
+![1718259846202](./assets/1718259846202.png)
+
+**第一范式存在的问题：**删除异常
+
+![1718259870397](./assets/1718259870397.png)
+
+
+
+#### c）第二范式（确保数据库表中的每一列都和主键相关）
+
+第二范式在第一范式的基础之上更进一层。第二范式需要确保数据库表中的每一列都和主键相关，而不能只与主键的某一部分相关（主要针对联合主键而言）。也就是说在一个数据库表中，一个表中只能保存一种数据，不可以把多种数据保存在同一张数据库表中。
+
+![1718259971370](./assets/1718259971370.png)
+
+![1718259997770](./assets/1718259997770.png)
+
+
+
+![1718260067039](./assets/1718260067039.png)
+
+
+
+**根据第二范式设计表：**
+
+![1718260120414](./assets/1718260120414.png)
+
+
+
+**第二范式存在的问题：**插入异常
+
+![1718260197087](./assets/1718260197087.png)
+
+
+
+**第二范式存在的问题：**删除异常
+
+![1718260206170](./assets/1718260206170.png)
+
+
+
+
+
+
+#### d）第三范式（每一列数据都和主键直接相关）
+
+- 必须满足第二范式
+- 确保数据表中的每一列数据都和**主键直接相关**，而不能间接相关
+
+![1718260380703](./assets/1718260380703.png)
+
+![1718260449628](./assets/1718260449628.png)
+
+
+
+**根据第三范式设计表：**
+
+![1718260496643](./assets/1718260496643.png)
+
+
+
+符合3NF要求的数据库设计，基本上解决了数据冗余过大，插入异常，修改异常，删除异常的问题。
+
+
+
+
+
+#### e）数据库范式总结
+
+
+
+#### f）表关系
+
+
+
+#### g）一对多关系
+
+
+
+#### h）一对一关系
+
+
+
+#### i）多对多关系
+
+
+
+
+
+
 
 
 
