@@ -193,15 +193,332 @@ public class ConfigServer3344 {
 
 
 
+创建order-dev.yml文件和payment-test.yml，如下：
+
+![1718622459517](assets/1718622459517.png)
+
+
+
+![1718622537929](assets/1718622537929.png)
+
+
+
+![1718622586445](assets/1718622586445.png)
+
+
+
+**Config支持的请求的参数规则：**
+
+- /{application}/{profile}[/{label}]
+- /{application}-{profile}.yml
+- /{label}/{application}-{profile}.yml
+- /{application}-{profile}.properties
+- /{label}/{application}-{profile}.properties
+
+
+
+注意：
+
+- {application} 就是应用名称，对应到配置文件上来，就是配置文件的名称部分，例如我上面创建的配置文件。
+- {profile} 就是配置文件的版本，我们的项目有开发版本、测试环境版本、生产环境版本，对应到配置文件上来就是以 application-{profile}.yml 加以区分，例如application-dev.yml、application-test.yml、application-prod.yml。
+- {label} 表示 git 分支，默认是 master 分支，如果项目是以分支做区分也是可以的，那就可以通过不同的 label 来控制访问不同的配置文件了。
+
+
+
+**最推荐使用方式:**
+
+/ { 分支名 } / { 应用名 } - { 环境名 }.yml
+
+
+
+测试：
+
+![1718622886879](assets/1718622886879.png)
+
+![1718622993718](assets/1718622993718.png)
+
 
 
 ### 4, Config客户端配置与测试
+
+新建cloud-config-client3355
+
+![1718623554390](assets/1718623554390.png)
+
+
+
+依赖：
+
+```xml
+    <dependencies>
+        <!--  引入Eureka client依赖  -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!--  引入 config 依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <!--  引入 web 依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+    </dependencies>
+```
+
+
+
+新增bootstap.yml配置
+
+![1718623999481](assets/1718623999481.png)
+
+```yml
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master
+      name: config
+      profile: dev
+      # 上述综合  master分支上config-dev.yml的配置文件
+      # http://localhost:3344/master/config-dve.yml
+      uri: http://localhost:3344
+server:
+  port: 3355
+eureka:
+  client:
+    # Eureka Server地址
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    instance-id: cloud-config-center
+    prefer-ip-address: true
+```
+
+**注意：**
+
+- **applicaiton. yml**：是用户级的资源配置项
+- **bootstrap.yml**：是系统级的，优先级更加高
+
+
+
+![1718623698574](assets/1718623698574.png)
+
+要将Client模块下的application.yml文件改为bootstrap.yml,这是很关键的， 因为bootstrap.yml是比application.yml先加载的。bootstrap.yml优先级高于application.yml
+
+
+
+
+
+错误提示：springcloud2020 版本 把Bootstrap被默认禁用，同时spring.config.import加入了对解密的支持。
+
+```
+Application failed to start due to an exception
+org.springframework.cloud.config.client.ConfigServerConfigDataMissingEnvironmentPostProcessor$ImportException: No spring.config.import set
+```
+
+
+
+解决办法：
+
+```xml
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-bootstrap</artifactId>
+</dependency>
+```
+
+
+
+启动类：
+
+![1718623832284](assets/1718623832284.png)
+
+```java
+/**
+ * 主启动类
+ */
+@SpringBootApplication
+@Slf4j
+@EnableEurekaClient
+public class ConfigClientMain3355 {
+    public static void main(String[] args) {
+
+        SpringApplication.run(ConfigClientMain3355.class,args);
+        log.info("*********** ConfigClientMain3355 服务启动成功 *********");
+    }
+}
+```
+
+
+
+控制器：
+
+![1718623879868](assets/1718623879868.png)
+
+```java
+/**
+ * 配置控制层
+ */
+@RestController
+@RefreshScope
+public class ConfigController {
+
+    @Value("${config.info}")
+    private String configInfo;
+
+    /**
+     * 读取配置文件内容
+     * @return
+     */
+    @GetMapping("getConfigInfo")
+    public String getConfigInfo(){
+        return configInfo;
+    }
+}
+```
+
+
+
+测试：http://localhost:3355/getConfigInfo
+
+![1718624035830](assets/1718624035830.png)
+
+
 
 
 
 
 
 ### 5, 动态刷新
+
+修改码云上的配置文件内容做调整。
+
+![1718624289310](assets/1718624289310.png)
+
+
+
+刷新3344，发现ConfigServer配置中心立刻响应
+
+![1718624328990](assets/1718624328990.png)
+
+刷新3355，发现ConfigServer客户端没有任何响应
+
+![1718624353695](assets/1718624353695.png)
+
+
+
+
+
+**问题：**
+
+- 刷新3344，发现ConfigServer配置中心立刻响应
+- 刷新3355，发现ConfigServer客户端没有任何响应
+- 3355没有变化除非自己重启或者重新加载
+- 难道每次运维修改配置文件，客户端都需要重启
+
+
+
+cloud-config-client3355工程引入actuator监控
+
+![1718624380160](assets/1718624380160.png)
+
+```xml
+<dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+
+
+修改bootstrap.yml暴露监控端口
+
+![1718624402452](assets/1718624402452.png)
+
+```yml
+management:
+  endpoints:
+   web:
+    exposure:
+     include: "*"
+```
+
+
+
+业务类Controller修改 加入注解@RefreshScope
+
+![1718624434304](assets/1718624434304.png)
+
+```java
+@RefreshScope
+@RestController
+public class ConfigClientController {
+
+
+  @Value("${config.info}")
+  private String configInfo;
+
+
+  /**
+   * 获取配置
+   * @return
+   */
+  @GetMapping("/configinfo")
+  public String getConfigInfo(){
+    return configInfo;
+   }
+}
+```
+
+
+
+手动刷新配置: http://localhost:3355/actuator/refresh
+
+![1718624606020](assets/1718624606020.png)
+
+![1718624594128](assets/1718624594128.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
