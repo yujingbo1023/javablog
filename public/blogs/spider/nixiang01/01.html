@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>一， 逆向必备 | 码路全栈开发</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/javablog/public/favicon.ico">
+    <meta name="description" content="快来玩java全栈呀">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/javablog/public/assets/css/0.styles.0bd56f36.css" as="style"><link rel="preload" href="/javablog/public/assets/js/app.71fab523.js" as="script"><link rel="preload" href="/javablog/public/assets/js/72.426fa802.js" as="script"><link rel="preload" href="/javablog/public/assets/js/1.3c422ec2.js" as="script"><link rel="preload" href="/javablog/public/assets/js/131.c015cb4d.js" as="script"><link rel="prefetch" href="/javablog/public/assets/js/10.3e2e7c7f.js"><link rel="prefetch" href="/javablog/public/assets/js/100.65bb4d60.js"><link rel="prefetch" href="/javablog/public/assets/js/101.bff31c65.js"><link rel="prefetch" href="/javablog/public/assets/js/102.67798ad3.js"><link rel="prefetch" href="/javablog/public/assets/js/103.e50fbd6a.js"><link rel="prefetch" href="/javablog/public/assets/js/104.1a471b0a.js"><link rel="prefetch" href="/javablog/public/assets/js/105.46cd09f2.js"><link rel="prefetch" href="/javablog/public/assets/js/106.a6b2977a.js"><link rel="prefetch" href="/javablog/public/assets/js/107.cc3bbfb4.js"><link rel="prefetch" href="/javablog/public/assets/js/108.e5b804c7.js"><link rel="prefetch" href="/javablog/public/assets/js/109.3e15478f.js"><link rel="prefetch" href="/javablog/public/assets/js/11.5f91e392.js"><link rel="prefetch" href="/javablog/public/assets/js/110.de1d7659.js"><link rel="prefetch" href="/javablog/public/assets/js/111.fd00d46f.js"><link rel="prefetch" href="/javablog/public/assets/js/112.1bcdc0dd.js"><link rel="prefetch" href="/javablog/public/assets/js/113.15b30e49.js"><link rel="prefetch" href="/javablog/public/assets/js/114.d0d73939.js"><link rel="prefetch" href="/javablog/public/assets/js/115.ee7fb86f.js"><link rel="prefetch" href="/javablog/public/assets/js/116.a08075fb.js"><link rel="prefetch" href="/javablog/public/assets/js/117.d938e7d8.js"><link rel="prefetch" href="/javablog/public/assets/js/118.a87f0776.js"><link rel="prefetch" href="/javablog/public/assets/js/119.1db021f4.js"><link rel="prefetch" href="/javablog/public/assets/js/12.a855da84.js"><link rel="prefetch" href="/javablog/public/assets/js/120.af7b8cb1.js"><link rel="prefetch" href="/javablog/public/assets/js/121.a7889762.js"><link rel="prefetch" href="/javablog/public/assets/js/122.4b24d970.js"><link rel="prefetch" href="/javablog/public/assets/js/123.f40ca793.js"><link rel="prefetch" href="/javablog/public/assets/js/124.19f98fbe.js"><link rel="prefetch" href="/javablog/public/assets/js/125.86fe034b.js"><link rel="prefetch" href="/javablog/public/assets/js/126.9f007ac1.js"><link rel="prefetch" href="/javablog/public/assets/js/127.cdd9415b.js"><link rel="prefetch" href="/javablog/public/assets/js/128.34dc3b4e.js"><link rel="prefetch" href="/javablog/public/assets/js/129.c656d860.js"><link rel="prefetch" href="/javablog/public/assets/js/13.8dbe13b1.js"><link rel="prefetch" href="/javablog/public/assets/js/130.7f9a47ea.js"><link rel="prefetch" href="/javablog/public/assets/js/132.4df00b8f.js"><link rel="prefetch" href="/javablog/public/assets/js/133.795d0959.js"><link rel="prefetch" href="/javablog/public/assets/js/134.89243b14.js"><link rel="prefetch" href="/javablog/public/assets/js/135.cb522461.js"><link rel="prefetch" href="/javablog/public/assets/js/136.6b725b0a.js"><link rel="prefetch" href="/javablog/public/assets/js/137.952df0f3.js"><link rel="prefetch" href="/javablog/public/assets/js/138.0d39f499.js"><link rel="prefetch" href="/javablog/public/assets/js/139.5f6020af.js"><link rel="prefetch" href="/javablog/public/assets/js/14.56ea5052.js"><link rel="prefetch" href="/javablog/public/assets/js/140.cb415df3.js"><link rel="prefetch" href="/javablog/public/assets/js/141.746dceda.js"><link rel="prefetch" href="/javablog/public/assets/js/142.13675eb8.js"><link rel="prefetch" href="/javablog/public/assets/js/143.ca1d50c9.js"><link rel="prefetch" href="/javablog/public/assets/js/144.e59e4509.js"><link rel="prefetch" href="/javablog/public/assets/js/15.b3fc3e4d.js"><link rel="prefetch" href="/javablog/public/assets/js/16.5064472f.js"><link rel="prefetch" href="/javablog/public/assets/js/17.026ce5f4.js"><link rel="prefetch" href="/javablog/public/assets/js/18.23b845dd.js"><link rel="prefetch" href="/javablog/public/assets/js/19.fef568b3.js"><link rel="prefetch" href="/javablog/public/assets/js/20.94571833.js"><link rel="prefetch" href="/javablog/public/assets/js/21.579006c6.js"><link rel="prefetch" href="/javablog/public/assets/js/22.d917198b.js"><link rel="prefetch" href="/javablog/public/assets/js/23.0dc1025b.js"><link rel="prefetch" href="/javablog/public/assets/js/24.1ac3d230.js"><link rel="prefetch" href="/javablog/public/assets/js/25.859861ce.js"><link rel="prefetch" href="/javablog/public/assets/js/26.b727a960.js"><link rel="prefetch" href="/javablog/public/assets/js/27.82157a77.js"><link rel="prefetch" href="/javablog/public/assets/js/28.2e330f5b.js"><link rel="prefetch" href="/javablog/public/assets/js/29.1bf36d84.js"><link rel="prefetch" href="/javablog/public/assets/js/3.fa2d64f7.js"><link rel="prefetch" href="/javablog/public/assets/js/30.0c899a73.js"><link rel="prefetch" href="/javablog/public/assets/js/31.3ab836bd.js"><link rel="prefetch" href="/javablog/public/assets/js/32.a401b7c4.js"><link rel="prefetch" href="/javablog/public/assets/js/33.cb14c935.js"><link rel="prefetch" href="/javablog/public/assets/js/34.fd4eb3e9.js"><link rel="prefetch" href="/javablog/public/assets/js/35.c4e9b37e.js"><link rel="prefetch" href="/javablog/public/assets/js/36.28fb157b.js"><link rel="prefetch" href="/javablog/public/assets/js/37.1550b76f.js"><link rel="prefetch" href="/javablog/public/assets/js/38.8b8c052a.js"><link rel="prefetch" href="/javablog/public/assets/js/39.e551b0d5.js"><link rel="prefetch" href="/javablog/public/assets/js/4.67753cdc.js"><link rel="prefetch" href="/javablog/public/assets/js/40.c9a7de43.js"><link rel="prefetch" href="/javablog/public/assets/js/41.36efad2d.js"><link rel="prefetch" href="/javablog/public/assets/js/42.bb4e3a48.js"><link rel="prefetch" href="/javablog/public/assets/js/43.b288ec7e.js"><link rel="prefetch" href="/javablog/public/assets/js/44.ad31d855.js"><link rel="prefetch" href="/javablog/public/assets/js/45.6a1285f4.js"><link rel="prefetch" href="/javablog/public/assets/js/46.7f0a893a.js"><link rel="prefetch" href="/javablog/public/assets/js/47.5ae4e84a.js"><link rel="prefetch" href="/javablog/public/assets/js/48.3a6c3d85.js"><link rel="prefetch" href="/javablog/public/assets/js/49.d3562c4c.js"><link rel="prefetch" href="/javablog/public/assets/js/5.4df697c3.js"><link rel="prefetch" href="/javablog/public/assets/js/50.c7aeaca9.js"><link rel="prefetch" href="/javablog/public/assets/js/51.d21255b2.js"><link rel="prefetch" href="/javablog/public/assets/js/52.3a1cb849.js"><link rel="prefetch" href="/javablog/public/assets/js/53.910f098c.js"><link rel="prefetch" href="/javablog/public/assets/js/54.02dd0bd7.js"><link rel="prefetch" href="/javablog/public/assets/js/55.f601299e.js"><link rel="prefetch" href="/javablog/public/assets/js/56.3db9607f.js"><link rel="prefetch" href="/javablog/public/assets/js/57.938fac65.js"><link rel="prefetch" href="/javablog/public/assets/js/58.93dd49f5.js"><link rel="prefetch" href="/javablog/public/assets/js/59.23047f95.js"><link rel="prefetch" href="/javablog/public/assets/js/6.b14664fb.js"><link rel="prefetch" href="/javablog/public/assets/js/60.e35e2faf.js"><link rel="prefetch" href="/javablog/public/assets/js/61.a5e973eb.js"><link rel="prefetch" href="/javablog/public/assets/js/62.b2fbe005.js"><link rel="prefetch" href="/javablog/public/assets/js/63.e7c72c4d.js"><link rel="prefetch" href="/javablog/public/assets/js/64.9d04d1f5.js"><link rel="prefetch" href="/javablog/public/assets/js/65.a76b1cd0.js"><link rel="prefetch" href="/javablog/public/assets/js/66.ca2bbcd7.js"><link rel="prefetch" href="/javablog/public/assets/js/67.34ed2036.js"><link rel="prefetch" href="/javablog/public/assets/js/68.e548b76e.js"><link rel="prefetch" href="/javablog/public/assets/js/69.84d27c78.js"><link rel="prefetch" href="/javablog/public/assets/js/7.ebab8817.js"><link rel="prefetch" href="/javablog/public/assets/js/70.7a5636d0.js"><link rel="prefetch" href="/javablog/public/assets/js/71.a2398ef9.js"><link rel="prefetch" href="/javablog/public/assets/js/73.53d9cf6f.js"><link rel="prefetch" href="/javablog/public/assets/js/74.74d3adf6.js"><link rel="prefetch" href="/javablog/public/assets/js/75.287a3b57.js"><link rel="prefetch" href="/javablog/public/assets/js/76.76e5264f.js"><link rel="prefetch" href="/javablog/public/assets/js/77.1ec52958.js"><link rel="prefetch" href="/javablog/public/assets/js/78.6ecddb13.js"><link rel="prefetch" href="/javablog/public/assets/js/79.80439570.js"><link rel="prefetch" href="/javablog/public/assets/js/8.c708997a.js"><link rel="prefetch" href="/javablog/public/assets/js/80.e8ace8b7.js"><link rel="prefetch" href="/javablog/public/assets/js/81.ebec4e2d.js"><link rel="prefetch" href="/javablog/public/assets/js/82.0542200c.js"><link rel="prefetch" href="/javablog/public/assets/js/83.b3df0f0d.js"><link rel="prefetch" href="/javablog/public/assets/js/84.be217d79.js"><link rel="prefetch" href="/javablog/public/assets/js/85.a04cedcd.js"><link rel="prefetch" href="/javablog/public/assets/js/86.92a1227a.js"><link rel="prefetch" href="/javablog/public/assets/js/87.e468635e.js"><link rel="prefetch" href="/javablog/public/assets/js/88.f2cac14d.js"><link rel="prefetch" href="/javablog/public/assets/js/89.05477ede.js"><link rel="prefetch" href="/javablog/public/assets/js/9.af02c652.js"><link rel="prefetch" href="/javablog/public/assets/js/90.558fb22a.js"><link rel="prefetch" href="/javablog/public/assets/js/91.380f5981.js"><link rel="prefetch" href="/javablog/public/assets/js/92.0c8c54d1.js"><link rel="prefetch" href="/javablog/public/assets/js/93.1fb3318f.js"><link rel="prefetch" href="/javablog/public/assets/js/94.4862a9d1.js"><link rel="prefetch" href="/javablog/public/assets/js/95.9a3c2800.js"><link rel="prefetch" href="/javablog/public/assets/js/96.e55981f6.js"><link rel="prefetch" href="/javablog/public/assets/js/97.29e39d65.js"><link rel="prefetch" href="/javablog/public/assets/js/98.aa5fa0da.js"><link rel="prefetch" href="/javablog/public/assets/js/99.862e683c.js">
+    <link rel="stylesheet" href="/javablog/public/assets/css/0.styles.0bd56f36.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>码路全栈开发</h3> <p class="description" data-v-59e6cb88>快来玩java全栈呀</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/javablog/public/" class="home-link router-link-active"><img src="/javablog/public/logo.png" alt="码路全栈开发" class="logo"> <span class="site-name">码路全栈开发</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/HarmonyOS/" class="nav-link"><i class="undefined"></i>
+  HarmonyOS
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javabase/" class="nav-link"><i class="undefined"></i>
+  javabase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/每日一题/" class="nav-link"><i class="undefined"></i>
+  每日一题
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/pybase/" class="nav-link"><i class="undefined"></i>
+  pybase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloud/" class="nav-link"><i class="undefined"></i>
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloudalibaba/" class="nav-link"><i class="undefined"></i>
+  springcloudalibaba
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/storage/" class="nav-link"><i class="undefined"></i>
+  storage
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/zhifu/" class="nav-link"><i class="undefined"></i>
+  zhifu
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/javablog/public/avatar.png" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    码路
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>134</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>42</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/HarmonyOS/" class="nav-link"><i class="undefined"></i>
+  HarmonyOS
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javabase/" class="nav-link"><i class="undefined"></i>
+  javabase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/每日一题/" class="nav-link"><i class="undefined"></i>
+  每日一题
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/pybase/" class="nav-link"><i class="undefined"></i>
+  pybase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloud/" class="nav-link"><i class="undefined"></i>
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloudalibaba/" class="nav-link"><i class="undefined"></i>
+  springcloudalibaba
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/storage/" class="nav-link"><i class="undefined"></i>
+  storage
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/zhifu/" class="nav-link"><i class="undefined"></i>
+  zhifu
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88></h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">一， 逆向必备</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>码路</span></i> <!----> <!----> <!----></div></div> <div class="theme-reco-content content__default"><h1 id="一-逆向必备"><a href="#一-逆向必备" class="header-anchor">#</a> 一， 逆向必备</h1> <h2 id="_1-1-app逆向原理"><a href="#_1-1-app逆向原理" class="header-anchor">#</a> 1.1 app逆向原理</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># app逆向==&gt;安卓app逆向==&gt;不涉及ios平台</span>
+安卓正向开发流程：
+	安卓工程师<span class="token operator">==</span><span class="token operator">&gt;</span>使用java语法<span class="token punctuation">(</span>kotiln<span class="token punctuation">)</span><span class="token operator">+</span>安卓框架<span class="token punctuation">(</span>SDK<span class="token punctuation">)</span><span class="token operator">==</span><span class="token operator">&gt;</span>java<span class="token operator">+</span>c【JNI】<span class="token operator">==</span><span class="token operator">&gt;</span>AndroidStadio<span class="token operator">==</span><span class="token operator">&gt;</span>编译成 xx<span class="token punctuation">.</span>apk<span class="token operator">==</span><span class="token operator">&gt;</span>资源文件<span class="token punctuation">(</span>图片，声音<span class="token punctuation">)</span><span class="token operator">/</span>xx<span class="token punctuation">.</span>dex<span class="token operator">/</span>xx<span class="token punctuation">.</span>so
+    
+安卓逆向<span class="token punctuation">:</span>
+	安卓逆向工程师<span class="token operator">==</span><span class="token operator">&gt;</span>拿到破解的app的xx<span class="token punctuation">.</span>apk<span class="token operator">==</span><span class="token operator">&gt;</span>反编译<span class="token punctuation">(</span>java代码反编译出来<span class="token punctuation">)</span><span class="token operator">==</span><span class="token operator">&gt;</span>搜索关键字读java代码逻辑<span class="token operator">==</span><span class="token operator">&gt;</span>Hook工具<span class="token operator">==</span><span class="token operator">&gt;</span>Python 模拟发送请求，破解加密<span class="token operator">==</span><span class="token operator">&gt;</span>获取到我们想要的数据
+    
+    <span class="token operator">-</span>反编译
+    <span class="token operator">-</span>Hook
+
+
+<span class="token comment"># 为什么现在apk越来越大</span>
+	<span class="token operator">-</span>使用第三方组件
+    <span class="token operator">-</span>视频，声音，图片文件（占大头）
+    <span class="token operator">-</span>java代码编译后
+    <span class="token operator">-</span>so代码编译后
+    
+    
+ <span class="token comment"># apk下载位置</span>
+	app官网下载
+    豌豆荚平台下载
+    不建议去小米或华为应用商店
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h2 id="_1-2-什么是反编译"><a href="#_1-2-什么是反编译" class="header-anchor">#</a> 1.2 什么是反编译</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># 反编译是指将已编译的安卓应用程序（APK文件）转换回其源代码的过程。</span>
+通常，安卓应用程序在开发过程中会经过编译，将源代码转换为可执行的二进制代码，这使得源代码不可见和难以理解。反编译的过程旨在还原应用程序的源代码，以便进行分析、理解和修改。
+
+<span class="token comment"># 通过安卓反编译，你可以获取应用程序的源代码，了解其实现逻辑、算法、资源文件和其他关键信息。这对于安卓应用程序的安全评估、漏洞分析、逆向工程、定制化和学习都有重要意义。</span>
+
+<span class="token comment"># 常见的反编译工具有哪些？</span>
+apktool：apktool是一款常用的开源工具，用于反编译和重新打包APK文件。它可以将APK文件解压为资源文件和Smali代码，并提供了对Smali代码进行分析和编辑的功能。
+
+JADX：JADX是一款功能强大的开源工具，用于将APK文件转换为可读的Java源代码。它能够还原大部分Java代码，并提供源代码分析和导航功能。（咱们学习用）
+
+JD<span class="token operator">-</span>GUI：JD<span class="token operator">-</span>GUI是一款免费的Java反编译工具，可以将已编译的Java类文件转换为可读的Java源代码。尽管它主要用于Java反编译，但对于某些Smali代码的反编译也有一定的支持
+
+
+<span class="token comment"># 下载安装jax---》需要先安装jdk</span>
+<span class="token number">1</span> 下载jdk https<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>oracle<span class="token punctuation">.</span>com<span class="token operator">/</span>java<span class="token operator">/</span>technologies<span class="token operator">/</span>downloads<span class="token operator">/</span><span class="token comment">#java8 安装</span>
+<span class="token number">2</span> 解压提供的压缩包：jadx<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.0</span><span class="token punctuation">.</span><span class="token builtin">zip</span>
+<span class="token number">3</span> 运行<span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>jadx<span class="token operator">-</span>gui
+<span class="token number">4</span> 随便把一个apk拖入进去即可
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="_1-3-什么是hook"><a href="#_1-3-什么是hook" class="header-anchor">#</a> 1.3 什么是hook</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># HOOK指的是通过修改或替换目标应用程序的函数或方法来改变其行为的技术。</span>
+<span class="token operator">-</span>比如app有个登录功能<span class="token punctuation">(</span>函数<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>》通过hook<span class="token operator">-</span><span class="token operator">-</span>》动态修改，替换登录的代码<span class="token operator">-</span><span class="token operator">-</span>》实现我们自己的操作
+<span class="token operator">-</span>打印出传入的参数，打印出加密后的字符串。。。
+
+这种技术允许开发者或黑客在不修改应用程序源代码的情况下，对其进行定制、调试、修改或篡改。
+
+
+<span class="token comment"># 在安卓中，常见的HOOK技术有以下几种：</span>
+
+动态链接库（DLL）注入：通过加载一个自定义的动态链接库来替换目标应用程序的某些函数或方法。这种方式通常需要在ROOT权限下进行，并且需要一些额外的工具和技术，如Xposed Framework或Frida。
+
+Xposed框架：Xposed是一款强大的安卓框架，它提供了一种简单的方式来HOOK安卓应用程序。通过Xposed框架，开发者可以编写模块，用于修改或替换目标应用程序的函数或方法。
+
+Frida框架：Frida是一款功能强大的动态分析工具，它提供了在运行时修改和HOOK应用程序的能力。通过Frida，开发者可以使用JavaScript编写脚本，动态修改目标应用程序的行为
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p><img src="imgs/day01-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0.assets/image-20240228214204862.png" alt="image-20240228214204862"></p> <h2 id="_1-4-电脑设备选择"><a href="#_1-4-电脑设备选择" class="header-anchor">#</a> 1.4 电脑设备选择</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># mac  win 系统均可</span>
+	<span class="token operator">-</span>讲课以win为例
+    
+<span class="token comment"># 开的软件非常吃内存</span>
+
+<span class="token comment"># 建议大家 i5,16g内存以上</span>
+
+<span class="token comment"># 配置越高越好</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h2 id="_1-5-安卓设备选择"><a href="#_1-5-安卓设备选择" class="header-anchor">#</a> 1.5 安卓设备选择</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># 1 模拟器---》装在电脑上---》后续有些app是不支持模拟器--》会做模拟器检测（不建议用）</span>
+	win：网易mumu，逍遥、夜神、雷电（推荐<span class="token number">3</span>版本，不要用<span class="token number">4</span>版，以后抓包会有问题）
+    mac：网易mumu（暂时不支持m1芯片）
+    
+    
+<span class="token comment"># 2 安卓真机  Pixel 2 XL</span>
+	推荐：谷歌手机<span class="token punctuation">(</span>国内不卖<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">-</span>》安卓系统更贴合<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>》aosp<span class="token operator">-</span><span class="token operator">-</span>》刷到谷歌手机
+    注意：买的时候，问一下，是否解了oem锁，必须要买解oem锁的手机
+    	问商家<span class="token operator">-</span><span class="token operator">-</span>》有没有解oem锁<span class="token operator">-</span><span class="token operator">-</span>》如果没解，就别买了
+        因为刷机要root，必须解oem锁
+    	欧版，美版
+<span class="token comment"># 3 小米手机--》也可以用-》如果要root，必须先解开bl锁--》去小米官方提交申请--》7天审批通过</span>
+	最终要root手机<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>》现在支持root
+    自己root
+    淘宝找人root
+
+<span class="token comment"># 4 华为手机--》不支持root了</span>
+
+
+<span class="token comment"># 5 有一款root过后的安卓手机, 安卓版本8及以上即可</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h2 id="_1-6-补充谷歌手机各个型号"><a href="#_1-6-补充谷歌手机各个型号" class="header-anchor">#</a> 1.6 补充谷歌手机各个型号</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># 以下是Nexus和Pixel手机的一些常见型号、版本和发布时间的简要列表：</span>
+<span class="token comment">## Nexus手机系列：</span>
+Nexus One <span class="token operator">-</span> Android <span class="token number">2.1</span> Eclair <span class="token operator">-</span> <span class="token number">2010</span>年<span class="token number">1</span>月发布
+Nexus S <span class="token operator">-</span> Android <span class="token number">2.3</span> Gingerbread <span class="token operator">-</span> <span class="token number">2010</span>年<span class="token number">12</span>月发布
+Galaxy Nexus <span class="token operator">-</span> Android <span class="token number">4.0</span> Ice Cream Sandwich <span class="token operator">-</span> <span class="token number">2011</span>年<span class="token number">11</span>月发布
+Nexus <span class="token number">4</span> <span class="token operator">-</span> Android <span class="token number">4.2</span> Jelly Bean <span class="token operator">-</span> <span class="token number">2012</span>年<span class="token number">11</span>月发布
+Nexus <span class="token number">5</span> <span class="token operator">-</span> Android <span class="token number">4.4</span> KitKat <span class="token operator">-</span> <span class="token number">2013</span>年<span class="token number">10</span>月发布
+Nexus <span class="token number">6</span> <span class="token operator">-</span> Android <span class="token number">5.0</span> Lollipop <span class="token operator">-</span> <span class="token number">2014</span>年<span class="token number">10</span>月发布
+Nexus 5X <span class="token operator">-</span> Android <span class="token number">6.0</span> Marshmallow <span class="token operator">-</span> <span class="token number">2015</span>年<span class="token number">9</span>月发布
+Nexus 6P <span class="token operator">-</span> Android <span class="token number">6.0</span> Marshmallow <span class="token operator">-</span> <span class="token number">2015</span>年<span class="token number">9</span>月发布
+Nexus <span class="token number">9</span> <span class="token operator">-</span> Android <span class="token number">5.0</span> Lollipop <span class="token operator">-</span> <span class="token number">2014</span>年<span class="token number">11</span>月发布
+Nexus Player <span class="token operator">-</span> Android <span class="token number">5.0</span> Lollipop <span class="token operator">-</span> <span class="token number">2014</span>年<span class="token number">11</span>月发布
+<span class="token comment">## Pixel手机系列：</span>
+Pixel <span class="token operator">-</span> Android <span class="token number">7.1</span> Nougat <span class="token operator">-</span> <span class="token number">2016</span>年<span class="token number">10</span>月发布
+Pixel XL <span class="token operator">-</span> Android <span class="token number">7.1</span> Nougat <span class="token operator">-</span> <span class="token number">2016</span>年<span class="token number">10</span>月发布
+Pixel <span class="token number">2</span> <span class="token operator">-</span> Android <span class="token number">8.0</span> Oreo <span class="token operator">-</span> <span class="token number">2017</span>年<span class="token number">10</span>月发布
+Pixel <span class="token number">2</span> XL <span class="token operator">-</span> Android <span class="token number">8.0</span> Oreo <span class="token operator">-</span> <span class="token number">2017</span>年<span class="token number">10</span>月发布  <span class="token comment"># 建议买 老师用的  380左右 拼多多 淘宝，闲鱼</span>
+Pixel <span class="token number">3</span> <span class="token operator">-</span> Android <span class="token number">9</span> Pie <span class="token operator">-</span> <span class="token number">2018</span>年<span class="token number">10</span>月发布
+Pixel <span class="token number">3</span> XL <span class="token operator">-</span> Android <span class="token number">9</span> Pie <span class="token operator">-</span> <span class="token number">2018</span>年<span class="token number">10</span>月发布
+Pixel 3a <span class="token operator">-</span> Android <span class="token number">9</span> Pie <span class="token operator">-</span> <span class="token number">2019</span>年<span class="token number">5</span>月发布
+Pixel 3a XL <span class="token operator">-</span> Android <span class="token number">9</span> Pie <span class="token operator">-</span> <span class="token number">2019</span>年<span class="token number">5</span>月发布
+Pixel <span class="token number">4</span> <span class="token operator">-</span> Android <span class="token number">10</span> <span class="token operator">-</span> <span class="token number">2019</span>年<span class="token number">10</span>月发布
+Pixel <span class="token number">4</span> XL <span class="token operator">-</span> Android <span class="token number">10</span> <span class="token operator">-</span> <span class="token number">2019</span>年<span class="token number">10</span>月发布   <span class="token comment"># 建议买 600左右</span>
+Pixel 4a <span class="token operator">-</span> Android <span class="token number">10</span> <span class="token operator">-</span> <span class="token number">2020</span>年<span class="token number">8</span>月发布
+Pixel 4a <span class="token punctuation">(</span>5G<span class="token punctuation">)</span> <span class="token operator">-</span> Android <span class="token number">11</span> <span class="token operator">-</span> <span class="token number">2020</span>年<span class="token number">9</span>月发布
+Pixel <span class="token number">5</span> <span class="token operator">-</span> Android <span class="token number">11</span> <span class="token operator">-</span> <span class="token number">2020</span>年<span class="token number">9</span>月发布
+Pixel <span class="token number">6</span>和Pixel <span class="token number">6</span> Pro  <span class="token operator">-</span><span class="token number">2021</span>年<span class="token number">9</span>月发布
+Pixel 7a、Pixel <span class="token number">7</span>     <span class="token operator">-</span><span class="token number">2023</span>年<span class="token number">5</span>月发布
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><h2 id="_1-7-什么是bl锁-什么是oem锁"><a href="#_1-7-什么是bl锁-什么是oem锁" class="header-anchor">#</a> 1.7 什么是bl锁，什么是oem锁</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token string">&quot;Pixel开启OEM锁&quot;</span>，通常指的是在Google Pixel设备上启用了OEM锁（也称为Bootloader锁）。
+OEM锁是一个安全机制，目的是保护设备免受未经授权的修改和潜在的安全威胁
+
+<span class="token comment"># 如何开启oem锁：https://www.cnblogs.com/liuqingzheng/p/17462146.html</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h1 id="_6-root设备"><a href="#_6-root设备" class="header-anchor">#</a> 6 Root设备</h1> <h2 id="_6-1-root-是什么"><a href="#_6-1-root-是什么" class="header-anchor">#</a> 6.1 root 是什么</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code>ROOT是指获取安卓设备（手机或平板电脑）的超级用户权限，也被称为管理员或根用户权限。通过Root手机，用户可以获得对操作系统的完全控制权限，可以访问和修改系统文件、安装自定义固件、运行需要Root权限的应用程序等。
+
+
+<span class="token comment"># Root权限的好处包括：</span>
+定制化：Root后，用户可以更深入地定制和个性化他们的设备，如更改主题、修改系统设置、安装自定义ROM等。
+删除预装应用程序：有些设备预装了一些无法卸载的应用程序，通过Root可以删除这些预装应用程序，释放存储空间和系统资源。
+安装和运行需要Root权限的应用程序：有些应用程序需要Root权限才能正常工作，例如一些备份工具、系统优化工具等。
+提高性能和扩展功能：通过Root权限，用户可以进行一些系统优化和调整，以提高设备的性能和功能。
+
+<span class="token comment"># root坏处</span>
+需要注意的是，Root手机可能存在一些风险和潜在的问题，包括安全性问题、失去设备保修、无法正常升级系统等。
+Root手机也可能违反设备制造商的保修条款，因此在进行Root操作之前，请先查看设备的保修政策
+
+<span class="token comment"># 最好使用备用机来root，不要使用你现在正在用的手机</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="_6-1-谷歌pixel手机root方式"><a href="#_6-1-谷歌pixel手机root方式" class="header-anchor">#</a> 6.1 谷歌pixel手机root方式</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># 看10期的视频---》day02</span>
+https<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>cnblogs<span class="token punctuation">.</span>com<span class="token operator">/</span>liuqingzheng<span class="token operator">/</span>p<span class="token operator">/</span><span class="token number">17462146</span><span class="token punctuation">.</span>html
+https<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>cnblogs<span class="token punctuation">.</span>com<span class="token operator">/</span>liuqingzheng<span class="token operator">/</span>p<span class="token operator">/</span><span class="token number">17462127</span><span class="token punctuation">.</span>html
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h2 id="_6-2-小米手机root"><a href="#_6-2-小米手机root" class="header-anchor">#</a> 6.2 小米手机root</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code>正常拿到一部手机后需要做：
+
+<span class="token operator">-</span> 第<span class="token number">1</span>步：申请解BL锁
+  注册小米账号、手机和账号绑定、申请解锁，申请后一般需等<span class="token number">7</span>天才能成功解锁。
+  注：淘宝上有人可以秒解，曾有同学新手机被搞的无法开机，又去返厂（请谨慎）。
+
+
+<span class="token operator">-</span> 第<span class="token number">2</span>步：root，手机root就是获得最高权限，app逆向必备，一般现在的手机root有<span class="token number">2</span>种方式：
+
+  <span class="token operator">-</span> FastBoot刷Magisk，一般分区无法挂载（system目录）【推荐】
+    https<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>bilibili<span class="token punctuation">.</span>com<span class="token operator">/</span>video<span class="token operator">/</span>BV1er4y1C7wU<span class="token operator">/</span>
+    https<span class="token punctuation">:</span><span class="token operator">//</span>magiskcn<span class="token punctuation">.</span>com<span class="token operator">/</span>
+
+  <span class="token operator">-</span> 淘宝找人代刷（<span class="token number">30</span><span class="token operator">-</span><span class="token number">50</span>左右）
+
+<span class="token operator">**</span>注意<span class="token operator">**</span>：其他机型，请自行解决root问题。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h1 id="_7-python虚拟环境"><a href="#_7-python虚拟环境" class="header-anchor">#</a> 7 Python虚拟环境</h1> <h2 id="_7-1-什么是虚拟环境"><a href="#_7-1-什么是虚拟环境" class="header-anchor">#</a> 7.1 什么是虚拟环境</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># 咱么安装了python解释器后，会释放出两个命令</span>
+	python：解释器命令
+    pip：安装模块命令
+    
+<span class="token comment"># 以后安装模块</span>
+	pip install  写模块名
+    
+<span class="token comment"># 模块安装到了python系统解释器之上</span>
+
+<span class="token comment"># 出现问题：</span>
+	假设咱们有两个项目 假设都用了requests模块
+    	第一个项目使用了 requests <span class="token number">1.1</span>版本
+        第二个项目使用了 requests <span class="token number">2.1</span>版本
+        
+<span class="token comment"># 系统上只能有一个requests模块，并且只能有一个版本</span>
+
+<span class="token comment"># 运行两个项目：</span>
+	运行第一个项目需要卸载requests2<span class="token punctuation">.</span><span class="token number">1</span>，安装<span class="token number">1.1</span>
+    如果运行第二个项目需要卸载requests1<span class="token punctuation">.</span><span class="token number">1</span>，安装<span class="token number">2.1</span>
+    
+    
+    
+ <span class="token comment"># 使用虚拟环境来解决问题</span>
+	<span class="token operator">-</span>以后你的机上就会有 
+    	<span class="token number">1</span> 系统环境<span class="token operator">-</span><span class="token operator">-</span>》装了一些模块
+        <span class="token number">2</span> 创建的虚拟环境<span class="token number">1</span><span class="token operator">-</span><span class="token operator">-</span>》装了一些模块
+        <span class="token number">3</span> 创建的虚拟环境<span class="token number">2</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>》装了一些模块
+        。。。。。。。
+    <span class="token operator">-</span>他们之间模块是相互不影响的
+<span class="token comment"># 以后，一个项目，使用一个虚拟环境---》每个项目之间--》模块版本就不会相互影响</span>
+
+
+<span class="token comment"># 多种解决方案：</span>
+  	Virtualenv  <span class="token comment"># 以它为例</span>
+    pipenv
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div><h2 id="_7-2-win平台安装虚拟环境"><a href="#_7-2-win平台安装虚拟环境" class="header-anchor">#</a> 7.2 win平台安装虚拟环境</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># 1 安装两个模块</span>
+pip3 install virtualenv
+pip3 install virtualenvwrapper<span class="token operator">-</span>win
+
+<span class="token comment"># 2 修改环境变量</span>
+
+<span class="token comment"># 配置环境变量：</span>
+<span class="token comment"># 控制面板 =&gt; 系统和安全 =&gt; 系统 =&gt; 高级系统设置 =&gt; 环境变量 =&gt; 系统变量 =&gt; 点击新建 =&gt; 填入变量名与值</span>
+变量名：WORKON_HOME  变量值：自定义存放虚拟环境的绝对路径
+eg<span class="token punctuation">:</span> WORKON_HOME<span class="token punctuation">:</span> D<span class="token punctuation">:</span>\Virtualenvs
+
+<span class="token comment">#3  同步配置信息：</span>
+<span class="token comment"># 去向Python3的安装目录 =&gt; Scripts文件夹 =&gt; virtualenvwrapper.bat =&gt; 双击</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p><img src="imgs/day01-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0.assets/image-20240228222406069.png" alt="image-20240228222406069"></p> <h2 id="_7-3-mac-linux平台安装虚拟环境"><a href="#_7-3-mac-linux平台安装虚拟环境" class="header-anchor">#</a> 7.3 mac，linux平台安装虚拟环境</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># 1 安装模块</span>
+pip3 install virtualenv
+pip3 install virtualenvwrapper
+
+<span class="token comment"># 2 移动文件（有点麻烦）</span>
+
+<span class="token comment"># 先找到virtualenvwrapper的工作文件 virtualenvwrapper.sh，该文件可以刷新自定义配置，但需要找到它</span>
+<span class="token comment"># MacOS可能存在的位置 /Library/Frameworks/Python.framework/Versions/版本号文件夹/bin</span>
+<span class="token comment"># Linux可能所在的位置 /usr/local/bin  |  ~/.local/bin  |  /usr/bin</span>
+<span class="token comment"># 建议不管virtualenvwrapper.sh在哪个目录，保证在 /usr/local/bin 目录下有一份</span>
+<span class="token comment"># 如果不在 /usr/local/bin 目录，如在 ~/.local/bin 目录，则复制一份到 /usr/local/bin 目录</span>
+	<span class="token operator">-</span><span class="token operator">-</span> sudo cp <span class="token operator">-</span>rf <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>local<span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>virtualenvwrapper<span class="token punctuation">.</span>sh <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token builtin">bin</span>
+    
+    
+ <span class="token comment"># 3 配置环境变量</span>
+<span class="token comment"># 在 ~/.bash_profile 完成配置，virtualenvwrapper的默认默认存放虚拟环境路径是 ~/.virtualenvs</span>
+<span class="token comment"># WORKON_HOME=自定义存放虚拟环境的绝对路径，需要自定义就解注</span>
+VIRTUALENVWRAPPER_PYTHON<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>python3
+source <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>virtualenvwrapper<span class="token punctuation">.</span>sh
+
+<span class="token comment"># 在终端让配置生效：</span>
+	source <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>bash_profile
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h2 id="_7-4-虚拟环境命令的使用-如果使用7-5-方案-就不能用以下命令"><a href="#_7-4-虚拟环境命令的使用-如果使用7-5-方案-就不能用以下命令" class="header-anchor">#</a> 7.4 虚拟环境命令的使用（如果使用7.5 方案，就不能用以下命令）</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># 创建虚拟环境</span>
+ mkvirtualenv <span class="token operator">-</span>p python3 虚拟环境名称  <span class="token comment"># 在D:\Virtualenvs 创建出一个文件夹--》就是虚拟环境</span>
+    
+<span class="token comment"># 查看自己创建的虚拟环境</span>
+workon 
+
+<span class="token comment"># 今日到虚拟环境</span>
+workon 虚拟环境名字
+<span class="token comment">#(luffy) C:\Users\Administrator&gt;  表示进成功了</span>
+
+
+<span class="token comment"># 退出虚拟环境</span>
+deactivate
+
+<span class="token comment"># 删除虚拟环境</span>
+<span class="token comment"># 直接到文件夹去删除</span>
+rmvirtualenv 虚拟环境名称
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h2 id="_7-5-简单方案-使用pycharm直接创建"><a href="#_7-5-简单方案-使用pycharm直接创建" class="header-anchor">#</a> 7.5 简单方案（使用pycharm直接创建）</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code>如图
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="imgs/day01-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0.assets/image-20240228223508387.png" alt="image-20240228223508387"></p> <p><img src="imgs/day01-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0.assets/image-20240228223619340.png" alt="image-20240228223619340"></p> <p><img src="imgs/day01-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0.assets/image-20240228223709180.png" alt="image-20240228223709180"></p> <p><img src="imgs/day01-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0.assets/image-20240228223959529.png" alt="image-20240228223959529"></p> <h2 id="_7-6-导出项目依赖"><a href="#_7-6-导出项目依赖" class="header-anchor">#</a> 7.6 导出项目依赖</h2> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment"># Python程序约定俗称的</span>
+	在项目根路径下要有个 requirements<span class="token punctuation">.</span>txt 文件<span class="token operator">-</span><span class="token operator">-</span>》文件中放了当前项目所有的依赖
+<span class="token comment"># 在虚拟环境下执行</span>
+pip freeze <span class="token operator">&gt;</span> requirements<span class="token punctuation">.</span>txt
+
+<span class="token comment"># 就会生成，以后把requirements放在项目中发给别人，别人运行项目时，知道要安装那些模块</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></div></section> <footer class="page-edit"><!----> <!----></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_1-1-app逆向原理" class="sidebar-link reco-side-_1-1-app逆向原理" data-v-b57cc07c>1.1 app逆向原理</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_1-2-什么是反编译" class="sidebar-link reco-side-_1-2-什么是反编译" data-v-b57cc07c>1.2 什么是反编译</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_1-3-什么是hook" class="sidebar-link reco-side-_1-3-什么是hook" data-v-b57cc07c>1.3 什么是hook</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_1-4-电脑设备选择" class="sidebar-link reco-side-_1-4-电脑设备选择" data-v-b57cc07c>1.4 电脑设备选择</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_1-5-安卓设备选择" class="sidebar-link reco-side-_1-5-安卓设备选择" data-v-b57cc07c>1.5 安卓设备选择</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_1-6-补充谷歌手机各个型号" class="sidebar-link reco-side-_1-6-补充谷歌手机各个型号" data-v-b57cc07c>1.6 补充谷歌手机各个型号</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_1-7-什么是bl锁-什么是oem锁" class="sidebar-link reco-side-_1-7-什么是bl锁-什么是oem锁" data-v-b57cc07c>1.7 什么是bl锁，什么是oem锁</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_6-1-root-是什么" class="sidebar-link reco-side-_6-1-root-是什么" data-v-b57cc07c>6.1 root 是什么</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_6-1-谷歌pixel手机root方式" class="sidebar-link reco-side-_6-1-谷歌pixel手机root方式" data-v-b57cc07c>6.1 谷歌pixel手机root方式</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_6-2-小米手机root" class="sidebar-link reco-side-_6-2-小米手机root" data-v-b57cc07c>6.2 小米手机root</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_7-1-什么是虚拟环境" class="sidebar-link reco-side-_7-1-什么是虚拟环境" data-v-b57cc07c>7.1 什么是虚拟环境</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_7-2-win平台安装虚拟环境" class="sidebar-link reco-side-_7-2-win平台安装虚拟环境" data-v-b57cc07c>7.2 win平台安装虚拟环境</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_7-3-mac-linux平台安装虚拟环境" class="sidebar-link reco-side-_7-3-mac-linux平台安装虚拟环境" data-v-b57cc07c>7.3 mac，linux平台安装虚拟环境</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_7-4-虚拟环境命令的使用-如果使用7-5-方案-就不能用以下命令" class="sidebar-link reco-side-_7-4-虚拟环境命令的使用-如果使用7-5-方案-就不能用以下命令" data-v-b57cc07c>7.4 虚拟环境命令的使用（如果使用7.5 方案，就不能用以下命令）</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_7-5-简单方案-使用pycharm直接创建" class="sidebar-link reco-side-_7-5-简单方案-使用pycharm直接创建" data-v-b57cc07c>7.5 简单方案（使用pycharm直接创建）</a></li><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/spider/nixiang01/01.html#_7-6-导出项目依赖" class="sidebar-link reco-side-_7-6-导出项目依赖" data-v-b57cc07c>7.6 导出项目依赖</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/javablog/public/assets/js/app.71fab523.js" defer></script><script src="/javablog/public/assets/js/72.426fa802.js" defer></script><script src="/javablog/public/assets/js/1.3c422ec2.js" defer></script><script src="/javablog/public/assets/js/131.c015cb4d.js" defer></script>
+  </body>
+</html>
