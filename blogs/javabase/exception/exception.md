@@ -344,6 +344,17 @@ public class Test {
 }
 ```
 
+```java
+public class Test {
+    public static void main(String[] args) {
+        String str = "1234abcf";
+        if(str.matches("^\\d+$")){
+            System.out.println(Integer.valueOf(str));
+        }
+    }
+}
+```
+
 
 
 
