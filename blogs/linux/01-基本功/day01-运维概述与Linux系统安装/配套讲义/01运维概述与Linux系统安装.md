@@ -1,5 +1,5 @@
 ---
-title: 01-运维概述与Linux系统安装
+title: 01-运维概述与Linux系统安装-讲义
 date: 2028-12-15
 sticky: 1
 sidebar: 'auto'

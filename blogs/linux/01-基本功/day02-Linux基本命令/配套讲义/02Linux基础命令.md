@@ -1,5 +1,5 @@
 ---
-title: 03-Linux基础命令
+title: 02-Linux基础命令-讲义
 date: 2028-12-15
 sticky: 1
 sidebar: 'auto'
