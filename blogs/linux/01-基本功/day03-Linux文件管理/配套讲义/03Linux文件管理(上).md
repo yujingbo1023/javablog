@@ -1,4 +1,13 @@
-typora-copy-images-to: ./media
+---
+title: 03-Linux文件管理-讲义-上
+date: 2028-12-15
+sticky: 1
+sidebar: 'auto'
+tags:
+ - linux
+categories:
+ -  linux
+---
 
 # Linux文件管理（上）
 
