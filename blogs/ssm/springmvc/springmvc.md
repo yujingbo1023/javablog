@@ -2574,7 +2574,7 @@ public class GlobalExceptionHandler {
 
 ## 36, 拦截器
 
-![1722916886845](assets/1722916886845.png)
+![1722916886845](./assets/1722916886845.png)
 
 
 
@@ -2591,7 +2591,9 @@ SpringMVC的拦截器（Interceptor）也是AOP思想的一种实现方式。它
 
 
 
-接下来我们使用SpringMVC拦截器，使用maven创建SprinMVC的web项目，创建控制器方法
+接下来我们使用SpringMVC拦截器，使用maven创建SprinMVC的web项目，创建控制器方法：
+
+![1722926824477](./assets/1722926824477.png)
 
 
 
@@ -2601,13 +2603,88 @@ SpringMVC的拦截器（Interceptor）也是AOP思想的一种实现方式。它
 - postHandle：跳转到JSP前执行的方法
 - afterCompletion：跳转到JSP后执行的方法
 
+![1722927026023](./assets/1722927026023.png)
+
+```java
+package com.malu.interceptor;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class MyInterceptor implements HandlerInterceptor {
+    // 请求到达Controller前执行
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("请求到达Controller前");
+        return true;
+    }
+
+    // 跳转到JSP前执行，此时可以向request域添加数据
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("跳转到JSP前");
+        request.setAttribute("name","malu");
+    }
+
+    // 跳转到JSP后执行，此时不能向request域添加数据
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("跳转到JSP后");
+        request.setAttribute("age",10);
+    }
+}
+```
 
 
-编写JSP页面
 
 
 
-在SpringMVC核心配置文件中配置拦截器
+编写JSP页面:
+
+![1722927098036](./assets/1722927098036.png)
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>结果</title>
+</head>
+<body>
+<h3>name:${requestScope.name}</h3>
+<h3>age:${requestScope.age}</h3>
+</body>
+</html>
+
+```
+
+
+
+
+
+在SpringMVC核心配置文件中配置拦截器:
+
+![1722927237982](./assets/1722927237982.png)
+
+```xml
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--配置拦截器的作用路径-->
+            <mvc:mapping path="/**"/>
+            <!--配置拦截器对象-->
+            <bean class="com.malu.interceptor.MyInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+```
+
+
+
+测试：
+
+![1722927671830](./assets/1722927671830.png)
 
 
 
@@ -2617,15 +2694,63 @@ SpringMVC的拦截器（Interceptor）也是AOP思想的一种实现方式。它
 
 全局拦截器可以拦截所有控制器处理的URL，作用等于/**，配置方式如下：
 
+![1722927817925](./assets/1722927817925.png)
+
+```xml
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <!--  全局拦截器  -->
+        <bean class="com.malu.interceptor.MyInterceptor"></bean>
+    </mvc:interceptors>
+```
+
+
+
 
 
 ## 38, 拦截器链与执行顺序
 
-![1722917034451](assets/1722917034451.png)
+![1722917034451](./assets/1722917034451.png)
 
 
 
-如果一个URL能够被多个拦截器所拦截，全局拦截器最先执行，其他拦截器根据配置文件中配置的从上到下执行，接下来我们再配置一个拦截器：
+如果一个URL能够被多个拦截器所拦截，全局拦截器最先执行，其他拦截器根据配置文件中配置的从上到下执行，接下来我们再配置一个拦截器，第1个拦截器：
+
+![1722927913213](./assets/1722927913213.png)
+
+
+
+第2个拦截器：
+
+![1722927939714](./assets/1722927939714.png)
+
+
+
+配置拦截器链：
+
+![1722928021820](./assets/1722928021820.png)
+
+```xml
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.malu.interceptor.MyInterceptor"></bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.malu.interceptor.MyInterceptor2"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+```
+
+
+
+测试：
+
+![1722928093768](./assets/1722928093768.png)
+
+
 
 
 
@@ -2635,23 +2760,181 @@ SpringMVC的拦截器（Interceptor）也是AOP思想的一种实现方式。它
 - 只要有一个preHandle()拦截，后面的preHandle()，postHandle()都不会执行。
 - 只要相应的preHandle()放行，afterComletion()就会执行。
 
+
+
 ## 39, 拦截器过滤敏感词
 
 在系统中，我们需要将所有响应中的一些敏感词替换为 *** ，此时可以使用拦截器达到要求，编写控制器方法：
+
+![1722928169852](./assets/1722928169852.png)
 
 
 
 编写敏感词拦截器：
 
+![1722928605449](./assets/1722928605449.png)
+
+```java
+package com.malu.interceptor;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
+import java.util.Set;
+
+public class SensitiveWordInterceptor  implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        // 定义敏感词列表
+        String[] sensitiveWords = {"坏人","笨蛋","暴力"};
+
+        Map<String, Object> model = modelAndView.getModel();
+        Set<Map.Entry<String, Object>> entries = model.entrySet();
+        for (Map.Entry<String, Object> entry : entries) {
+            String key = entry.getKey();
+            String value = entry.getValue().toString();
+            for (String sensitiveWord : sensitiveWords) {
+                if(value.contains(sensitiveWord)){
+                    String newStr = value.replaceAll(sensitiveWord, "***");
+                    model.put(key,newStr);
+                }
+            }
+        }
+    }
+}
+
+```
+
 
 
 配置拦截器：
 
+![1722928339411](./assets/1722928339411.png)
 
 
-## 40, 同源策略
+
+测试：
+
+![1722928648604](./assets/1722928648604.png)
+
+
+
+## 40, 同源策略和跨域请求
+
+写一个接口：
+
+![1722928936935](./assets/1722928936935.png)
+
+```java
+@Controller
+@ResponseBody
+public class MyController {
+    @RequestMapping("/t1")
+    public String t1(Model model){
+        return "{\"code\":200,\"msg\":\"success\"}";
+    }
+}
+```
+
+
+
+测试：
+
+![1722928960968](./assets/1722928960968.png)
+
+
+
+写一个前端项目：
+
+![1722929000779](./assets/1722929000779.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+        // 创建一个新的XMLHttpRequest对象
+        var xhr = new XMLHttpRequest();
+
+        // 配置请求类型、URL 以及是否异步处理
+        xhr.open('GET', 'http://127.0.0.1:8080/t1', true);
+
+        // 设置请求完成的回调函数
+        xhr.onreadystatechange = function () {
+            // 请求完成并且响应状态码为 200
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 处理请求成功的响应数据
+                    console.log(xhr.responseText);
+                } else {
+                    // 处理请求失败
+                    console.error('AJAX Request failed');
+                }
+            }
+        };
+
+        // 发送请求
+        xhr.send();
+    </script>
+
+</body>
+</html>
+```
+
+
+
+运行前端项目：
+
+![1722929080668](./assets/1722929080668.png)
+
+![1722929101439](./assets/1722929101439.png)
+
+![1722929144133](./assets/1722929144133.png)
 
 同源策略是浏览器的一个安全功能。同源，指的是两个URL的协议，域名，端口相同。浏览器出于安全方面的考虑，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源。
+
+
+
+**同源策略：Same Origin Policy SOP 是浏览器的策略**
+
+- 同源策略(Same-Origin Policy)最早由 Netscape 公司提出，是浏览器的一种安全策略
+- 规定：只允许两个页面有相同的源时，一个页面才可以去访问另一个页面中的数据。
+- 源：说白了，就是指域名 相同的源指的是有相同的域名
+- 换句话说，jd.com不能去获取taobao.com下面的数据
+
+有一个这样的域名：http://www.wangcai.com
+
+- http://zhidao.wangcai.com 不同源
+- http://www.wangcai.com:8080 不同源
+- https://www.wangcai.com 不同源
+- http://www.wangcai.com/phone/index.html 同源
+- http://www.wangcai.com/phone/huawei/index.html 同源
+
+**总结**
+
+- 源：协议 + 域名 + 端口
+- 同源：相同的协议 && 相同域名 && 相同的端口
+- 不同源：不同的协议 || 不同的域名 || 不同的端口
+
+**不受同源策略的限制**
+
+- 资源的引入 如：img标签的src link标签的href script标签的src
+- 页面中的超连接 a标签中的href
+- 表单的提交
+- 重定向页面
 
 
 
@@ -2669,19 +2952,29 @@ SpringMVC的拦截器（Interceptor）也是AOP思想的一种实现方式。它
 
 编写控制器方法：
 
+![1722929358914](./assets/1722929358914.png)
 
+当前后端接口：
+
+![1722929384325](./assets/1722929384325.png)
+
+
+
+前端项目如下：http://localhost:63342/fe/index.html
+
+![1722929423605](./assets/1722929423605.png)
 
 SpringMVC提供了注解@CrossOrigin解决跨域问题。用法如下：
 
+![1722929504236](./assets/1722929504236.png)
+
+![1722929543321](./assets/1722929543321.png)
 
 
-## 41, 跨域请求
 
 
 
 
-
-## 42, 控制器接收跨域请求
 
 
 
