@@ -1305,7 +1305,7 @@ public class MyController {
 
 
 
-## 22, RESTful风格支持和@PathVariable
+## 22, RESTful风格支持和@PathVariable，@PostMapping、@GetMapping、@PutMapping、@DeleteMapping
 
 RESTful风格是一种URL路径的设计风格。在RESTful风格的URL路径中，网络上的任意数据都可以看成一个资源，它可以是一段文本、一张图片，也可以是一个Java对象。而每个资源都会占据一个网络路径，无论对该资源进行增删改查，访问的路径是一致的。
 
@@ -1362,6 +1362,121 @@ RESTful风格的优点:
 
 
 
+演示，实体类：
+
+![1722907670803](./assets/1722907670803.png)
+
+```java
+package com.malu.domain;
+
+import java.util.List;
+import java.util.Map;
+
+public class Student {
+    private int id;
+    private String name;
+    private String sex;
+
+    public Student() {
+    }
+
+    public Student(int id, String name, String sex) {
+        this.id = id;
+        this.name = name;
+        this.sex = sex;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                '}';
+    }
+}
+
+```
+
+
+
+控制器：
+
+![1722907695703](./assets/1722907695703.png)
+
+```java
+@Controller
+@RequestMapping("/student")
+public class MyController {
+
+    // 根据ID删除学生
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    public String deleteStudent(@PathVariable("id") int id){
+        System.out.println("删除id为"+id+"的学生");
+        return "ok";
+    }
+    // 根据ID查询学生  如果占位符和参数名相同，可以省略@PathVariable的value属性
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public String findStudentById(@PathVariable int id){
+        System.out.println(id);
+        System.out.println("根据ID查询学生");
+        return "ok";
+    }
+    // 新增学生
+    @RequestMapping(value = "/{id}",method = RequestMethod.POST)
+    public String addStudent(@PathVariable int id, Student student){
+        System.out.println(id);
+        System.out.println(student);
+        System.out.println("新增学生");
+        return "ok";
+    }
+    // 修改学生
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public String updateStudent(@PathVariable int id, Student student){
+        System.out.println(id);
+        System.out.println(student);
+        System.out.println("修改学生");
+        return "ok";
+    }
+}
+```
+
+
+
+运行项目，测试之：
+
+![1722907903094](./assets/1722907903094.png)
+
+
+
+
+
+
+
 访问方式：
 
 - 新增学生：POST http://localhost:8080/student/1?name=malu&sex=man
@@ -1378,19 +1493,184 @@ RESTful风格的优点:
 
 
 
+演示：
+
+![1722908084250](./assets/1722908084250.png)
+
+```java
+@Controller
+@RequestMapping("/student")
+public class MyController {
+
+    // 根据ID删除学生
+    // @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
+    public String deleteStudent(@PathVariable("id") int id){
+        System.out.println("删除id为"+id+"的学生");
+        return "ok";
+    }
+    // 根据ID查询学生  如果占位符和参数名相同，可以省略@PathVariable的value属性
+    // @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @GetMapping("/{id}")
+    public String findStudentById(@PathVariable int id){
+        System.out.println(id);
+        System.out.println("根据ID查询学生");
+        return "ok";
+    }
+    // 新增学生
+    // @RequestMapping(value = "/{id}",method = RequestMethod.POST)
+    @PostMapping("/{id}")
+    public String addStudent(@PathVariable int id, Student student){
+        System.out.println(id);
+        System.out.println(student);
+        System.out.println("新增学生");
+        return "ok";
+    }
+    // 修改学生
+    // @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    @PutMapping("/{id}")
+    public String updateStudent(@PathVariable int id, Student student){
+        System.out.println(id);
+        System.out.println(student);
+        System.out.println("修改学生");
+        return "ok";
+    }
+}
+```
+
+
+
+
+
 由于浏览器form表单只支持GET与POST请求，而DELETE、PUT请求并不支持，SpringMVC有一个过滤器，可以将浏览器的POST请求改为指定的请求方式，发送给的控制器方法。
 
 
 
 在web.xml中配置过滤器:
 
+![1722908219339](./assets/1722908219339.png)
+
+```xml
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!--  请求方式过滤器  -->
+  <filter>
+    <filter-name>httpMethodFilter</filter-name>
+    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>httpMethodFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!--前端控制器，接收所有的请求，在容器启动时就会加载-->
+  <!--默认情况下，你访问jsp页面，不会走DispatcherServlet-->
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+```
+
+
+
 
 
 编写控制器方法:
 
+![1722908557970](./assets/1722908557970.png)
+
+```java
+@Controller
+@RequestMapping("/student")
+public class MyController {
+
+    @DeleteMapping("/delete")
+    public String deleteStudent(){
+        System.out.println("DELETE");
+        return "ok";
+    }
+
+    @PutMapping("/put")
+    public String updateStudent(){
+        System.out.println("PUT");
+        return "ok";
+    }
+}
+```
+
+
+
 
 
 在jsp中编写表单:
+
+![1722908476525](./assets/1722908476525.png)
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>DELETE、PUT提交</title>
+</head>
+<body>
+<%-- 删除表单 --%>
+<form action="/student/delete" method="post">
+    <%-- type="hidden" 必须写的 隐藏表单 --%>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="删除">
+</form>
+
+<%-- 修改表单 --%>
+<form action="/student/put" method="post">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="submit" value="修改">
+</form>
+</body>
+</html>
+```
+
+
+
+测试：
+
+![1722908592747](./assets/1722908592747.png)
 
 
 
@@ -1405,19 +1685,104 @@ RESTful风格的优点:
 
 编写结果实体类，该实体类会封装一个请求的结果:
 
+![1722908819471](./assets/1722908819471.png)
+
+```java
+package com.malu.domain;
+
+public class Result {
+    private boolean flag;//请求是否成功
+    private String message;//请求提示信息
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Result() {
+    }
+
+    public Result(boolean flag, String message) {
+        this.flag = flag;
+        this.message = message;
+    }
+}
+```
+
+
+
 
 
 编写控制器:
 
+![1722909308897](./assets/1722909308897.png)
+
+```java
+@Controller
+@ResponseBody  // 给前端返回json数据
+public class MyController {
+
+    @PostMapping("/addStudent")
+    public Result deleteStudent(String name, String sex){
+        System.out.println(name+":"+sex);
+
+        // 返回添加成功的结果
+        Result result = new Result(true, "添加学生成功！");
+        return result;
+    }
+
+}
+```
+
+测试：
+
+![1722909296262](./assets/1722909296262.png)
+
 
 
 SpringMVC会将Result对象转为JSON格式写入输出流，而SpringMVC默认使用的JSON转换器是jackson，需要在pom中添加jackson依赖。
+
+![1722909122721](./assets/1722909122721.png)
+
+```xml
+    <!-- jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+```
+
+
 
 
 
 ## 24, @RestController
 
 如果一个控制器类下的所有控制器方法都返回JSON格式数据且不进行跳转，可以使用@RestController代替@Controller，此时每个方法上的@ResponseBody都可以省略。
+
+![1722909448524](./assets/1722909448524.png)
 
 
 
@@ -1431,16 +1796,63 @@ SpringMVC会将Result对象转为JSON格式写入输出流，而SpringMVC默认�
 
 
 
+演示：
+
+![1722909512368](./assets/1722909512368.png)
+
+![1722909609777](./assets/1722909609777.png)
+
+![1722909660107](./assets/1722909660107.png)
+
+
+
+
+
 配置静态资源筛查器:在SpringMVC的配置文件中配置后，会在Spring容器中创建一个资源检查器，它对进入
 DispatcherServlet的URL进行筛查，如果不是静态资源，才由DispatcherServlet处理。修改SpringMVC核心配置文件：
+
+![1722909727725](./assets/1722909727725.png)
+
+```xml
+    <mvc:default-servlet-handler/>
+```
+
+
+
+测试：
+
+![1722909759760](./assets/1722909759760.png)
 
 
 
 配置静态资源映射器:SpringMVC模块提供了静态资源映射器组件，通过  标签配置静态资源映射器，配置后的路径不会由DispatcherServlet处理。修改SpringMVC核心配置文件：
 
+![1722910087340](./assets/1722910087340.png)
+
 
 
 配置默认Servlet处理静态资源:在web.xml可以配置默认Servlet处理静态资源，该Servlet由tomcat提供，它会直接访问静态资源不进行其他操作。这样就避免了使用DispatcherServlet对静态资源的拦截。修改web.xml:
+
+![1722910168506](./assets/1722910168506.png)
+
+```xml
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+```
 
 
 
@@ -1459,7 +1871,28 @@ DispatcherServlet的URL进行筛查，如果不是静态资源，才由Dispatche
 
 编写控制器：
 
+![1722911036961](./assets/1722911036961.png)
 
+```java
+@RestController
+public class MyController {
+
+    @PostMapping("/addStudent")
+    public Result deleteStudent(@RequestBody Student student){
+        System.out.println(student);
+
+        Result result = new Result(true, "添加学生成功！");
+        return result;
+    }
+
+}
+```
+
+
+
+测试：
+
+![1722911135692](./assets/1722911135692.png)
 
 
 
@@ -1469,17 +1902,79 @@ DispatcherServlet的URL进行筛查，如果不是静态资源，才由Dispatche
 
 上传是Web工程中很常见的功能，SpringMVC框架简化了文件上传的代码，我们首先使用JAVAEE原生方式上传文件。创建新的SpringMVC项目，在web.xml中将项目从2.3改为3.1，即可默认开启el表达式
 
+```xml
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+
+```
 
 
-编写上传表单：
+
+接收请求体中的数据：
+
+![1722911517864](./assets/1722911517864.png)
+
+```java
+@RestController
+public class MyController {
+
+    @PostMapping("/fileUpload")
+    public String deleteStudent(HttpServletRequest request) throws Exception{
+
+        // 获取输入流
+        ServletInputStream is = request.getInputStream();
+
+        // 从输入流获取请求体数据
+        int i = 0;
+        while ((i=is.read())!=-1){
+            System.out.println((char)i);
+        }
+
+        return "ok";
+    }
+
+}
+```
 
 
 
-接收请求体数据：
+测试：
+
+![1722911690360](./assets/1722911690360.png)
+
+
+
+使用Postman上传图片：
+
+![1722911772444](./assets/1722911772444.png)
 
 
 
 接下来需要分析请求体中的文件项，并将数据写入磁盘，此时需要借助文件上传工具，引入文件上传依赖：
+
+![1722911820340](./assets/1722911820340.png)
+
+```xml
+    <!-- 文件上传 -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+```
+
+
 
 
 
@@ -1490,6 +1985,54 @@ DispatcherServlet的URL进行筛查，如果不是静态资源，才由Dispatche
 - 将文件数据写入文件夹。
 
 
+
+演示：
+
+![1722911887818](./assets/1722911887818.png)
+
+![1722912249057](./assets/1722912249057.png)
+
+```java
+@RestController
+public class MyController {
+
+    @PostMapping("/fileUpload")
+    public String deleteStudent(HttpServletRequest request) throws Exception{
+
+        // 1.设置上传文件夹的真实路径
+        String realPath = request.getSession().getServletContext().getRealPath("/upload");
+
+        // 2.判断该目录是否存在，如果不存在，创建该目录
+        File file = new File(realPath);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+
+        // 分析请求体，找到上传文件数据
+        // 1.创建磁盘文件工厂
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        // 2.创建上传数据分析器对象
+        ServletFileUpload servletFileUpload = new ServletFileUpload(factory);
+        // 3.利用分析器对象解析请求体，返回所有数据项
+        List<FileItem> fileItems = servletFileUpload.parseRequest(request);
+        // 4.遍历所有数据，找到文件项（非表单项）
+        for (FileItem fileItem:fileItems){
+            if(!fileItem.isFormField()){
+                // 将文件数据写入文件夹
+                // 1.获取文件名
+                String name = fileItem.getName();
+                // 2.将文件写入磁盘
+                fileItem.write(new File(file,name));
+                // 3.删除内存中的临时文件
+                fileItem.delete();
+            }
+        }
+        return "ok";
+    }
+
+}
+
+```
 
 
 
@@ -1507,25 +2050,130 @@ SpringMVC使用框架提供的文件解析器对象，可以直接将请求体�
 
 在SpringMVC核心配置文件配置文件解析器：
 
+![1722912391889](./assets/1722912391889.png)
+
+```xml
+    <!-- 文件解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 支持一次上传文件的总容量，单位：字节 100M=100*1024*1024 -->
+        <property name="maxUploadSize" value="104857600"></property>
+        <!-- 文件名编码格式 -->
+        <property name="defaultEncoding" value="utf-8"></property>
+    </bean>
+```
 
 
-创建JSP表单：
 
 
 
 编写控制器接收上传请求：
 
+![1722912644711](./assets/1722912644711.png)
+
+```java
+@RestController
+public class MyController {
+
+    @PostMapping("/fileUpload")
+    public String deleteStudent(MultipartFile file, HttpServletRequest request) throws Exception{
+
+        String realPath = request.getSession().getServletContext().getRealPath("/upload");
+
+        File dir = new File(realPath);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        // 将上传的数据写到文件夹的文件中
+        // 1.拿到上传的文件名
+        String filename = file.getOriginalFilename();
+        filename = UUID.randomUUID()+"_"+filename;
+        // 2.创建空文件
+        File newFile = new File(dir,filename);
+        // 3.将数据写入空文件中
+        file.transferTo(newFile);
 
 
-SpringMVC支持一次性上传多个文件，创建JSP表单：
+        return "ok";
+    }
+
+}
+```
+
+
+
+
+
+SpringMVC支持一次性上传多个文件，使用jsp测试：
+
+![1722912981546](./assets/1722912981546.png)
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>DELETE、PUT提交</title>
+</head>
+<body>
+<form action="/fileUpload" method="post" enctype="multipart/form-data">
+    用户名：<input name="username"/>
+    文件1：<input type="file" name="files"/>
+    文件2：<input type="file" name="files"/>
+    <input type="submit" value="上传"/>
+</form>
+</body>
+</html>
+
+```
 
 
 
 编写控制器接收上传请求：
 
+![1722913011977](./assets/1722913011977.png)
+
+```java
+@RestController
+public class MyController {
+
+    @PostMapping("/fileUpload")
+    public String deleteStudent(String username, MultipartFile[] files, HttpServletRequest request) throws Exception{
+
+        System.out.println(username);
+
+        String realPath = request.getSession().getServletContext().getRealPath("/upload");
+
+        File dir = new File(realPath);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        // 遍历数组，将上传的文件保存到文件夹
+        for (MultipartFile file : files) {
+            String filename = file.getOriginalFilename();
+            filename = UUID.randomUUID()+"_"+filename;
+            File newFile = new File(dir, filename);
+            file.transferTo(newFile);
+        }
+
+
+        return "ok";
+    }
+
+}
+```
 
 
 
+测试：
+
+![1722913175586](./assets/1722913175586.png)
+
+
+
+使用postman测试：
+
+![1722913230732](./assets/1722913230732.png)
 
 
 
@@ -1539,67 +2187,501 @@ SpringMVC支持一次性上传多个文件，创建JSP表单：
 
 编写控制器接收异步上传请求：
 
+![1722913380993](./assets/1722913380993.png)
+
+
+
+测试：
+
+![1722913422401](./assets/1722913422401.png)
+
+
+
+根据上面的路径访问静态资源：
+
+![1722913469091](./assets/1722913469091.png)
 
 
 
 
 
+## 31, 跨服务器上传（了解）
 
-## 31, 跨服务器上传
-
-
+![1722913529187](./assets/1722913529187.png)
 
 由于文件占据磁盘空间较大，在实际开发中往往会将文件上传到其他服务器中，此时需要使用跨服务器上传文件。解压tomcat作为图片服务器，在tomcat的webapps下创建upload目录作为文件上传目录。修改tomcat的 conf/web.xml 文件，支持跨服上传。
 
+![1722913665459](./assets/1722913665459.png)
 
+```xml
+        <init-param>
+            <param-name>readonly</param-name>
+            <param-value>false</param-value>
+        </init-param>
+```
 
 
 
 修改tomcat的 conf/server.xml 文件，修改tomcat端口，修改完开启tomcat服务器：
 
+![1722913739646](./assets/1722913739646.png)
 
 
-编写JSP上传表单：
+
+还需要创建一个文件：
+
+![1722914761604](./assets/1722914761604.png)
 
 
 
 添加跨服上传依赖：
 
+![1722913789015](./assets/1722913789015.png)
+
+```xml
+        <!-- 跨服上传 -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>1.18.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.18.1</version>
+        </dependency>
+```
+
+
+
 
 
 创建控制器方法，该方法在接受到上传请求后将文件保存到其他服务器上。
 
+![1722913873144](./assets/1722913873144.png)
+
+```java
+@Controller
+@ResponseBody  // //不进行页面跳转
+public class MyController {
+
+    @PostMapping("/fileUpload")
+    public String deleteStudent(HttpServletRequest request, MultipartFile file) throws Exception{
+
+        // 设置跨服上传的服务器路径
+        String path = "http://localhost:8081/upload/";
+        // 获取上传的文件名
+        String filename = file.getOriginalFilename();
+        filename = UUID.randomUUID()+"_"+filename;
+
+        // 跨服上传
+        // 1.创建客户端对象
+        Client client = Client.create();
+        // 2.使用客户端对象连接图片服务器
+        WebResource resource = client.resource(path + filename);
+        // 3.数据传输
+        resource.put(file.getBytes());
+        // 返回文件路径
+        return path+filename;
+    }
+
+}
+```
 
 
-## 32, 文件下载
 
-将文件上传到服务器后，有时我们需要让用户下载上传的文件，接下来我们编写文件下载功能。编写控制器方法，查询所有可下载的文件，并跳转到下载页面
+本地服务器需要启动：
+
+![1722913994638](./assets/1722913994638.png)
+
+
+
+测试：
+
+![1722914803228](./assets/1722914803228.png)
+
+![1722914823692](./assets/1722914823692.png)
+
+
+
+
+
+## 32, 文件下载（了解）
+
+将文件上传到服务器后，有时我们需要让用户下载上传的文件，接下来我们编写文件下载功能。编写控制器方法，查询所有可下载的文件，并跳转到下载页面，之前上传的图片资源：
+
+![1722914863377](./assets/1722914863377.png)
 
 
 
 添加JSTL依赖：
 
+![1722914906042](./assets/1722914906042.png)
+
+```xml
+    <!-- JSTL -->
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-spec</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+```
 
 
-编写下载页面：
+
+写控制器：
+
+![1722915018907](./assets/1722915018907.png)
+
+
+
+测试：
+
+![1722915117010](./assets/1722915117010.png)
+
+
+
+读取数据，放到request域中，如下：
+
+![1722915194312](./assets/1722915194312.png)
+
+
+
+在jsp页面中，使用之：
+
+![1722915241597](./assets/1722915241597.png)
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+    <title>下载</title>
+</head>
+<body>
+<h3>文件下载</h3>
+<%-- 遍历文件集合 --%>
+<c:forEach items="${files}" var="file">
+    <a href="/download?fileName=${file}">${file}</a><br />
+</c:forEach>
+</body>
+</html>
+
+```
+
+
+
+再次测试之：
+
+![1722915281191](./assets/1722915281191.png)
+
+
 
 
 
 编写下载控制器：
 
+![1722915421507](./assets/1722915421507.png)
+
+```java
+    @GetMapping("/download")
+    public void fileDown(HttpServletRequest request, HttpServletResponse response, String fileName) throws Exception{
+
+        // 设置响应头
+        response.setHeader("Content-Disposition","attachment;filename="+fileName);
+
+        // 获取文件路径
+        String path = request.getSession().getServletContext().getRealPath("/upload");
+        File file = new File(path,fileName);
+        // 获取字节输出流
+        ServletOutputStream os = response.getOutputStream();
+        // 使用输出流写出文件
+        os.write(FileUtils.readFileToByteArray(file));
+        os.flush();
+        os.close();
+    }
+```
 
 
 
+测试：
+
+![1722915477501](./assets/1722915477501.png)
 
 
 
 ## 33, 单个控制器异常处理
+
+在系统当中， Dao、Service、Controller层代码出现都可能抛出异常。如果哪里产生异常就在哪里处理，则会降低开发效率。所以一般情况下我们会让异常向上抛出，最终到达DispatcherServlet中，此时SpringMVC提供了异常处理器进行异常处理，这样可以提高开发效率。
+
+![1722915587463](./assets/1722915587463.png)
+
+
+
+处理单个Controller的异常：
+
+![1722915960305](./assets/1722915960305.png)
+
+```java
+@Controller
+public class MyController {
+    @RequestMapping("/t1")
+    public String t1(){
+        String str = null;
+        str.length();
+
+        // int flag = 1/0;
+
+        // int[] arr = new int[1];
+        // arr[2] = 10;
+        return "ok";
+    }
+    // 添加@ExceptionHandler，表示该方法是处理异常的方法，属性为处理的异常类
+    @ExceptionHandler({java.lang.NullPointerException.class})
+    public String exceptionHandle1(Exception ex, Model model){
+        // 向模型中添加异常对象
+        model.addAttribute("msg",ex);
+        // 跳转到异常页面
+        return "error";
+    }
+
+}
+```
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>出错了！</title>
+</head>
+<body>
+<h3>ERROR 发生异常！${msg}</h3>
+</body>
+</html>
+
+```
+
+
+
+测试其它异常：
+
+![1722916057504](./assets/1722916057504.png)
+
+![1722916156147](./assets/1722916156147.png)
+
+```java
+@Controller
+public class MyController {
+    @RequestMapping("/t1")
+    public String t1(){
+        // String str = null;
+        // str.length();
+
+        // int flag = 1/0;
+
+        int[] arr = new int[1];
+        arr[2] = 10;
+        return "ok";
+    }
+    // 添加@ExceptionHandler，表示该方法是处理异常的方法，属性为处理的异常类
+    @ExceptionHandler({java.lang.NullPointerException.class, java.lang.ArithmeticException.class})
+    public String exceptionHandle1(Exception ex, Model model){
+        // 向模型中添加异常对象
+        model.addAttribute("msg",ex);
+        // 跳转到异常页面
+        return "error";
+    }
+
+    // 方法一不能处理的异常交给方法二处理
+    @ExceptionHandler({java.lang.Exception.class})
+    public String exceptionHandle2(Exception ex, Model model){
+        System.out.println("exceptionHandle2...");
+        // 向模型中添加异常对象
+        model.addAttribute("msg",ex);
+        // 跳转到异常页面
+        return "error";
+    }
+}
+```
+
+
+
 ## 34, 全局异常处理
+
+在控制器中定义异常处理方法只能处理该控制器类的异常，要想处理所有控制器的异常，需要定义全局异常处理类。编写另一个有异常的控制器类:
+
+![1722916264315](./assets/1722916264315.png)
+
+
+
+编写全局异常处理器类:
+
+![1722916396897](./assets/1722916396897.png)
+
+```java
+// 全局异常处理器类  需要添加@ControllerAdvice
+@ControllerAdvice
+public class GlobalExceptionHandler {
+   // 添加@ExceptionHandler，表示该方法是处理异常的方法，属性为处理的异常类
+   @ExceptionHandler({java.lang.NullPointerException.class, java.lang.ArithmeticException.class})
+   public String exceptionHandle1(Exception ex, Model model) {
+       model.addAttribute("msg", ex);
+       return "error";
+   }
+
+   @ExceptionHandler(java.lang.Exception.class)
+   public String exceptionHandle2(Exception ex, Model model) {
+       model.addAttribute("msg", ex);
+       return "error";
+   }
+}
+```
+
+
+
+测试：
+
+![1722916442782](./assets/1722916442782.png)
+
+
+
+
+
 ## 35, 自定义异常处理器
+
+以上方式都是使用的SpringMVC自带的异常处理器进行异常处理，我们还可以自定义异常处理器处理异常，自定义异常处理器实现HandlerExceptionResolver接口，并放入Spring容器中。
+
+![1722916672027](./assets/1722916672027.png)
+
+
+
+把全局的注释掉：
+
+![1722916728825](./assets/1722916728825.png)
+
+
+
+测试：
+
+![1722916758176](./assets/1722916758176.png)
+
+
+
 ## 36, 拦截器
+
+![1722916886845](assets/1722916886845.png)
+
+
+
+SpringMVC的拦截器（Interceptor）也是AOP思想的一种实现方式。它与Servlet的过滤器（Filter）功能类似，主要用于拦截用户的请求并做相应的处理，通常应用在权限验证、记录请求信息的日志、判断用户是否登录等功能上。
+
+
+
+拦截器和过滤器的区别
+
+- 拦截器是SpringMVC组件，而过滤器是Servlet组件。
+- 拦截器不依赖Web容器，过滤器依赖Web容器。
+- 拦截器只能对控制器请求起作用，而过滤器则可以对所有的请求起作用。
+- 拦截器可以直接获取IOC容器中的对象，而过滤器就不太方便获取。
+
+
+
+接下来我们使用SpringMVC拦截器，使用maven创建SprinMVC的web项目，创建控制器方法
+
+
+
+创建拦截器类，该类实现HandlerInterceptor接口，需要重写三个方法：
+
+- preHandle：请求到达Controller前执行的方法，返回值为true通过拦截器，返回值为false被拦截器拦截。
+- postHandle：跳转到JSP前执行的方法
+- afterCompletion：跳转到JSP后执行的方法
+
+
+
+编写JSP页面
+
+
+
+在SpringMVC核心配置文件中配置拦截器
+
+
+
+
+
 ## 37, 全局拦截器
+
+全局拦截器可以拦截所有控制器处理的URL，作用等于/**，配置方式如下：
+
+
+
 ## 38, 拦截器链与执行顺序
+
+![1722917034451](assets/1722917034451.png)
+
+
+
+如果一个URL能够被多个拦截器所拦截，全局拦截器最先执行，其他拦截器根据配置文件中配置的从上到下执行，接下来我们再配置一个拦截器：
+
+
+
+结论：
+
+- preHandle()顺序执行，postHandle()、afterComletion()逆序执行。
+- 只要有一个preHandle()拦截，后面的preHandle()，postHandle()都不会执行。
+- 只要相应的preHandle()放行，afterComletion()就会执行。
+
 ## 39, 拦截器过滤敏感词
+
+在系统中，我们需要将所有响应中的一些敏感词替换为 *** ，此时可以使用拦截器达到要求，编写控制器方法：
+
+
+
+编写敏感词拦截器：
+
+
+
+配置拦截器：
+
+
+
 ## 40, 同源策略
+
+同源策略是浏览器的一个安全功能。同源，指的是两个URL的协议，域名，端口相同。浏览器出于安全方面的考虑，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源。
+
+
+
+哪些不受同源策略限制：
+
+- 页面中的  a 跳转、表单提交不会受到同源策略限制的。
+  静态资源引入也不会受到同源策略限制。如嵌入到页面中的  script标签的src, img标签中的src, link标签的href等
+- 最容易收到同源策略影响的就是Ajax请求。
+
+
+
+当请求URL的协议、域名、端口三者中任意一个与当前页面URL不同时即为跨域。浏览器执行JavaScript脚本时，会检查当前请求是否同源，如果不是同源资源，就不会被执行。
+
+
+
+编写控制器方法：
+
+
+
+SpringMVC提供了注解@CrossOrigin解决跨域问题。用法如下：
+
+
+
 ## 41, 跨域请求
+
+
+
+
+
 ## 42, 控制器接收跨域请求
+
+
+
