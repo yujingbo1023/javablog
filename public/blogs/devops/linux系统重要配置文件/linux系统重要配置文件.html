@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>03-linux系统重要配置文件 | 码路全栈开发</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/javablog/public/favicon.ico">
+    <meta name="description" content="快来玩java全栈呀">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/javablog/public/assets/css/0.styles.0bd56f36.css" as="style"><link rel="preload" href="/javablog/public/assets/js/app.fe5a1a0f.js" as="script"><link rel="preload" href="/javablog/public/assets/js/91.936a89f2.js" as="script"><link rel="preload" href="/javablog/public/assets/js/1.8cfd729d.js" as="script"><link rel="preload" href="/javablog/public/assets/js/146.f55b7340.js" as="script"><link rel="prefetch" href="/javablog/public/assets/js/10.f4ea289c.js"><link rel="prefetch" href="/javablog/public/assets/js/100.3a3c25ee.js"><link rel="prefetch" href="/javablog/public/assets/js/101.8b9adfad.js"><link rel="prefetch" href="/javablog/public/assets/js/102.e64cbef0.js"><link rel="prefetch" href="/javablog/public/assets/js/103.a6e69aaa.js"><link rel="prefetch" href="/javablog/public/assets/js/104.aa233b27.js"><link rel="prefetch" href="/javablog/public/assets/js/105.ebe6f96d.js"><link rel="prefetch" href="/javablog/public/assets/js/106.602f7279.js"><link rel="prefetch" href="/javablog/public/assets/js/107.2ed20b34.js"><link rel="prefetch" href="/javablog/public/assets/js/108.4267ad83.js"><link rel="prefetch" href="/javablog/public/assets/js/109.79fe681a.js"><link rel="prefetch" href="/javablog/public/assets/js/11.8205c32c.js"><link rel="prefetch" href="/javablog/public/assets/js/110.fdc2b0dc.js"><link rel="prefetch" href="/javablog/public/assets/js/111.cd3c672d.js"><link rel="prefetch" href="/javablog/public/assets/js/112.4a5eaa39.js"><link rel="prefetch" href="/javablog/public/assets/js/113.bd647140.js"><link rel="prefetch" href="/javablog/public/assets/js/114.040bbca0.js"><link rel="prefetch" href="/javablog/public/assets/js/115.b0d1ada2.js"><link rel="prefetch" href="/javablog/public/assets/js/116.18bfe16b.js"><link rel="prefetch" href="/javablog/public/assets/js/117.90c2e8e0.js"><link rel="prefetch" href="/javablog/public/assets/js/118.d5ecdeb7.js"><link rel="prefetch" href="/javablog/public/assets/js/119.19756b12.js"><link rel="prefetch" href="/javablog/public/assets/js/12.99602f1b.js"><link rel="prefetch" href="/javablog/public/assets/js/120.2c1cd5fa.js"><link rel="prefetch" href="/javablog/public/assets/js/121.67471725.js"><link rel="prefetch" href="/javablog/public/assets/js/122.5afcb5a4.js"><link rel="prefetch" href="/javablog/public/assets/js/123.7b645b87.js"><link rel="prefetch" href="/javablog/public/assets/js/124.f5eaabdd.js"><link rel="prefetch" href="/javablog/public/assets/js/125.4fb25aa7.js"><link rel="prefetch" href="/javablog/public/assets/js/126.97240e15.js"><link rel="prefetch" href="/javablog/public/assets/js/127.6ebe1b95.js"><link rel="prefetch" href="/javablog/public/assets/js/128.f192e623.js"><link rel="prefetch" href="/javablog/public/assets/js/129.d1698f90.js"><link rel="prefetch" href="/javablog/public/assets/js/13.30ca4eee.js"><link rel="prefetch" href="/javablog/public/assets/js/130.9769d23e.js"><link rel="prefetch" href="/javablog/public/assets/js/131.ab5fcc59.js"><link rel="prefetch" href="/javablog/public/assets/js/132.5edc963c.js"><link rel="prefetch" href="/javablog/public/assets/js/133.e2894567.js"><link rel="prefetch" href="/javablog/public/assets/js/134.66bd48bb.js"><link rel="prefetch" href="/javablog/public/assets/js/135.be0aee8a.js"><link rel="prefetch" href="/javablog/public/assets/js/136.3b87b8f0.js"><link rel="prefetch" href="/javablog/public/assets/js/137.49e2af56.js"><link rel="prefetch" href="/javablog/public/assets/js/138.5ae76bd9.js"><link rel="prefetch" href="/javablog/public/assets/js/139.4e396cf4.js"><link rel="prefetch" href="/javablog/public/assets/js/14.741573e2.js"><link rel="prefetch" href="/javablog/public/assets/js/140.24f5812a.js"><link rel="prefetch" href="/javablog/public/assets/js/141.2b19d966.js"><link rel="prefetch" href="/javablog/public/assets/js/142.5cb503c8.js"><link rel="prefetch" href="/javablog/public/assets/js/143.9351f7c5.js"><link rel="prefetch" href="/javablog/public/assets/js/144.021ab25c.js"><link rel="prefetch" href="/javablog/public/assets/js/145.56d21616.js"><link rel="prefetch" href="/javablog/public/assets/js/147.38ceb013.js"><link rel="prefetch" href="/javablog/public/assets/js/148.a0b8e6d5.js"><link rel="prefetch" href="/javablog/public/assets/js/149.22692eaa.js"><link rel="prefetch" href="/javablog/public/assets/js/15.9b76fd12.js"><link rel="prefetch" href="/javablog/public/assets/js/150.221287d7.js"><link rel="prefetch" href="/javablog/public/assets/js/151.59e14eb6.js"><link rel="prefetch" href="/javablog/public/assets/js/152.561b012f.js"><link rel="prefetch" href="/javablog/public/assets/js/153.9cf8d68a.js"><link rel="prefetch" href="/javablog/public/assets/js/154.bb2a488d.js"><link rel="prefetch" href="/javablog/public/assets/js/155.20a30fdd.js"><link rel="prefetch" href="/javablog/public/assets/js/156.5fcd751d.js"><link rel="prefetch" href="/javablog/public/assets/js/157.f99e88fe.js"><link rel="prefetch" href="/javablog/public/assets/js/158.267b6f78.js"><link rel="prefetch" href="/javablog/public/assets/js/159.5164df9b.js"><link rel="prefetch" href="/javablog/public/assets/js/16.243673e1.js"><link rel="prefetch" href="/javablog/public/assets/js/160.c06ef0a3.js"><link rel="prefetch" href="/javablog/public/assets/js/161.26f5ee18.js"><link rel="prefetch" href="/javablog/public/assets/js/162.bfdfc517.js"><link rel="prefetch" href="/javablog/public/assets/js/163.121a1409.js"><link rel="prefetch" href="/javablog/public/assets/js/164.093d466a.js"><link rel="prefetch" href="/javablog/public/assets/js/165.094e939c.js"><link rel="prefetch" href="/javablog/public/assets/js/166.8f82806d.js"><link rel="prefetch" href="/javablog/public/assets/js/167.158969f1.js"><link rel="prefetch" href="/javablog/public/assets/js/168.b3d2af25.js"><link rel="prefetch" href="/javablog/public/assets/js/169.082bc087.js"><link rel="prefetch" href="/javablog/public/assets/js/17.f4e1e4fc.js"><link rel="prefetch" href="/javablog/public/assets/js/170.3f41d0c8.js"><link rel="prefetch" href="/javablog/public/assets/js/171.841d24cd.js"><link rel="prefetch" href="/javablog/public/assets/js/172.61ed7b62.js"><link rel="prefetch" href="/javablog/public/assets/js/173.feff2c0d.js"><link rel="prefetch" href="/javablog/public/assets/js/174.a3a944b2.js"><link rel="prefetch" href="/javablog/public/assets/js/175.97efc8ee.js"><link rel="prefetch" href="/javablog/public/assets/js/176.5767ea46.js"><link rel="prefetch" href="/javablog/public/assets/js/177.7043ce1f.js"><link rel="prefetch" href="/javablog/public/assets/js/178.a1577fce.js"><link rel="prefetch" href="/javablog/public/assets/js/179.58660ed8.js"><link rel="prefetch" href="/javablog/public/assets/js/18.af2122e1.js"><link rel="prefetch" href="/javablog/public/assets/js/19.e5184ce2.js"><link rel="prefetch" href="/javablog/public/assets/js/20.afab0597.js"><link rel="prefetch" href="/javablog/public/assets/js/21.bca35753.js"><link rel="prefetch" href="/javablog/public/assets/js/22.ddbe6732.js"><link rel="prefetch" href="/javablog/public/assets/js/23.8f02f231.js"><link rel="prefetch" href="/javablog/public/assets/js/24.2c361ad0.js"><link rel="prefetch" href="/javablog/public/assets/js/25.1d191be0.js"><link rel="prefetch" href="/javablog/public/assets/js/26.6c3a4188.js"><link rel="prefetch" href="/javablog/public/assets/js/27.1abcfcf4.js"><link rel="prefetch" href="/javablog/public/assets/js/28.44c129a1.js"><link rel="prefetch" href="/javablog/public/assets/js/29.22508d4e.js"><link rel="prefetch" href="/javablog/public/assets/js/3.699e4a39.js"><link rel="prefetch" href="/javablog/public/assets/js/30.ce7a475a.js"><link rel="prefetch" href="/javablog/public/assets/js/31.34f6c9dd.js"><link rel="prefetch" href="/javablog/public/assets/js/32.0c4db4b5.js"><link rel="prefetch" href="/javablog/public/assets/js/33.093d5491.js"><link rel="prefetch" href="/javablog/public/assets/js/34.313be962.js"><link rel="prefetch" href="/javablog/public/assets/js/35.08c6cbe8.js"><link rel="prefetch" href="/javablog/public/assets/js/36.041ab8f7.js"><link rel="prefetch" href="/javablog/public/assets/js/37.d868773c.js"><link rel="prefetch" href="/javablog/public/assets/js/38.df7a9f84.js"><link rel="prefetch" href="/javablog/public/assets/js/39.34f3fddd.js"><link rel="prefetch" href="/javablog/public/assets/js/4.0c214921.js"><link rel="prefetch" href="/javablog/public/assets/js/40.bcf749b7.js"><link rel="prefetch" href="/javablog/public/assets/js/41.3b894254.js"><link rel="prefetch" href="/javablog/public/assets/js/42.2453c664.js"><link rel="prefetch" href="/javablog/public/assets/js/43.a8a0d53b.js"><link rel="prefetch" href="/javablog/public/assets/js/44.21b75f1a.js"><link rel="prefetch" href="/javablog/public/assets/js/45.e984b1a1.js"><link rel="prefetch" href="/javablog/public/assets/js/46.bfe9cfd4.js"><link rel="prefetch" href="/javablog/public/assets/js/47.8917f5e6.js"><link rel="prefetch" href="/javablog/public/assets/js/48.d1060315.js"><link rel="prefetch" href="/javablog/public/assets/js/49.38660993.js"><link rel="prefetch" href="/javablog/public/assets/js/5.d3c4797a.js"><link rel="prefetch" href="/javablog/public/assets/js/50.8de7fde1.js"><link rel="prefetch" href="/javablog/public/assets/js/51.4b6b232a.js"><link rel="prefetch" href="/javablog/public/assets/js/52.ed911086.js"><link rel="prefetch" href="/javablog/public/assets/js/53.79bdcd45.js"><link rel="prefetch" href="/javablog/public/assets/js/54.0d25742b.js"><link rel="prefetch" href="/javablog/public/assets/js/55.23e65ac3.js"><link rel="prefetch" href="/javablog/public/assets/js/56.df0e6da6.js"><link rel="prefetch" href="/javablog/public/assets/js/57.a1d1afdf.js"><link rel="prefetch" href="/javablog/public/assets/js/58.8e5de1a6.js"><link rel="prefetch" href="/javablog/public/assets/js/59.f4443f31.js"><link rel="prefetch" href="/javablog/public/assets/js/6.93d525a2.js"><link rel="prefetch" href="/javablog/public/assets/js/60.3554ec91.js"><link rel="prefetch" href="/javablog/public/assets/js/61.54be8e29.js"><link rel="prefetch" href="/javablog/public/assets/js/62.d5128eca.js"><link rel="prefetch" href="/javablog/public/assets/js/63.b8295dcf.js"><link rel="prefetch" href="/javablog/public/assets/js/64.feef5895.js"><link rel="prefetch" href="/javablog/public/assets/js/65.3396cdaf.js"><link rel="prefetch" href="/javablog/public/assets/js/66.36995bfb.js"><link rel="prefetch" href="/javablog/public/assets/js/67.56d23d32.js"><link rel="prefetch" href="/javablog/public/assets/js/68.50a09703.js"><link rel="prefetch" href="/javablog/public/assets/js/69.d436a525.js"><link rel="prefetch" href="/javablog/public/assets/js/7.b9fa29e3.js"><link rel="prefetch" href="/javablog/public/assets/js/70.5f5eaa88.js"><link rel="prefetch" href="/javablog/public/assets/js/71.ce6a1dd2.js"><link rel="prefetch" href="/javablog/public/assets/js/72.4187efa9.js"><link rel="prefetch" href="/javablog/public/assets/js/73.80a703c6.js"><link rel="prefetch" href="/javablog/public/assets/js/74.49792b8d.js"><link rel="prefetch" href="/javablog/public/assets/js/75.d4a2f987.js"><link rel="prefetch" href="/javablog/public/assets/js/76.b6c4d8ac.js"><link rel="prefetch" href="/javablog/public/assets/js/77.841d5e71.js"><link rel="prefetch" href="/javablog/public/assets/js/78.c4a70f4a.js"><link rel="prefetch" href="/javablog/public/assets/js/79.79802953.js"><link rel="prefetch" href="/javablog/public/assets/js/8.6ef0c16a.js"><link rel="prefetch" href="/javablog/public/assets/js/80.1c9f3011.js"><link rel="prefetch" href="/javablog/public/assets/js/81.65206b2d.js"><link rel="prefetch" href="/javablog/public/assets/js/82.6c3d72e6.js"><link rel="prefetch" href="/javablog/public/assets/js/83.2d289bf4.js"><link rel="prefetch" href="/javablog/public/assets/js/84.40eaba2d.js"><link rel="prefetch" href="/javablog/public/assets/js/85.6c1aa506.js"><link rel="prefetch" href="/javablog/public/assets/js/86.b96458ad.js"><link rel="prefetch" href="/javablog/public/assets/js/87.263d20cf.js"><link rel="prefetch" href="/javablog/public/assets/js/88.0e987401.js"><link rel="prefetch" href="/javablog/public/assets/js/89.8afb6030.js"><link rel="prefetch" href="/javablog/public/assets/js/9.072e0f88.js"><link rel="prefetch" href="/javablog/public/assets/js/90.64f7e910.js"><link rel="prefetch" href="/javablog/public/assets/js/92.e351693c.js"><link rel="prefetch" href="/javablog/public/assets/js/93.96038c0b.js"><link rel="prefetch" href="/javablog/public/assets/js/94.929d73da.js"><link rel="prefetch" href="/javablog/public/assets/js/95.9918d7dd.js"><link rel="prefetch" href="/javablog/public/assets/js/96.56b12995.js"><link rel="prefetch" href="/javablog/public/assets/js/97.e14e7482.js"><link rel="prefetch" href="/javablog/public/assets/js/98.4ba303b9.js"><link rel="prefetch" href="/javablog/public/assets/js/99.a2719d90.js">
+    <link rel="stylesheet" href="/javablog/public/assets/css/0.styles.0bd56f36.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>码路全栈开发</h3> <p class="description" data-v-59e6cb88>快来玩java全栈呀</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/javablog/public/" class="home-link router-link-active"><img src="/javablog/public/logo.png" alt="码路全栈开发" class="logo"> <span class="site-name">码路全栈开发</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/HarmonyOS/" class="nav-link"><i class="undefined"></i>
+  HarmonyOS
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/devops/" class="nav-link"><i class="undefined"></i>
+  devops
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/每日一题/" class="nav-link"><i class="undefined"></i>
+  每日一题
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javabase/" class="nav-link"><i class="undefined"></i>
+  javabase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/linux/" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/pybase/" class="nav-link"><i class="undefined"></i>
+  pybase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloud/" class="nav-link"><i class="undefined"></i>
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloudalibaba/" class="nav-link"><i class="undefined"></i>
+  springcloudalibaba
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/storage/" class="nav-link"><i class="undefined"></i>
+  storage
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/zhifu/" class="nav-link"><i class="undefined"></i>
+  zhifu
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/javablog/public/avatar.png" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    码路
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>167</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>43</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/HarmonyOS/" class="nav-link"><i class="undefined"></i>
+  HarmonyOS
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/devops/" class="nav-link"><i class="undefined"></i>
+  devops
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/每日一题/" class="nav-link"><i class="undefined"></i>
+  每日一题
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javabase/" class="nav-link"><i class="undefined"></i>
+  javabase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/linux/" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/pybase/" class="nav-link"><i class="undefined"></i>
+  pybase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloud/" class="nav-link"><i class="undefined"></i>
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloudalibaba/" class="nav-link"><i class="undefined"></i>
+  springcloudalibaba
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/storage/" class="nav-link"><i class="undefined"></i>
+  storage
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/zhifu/" class="nav-link"><i class="undefined"></i>
+  zhifu
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>03-linux系统重要配置文件</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">03-linux系统重要配置文件</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>码路</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>12/15/2028</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>devops</span></i></div></div> <div class="theme-reco-content content__default"><p><strong>Linux系统中重要的配置文件：</strong></p> <ul><li>/etc/sysconfig/network-scripts/ifcfg-ens33</li> <li>/etc/hostname</li> <li>/etc/hosts</li> <li>/etc/resolv.conf</li> <li>/etc/rc.local</li> <li>/etc/inittab</li> <li>/etc/profile</li> <li>/etc/fstab</li> <li>/etc/issue /etc/issue.net</li> <li>/etc/motd</li></ul> <h3 id="_1-网卡配置"><a href="#_1-网卡配置" class="header-anchor">#</a> 1，网卡配置</h3> <p>网卡配置文件路径：/etc/sysconfig/network-scripts/ifcfg-ens33</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/sysconfig/network-scripts/ifcfg-ens33</span>
+<span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet		     <span class="token comment"># 网络类型 以太网(常用)  快速以太网(金融)</span>
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>none		     <span class="token comment"># 配置网络类型 自动获取IP 静态IP=none 静态地址=static 动态地址dhcp(不用)</span>
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>ens33				 <span class="token comment"># 网卡的名称</span>
+<span class="token assign-left variable">UUID</span><span class="token operator">=</span>e0f13fe3-0419-4c65-9ec5-a02adce36e98 <span class="token comment"># 硬件设备唯一标识 删除掉，因为后期还要克隆很多机器</span>
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>ens33			 <span class="token comment"># 硬件网卡的名称</span>
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes			     <span class="token comment"># 开机自动运行网络服务</span>
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">10.0</span>.0.200		 <span class="token comment"># IP地址  主机唯一标识</span>
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>			     <span class="token comment"># 子网掩码决定过了网络内可以用得主机数量 10.0.0.1-10.0.0.254</span>
+				         <span class="token comment"># 24 ---&gt;另外一种表示方式 255.255.255.0  十进制</span>
+				         <span class="token number">11111111</span>  <span class="token number">11111111</span>  <span class="token number">11111111</span>  00000000 二进制
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token number">10.0</span>.0.2         <span class="token comment"># 网关 出网的必经之路。去往不同网段的必经之路。 配置到路由器</span>
+<span class="token assign-left variable">DNS1</span><span class="token operator">=</span><span class="token number">223.5</span>.5.5			 <span class="token comment"># 域名解析服务 将域名解析成IP地址的过程</span>
+					     浏览器访问--<span class="token operator">&gt;</span>www.baidu.com---DNS解析服务器IP地址--<span class="token operator">&gt;</span>返回给浏览器
+						 浏览器----<span class="token operator">&gt;</span>服务器IP地址建立连接。
+				         公用的DNS服务器: 
+				               <span class="token number">223.5</span>.5.5   <span class="token number">223.6</span>.6.6 阿里云
+							   <span class="token number">114.114</span>.114.114  电信
+							   <span class="token number">8.8</span>.8.8  谷歌
+							   <span class="token number">202.106</span>.0.20 联通
+
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cp /etc/sysconfig/network-scripts/ifcfg-ens33 /etc/sysconfig/network-scripts/ifcfg-ens33.bak    # 备份默认的网卡配置</span>
+
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># ll /etc/sysconfig/network-scripts/ifcfg-ens33*</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">356</span> Jun <span class="token number">27</span> <span class="token number">23</span>:46 /etc/sysconfig/network-scripts/ifcfg-ens33
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">356</span> Jul  <span class="token number">3</span> <span class="token number">11</span>:23 /etc/sysconfig/network-scripts/ifcfg-ens33.bak
+
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/sysconfig/network-scripts/ifcfg-ens33</span>
+<span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>none
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>ens33
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>ens33
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">10.0</span>.0.200
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token number">10.0</span>.0.2
+<span class="token assign-left variable">DNS1</span><span class="token operator">=</span><span class="token number">223.5</span>.5.5
+
+修改后重启网卡生效:
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/sysconfig/network-scripts/ifcfg-ens33</span>
+<span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>none
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>ens33
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>ens33
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">10.0</span>.0.200
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token number">10.0</span>.0.2
+<span class="token assign-left variable">DNS1</span><span class="token operator">=</span><span class="token number">223.5</span>.5.5
+
+重启网卡:
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># ifdown ens33 &amp;&amp; ifup ens33</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br></div></div><h3 id="_2-配置主机名称"><a href="#_2-配置主机名称" class="header-anchor">#</a> 2，配置主机名称</h3> <p>配置文件：/etc/hostname， 作用: 配置主机名称</p> <p>查看主机名称:</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>方法1
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># hostname</span>
+malu
+
+方法2
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># hostnamectl </span>
+   Static hostname: malu			 <span class="token comment"># 主机名称</span>
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: d10efe1a571843729847d2a4fde2ad2e
+           Boot ID: 1f8d0188632d44539939a6d4a36a7059
+    Virtualization: vmware
+  Operating System: Kylin Linux Advanced Server V10 <span class="token punctuation">(</span>Lance<span class="token punctuation">)</span>
+            Kernel: Linux <span class="token number">4.19</span>.90-52.22.v2207.ky10.x86_64
+      Architecture: x86-64
+      
+      
+方法3
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/hostname </span>
+malu      
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>修改主机名称:</p> <ul><li>临时修改(重启系统失效)</li> <li>永久修改主机名称</li></ul> <p>临时修改(重启系统失效):</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>第一步: <span class="token function">hostname</span> 主机名称
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># hostname test</span>
+第二步: 重新连接xshell
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>永久修改主机名称:</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>方法1: 了解
+第一步: 修改配置文件
+<span class="token punctuation">[</span>root@test ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/hostname</span>
+malu
+第二步: 重启系统生效
+
+方法2: 重点 永久+临时
+<span class="token punctuation">[</span>root@test ~<span class="token punctuation">]</span><span class="token comment"># hostnamectl set-hostname linux</span>
+使用hostnamectl即修改了配置文件/etc/hostname ,重新连接xshell也会显示新的主机名称
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="_3-本地域名解析"><a href="#_3-本地域名解析" class="header-anchor">#</a> 3，本地域名解析</h3> <p>配置文件：/etc/hosts， 作用：本地域名解析(本地的DNS解析服务器 类似223.5.5.5 默认里面是空的)</p> <p>浏览器访问www.baidu.com----&gt;本地hosts文件查询是否有域名的对应关系(如果有对应关系，则直接返回IP地址给浏览器)---&gt;如果没有继续查询223.5.5.5</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/hosts</span>
+<span class="token number">127.0</span>.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+<span class="token number">10.0</span>.0.1     www.baidu.com
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>windows中hosts文件的路径:</p> <ul><li>C:\Windows\System32\drivers\etc</li></ul> <h3 id="_4-dns的配置"><a href="#_4-dns的配置" class="header-anchor">#</a> 4，DNS的配置</h3> <p>配置文件：/etc/resolv.conf， 作用：DNS的配置文件</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/resolv.conf </span>
+<span class="token comment"># Generated by NetworkManager</span>
+nameserver <span class="token number">223.5</span>.5.5
+
+修改DNS配置:
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/resolv.conf</span>
+<span class="token comment"># Generated by NetworkManager</span>
+nameserver <span class="token number">114.114</span>.114.114
+nameserver <span class="token number">223.5</span>.5.5
+nameserver <span class="token number">8.8</span>.8.8 
+
+使用nslookup 查看使用哪个DNS服务器做的域名解析
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># nslookup www.qq.com</span>
+Server:		<span class="token number">114.114</span>.114.114
+Address:	<span class="token number">114.114</span>.114.114<span class="token comment">#53</span>
+
+Non-authoritative answer:
+www.qq.com	canonical name <span class="token operator">=</span> ins-r23tsuuf.ias.tencent-cloud.net.
+Name:	ins-r23tsuuf.ias.tencent-cloud.net
+Address: <span class="token number">221.198</span>.70.47
+Name:	ins-r23tsuuf.ias.tencent-cloud.net
+Address: <span class="token number">2408</span>:8711:10:1002::19
+Name:	ins-r23tsuuf.ias.tencent-cloud.net
+Address: <span class="token number">2408</span>:8711:10:1003::30
+
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># nslookup www.baidu.com</span>
+Server:		<span class="token number">8.8</span>.8.8
+Address:	<span class="token number">8.8</span>.8.8<span class="token comment">#53</span>
+
+Non-authoritative answer:
+www.baidu.com	canonical name <span class="token operator">=</span> www.a.shifen.com.
+Name:	www.a.shifen.com
+Address: <span class="token number">110.242</span>.68.3
+Name:	www.a.shifen.com
+Address: <span class="token number">110.242</span>.68.4
+Name:	www.a.shifen.com
+Address: <span class="token number">2408</span>:871a:2100:3:0:ff:b025:348d
+Name:	www.a.shifen.com
+Address: <span class="token number">2408</span>:871a:2100:2:0:ff:b09f:237
+
+特点:
+<span class="token number">1</span>.resolv.conf中修改后直接生效
+<span class="token number">2</span>.配置网卡的时候必须配置DNS
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/sysconfig/network-scripts/ifcfg-ens33</span>
+<span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>none
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>ens33
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>ens33
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">10.0</span>.0.200
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token number">10.0</span>.0.2
+<span class="token assign-left variable">DNS1</span><span class="token operator">=</span><span class="token number">223.5</span>.5.5				<span class="token comment"># 必须配置，会覆盖/etc/resolv.conf</span>
+<span class="token number">3</span>.如果网卡中没有DNS，手动配置resolv.conf，重启网卡不会覆盖resolv.conf.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br></div></div><p>关于ubuntu网卡配置：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>centos ubuntu系统 麒麟
+centos和麒麟相同 ubuntu网卡配置不同	<span class="token comment"># 后面讲如何自动切换到root</span>
+malu@malu-lnb:~$ <span class="token function">sudo</span> <span class="token function">su</span> -		<span class="token comment"># ubuntu切换到root管理员账号</span>
+<span class="token punctuation">[</span>sudo<span class="token punctuation">]</span> password <span class="token keyword">for</span> oldboy: 		<span class="token comment"># 输入的是oldboy普通账号的密码 1</span>
+root@malu-lnb:~<span class="token comment"># </span>
+root@malu-lnb:~<span class="token comment"># cat /etc/netplan/00-installer-config.yaml </span>
+<span class="token comment"># This is the network config written by 'subiquity'</span>
+network:
+  ethernets:
+    ens33:
+      addresses:
+      - <span class="token number">10.0</span>.0.201/24
+      nameservers:
+        addresses:
+        - <span class="token number">223.5</span>.5.5
+        search: <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      routes:
+      - to: default
+        via: <span class="token number">10.0</span>.0.2
+  version: <span class="token number">2</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="_5-开机自动执行命令"><a href="#_5-开机自动执行命令" class="header-anchor">#</a> 5，开机自动执行命令</h3> <p>配置文件：/etc/rc.local， 作用：作用: 开机自动执行里面的命令。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>注意: rc.local是一个软链接<span class="token punctuation">(</span>windows的快捷方式<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># ll /etc/rc.local 	    # 快捷方式</span>
+lrwxrwxrwx <span class="token number">1</span> root root <span class="token number">13</span> Apr <span class="token number">20</span>  <span class="token number">2022</span> /etc/rc.local -<span class="token operator">&gt;</span> rc.d/rc.local
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># ll /etc/rc.d/rc.local   # 源文件位置</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">473</span> Apr <span class="token number">20</span>  <span class="token number">2022</span> /etc/rc.d/rc.local
+
+案例.开机在/root创建rc.txt文件
+第一步: 编辑/etc/rc.local
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment">#vim /etc/rc.local</span>
+第二步: 写入命令
+到最后一行写入
+<span class="token function">touch</span> /root/rc.txt
+
+第三步: 保持退出
+:wq
+补充:
+:wq 保持并退出
+:q  退出（没有做任何操作）
+:q<span class="token operator">!</span> 强制退出不保存
+:wq<span class="token operator">!</span> 强制保存并退出
+
+第四步: 给源文件执行权限x		执行1次就可以了。
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># ll /etc/rc.d/rc.local </span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">494</span> Jul  <span class="token number">3</span> <span class="token number">19</span>:27 /etc/rc.d/rc.local
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># chmod +x /etc/rc.d/rc.local</span>
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># ll /etc/rc.d/rc.local</span>
+-rwxr-xr-x <span class="token number">1</span> root root <span class="token number">494</span> Jul  <span class="token number">3</span> <span class="token number">19</span>:27 /etc/rc.d/rc.local
+
+第五步: 重启系统查看结果
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># reboot</span>
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">0</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul  <span class="token number">3</span> <span class="token number">19</span>:33 rc.txt
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h3 id="_6-配置开机自动运行级别"><a href="#_6-配置开机自动运行级别" class="header-anchor">#</a> 6，配置开机自动运行级别</h3> <p>配置文件：/etc/inittab， 作用：配置开机自动运行级别 (面试题/笔试题)</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>Linux操作系统7个运行级别。每个级别表示不同的功能。
+<span class="token number">0</span>   <span class="token comment"># 表示系统关机</span>
+<span class="token number">1</span>   <span class="token comment"># 表示单用户模式，如果忘记密码，通过单用户模式找回修改</span>
+<span class="token number">2</span>   <span class="token comment"># 表示多用户模式，不支持NFS。</span>
+<span class="token number">3</span>   <span class="token comment"># 表示完全多用户，默认我们使用的3级别</span>
+<span class="token number">4</span>   <span class="token comment"># 保留待开发</span>
+<span class="token number">5</span>   <span class="token comment"># 桌面模式(企业系统不安装桌面)</span>
+<span class="token number">6</span>   <span class="token comment"># 表示系统重启</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="_7-环境变量相关"><a href="#_7-环境变量相关" class="header-anchor">#</a> 7，环境变量相关</h3> <p>配置文件：/etc/profile， 作用: 永久存放环境变量的配置文件。</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>什么是变量:
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># name=malu</span>
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># echo $name</span>
+oldboy
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># mkdir $name</span>
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">0</span>
+drwxr-xr-x <span class="token number">2</span> root root <span class="token number">6</span> Jul  <span class="token number">3</span> <span class="token number">20</span>:16 malu
+
+演示:
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># dir=/etc/sysconfig/network-scripts/</span>
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># cd $dir</span>
+<span class="token punctuation">[</span>root@linux network-scripts<span class="token punctuation">]</span><span class="token comment"># pwd</span>
+/etc/sysconfig/network-scripts
+
+系统中存在的变量: <span class="token environment constant">PATH</span>路径变量
+<span class="token environment constant">PATH</span>中存放着命令的执行路径。
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># echo $PATH</span>
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin
+
+which查看命令的绝对路径:
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># which touch</span>
+/usr/bin/touch
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># which aaaaa</span>
+which: no aaaaa <span class="token keyword">in</span> <span class="token punctuation">(</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin<span class="token punctuation">)</span>
+
+Linux命令执行流程:
+第一步: 在命令行输入touch <span class="token number">1</span>.txt
+第二步: 系统查找<span class="token environment constant">PATH</span>变量中所有的路径下有没有touch这个命令,如果存在则执行
+	   如果没有在<span class="token environment constant">PATH</span>变量中的路径下，则系统提示command not Found
+	   <span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># aaaaa</span>
+	   -bash: aaaaa: <span class="token builtin class-name">command</span> not found
+	   
+	   
+演示<span class="token environment constant">PATH</span>变量
+<span class="token number">1</span>.将touch命令移动到/opt目录下
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># mv /usr/bin/touch /opt/</span>
+
+<span class="token number">2</span>.执行touch命令
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># touch a.txt</span>
+-bash: /usr/bin/touch: No such <span class="token function">file</span> or directory
+
+<span class="token number">3</span>.解决不能执行touch命令方法
+方法1: 使用绝对路径执行touch
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># /opt/touch a.txt</span>
+
+方法2: 重新定义<span class="token environment constant">PATH</span>变量，将/opt路径加入进去
+查看原来的<span class="token environment constant">PATH</span>内容
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># echo $PATH</span>
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin
+将/opt目录添加到<span class="token environment constant">PATH</span>变量中
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin:/opt/</span>
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># touch hehe.txt</span>
+
+永久生效方法:
+<span class="token number">1</span>.将<span class="token environment constant">PATH</span>变量写入/etc/profile 
+<span class="token function">vim</span> /etc/profile
+写到文件的末尾
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin:/opt/
+<span class="token number">2</span>.让配置文件生效方法
+方法1.重新连接xshell 重启系统  重点。
+方法2.使用source /etc/profile 直接生效  <span class="token builtin class-name">.</span> /etc/profile  了解
+
+练习完成后修改回原样:
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># mv /opt/touch /usr/bin/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br></div></div><h3 id="_8-开机自动挂载"><a href="#_8-开机自动挂载" class="header-anchor">#</a> 8，开机自动挂载</h3> <p>配置文件：/etc/fstab， 作用：开机自动挂载</p> <p><img src="/javablog/public/assets/img/1723012739672.07f6cd5e.png" alt="1723012739672"></p> <p><img src="/javablog/public/assets/img/1723012786425.e1e67700.png" alt="1723012786425"></p> <p><img src="/javablog/public/assets/img/1723012843162.c44732d7.png" alt="1723012843162"></p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>系统挂载cdrom 光驱
+第一步: 将cdrom连接到虚拟机
+
+第二步: 在系统中查看cdrom 在系统中显示的
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># ll /dev/cdrom </span>
+lrwxrwxrwx <span class="token number">1</span> root root <span class="token number">3</span> Jul  <span class="token number">3</span> <span class="token number">20</span>:11 /dev/cdrom -<span class="token operator">&gt;</span> sr0
+
+
+第三步: 给cdrom开一个门<span class="token punctuation">(</span>将cdrom挂载到系统中的/mnt目录<span class="token punctuation">)</span>
+通过/mnt目录实际访问的是cdrom
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># mount /dev/cdrom /mnt</span>
+mount: /mnt: WARNING: <span class="token builtin class-name">source</span> write-protected, mounted read-only.
+
+
+第四步: 查看cdrom中的文件
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># cd /mnt/</span>
+<span class="token punctuation">[</span>root@linux mnt<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">544</span>
+dr-xr-xr-x <span class="token number">3</span> root root   <span class="token number">2048</span> Mar <span class="token number">15</span>  <span class="token number">2023</span> EFI
+dr-xr-xr-x <span class="token number">3</span> root root   <span class="token number">2048</span> Mar <span class="token number">15</span>  <span class="token number">2023</span> images
+dr-xr-xr-x <span class="token number">2</span> root root   <span class="token number">2048</span> Mar <span class="token number">15</span>  <span class="token number">2023</span> isolinux
+dr-xr-xr-x <span class="token number">5</span> root root   <span class="token number">2048</span> Mar <span class="token number">24</span>  <span class="token number">2023</span> kylin-sm-package
+-r--r--r-- <span class="token number">1</span> root root    <span class="token number">441</span> Mar <span class="token number">31</span>  <span class="token number">2023</span> LICENSE
+dr-xr-xr-x <span class="token number">2</span> root root   <span class="token number">2048</span> Mar <span class="token number">15</span>  <span class="token number">2023</span> manual
+dr-xr-xr-x <span class="token number">2</span> root root <span class="token number">538624</span> Mar <span class="token number">24</span>  <span class="token number">2023</span> Packages
+dr-xr-xr-x <span class="token number">2</span> root root   <span class="token number">4096</span> Mar <span class="token number">24</span>  <span class="token number">2023</span> repodata
+-r--r--r-- <span class="token number">1</span> root root   <span class="token number">2883</span> Mar <span class="token number">31</span>  <span class="token number">2023</span> TRANS.TBL
+
+查看是否挂载成功：
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># df -h</span>
+Filesystem             Size  Used Avail Use% Mounted on
+devtmpfs               963M     <span class="token number">0</span>  963M   <span class="token number">0</span>% /dev
+tmpfs                  979M     <span class="token number">0</span>  979M   <span class="token number">0</span>% /dev/shm
+tmpfs                  979M  <span class="token number">8</span>.9M  970M   <span class="token number">1</span>% /run
+tmpfs                  979M     <span class="token number">0</span>  979M   <span class="token number">0</span>% /sys/fs/cgroup
+/dev/mapper/klas-root   47G  <span class="token number">3</span>.7G   44G   <span class="token number">8</span>% /
+tmpfs                  979M     <span class="token number">0</span>  979M   <span class="token number">0</span>% /tmp
+/dev/sda1             1014M  169M  846M  <span class="token number">17</span>% /boot
+tmpfs                  196M     <span class="token number">0</span>  196M   <span class="token number">0</span>% /run/user/0
+/dev/sr0               <span class="token number">4</span>.3G  <span class="token number">4</span>.3G     <span class="token number">0</span> <span class="token number">100</span>% /mnt			<span class="token comment">#挂载成功</span>
+
+卸载cdrom使用,卸载的时候出门后在卸载。
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># umount /mnt</span>
+
+如果不退出，会提示: target is busy
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># cd /mnt/</span>
+<span class="token punctuation">[</span>root@linux mnt<span class="token punctuation">]</span><span class="token comment"># umount /mnt</span>
+umount: /mnt: target is busy.
+<span class="token punctuation">[</span>root@linux mnt<span class="token punctuation">]</span><span class="token comment"># cd</span>
+
+
+查看硬件的类型:
+<span class="token punctuation">[</span>root@linux ~<span class="token punctuation">]</span><span class="token comment"># blkid</span>
+/dev/mapper/klas-swap: <span class="token assign-left variable">UUID</span><span class="token operator">=</span><span class="token string">&quot;deddfd66-1a7d-4653-b97b-0e0f8933f51b&quot;</span> <span class="token assign-left variable">TYPE</span><span class="token operator">=</span><span class="token string">&quot;swap&quot;</span>
+/dev/sr0: <span class="token assign-left variable">BLOCK_SIZE</span><span class="token operator">=</span><span class="token string">&quot;2048&quot;</span> <span class="token assign-left variable">UUID</span><span class="token operator">=</span><span class="token string">&quot;2023-03-31-21-06-57-00&quot;</span> <span class="token assign-left variable">LABEL</span><span class="token operator">=</span><span class="token string">&quot;Kylin-Server-10&quot;</span> <span class="token assign-left variable">TYPE</span><span class="token operator">=</span><span class="token string">&quot;iso9660&quot;</span>
+/dev/mapper/klas-root: <span class="token assign-left variable">UUID</span><span class="token operator">=</span><span class="token string">&quot;09db8ffd-281e-4bff-aa49-14f6f656a459&quot;</span> <span class="token assign-left variable">BLOCK_SIZE</span><span class="token operator">=</span><span class="token string">&quot;512&quot;</span> <span class="token assign-left variable">TYPE</span><span class="token operator">=</span><span class="token string">&quot;xfs&quot;</span>
+/dev/sda2: <span class="token assign-left variable">UUID</span><span class="token operator">=</span><span class="token string">&quot;lqyH0s-0kKa-fs7G-kpGh-1sdk-RbLE-GNzXmh&quot;</span> <span class="token assign-left variable">TYPE</span><span class="token operator">=</span><span class="token string">&quot;LVM2_member&quot;</span> <span class="token assign-left variable">PARTUUID</span><span class="token operator">=</span><span class="token string">&quot;9a148942-02&quot;</span>
+/dev/sda1: <span class="token assign-left variable">UUID</span><span class="token operator">=</span><span class="token string">&quot;2b4ae922-aa11-4f08-b98a-e99355d21546&quot;</span> <span class="token assign-left variable">BLOCK_SIZE</span><span class="token operator">=</span><span class="token string">&quot;512&quot;</span> <span class="token assign-left variable">TYPE</span><span class="token operator">=</span><span class="token string">&quot;xfs&quot;</span> <span class="token assign-left variable">PARTUUID</span><span class="token operator">=</span><span class="token string">&quot;9a148942-01&quot;</span>
+
+
+写入开机自动挂载: /etc/fstab  （笔试题）
+<span class="token function">vim</span> /etc/fstab
+<span class="token punctuation">..</span>.
+/dev/cdrom              /mnt                    iso9660 defaults <span class="token number">0</span> <span class="token number">0</span>
+第一列: 设备的名称
+第二列: 挂载点
+第三列: 文件类型
+第四列: 挂载的参数默认 defaults
+第五列: <span class="token number">0</span> 是否备份
+第六列: <span class="token number">0</span> 是否开机自动检查
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br></div></div><h3 id="_9-系统版本号"><a href="#_9-系统版本号" class="header-anchor">#</a> 9，系统版本号</h3> <p>centos中两个文件（/etc/issue   /etc/issue.net）中存放系统版本号，远程连接时会显示版本号：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># &gt; /etc/issue</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># &gt; /etc/issue.net </span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/issue</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/issue.net </span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="_10-登录的欢迎页面"><a href="#_10-登录的欢迎页面" class="header-anchor">#</a> 10，登录的欢迎页面</h3> <p>配置文件：/etc/motd</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>直接编辑vim /etc/motd
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_11-查看cpu-内存信息-系统负载"><a href="#_11-查看cpu-内存信息-系统负载" class="header-anchor">#</a> 11，查看CPU，内存信息，系统负载</h3> <p>proc作用: 内存映射，通过内存映射看到资源信息</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>/proc/cpuinfo  作用: 查看cpu信息
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># lscpu</span>
+Architecture:                    x86_64
+CPU op-mode<span class="token punctuation">(</span>s<span class="token punctuation">)</span>:                  <span class="token number">32</span>-bit, <span class="token number">64</span>-bit
+Byte Order:                      Little Endian
+Address sizes:                   <span class="token number">45</span> bits physical, <span class="token number">48</span> bits virtual
+CPU<span class="token punctuation">(</span>s<span class="token punctuation">)</span>:                          <span class="token number">4</span>				<span class="token comment"># 总核心数量</span>
+On-line CPU<span class="token punctuation">(</span>s<span class="token punctuation">)</span> list:             <span class="token number">0</span>-3		    <span class="token comment"># 核心数列表</span>
+Thread<span class="token punctuation">(</span>s<span class="token punctuation">)</span> per core:              <span class="token number">1</span>
+Core<span class="token punctuation">(</span>s<span class="token punctuation">)</span> per socket:              <span class="token number">2</span>
+Socket<span class="token punctuation">(</span>s<span class="token punctuation">)</span>:                       <span class="token number">2</span>				<span class="token comment"># cpu的个数</span>
+
+
+
+/proc/meminfo  作用: 查看内存信息
+注意: vmware真实内存2G，但是只显示1G。重启系统解决问题
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># free -h</span>
+              total        used        <span class="token function">free</span>      shared  buff/cache   available
+Mem:          <span class="token number">1</span>.9Gi       216Mi       <span class="token number">1</span>.5Gi       <span class="token number">8</span>.0Mi       173Mi       <span class="token number">1</span>.5Gi
+Swap:         <span class="token number">2</span>.0Gi          0B       <span class="token number">2</span>.0Gi		<span class="token comment"># 磁盘空间</span>
+
+
+swap: 内存的交换分区文件。使用的硬盘的空间
+作用: 内存不够用得时候，临时充当内存来使用。速度特别慢。
+	 Linux系统运行过程中，如果内存满了，为了保障系统正常运行。会干掉使用内存最高的那个进程。oom
+分区大小: 分给swap 内存的1-1.5倍。如果内存大于8G，swap就分8G即可。
+cpu最快 火箭
+内存    高铁
+硬盘    电瓶车
+
+
+
+/proc/loadavg   作用: 查看系统的负载
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cat /proc/loadavg </span>
+<span class="token number">0.00</span> <span class="token number">0.00</span> <span class="token number">0.00</span> <span class="token number">1</span>/189 <span class="token number">1364</span>
+<span class="token number">1</span>分钟  <span class="token number">5</span>分钟 <span class="token number">15</span>分钟的平均负载
+什么是系统负载: 衡量了系统的繁忙程度。
+达到了和CPU核心数的时候说明了系统非常繁忙了。
+如果CPU核心是4，负载的值达到4说明系统繁忙
+
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># uptime</span>
+ <span class="token number">10</span>:50:14 up <span class="token number">21</span> min,     <span class="token number">1</span> user,  load average: <span class="token number">0.00</span>, <span class="token number">0.00</span>, <span class="token number">0.00</span>
+ 当前时间     运行了21分    <span class="token number">1</span>个用户   系统平均负载	 <span class="token number">1</span>分钟  <span class="token number">5</span>分钟 <span class="token number">15</span>分钟的平均负载
+ 
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># w</span>
+ <span class="token number">10</span>:53:01 up <span class="token number">24</span> min,  <span class="token number">2</span> users,  load average: <span class="token number">0.00</span>, <span class="token number">0.00</span>, <span class="token number">0.00</span>
+<span class="token environment constant">USER</span>     TTY        LOGIN@   IDLE   JCPU   PCPU WHAT
+root     pts/0     <span class="token number">10</span>:29    <span class="token number">0</span>.00s  <span class="token number">0</span>.03s  <span class="token number">0</span>.00s w
+root     pts/1     <span class="token number">10</span>:52   <span class="token number">29</span>.00s  <span class="token number">0</span>.00s  <span class="token number">0</span>.00s <span class="token parameter variable">-bash</span>
+
+负载高: 对外的服务负载达到了核心数量 排查问题。
+	   内部测试服务器，算法服务器，负载达到多少都不算高。 <span class="token number">32</span>核 负载达到了300 挖矿。比特币。
+
+  
+/proc/mounts   作用: 查看内存挂载信息   <span class="token comment"># 了解</span>
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br></div></div><div class="language-bash line-numbers-mode"><pre class="language-bash"><code>查看磁盘信息
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># df -h</span>
+文件系统<span class="token punctuation">(</span>硬件<span class="token punctuation">)</span>	      大小    使用  可用  使用百分比  挂载点
+Filesystem             Size  Used Avail Use%     Mounted on
+devtmpfs               963M     <span class="token number">0</span>  963M   <span class="token number">0</span>%     /dev
+tmpfs                  979M     <span class="token number">0</span>  979M   <span class="token number">0</span>%     /dev/shm
+tmpfs                  979M  <span class="token number">8</span>.9M  970M   <span class="token number">1</span>%     /run
+tmpfs                  979M     <span class="token number">0</span>  979M   <span class="token number">0</span>%      /sys/fs/cgroup
+/dev/mapper/klas-root   47G  <span class="token number">3</span>.7G   44G   <span class="token number">8</span>%      /
+tmpfs                  979M  <span class="token number">8</span>.0K  979M   <span class="token number">1</span>%      /tmp
+/dev/sda1             1014M  169M  846M  <span class="token number">17</span>%      /boot		<span class="token comment"># 系统内核，引导程序</span>
+tmpfs                  196M     <span class="token number">0</span>  196M   <span class="token number">0</span>%       /run/user/0
+
+通过df -h可以获取的信息:
+<span class="token number">1</span><span class="token punctuation">)</span>多少块磁盘
+<span class="token number">2</span><span class="token punctuation">)</span>磁盘的总大小
+<span class="token number">3</span><span class="token punctuation">)</span>磁盘可用多少
+<span class="token number">4</span><span class="token punctuation">)</span>挂载点
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h3 id="_12-系统版本"><a href="#_12-系统版本" class="header-anchor">#</a> 12，系统版本</h3> <p>查看系统版本：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cat /etc/os-release </span>
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span><span class="token string">&quot;Kylin Linux Advanced Server&quot;</span>
+<span class="token assign-left variable">VERSION</span><span class="token operator">=</span><span class="token string">&quot;V10 (Lance)&quot;</span>
+<span class="token assign-left variable">ID</span><span class="token operator">=</span><span class="token string">&quot;kylin&quot;</span>
+<span class="token assign-left variable">VERSION_ID</span><span class="token operator">=</span><span class="token string">&quot;V10&quot;</span>
+<span class="token assign-left variable">PRETTY_NAME</span><span class="token operator">=</span><span class="token string">&quot;Kylin Linux Advanced Server V10 (Lance)&quot;</span>
+<span class="token assign-left variable">ANSI_COLOR</span><span class="token operator">=</span><span class="token string">&quot;0;31&quot;</span>
+
+root@malu-lnb:~<span class="token comment"># cat /etc/os-release </span>
+<span class="token assign-left variable">PRETTY_NAME</span><span class="token operator">=</span><span class="token string">&quot;Ubuntu 22.04.4 LTS&quot;</span>
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span><span class="token string">&quot;Ubuntu&quot;</span>
+<span class="token assign-left variable">VERSION_ID</span><span class="token operator">=</span><span class="token string">&quot;22.04&quot;</span>
+<span class="token assign-left variable">VERSION</span><span class="token operator">=</span><span class="token string">&quot;22.04.4 LTS (Jammy Jellyfish)&quot;</span>
+<span class="token assign-left variable">VERSION_CODENAME</span><span class="token operator">=</span>jammy
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>使用命令查看：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># hostnamectl </span>
+   Static hostname: malu
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: d10efe1a571843729847d2a4fde2ad2e
+           Boot ID: ed2d9b88b2e44864830fa837b367e861
+    Virtualization: vmware
+  Operating System: Kylin Linux Advanced Server V10 <span class="token punctuation">(</span>Lance<span class="token punctuation">)</span>
+            Kernel: Linux <span class="token number">4.19</span>.90-52.22.v2207.ky10.x86_64
+      Architecture: x86-64
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># uname -a</span>
+Linux malu <span class="token number">4.19</span>.90-52.22.v2207.ky10.x86_64 <span class="token comment">#1 SMP Tue Mar 14 12:19:10 CST 2023 x86_64 x86_64 x86_64 GNU/Linux</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># uname -r</span>
+<span class="token number">4.19</span>.90-52.22.v2207.ky10.x86_64
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h3 id="_13-日志文件"><a href="#_13-日志文件" class="header-anchor">#</a> 13，日志文件</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>麒麟和centos系统:
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># ll /var/log/secure    # 系统登录日志</span>
+-rw------- <span class="token number">1</span> root root <span class="token number">5009</span> Jul  <span class="token number">5</span> <span class="token number">11</span>:10 /var/log/secure
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># ll /var/log/messages  # 系统日志</span>
+-rw------- <span class="token number">1</span> root root <span class="token number">1057084</span> Jul  <span class="token number">5</span> <span class="token number">11</span>:21 /var/log/messages
+
+
+ubunut日志:
+root@malu-lnb:~<span class="token comment"># ll /var/log/auth.log # 系统登录日志</span>
+-rw-r----- <span class="token number">1</span> syslog adm <span class="token number">11657</span> Jul  <span class="token number">5</span> 03:17 /var/log/auth.log
+root@malu-lnb:~<span class="token comment"># ll /var/log/syslog 	# 系统日志</span>
+-rw-r----- <span class="token number">1</span> syslog adm <span class="token number">456432</span> Jul  <span class="token number">5</span> 03:20 /var/log/syslog
+
+日志的特点:
+<span class="token number">1</span>.最新的日志在文件的最下面
+<span class="token number">2</span>.实时更新
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div></div></section> <footer class="page-edit"><!----> <!----></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_1-网卡配置" class="sidebar-link reco-side-_1-网卡配置" data-v-b57cc07c>1，网卡配置</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_2-配置主机名称" class="sidebar-link reco-side-_2-配置主机名称" data-v-b57cc07c>2，配置主机名称</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_3-本地域名解析" class="sidebar-link reco-side-_3-本地域名解析" data-v-b57cc07c>3，本地域名解析</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_4-dns的配置" class="sidebar-link reco-side-_4-dns的配置" data-v-b57cc07c>4，DNS的配置</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_5-开机自动执行命令" class="sidebar-link reco-side-_5-开机自动执行命令" data-v-b57cc07c>5，开机自动执行命令</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_6-配置开机自动运行级别" class="sidebar-link reco-side-_6-配置开机自动运行级别" data-v-b57cc07c>6，配置开机自动运行级别</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_7-环境变量相关" class="sidebar-link reco-side-_7-环境变量相关" data-v-b57cc07c>7，环境变量相关</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_8-开机自动挂载" class="sidebar-link reco-side-_8-开机自动挂载" data-v-b57cc07c>8，开机自动挂载</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_9-系统版本号" class="sidebar-link reco-side-_9-系统版本号" data-v-b57cc07c>9，系统版本号</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_10-登录的欢迎页面" class="sidebar-link reco-side-_10-登录的欢迎页面" data-v-b57cc07c>10，登录的欢迎页面</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_11-查看cpu-内存信息-系统负载" class="sidebar-link reco-side-_11-查看cpu-内存信息-系统负载" data-v-b57cc07c>11，查看CPU，内存信息，系统负载</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_12-系统版本" class="sidebar-link reco-side-_12-系统版本" data-v-b57cc07c>12，系统版本</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/linux%E7%B3%BB%E7%BB%9F%E9%87%8D%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html#_13-日志文件" class="sidebar-link reco-side-_13-日志文件" data-v-b57cc07c>13，日志文件</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/javablog/public/assets/js/app.fe5a1a0f.js" defer></script><script src="/javablog/public/assets/js/91.936a89f2.js" defer></script><script src="/javablog/public/assets/js/1.8cfd729d.js" defer></script><script src="/javablog/public/assets/js/146.f55b7340.js" defer></script>
+  </body>
+</html>

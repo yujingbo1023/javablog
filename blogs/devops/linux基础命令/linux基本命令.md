@@ -1336,7 +1336,150 @@ rm: 无法删除 '/opt/malu/': 是一个目录
 
 
 
+### 15，VIM文件编辑
 
+作用：编辑文件
+
+```shell
+语法结构：
+	vi  文件编辑		类似文本文档
+	vim 高级文件编辑器 类似typora
+	vim  空格  文件  # 如果文件不存在则自动创建
+	
+案例1.编辑文件流程
+第一步: vim 编辑文件->进入到vim的视图模式
+[root@oldboy ~]# vim malu.txt 
+
+第二步: 在视图模式输入i或者a进入编辑模式
+
+第三步：输入内容
+www.baidu.com
+www.malu.com
+
+第四步: 按ECS键回到视图模式（ECS可以多按）
+
+第五步: 输入: 进入底行模式
+
+第六步: 在:wq 保存并且推出
+
+检查文件内容:
+[root@malu ~]# cat malu.txt 
+www.baidu.com
+www.malu.com
+```
+
+
+
+vim快捷键:
+
+```shell
+视图模式下的快捷键：
+将passwd复制到root下一份，不要直接修改/etc/passwd
+[root@malu ~]# cp /etc/passwd .
+[root@malu ~]# vim passwd 
+G：   快速移动光标到文件的末尾
+10G   快速移动第10行
+gg:   快速移动光标到文件的首行
+$     快速移动光标到行尾  End
+^     快速移动光标到行首  Home  数字0
+
+移动光标：
+H  左
+L  右
+J  下
+K  上
+
+在视图模式进入到编辑模式:
+i   插入
+a   追加
+o   在当前行的下一行进入编辑模式
+O   在当前行的上一行进入编辑模式
+C   删除光标所在到行尾进入编辑模式
+x   删除1个字母
+
+
+在视图模式下删除快捷键:
+dd  快速删除当前行
+    3dd 快速删除光标所在往下3行
+dG  快速删除光标所在到文件的末尾
+D   删除光标所在到行尾
+dw  删除单词
+d^  删除光标所在到行首 d+0 d+Home
+
+视图模式下复制快捷键:
+yy  复制当前行
+   3yy 复制光标所在往下3行
+p   粘贴复制的行
+   3p  连续粘贴3次
+   
+/ 进入到底行模式搜索查找内容
+  /root 直接回车进行查找root字符串
+        n 查找下一个root
+        N 查找上一个root
+
+视图模式下按u撤销上一步操作，一直按回到最原始的状态。
+
+:set nu  # 显示行号
+```
+
+
+
+vim执行流程:
+
+```bash
+第一步: vim 编辑文件malu.txt，会在当前目录下生成一个隐藏文件.malu.txt.swp
+```
+
+
+
+```bash
+第二步: 正常写入，正常退出文件系统会将.malu.txt.swp 移动成malu.txt
+       如果没有正常退出，则.malu.txt.swp会保留。
+```
+
+
+
+```bash
+第三步: 如果.malu.txt.swp保留了下来，编辑的时候会提示系统找到了一个swp文件(报错)
+vim malu.txt 会有以下提示:
+Found a swap file by the name ".malu.txt.swp"
+          owned by: root   dated: Wed Jul 03 10:24:27 2024
+         file name: ~root/malu.txt
+....
+```
+
+
+
+想要保留更改后的内容:
+
+```bash
+第一步: 使用vim -r  malu.txt
+出现提示: Press ENTER or type command to continue  直接按回车即可
+第二步: 保持退出vim
+:wq
+
+第三步: 删除隐藏文件.malu.txt.swp
+[root@malu ~]# rm -f .malu.txt.swp 
+```
+
+
+
+不想要更改后的内容:
+
+```bash
+直接删除.malu.txt.swp即可
+[root@malu ~]# rm -f .malu.txt.swp
+```
+
+
+
+什么情况下会产生.swp文件:
+
+- 编辑完成直接关闭xshell
+- 台式机直接断电 个人用得电脑
+- 服务器直接断电
+- 自己同时多个窗口编辑同一个文件 检查是否开启了多个窗口
+- 在企业中同事和我们同时编辑一个文件，谁着急谁先编辑。
 
 
 
