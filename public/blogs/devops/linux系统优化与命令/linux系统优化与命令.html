@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>04-linux系统优化与命令 | 码路全栈开发</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/javablog/public/favicon.ico">
+    <meta name="description" content="快来玩java全栈呀">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/javablog/public/assets/css/0.styles.0bd56f36.css" as="style"><link rel="preload" href="/javablog/public/assets/js/app.69711620.js" as="script"><link rel="preload" href="/javablog/public/assets/js/92.b09cf040.js" as="script"><link rel="preload" href="/javablog/public/assets/js/1.8cfd729d.js" as="script"><link rel="preload" href="/javablog/public/assets/js/129.f52ad6cb.js" as="script"><link rel="prefetch" href="/javablog/public/assets/js/10.319a5b14.js"><link rel="prefetch" href="/javablog/public/assets/js/100.9431d695.js"><link rel="prefetch" href="/javablog/public/assets/js/101.ea5b2a8a.js"><link rel="prefetch" href="/javablog/public/assets/js/102.9930771b.js"><link rel="prefetch" href="/javablog/public/assets/js/103.100b1a04.js"><link rel="prefetch" href="/javablog/public/assets/js/104.22e886f3.js"><link rel="prefetch" href="/javablog/public/assets/js/105.a6e30aa7.js"><link rel="prefetch" href="/javablog/public/assets/js/106.81edf68d.js"><link rel="prefetch" href="/javablog/public/assets/js/107.37c35595.js"><link rel="prefetch" href="/javablog/public/assets/js/108.6916903d.js"><link rel="prefetch" href="/javablog/public/assets/js/109.05acde19.js"><link rel="prefetch" href="/javablog/public/assets/js/11.724e27e2.js"><link rel="prefetch" href="/javablog/public/assets/js/110.38115fa5.js"><link rel="prefetch" href="/javablog/public/assets/js/111.8b2bbeac.js"><link rel="prefetch" href="/javablog/public/assets/js/112.4cbacccb.js"><link rel="prefetch" href="/javablog/public/assets/js/113.fe720fe9.js"><link rel="prefetch" href="/javablog/public/assets/js/114.2e956a80.js"><link rel="prefetch" href="/javablog/public/assets/js/115.749df016.js"><link rel="prefetch" href="/javablog/public/assets/js/116.c7ee92b9.js"><link rel="prefetch" href="/javablog/public/assets/js/117.654dcd4f.js"><link rel="prefetch" href="/javablog/public/assets/js/118.5017d02a.js"><link rel="prefetch" href="/javablog/public/assets/js/119.ea2594cd.js"><link rel="prefetch" href="/javablog/public/assets/js/12.837fd3ea.js"><link rel="prefetch" href="/javablog/public/assets/js/120.13580e5c.js"><link rel="prefetch" href="/javablog/public/assets/js/121.73b8e8b5.js"><link rel="prefetch" href="/javablog/public/assets/js/122.cf6f64c7.js"><link rel="prefetch" href="/javablog/public/assets/js/123.efa04741.js"><link rel="prefetch" href="/javablog/public/assets/js/124.216f154f.js"><link rel="prefetch" href="/javablog/public/assets/js/125.e4c3fff4.js"><link rel="prefetch" href="/javablog/public/assets/js/126.03ef1675.js"><link rel="prefetch" href="/javablog/public/assets/js/127.9a051cee.js"><link rel="prefetch" href="/javablog/public/assets/js/128.dfa71fcc.js"><link rel="prefetch" href="/javablog/public/assets/js/13.22c9da4a.js"><link rel="prefetch" href="/javablog/public/assets/js/130.5d2b5964.js"><link rel="prefetch" href="/javablog/public/assets/js/131.3d9bd585.js"><link rel="prefetch" href="/javablog/public/assets/js/132.c6c23385.js"><link rel="prefetch" href="/javablog/public/assets/js/133.11803f9d.js"><link rel="prefetch" href="/javablog/public/assets/js/134.088c00dc.js"><link rel="prefetch" href="/javablog/public/assets/js/135.d4a83099.js"><link rel="prefetch" href="/javablog/public/assets/js/136.bd8cd2dd.js"><link rel="prefetch" href="/javablog/public/assets/js/137.007ea413.js"><link rel="prefetch" href="/javablog/public/assets/js/138.9c28e922.js"><link rel="prefetch" href="/javablog/public/assets/js/139.1f95ff27.js"><link rel="prefetch" href="/javablog/public/assets/js/14.9e436485.js"><link rel="prefetch" href="/javablog/public/assets/js/140.18ae435b.js"><link rel="prefetch" href="/javablog/public/assets/js/141.e18bd44c.js"><link rel="prefetch" href="/javablog/public/assets/js/142.82aa996f.js"><link rel="prefetch" href="/javablog/public/assets/js/143.c7e38e5e.js"><link rel="prefetch" href="/javablog/public/assets/js/144.8507bfe4.js"><link rel="prefetch" href="/javablog/public/assets/js/145.c556bfc3.js"><link rel="prefetch" href="/javablog/public/assets/js/146.6be63bf8.js"><link rel="prefetch" href="/javablog/public/assets/js/147.425978d5.js"><link rel="prefetch" href="/javablog/public/assets/js/148.2ffc9020.js"><link rel="prefetch" href="/javablog/public/assets/js/149.c4722a3e.js"><link rel="prefetch" href="/javablog/public/assets/js/15.5d9e49be.js"><link rel="prefetch" href="/javablog/public/assets/js/150.e08865b8.js"><link rel="prefetch" href="/javablog/public/assets/js/151.c7668340.js"><link rel="prefetch" href="/javablog/public/assets/js/152.12694c65.js"><link rel="prefetch" href="/javablog/public/assets/js/153.42c2b73a.js"><link rel="prefetch" href="/javablog/public/assets/js/154.b61c95ec.js"><link rel="prefetch" href="/javablog/public/assets/js/155.0833dfc2.js"><link rel="prefetch" href="/javablog/public/assets/js/156.584bd366.js"><link rel="prefetch" href="/javablog/public/assets/js/157.98818082.js"><link rel="prefetch" href="/javablog/public/assets/js/158.3226a8bb.js"><link rel="prefetch" href="/javablog/public/assets/js/159.3cd5f4e3.js"><link rel="prefetch" href="/javablog/public/assets/js/16.1c194109.js"><link rel="prefetch" href="/javablog/public/assets/js/160.b3c036e5.js"><link rel="prefetch" href="/javablog/public/assets/js/161.950c6915.js"><link rel="prefetch" href="/javablog/public/assets/js/162.1b97f711.js"><link rel="prefetch" href="/javablog/public/assets/js/163.1852f3ec.js"><link rel="prefetch" href="/javablog/public/assets/js/164.606cad96.js"><link rel="prefetch" href="/javablog/public/assets/js/165.cc203e58.js"><link rel="prefetch" href="/javablog/public/assets/js/166.236da8ee.js"><link rel="prefetch" href="/javablog/public/assets/js/167.6fed6fab.js"><link rel="prefetch" href="/javablog/public/assets/js/168.d2a2af8a.js"><link rel="prefetch" href="/javablog/public/assets/js/169.bd8752bf.js"><link rel="prefetch" href="/javablog/public/assets/js/17.0307c311.js"><link rel="prefetch" href="/javablog/public/assets/js/170.c5c39757.js"><link rel="prefetch" href="/javablog/public/assets/js/171.4c56b444.js"><link rel="prefetch" href="/javablog/public/assets/js/172.aa635e99.js"><link rel="prefetch" href="/javablog/public/assets/js/173.6a051703.js"><link rel="prefetch" href="/javablog/public/assets/js/174.3847f6f9.js"><link rel="prefetch" href="/javablog/public/assets/js/175.c7baeb70.js"><link rel="prefetch" href="/javablog/public/assets/js/176.e95d399d.js"><link rel="prefetch" href="/javablog/public/assets/js/177.d896bb33.js"><link rel="prefetch" href="/javablog/public/assets/js/178.efdde190.js"><link rel="prefetch" href="/javablog/public/assets/js/179.6a4391b3.js"><link rel="prefetch" href="/javablog/public/assets/js/18.fef6cb41.js"><link rel="prefetch" href="/javablog/public/assets/js/180.c6b76b8d.js"><link rel="prefetch" href="/javablog/public/assets/js/19.2eb622dd.js"><link rel="prefetch" href="/javablog/public/assets/js/20.f719f4f2.js"><link rel="prefetch" href="/javablog/public/assets/js/21.43bef89b.js"><link rel="prefetch" href="/javablog/public/assets/js/22.56fc03d2.js"><link rel="prefetch" href="/javablog/public/assets/js/23.b2273c44.js"><link rel="prefetch" href="/javablog/public/assets/js/24.e2a5673e.js"><link rel="prefetch" href="/javablog/public/assets/js/25.4ff67958.js"><link rel="prefetch" href="/javablog/public/assets/js/26.ab523d16.js"><link rel="prefetch" href="/javablog/public/assets/js/27.4a651cae.js"><link rel="prefetch" href="/javablog/public/assets/js/28.455d5d29.js"><link rel="prefetch" href="/javablog/public/assets/js/29.c7f27861.js"><link rel="prefetch" href="/javablog/public/assets/js/3.9b0fa7c4.js"><link rel="prefetch" href="/javablog/public/assets/js/30.ca385313.js"><link rel="prefetch" href="/javablog/public/assets/js/31.0c84da0d.js"><link rel="prefetch" href="/javablog/public/assets/js/32.5fee4aeb.js"><link rel="prefetch" href="/javablog/public/assets/js/33.3d064008.js"><link rel="prefetch" href="/javablog/public/assets/js/34.c5d7a60b.js"><link rel="prefetch" href="/javablog/public/assets/js/35.dfc9c7b0.js"><link rel="prefetch" href="/javablog/public/assets/js/36.d91ad272.js"><link rel="prefetch" href="/javablog/public/assets/js/37.84cf9cab.js"><link rel="prefetch" href="/javablog/public/assets/js/38.b7a70ef2.js"><link rel="prefetch" href="/javablog/public/assets/js/39.e522847b.js"><link rel="prefetch" href="/javablog/public/assets/js/4.c8682f79.js"><link rel="prefetch" href="/javablog/public/assets/js/40.e1579477.js"><link rel="prefetch" href="/javablog/public/assets/js/41.d9112f9c.js"><link rel="prefetch" href="/javablog/public/assets/js/42.49c8d3e5.js"><link rel="prefetch" href="/javablog/public/assets/js/43.aaec7b00.js"><link rel="prefetch" href="/javablog/public/assets/js/44.b829262c.js"><link rel="prefetch" href="/javablog/public/assets/js/45.d9a61f1d.js"><link rel="prefetch" href="/javablog/public/assets/js/46.5446b44c.js"><link rel="prefetch" href="/javablog/public/assets/js/47.be86630e.js"><link rel="prefetch" href="/javablog/public/assets/js/48.1138611f.js"><link rel="prefetch" href="/javablog/public/assets/js/49.f10f5db6.js"><link rel="prefetch" href="/javablog/public/assets/js/5.87a9b9eb.js"><link rel="prefetch" href="/javablog/public/assets/js/50.d08157c5.js"><link rel="prefetch" href="/javablog/public/assets/js/51.5576c15c.js"><link rel="prefetch" href="/javablog/public/assets/js/52.88f72396.js"><link rel="prefetch" href="/javablog/public/assets/js/53.a46b21af.js"><link rel="prefetch" href="/javablog/public/assets/js/54.408a0214.js"><link rel="prefetch" href="/javablog/public/assets/js/55.1a930208.js"><link rel="prefetch" href="/javablog/public/assets/js/56.66e5170d.js"><link rel="prefetch" href="/javablog/public/assets/js/57.f7f36a1a.js"><link rel="prefetch" href="/javablog/public/assets/js/58.3c41b7d1.js"><link rel="prefetch" href="/javablog/public/assets/js/59.d571fd0e.js"><link rel="prefetch" href="/javablog/public/assets/js/6.3cec3062.js"><link rel="prefetch" href="/javablog/public/assets/js/60.ebdfb0b8.js"><link rel="prefetch" href="/javablog/public/assets/js/61.53355558.js"><link rel="prefetch" href="/javablog/public/assets/js/62.c377f2f9.js"><link rel="prefetch" href="/javablog/public/assets/js/63.01768b9c.js"><link rel="prefetch" href="/javablog/public/assets/js/64.8ae1dffd.js"><link rel="prefetch" href="/javablog/public/assets/js/65.02ff9a73.js"><link rel="prefetch" href="/javablog/public/assets/js/66.10290e10.js"><link rel="prefetch" href="/javablog/public/assets/js/67.36c2de9b.js"><link rel="prefetch" href="/javablog/public/assets/js/68.ad539863.js"><link rel="prefetch" href="/javablog/public/assets/js/69.bef271b4.js"><link rel="prefetch" href="/javablog/public/assets/js/7.ad79f404.js"><link rel="prefetch" href="/javablog/public/assets/js/70.cef0d277.js"><link rel="prefetch" href="/javablog/public/assets/js/71.04e5954a.js"><link rel="prefetch" href="/javablog/public/assets/js/72.0433a7da.js"><link rel="prefetch" href="/javablog/public/assets/js/73.711f7248.js"><link rel="prefetch" href="/javablog/public/assets/js/74.3bc207e5.js"><link rel="prefetch" href="/javablog/public/assets/js/75.fba9c914.js"><link rel="prefetch" href="/javablog/public/assets/js/76.019618d5.js"><link rel="prefetch" href="/javablog/public/assets/js/77.d4af8bcb.js"><link rel="prefetch" href="/javablog/public/assets/js/78.b0d03b12.js"><link rel="prefetch" href="/javablog/public/assets/js/79.2daa61ec.js"><link rel="prefetch" href="/javablog/public/assets/js/8.fe1c27b9.js"><link rel="prefetch" href="/javablog/public/assets/js/80.e7de768d.js"><link rel="prefetch" href="/javablog/public/assets/js/81.dd25a032.js"><link rel="prefetch" href="/javablog/public/assets/js/82.b97d1504.js"><link rel="prefetch" href="/javablog/public/assets/js/83.81b7a044.js"><link rel="prefetch" href="/javablog/public/assets/js/84.2078666e.js"><link rel="prefetch" href="/javablog/public/assets/js/85.8eb4236d.js"><link rel="prefetch" href="/javablog/public/assets/js/86.a36178d7.js"><link rel="prefetch" href="/javablog/public/assets/js/87.a5d59666.js"><link rel="prefetch" href="/javablog/public/assets/js/88.131b33ed.js"><link rel="prefetch" href="/javablog/public/assets/js/89.a8c33fe9.js"><link rel="prefetch" href="/javablog/public/assets/js/9.677a20e8.js"><link rel="prefetch" href="/javablog/public/assets/js/90.d09444d7.js"><link rel="prefetch" href="/javablog/public/assets/js/91.b16b73b0.js"><link rel="prefetch" href="/javablog/public/assets/js/93.4ccc002c.js"><link rel="prefetch" href="/javablog/public/assets/js/94.21211cd1.js"><link rel="prefetch" href="/javablog/public/assets/js/95.779d18fc.js"><link rel="prefetch" href="/javablog/public/assets/js/96.d73f37cd.js"><link rel="prefetch" href="/javablog/public/assets/js/97.124d90e6.js"><link rel="prefetch" href="/javablog/public/assets/js/98.c2ca592f.js"><link rel="prefetch" href="/javablog/public/assets/js/99.be4015d0.js">
+    <link rel="stylesheet" href="/javablog/public/assets/css/0.styles.0bd56f36.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>码路全栈开发</h3> <p class="description" data-v-59e6cb88>快来玩java全栈呀</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/javablog/public/" class="home-link router-link-active"><img src="/javablog/public/logo.png" alt="码路全栈开发" class="logo"> <span class="site-name">码路全栈开发</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/HarmonyOS/" class="nav-link"><i class="undefined"></i>
+  HarmonyOS
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/devops/" class="nav-link"><i class="undefined"></i>
+  devops
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/每日一题/" class="nav-link"><i class="undefined"></i>
+  每日一题
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javabase/" class="nav-link"><i class="undefined"></i>
+  javabase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/linux/" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/pybase/" class="nav-link"><i class="undefined"></i>
+  pybase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloud/" class="nav-link"><i class="undefined"></i>
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloudalibaba/" class="nav-link"><i class="undefined"></i>
+  springcloudalibaba
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/storage/" class="nav-link"><i class="undefined"></i>
+  storage
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/zhifu/" class="nav-link"><i class="undefined"></i>
+  zhifu
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/javablog/public/avatar.png" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    码路
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>168</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>43</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/HarmonyOS/" class="nav-link"><i class="undefined"></i>
+  HarmonyOS
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/devops/" class="nav-link"><i class="undefined"></i>
+  devops
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/每日一题/" class="nav-link"><i class="undefined"></i>
+  每日一题
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javabase/" class="nav-link"><i class="undefined"></i>
+  javabase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/linux/" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/pybase/" class="nav-link"><i class="undefined"></i>
+  pybase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloud/" class="nav-link"><i class="undefined"></i>
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloudalibaba/" class="nav-link"><i class="undefined"></i>
+  springcloudalibaba
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/storage/" class="nav-link"><i class="undefined"></i>
+  storage
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/zhifu/" class="nav-link"><i class="undefined"></i>
+  zhifu
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>04-linux系统优化与命令</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">04-linux系统优化与命令</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>码路</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>12/15/2028</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>devops</span></i></div></div> <div class="theme-reco-content content__default"><p>之前学习过的命令：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>常用命令
+<span class="token number">1</span>.pwd 
+<span class="token number">2</span>.cd 
+    -
+    ~
+    <span class="token builtin class-name">.</span>
+    <span class="token punctuation">..</span>
+    <span class="token punctuation">..</span>/<span class="token punctuation">..</span>/
+<span class="token number">3</span>.ls
+     <span class="token parameter variable">-l</span> 详细信息
+     <span class="token parameter variable">-a</span> 查看隐藏的文件
+<span class="token number">4</span>.touch  
+<span class="token number">5</span>.mkdir 
+     <span class="token parameter variable">-p</span> 递归创建目录
+<span class="token number">6</span>.cat   查看文件内容
+     <span class="token parameter variable">-n</span> 显示行号
+<span class="token number">7</span>.cp    复制文件
+     <span class="token parameter variable">-r</span> 复制目录
+<span class="token number">8</span>.mv    移动文件/目录
+<span class="token number">9</span>.rm    删除文件
+     <span class="token parameter variable">-r</span> 删除目录
+     <span class="token parameter variable">-f</span> 强制删除不提示
+<span class="token number">10</span>.tree 树形结构
+<span class="token number">11</span>.vi <span class="token function">vim</span> 文件编辑   <span class="token comment"># 替换文件内容</span>
+<span class="token number">12</span>.history 查看历史记录
+<span class="token number">13</span>.grep 模糊过滤字符串
+<span class="token number">14</span>.head 显示头部
+      <span class="token parameter variable">-n</span> <span class="token number">3</span> <span class="token comment"># 前n行 省略-n -3</span>
+<span class="token number">15</span>.tail 显示尾巴
+	  <span class="token parameter variable">-n</span> <span class="token number">3</span> <span class="token comment"># 后n 行</span>
+	  <span class="token parameter variable">-f</span> 实时显示文件的变化  tailf
+	  <span class="token parameter variable">-F</span> <span class="token punctuation">..</span> 
+<span class="token number">16</span>.which 查看命令的绝对路径
+<span class="token number">17</span>.wc <span class="token parameter variable">-l</span> 统计行数
+<span class="token number">18</span>.df    查看磁盘
+       <span class="token parameter variable">-h</span> 
+<span class="token number">19</span>.lscpu 查看cpu信息
+<span class="token number">20</span>.free <span class="token parameter variable">-h</span> 查看内存信息
+<span class="token number">21</span>.uptime 查看负载信息
+<span class="token number">22</span>.w      查看负载和登录信息
+<span class="token number">23</span>.hostname 查看主机名称
+<span class="token number">24</span>.hostnamectl 查看主机信息
+<span class="token number">25</span>.uname    查看系统版本和内核信息
+<span class="token number">26</span>.blkid    查看硬件的设备的UUID
+<span class="token number">27</span>.mount    挂载
+<span class="token number">28</span>.umount   卸载
+<span class="token number">29</span>.ip address 查看ip地址 <span class="token function">ip</span> a
+<span class="token number">30</span>.ifconfig 查看ip地址
+   <span class="token function">ifconfig</span> ens33
+<span class="token number">31</span>.ping
+<span class="token number">32</span>.nslookup 域名解析
+<span class="token number">33</span>.ifdown 关闭网卡
+<span class="token number">34</span>.ifup   启动网卡
+<span class="token number">35</span>.echo   打印字符串 屏幕shell编程 菜单。
+<span class="token number">36</span>.shutdown 关机
+           <span class="token parameter variable">-h</span> now 立刻关机
+           <span class="token parameter variable">-r</span> now 立刻重启
+<span class="token number">37</span>.poweroff 关机
+<span class="token number">38</span>.init <span class="token number">0</span>   关机
+<span class="token number">39</span>.reboot   重启
+<span class="token number">40</span>.init <span class="token number">6</span>   重启
+<span class="token number">41</span>.hostnamectl set-hostname xx <span class="token comment"># 修改主机名称</span>
+<span class="token number">42</span>.source   让变量文件重新执行一遍
+
+其他知识点:
+<span class="token number">1</span>.命令提示符
+<span class="token number">2</span>.目录结构
+<span class="token number">3</span>./etc/重要系统文件
+<span class="token number">1</span><span class="token punctuation">)</span>/etc/sysconfig/network-scrips/ifcfg-ens33
+<span class="token number">2</span><span class="token punctuation">)</span>/etc/hostname <span class="token comment"># 主机名称</span>
+<span class="token number">3</span><span class="token punctuation">)</span>/etc/hosts    <span class="token comment"># 本地DNS 默认空的</span>
+<span class="token number">4</span><span class="token punctuation">)</span>/etc/resolv.conf <span class="token comment"># DNS的配置文件 nameserver 223.5.5.5 面试题</span>
+<span class="token number">5</span><span class="token punctuation">)</span>/etc/rc.local    <span class="token comment"># 开机自动运行里面的命令</span>
+<span class="token number">6</span><span class="token punctuation">)</span>/etc/profile     <span class="token comment"># 永久生效 变量配置文件</span>
+<span class="token number">7</span><span class="token punctuation">)</span>/etc/inittab   不用配置文件，运行级别面试点
+<span class="token number">8</span><span class="token punctuation">)</span>/etc/fstab       <span class="token comment"># 开机自动挂载 讲磁盘还会讲到</span>
+<span class="token number">9</span><span class="token punctuation">)</span>/etc/issue issue.net 清空
+<span class="token number">10</span><span class="token punctuation">)</span>/etc/motd      <span class="token comment"># 登录提示</span>
+<span class="token number">11</span><span class="token punctuation">)</span>/etc/os-release  <span class="token comment"># 查看系统版本号</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br></div></div><h2 id="系统优化"><a href="#系统优化" class="header-anchor">#</a> 系统优化</h2> <h3 id="_1-修改默认的yum仓库"><a href="#_1-修改默认的yum仓库" class="header-anchor">#</a> 1，修改默认的YUM仓库</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>什么是YUM仓库: 软件仓库<span class="token punctuation">(</span>华为软件应用商店<span class="token punctuation">)</span>  yum软件仓库 yum源
+仓库地址: 国外的官网仓库。清华源 阿里源 重庆大学源 
+https://ip138.com/ 查看域名的IP地址所在的国家或者地区
+
+
+阿里源仓库地址:
+http://opsx.alibaba.com
+
+
+centos操作系统: 默认的为国外的仓库，下载速度慢。修改为国内的YUM仓库
+第一步: 移动备份
+<span class="token function">mv</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+第二步: 下载新的仓库地址
+<span class="token function">curl</span> <span class="token parameter variable">-o</span> /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+
+
+麒麟操作系统: 默认不需要修改。
+Ubuntu系统: 修改为国内的YUM仓库
+查看默认的仓库:
+root@ubuntu:~<span class="token comment"># apt-cache policy</span>
+Package files:
+ <span class="token number">100</span> /var/lib/dpkg/status
+     release <span class="token assign-left variable">a</span><span class="token operator">=</span>now
+ <span class="token number">500</span> http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages
+     release <span class="token assign-left variable">v</span><span class="token operator">=</span><span class="token number">22.04</span>,o<span class="token operator">=</span>Ubuntu,a<span class="token operator">=</span>jammy-security,n<span class="token operator">=</span>jammy,l<span class="token operator">=</span>Ubuntu,c<span class="token operator">=</span>multiverse,b<span class="token operator">=</span>amd64
+     origin security.ubuntu.com
+<span class="token punctuation">..</span>.省略
+
+第一步: 编辑/etc/apt/sources.list
+root@ubuntu:~<span class="token comment"># vim /etc/apt/sources.list</span>
+
+第二步: 删除里面默认的所有内容
+dG
+
+第三步: 进入编辑模式粘贴以下内容
+deb https://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src https://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+
+deb https://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src https://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+
+deb https://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src https://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+
+<span class="token comment"># deb https://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span>
+<span class="token comment"># deb-src https://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span>
+
+deb https://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src https://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+
+第四步: 保存退出
+
+第五步: 生成软件本地缓存
+root@ubuntu:~<span class="token comment"># apt update</span>
+
+查看配置是否成功
+root@ubuntu:~<span class="token comment"># apt-cache policy</span>
+or或者
+直接安装命令测试是否从阿里云下载软件
+root@ubuntu:~<span class="token comment"># apt -y install lrzsz</span>
+
+
+安装软件:
+centos和麒麟:  yum <span class="token parameter variable">-y</span> <span class="token function">install</span>  xx
+ubuntu: 	  <span class="token function">apt</span> <span class="token parameter variable">-y</span> <span class="token function">install</span>  xx
+
+
+
+安装epel扩展仓库:
+Centos和麒麟需要安装，ubuntu不需要安装。
+麒麟安装epel扩展仓库:
+<span class="token punctuation">[</span>root@oldboy ~<span class="token punctuation">]</span><span class="token comment"># wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo</span>
+
+查看是否成功:
+<span class="token punctuation">[</span>root@oldboy ~<span class="token punctuation">]</span><span class="token comment"># ll /etc/yum.repos.d/</span>
+total <span class="token number">8</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">664</span> Aug  <span class="token number">4</span>  <span class="token number">2022</span> epel.repo
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">701</span> Sep  <span class="token number">8</span>  <span class="token number">2022</span> kylin_x86_64.repo
+
+
+安装软件:
+麒麟: 
+    yum <span class="token parameter variable">-y</span> <span class="token function">install</span> lrzsz
+    yum <span class="token parameter variable">-y</span> <span class="token function">install</span> cowsay sl	<span class="token comment"># 在扩展的epel仓库中</span>
+
+ubuntu: <span class="token function">apt</span> <span class="token parameter variable">-y</span> <span class="token function">install</span> lrzsz cowsay sl
+
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># animalsay &quot;呵呵哒&quot;  # 动物说话</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br></div></div><p>对于麒麟来说：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>安装扩展的仓库: epel
+<span class="token punctuation">[</span>root@oldboy ~<span class="token punctuation">]</span><span class="token comment"># wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_2-关闭防火墙"><a href="#_2-关闭防火墙" class="header-anchor">#</a> 2，关闭防火墙</h3> <p>作用: 阻止非法流量进入系统。</p> <p>什么情况下开启防火墙</p> <ul><li>在有公网的服务器上需要开启</li> <li>服务器上有服务的情况下开启(NAT路由器)</li></ul> <p>什么情况下关闭防火墙</p> <ul><li>内网情况下关闭</li> <li>测试服务器关闭</li> <li>在流量较大的情况下(网站访问人多)</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>centos和麒麟防火墙: firewalld
+systemctl 动作 服务名称
+动作:
+systemctl start   服务		启动
+systemctl stop    服务	    停止
+systemctl status  服务	    状态
+systemctl reload  服务重载	  
+systemctl restart 服务重启
+systemctl <span class="token builtin class-name">enable</span>  服务 开机自动让这个服务运行
+systemctl disable 服务 开机禁止让这个服务运行
+
+centos和麒麟系统关闭防火墙的流程:
+第一步: 从系统中关闭
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># systemctl stop firewalld</span>
+第二步: 禁止开机自动运行
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># systemctl disable firewalld</span>
+
+ubuntu系统关闭防火墙流程: 
+第一步: 从系统中关闭
+root@ubuntu:~<span class="token comment"># systemctl stop ufw</span>
+第二步: 禁止开机自动运行
+root@ubuntu:~<span class="token comment"># systemctl disable ufw</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="_3-关闭selinux"><a href="#_3-关闭selinux" class="header-anchor">#</a> 3，关闭selinux</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>美国国家安全局开发,企业中不用。
+centos: 默认开启需要关闭
+第一步: 操作系统退出
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># setenforce 0</span>
+第二步: 禁止开机启动
+修改/etc/selinux/config 配置文件将
+<span class="token assign-left variable">SELINUX</span><span class="token operator">=</span>enforcing 修改为 <span class="token assign-left variable">SELINUX</span><span class="token operator">=</span>disabled
+
+麒麟:    默认关闭 不需要配置任何信息。
+ubuntu: 默认关闭 不需要配置任何信息。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="_4-字符集优化"><a href="#_4-字符集优化" class="header-anchor">#</a> 4，字符集优化</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>字符集: 让字符串正常的在系统中显示
+GBK:    国标
+UTF-8:  万国码 默认
+en_US.UTF-8 英语表示
+zh_CN.UTF-8 中文表示
+
+查看默认的字符集:
+root@ubuntu:~<span class="token comment"># echo $LANG</span>
+en_US.UTF-8
+
+麒麟修改字符集:
+第一步: <span class="token function">vim</span> 编辑这个文件
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/locale.conf </span>
+<span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span><span class="token string">&quot;zh_CN.UTF-8&quot;</span>
+第二步: 修改
+<span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span><span class="token string">&quot;en_US.UTF-8&quot;</span>
+第三步: 让配置文件生效
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># source /etc/locale.conf</span>
+或者
+重新连接xshell生效
+
+
+source或者. 让变量生效
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># llll</span>
+-bash: llll：未找到命令			   <span class="token comment"># 默认中文</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># . /etc/locale.conf </span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># lllll</span>
+-bash: lllll: <span class="token builtin class-name">command</span> not found		<span class="token comment"># 成功变为英文</span>
+
+
+ubuntu修改字符集:
+第一步: vim编辑以下文件
+root@ubuntu:~<span class="token comment"># vim /etc/default/locale </span>
+<span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>en_US.UTF-8
+第二步: 修改字符集
+root@ubuntu:~<span class="token comment"># vim /etc/default/locale </span>
+<span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>zh_CN.UTF-8
+第三步: 让配置文件生效
+<span class="token punctuation">[</span>root@oldboy ~<span class="token punctuation">]</span><span class="token comment"># source /etc/default/locale </span>
+或者
+重新连接xshell生效
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><h3 id="_5-时间同步"><a href="#_5-时间同步" class="header-anchor">#</a> 5，时间同步</h3> <p>时间分为两种: 如果时间不对，麒麟软件无法安装，会影响业务。</p> <ul><li>硬件时间</li> <li>系统时间</li></ul> <p>什么是时间和时间戳</p> <ul><li>时间: 我们可以看懂得</li> <li>时间戳: 看不懂需要转换</li></ul> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>查看时间: <span class="token function">date</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># date</span>
+Mon Jul  <span class="token number">8</span> <span class="token number">11</span>:50:19 CST <span class="token number">2024</span>
+
+修改时间: <span class="token function">date</span>  测试使用。
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># date -s 20081010</span>
+Fri Oct <span class="token number">10</span> 00:00:00 CST <span class="token number">2008</span>
+
+查看硬件时间:
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># clock</span>
+<span class="token number">2024</span>-07-05 <span class="token number">15</span>:04:19.758481+08:00
+
+centos和麒麟操作系统:
+安装时间同步工具: ntpdate
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># ntpdate 时间服务器   # 时间同步命令 同步为北京时间</span>
+时间服务器: ntp1.aliyun.com
+<span class="token comment"># 注意如果系统当前时间不正确，无法安装软件，需要手动调整为当前时间。</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># date -s &quot;20240708 12:00:00&quot;</span>
+Mon Jul  <span class="token number">8</span> <span class="token number">12</span>:00:00 CST <span class="token number">2024</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># yum -y install ntpdate</span>
+
+时间错误如何进行时间同步:
+第一步: 修改时间
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># date -s 20081010</span>
+Fri Oct <span class="token number">10</span> 00:00:00 CST <span class="token number">2008</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># date</span>
+Fri Oct <span class="token number">10</span> 00:00:00 CST <span class="token number">2008</span>
+
+第二步: 使用ntpdate命令进行时间同步
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># ntpdate  ntp2.aliyun.com</span>
+
+
+ubuntu操作系统: 时间默认会自动同步。服务名称systemd-timesyncd
+<span class="token number">1</span>.修改时区:亚洲/上海 亚洲/重庆
+timedatectl set-timezone Asia/Shanghai
+root@ubuntu:~<span class="token comment"># timedatectl </span>
+               Local time: Mon <span class="token number">2024</span>-07-08 <span class="token number">12</span>:06:53 CST
+           Universal time: Mon <span class="token number">2024</span>-07-08 04:06:53 UTC
+                 RTC time: Mon <span class="token number">2024</span>-07-08 04:06:53
+                Time zone: Asia/Shanghai <span class="token punctuation">(</span>CST, +0800<span class="token punctuation">)</span>
+System clock synchronized: <span class="token function">yes</span>
+              NTP service: active
+          RTC <span class="token keyword">in</span> <span class="token builtin class-name">local</span> TZ: no
+root@ubuntu:~<span class="token comment"># date</span>
+Mon Jul  <span class="token number">8</span> <span class="token number">12</span>:07:01 PM CST <span class="token number">2024</span>
+
+注意如果修改了时区还是显示12小时制: 执行以下命令
+修改为24小时
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;LC_TIME=en_DK.UTF-8&quot;</span> <span class="token operator">&gt;&gt;</span>/etc/default/locale
+重启服务:
+systemctl restart systemd-timesyncd.service
+
+
+可以将默认的时间服务器修改为国内的. 笔记
+第一步: 修改时间服务器地址
+<span class="token function">vim</span> /etc/systemd/timesyncd.conf
+root@ubuntu:~<span class="token comment"># grep NTP /etc/systemd/timesyncd.conf</span>
+<span class="token assign-left variable">NTP</span><span class="token operator">=</span>ntp2.aliyun.com
+<span class="token comment">#FallbackNTP=ntp.ubuntu.com</span>
+第二步:重启时间服务
+systemctl restart systemd-timesyncd.service
+
+补充: 同步系统时间到硬件时间。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br></div></div><p>麒麟需要做的：</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>安装ntpdate命令
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># yum -y install ntpdate</span>
+配置定时任务
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># tail -1 /etc/crontab</span>
+*/15 * * * * root ntpdate ntp1.aliyun.com <span class="token operator">&amp;&gt;</span>/dev/null
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="_6-加大文件描述符"><a href="#_6-加大文件描述符" class="header-anchor">#</a> 6，加大文件描述符</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>Linux默认最大打开文件数量是1024
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># echo '* - nofile 65535' &gt;&gt; /etc/security/limits.conf</span>
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># tail -1 /etc/security/limits.conf</span>
+* - nofile <span class="token number">65535</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="_7-命令提示符优化"><a href="#_7-命令提示符优化" class="header-anchor">#</a> 7，命令提示符优化</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment">#tail -1 /etc/profile</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PS1</span></span><span class="token operator">=</span><span class="token string">'[\[\033[1;32m\]\u\[\033[1;37m\]@\[\033[1;36m\]\h\[\033[00m\]:\[\033[1;34m\]\W\[\033[00m\]]\$'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_8-安装常用命令"><a href="#_8-安装常用命令" class="header-anchor">#</a> 8，安装常用命令</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment">#yum -y install net-tools  htop iftop lrzsz unzip telnet httpd-tools tcpdump</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_9-增加网卡"><a href="#_9-增加网卡" class="header-anchor">#</a> 9，增加网卡</h3> <p><img src="/javablog/public/assets/img/1723097587501.6578a6cb.png" alt="1723097587501"></p> <p><img src="/javablog/public/assets/img/1723097610739.7a5cf627.png" alt="1723097610739"></p> <p><img src="/javablog/public/assets/img/1723097644498.7abc2f0a.png" alt="1723097644498"></p> <p><img src="/javablog/public/assets/img/1723097758219.73ba2a16.png" alt="1723097758219"></p> <p><img src="/javablog/public/assets/img/1723097800174.ae66de73.png" alt="1723097800174"></p> <p>给第二块网卡配置IP地址</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token number">1</span>.优化ens33
+<span class="token punctuation">[</span>root@malu network-scripts<span class="token punctuation">]</span><span class="token comment"># cat ifcfg-ens33 </span>
+<span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>none
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>ens33
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>ens33
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">10.0</span>.0.200
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token number">10.0</span>.0.2
+<span class="token assign-left variable">DNS1</span><span class="token operator">=</span><span class="token number">223.5</span>.5.5
+
+<span class="token number">2</span>.重启网卡生效
+<span class="token punctuation">[</span>root@malu network-scripts<span class="token punctuation">]</span><span class="token comment"># ifdown eth0  &amp;&amp; ifup eth0</span>
+
+<span class="token number">3</span>.复制ens33配置为ens36
+<span class="token punctuation">[</span>root@malu ~<span class="token punctuation">]</span><span class="token comment"># cd /etc/sysconfig/network-scripts/</span>
+<span class="token punctuation">[</span>root@malu network-scripts<span class="token punctuation">]</span><span class="token comment"># cp ifcfg-ens33 ifcfg-ens36</span>
+
+<span class="token number">4</span>.修改ens36
+<span class="token punctuation">[</span>root@malu network-scripts<span class="token punctuation">]</span><span class="token comment"># cat ifcfg-ens36</span>
+<span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>none
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>ens36
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>ens36
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">172.16</span>.1.200
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>
+
+<span class="token number">5</span>.重启生效
+<span class="token punctuation">[</span>root@oldboy ~<span class="token punctuation">]</span><span class="token comment"># ifdown ens36 &amp;&amp; ifup ens36</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br></div></div><h3 id="_10-重启系统并关机"><a href="#_10-重启系统并关机" class="header-anchor">#</a> 10，重启系统并关机</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">reboot</span>
+重启后关机，调整内存为1G
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><img src="/javablog/public/assets/img/1723098036357.8e5559ec.png" alt="1723098036357"></p> <h3 id="_11-生成一个快照"><a href="#_11-生成一个快照" class="header-anchor">#</a> 11，生成一个快照</h3> <p><img src="/javablog/public/assets/img/1723098060606.31b70241.png" alt="1723098060606"></p> <h3 id="_12-克隆一台虚拟机"><a href="#_12-克隆一台虚拟机" class="header-anchor">#</a> 12，克隆一台虚拟机</h3> <p>链接克隆就可以</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>backup服务器:
+<span class="token number">1</span>.克隆一台虚拟机41
+<span class="token number">2</span>.修改IP地址
+修改ens33
+<span class="token function">vim</span> /etc/sysconfig/network-scripts/ifcfg-ens33
+<span class="token punctuation">..</span>
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">10.0</span>.0.41
+<span class="token punctuation">..</span>
+修改ens36
+<span class="token function">vim</span> /etc/sysconfig/network-scripts/ifcfg-ens36
+<span class="token punctuation">..</span>
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">172.16</span>.1.41
+<span class="token punctuation">..</span>
+重启网卡:
+<span class="token function">ifdown</span> ens33
+<span class="token function">ifdown</span> ens36
+<span class="token function">ifup</span> ens33
+<span class="token function">ifup</span> ens36
+
+<span class="token number">3</span>.修改主机名称
+hostnamectl set-hostname backup
+
+<span class="token number">4</span>.创建远程连接会话
+xshell复制已优化的会话修改信息
+
+<span class="token number">5</span>.快照
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div></div></section> <footer class="page-edit"><!----> <!----></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#系统优化" class="sidebar-link reco-side-系统优化" data-v-b57cc07c>系统优化</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_1-修改默认的yum仓库" class="sidebar-link reco-side-_1-修改默认的yum仓库" data-v-b57cc07c>1，修改默认的YUM仓库</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_2-关闭防火墙" class="sidebar-link reco-side-_2-关闭防火墙" data-v-b57cc07c>2，关闭防火墙</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_3-关闭selinux" class="sidebar-link reco-side-_3-关闭selinux" data-v-b57cc07c>3，关闭selinux</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_4-字符集优化" class="sidebar-link reco-side-_4-字符集优化" data-v-b57cc07c>4，字符集优化</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_5-时间同步" class="sidebar-link reco-side-_5-时间同步" data-v-b57cc07c>5，时间同步</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_6-加大文件描述符" class="sidebar-link reco-side-_6-加大文件描述符" data-v-b57cc07c>6，加大文件描述符</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_7-命令提示符优化" class="sidebar-link reco-side-_7-命令提示符优化" data-v-b57cc07c>7，命令提示符优化</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_8-安装常用命令" class="sidebar-link reco-side-_8-安装常用命令" data-v-b57cc07c>8，安装常用命令</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_9-增加网卡" class="sidebar-link reco-side-_9-增加网卡" data-v-b57cc07c>9，增加网卡</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_10-重启系统并关机" class="sidebar-link reco-side-_10-重启系统并关机" data-v-b57cc07c>10，重启系统并关机</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_11-生成一个快照" class="sidebar-link reco-side-_11-生成一个快照" data-v-b57cc07c>11，生成一个快照</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4/linux%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96%E4%B8%8E%E5%91%BD%E4%BB%A4.html#_12-克隆一台虚拟机" class="sidebar-link reco-side-_12-克隆一台虚拟机" data-v-b57cc07c>12，克隆一台虚拟机</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/javablog/public/assets/js/app.69711620.js" defer></script><script src="/javablog/public/assets/js/92.b09cf040.js" defer></script><script src="/javablog/public/assets/js/1.8cfd729d.js" defer></script><script src="/javablog/public/assets/js/129.f52ad6cb.js" defer></script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 ---
-title: 03-linux系统重要配置文件
+title: 03-linux系统重要配置文件与几个命令
 date: 2028-12-15
 sticky: 1
 sidebar: 'auto'
@@ -188,7 +188,7 @@ malu
 
 ### 4，DNS的配置
 
-![1723044377005](assets/1723044377005.png)
+![1723044377005](./assets/1723044377005.png)
 
 配置文件：/etc/resolv.conf， 作用：DNS的配置文件
 
@@ -249,9 +249,9 @@ DNS1=223.5.5.5				# 必须配置，会覆盖/etc/resolv.conf
 3.如果网卡中没有DNS，手动配置resolv.conf，重启网卡不会覆盖resolv.conf.
 ```
 
-![1723044432490](assets/1723044432490.png)
+![1723044432490](./assets/1723044432490.png)
 
-![1723044472422](assets/1723044472422.png)
+![1723044472422](./assets/1723044472422.png)
 
 关于ubuntu网卡配置：
 
@@ -683,5 +683,337 @@ root@malu-lnb:~# ll /var/log/syslog 	# 系统日志
 日志的特点:
 1.最新的日志在文件的最下面
 2.实时更新
+```
+
+
+
+### 14，tail命令
+
+作用：查看文件的末尾 默认10行
+
+```bash
+语法：
+	 tail   1.txt  # 默认显示文件的后10行
+	 tail -3 1.txt # 显示文件的最后3行
+	 tail -f 1.txt # 实时监控1.txt	 监控最新日志使用
+	 cat 1.txt|head -3
+参数选项：
+	  -n 数字 # 显示文件的后n行	 可以省略n  -3 
+      -f     # 实时监控文件的变化
+      -F     # 实时监控文件的变化 如果文件没有会等待文件的出现。
+      
+tailf    实时监控文件的变化 等同于 tail -f # 默认麒麟和ubuntu没有了。需要安装
+
+[root@malu ~]# cat 1.txt 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+[root@malu ~]# tail 1.txt 
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+[root@malu ~]# tail -n1 1.txt 
+20
+
+[root@malu ~]# tail -3 1.txt 
+18
+19
+20
+```
+
+
+
+
+
+### 15，head命令
+
+作用：默认显示文件前10行
+
+```bash
+语法：
+	cat 1.txt|head -3
+    head -3 1.txt
+参数:  
+	-n 显示文件的前n行
+	
+管道的含义:|其他命令的输出，作为后续命令的输入。
+[root@malu ~]# head 1.txt 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[root@malu ~]# head -3 1.txt 
+1
+2
+3
+
+案例: 显示文件的第10-13行
+[root@malu ~]# head -13 1.txt |tail -4
+10
+11
+12
+13
+
+
+[root@malu ~]# ip a|head -3
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+[root@malu ~]# ip a|head -3|tail -1
+    inet 127.0.0.1/8 scope host lo
+```
+
+
+
+### 16，grep命令
+
+作用：模糊过滤文件中的字符串
+
+```bash
+语法结构:	  
+	grep '字符串' 文件
+	cat 1.txt|grep '字符串'
+	其他命令输出|grep '字符串'
+	
+案例1.过滤日志文件中的failure
+[root@malu ~]# grep 'failure' /var/log/secure
+Jul  5 11:27:47 malu sshd[54748]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.0.1  user=root
+Jul  5 11:29:13 malu sshd[54764]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.0.1  user=root
+Jul  5 11:30:28 malu sshd[54784]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.0.1  user=root
+Jul  5 11:30:28 malu sshd[54784]: pam_faillock(sshd:auth): Consecutive login failures for user root account temporarily locked
+
+案例2.过滤ip add中包含10的行
+[root@malu ~]# ip add|grep '10.'
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 10.0.0.200/24 brd 10.0.0.255 scope global noprefixroute ens33
+[root@oldboy ~]# ip add|grep '10\.'
+    inet 10.0.0.200/24 brd 10.0.0.255 scope global noprefixroute ens33
+    
+    
+案例3.过滤包含opt的行
+[root@malu ~]# ll /|grep 'opt'
+drwxr-xr-x    4 root root   53 Jun 27 23:46 opt
+```
+
+
+
+### 17，wc命令和echo命令
+
+作用：统计
+
+```bash
+语法结构:    
+	wc -l  1.txt  # 统计1.txt总行数
+    cat 1.txt|wc -l 
+  	df -h|wc -l
+  	
+[root@malu ~]# grep 'failure' /var/log/secure|wc -l
+4
+
+案例1.echo输出字符串
+[root@malu ~]# echo hehe
+hehe
+[root@malu ~]# echo xxxx
+xxxx
+
+
+案例2.echo输出多个字符串
+[root@malu ~]# echo malu hehe test
+malu hehe test
+
+案例3.echo输出数字
+[root@malu ~]# echo 1 2 3
+1 2 3
+[root@malu ~]# echo 1 2 3 10
+1 2 3 10
+
+案例4.输出特殊符号
+[root@malu ~]# echo % _ \#
+% _ #
+
+案例5.输出字符串+数字+特殊符号
+[root@malu ~]# echo malu_10.0.0.200
+malu_10.0.0.200
+
+案例6.输出序列 数字序列
+[root@malu ~]# echo {1..4}
+1 2 3 4
+[root@malu ~]# echo {1..100}
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100
+
+案例7.输出序列 字母序列
+[root@malu ~]# echo {a..j}
+a b c d e f g h i j
+
+[root@malu ~]# echo {a..z}
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+案例8.通过序列创建目录
+[root@malu ~]# echo {1..3}
+1 2 3
+[root@malu ~]# mkdir {1..3}
+[root@malu ~]# ll
+total 8
+drwxr-xr-x 2 root root  6 Jul  5 12:07 1
+-rw-r--r-- 1 root root 55 Jul  5 11:35 1.txt
+drwxr-xr-x 2 root root  6 Jul  5 12:07 2
+-rw-r--r-- 1 root root  4 Jul  5 11:37 2.txt
+drwxr-xr-x 2 root root  6 Jul  5 12:07 3
+
+案例9.复制当前的1 2 3目录到/tmp目录
+[root@malu ~]# cp -r {1..3} /tmp/
+[root@malu ~]# ll /tmp/
+total 8
+drwxr-xr-x 2 root root   40 Jul  5 12:08 1
+drwxr-xr-x 2 root root   40 Jul  5 12:08 2
+drwxr-xr-x 2 root root   40 Jul  5 12:08 3
+
+案例10.批量创建文件
+[root@malu ~]# touch {1..3}
+[root@malu ~]# ll
+total 0
+-rw-r--r-- 1 root root 0 Jul  5 12:09 1
+-rw-r--r-- 1 root root 0 Jul  5 12:09 2
+-rw-r--r-- 1 root root 0 Jul  5 12:09 3
+
+
+案例11.字符串 数字和序列的组合
+[root@malu ~]# touch malu1 malu2
+[root@malu ~]# ll
+total 0
+-rw-r--r-- 1 root root 0 Jul  5 12:10 malu1
+-rw-r--r-- 1 root root 0 Jul  5 12:10 malu2
+
+
+[root@malu ~]# echo {1..3}malu
+1malu 2malu 3malu
+
+[root@malu ~]# echo A{1..3}
+A1 A2 A3
+[root@malu ~]# echo {1..3}.txt
+1.txt 2.txt 3.txt
+[root@malu ~]# touch {1..3}.txt
+[root@malu ~]# ll
+total 0
+-rw-r--r-- 1 root root 0 Jul  5 12:11 1.txt
+-rw-r--r-- 1 root root 0 Jul  5 12:11 2.txt
+-rw-r--r-- 1 root root 0 Jul  5 12:11 3.txt
+
+使用序列删除文件
+[root@malu ~]# rm -rf {1..3}.txt
+
+案例12.序列前后拼接
+[root@malu ~]# #创建文件malu1.txt malu2.txt malu3.txt
+[root@malu ~]# echo malu{1..3}.txt
+malu1.txt malu2.txt malu3.txt
+
+[root@malu ~]# touch malu{1..3}.txt
+[root@malu ~]# ll
+total 0
+-rw-r--r-- 1 root root 0 Jul  5 12:10 malu1
+-rw-r--r-- 1 root root 0 Jul  5 12:13 malu1.txt
+-rw-r--r-- 1 root root 0 Jul  5 12:10 malu2
+-rw-r--r-- 1 root root 0 Jul  5 12:13 malu2.txt
+-rw-r--r-- 1 root root 0 Jul  5 12:13 malu3.txt
+
+
+
+案例13.拼接不连续的字符串
+a.txt  c.txt d.txt
+[root@malu ~]# echo {a,c,d}
+a c d
+[root@malu ~]# echo {a,c,d}.txt
+a.txt c.txt d.txt
+
+
+案例14.拼接目录
+[root@malu ~]# #echo malu/{a,c}  拼接后的结果 oldboy/a  oldboy/c
+
+[root@malu ~]# mkdir -p malu/{a,c}
+[root@malu ~]# ll malu
+total 0
+drwxr-xr-x 2 root root 6 Jul  5 12:16 a
+drwxr-xr-x 2 root root 6 Jul  5 12:16 c
+
+需求: 在malu目录下创建www,blog,bbs
+mkdir -p malu/{www,blog,bbs}
+```
+
+
+
+### 18，总结
+
+系统重要的配置文件:
+
+- 系统重要的配置文件:
+- /etc/motd 登录后提示
+- /proc重要系统文件
+- free -h   查看内存
+- df -h	  查看磁盘
+- lscpu	  查看cpu
+- uptime	  查看负载
+- w		  查看登录信息以及负载
+- 查看系统版本
+  - cat /etc/os-release
+  - hostnamectl 
+  - uname  -r  -a
+- 日志
+  - /var/log/secure
+  - /var/log/messages
+
+
+
+命令：
+
+```bash
+head   显示头部默认10行
+       -n 3 # 显示前3行
+       head 1.txt
+       其他命令输出到屏幕信息|head -3
+tail  显示尾巴10行
+	  -n 3 # 显示后3行
+	  -f   # 实时显示文件最新的日志
+	  -F   # 实时显示文件最新的日志 文件不存在则一直等待
+grep  过滤文件的内容
+      grep '字符串' file
+      其他命令输出结果|grep '字符串'
+wc -l # 统计文件行数
+echo  # 输出内容到屏幕
+{}   序列 数字序列 字母序列 拼接
+     字符串拼接
+     数字拼接
+     路径拼接
 ```
 
