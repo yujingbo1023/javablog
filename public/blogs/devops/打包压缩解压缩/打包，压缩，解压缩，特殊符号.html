@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>08-打包，压缩，解压缩，特殊符号 | 码路全栈开发</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/javablog/public/favicon.ico">
+    <meta name="description" content="快来玩java全栈呀">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/javablog/public/assets/css/0.styles.0bd56f36.css" as="style"><link rel="preload" href="/javablog/public/assets/js/app.09bd957f.js" as="script"><link rel="preload" href="/javablog/public/assets/js/93.02187136.js" as="script"><link rel="preload" href="/javablog/public/assets/js/1.8cfd729d.js" as="script"><link rel="preload" href="/javablog/public/assets/js/165.a605c2cd.js" as="script"><link rel="prefetch" href="/javablog/public/assets/js/10.af71f3b7.js"><link rel="prefetch" href="/javablog/public/assets/js/100.22b71caa.js"><link rel="prefetch" href="/javablog/public/assets/js/101.8f1436a0.js"><link rel="prefetch" href="/javablog/public/assets/js/102.aef8e115.js"><link rel="prefetch" href="/javablog/public/assets/js/103.2d4aa23e.js"><link rel="prefetch" href="/javablog/public/assets/js/104.a6d4765d.js"><link rel="prefetch" href="/javablog/public/assets/js/105.e46ba343.js"><link rel="prefetch" href="/javablog/public/assets/js/106.be05199c.js"><link rel="prefetch" href="/javablog/public/assets/js/107.61986a58.js"><link rel="prefetch" href="/javablog/public/assets/js/108.63029f44.js"><link rel="prefetch" href="/javablog/public/assets/js/109.eae26d36.js"><link rel="prefetch" href="/javablog/public/assets/js/11.47252710.js"><link rel="prefetch" href="/javablog/public/assets/js/110.ebb016cd.js"><link rel="prefetch" href="/javablog/public/assets/js/111.44e9d51d.js"><link rel="prefetch" href="/javablog/public/assets/js/112.2fadb116.js"><link rel="prefetch" href="/javablog/public/assets/js/113.a31a505b.js"><link rel="prefetch" href="/javablog/public/assets/js/114.2f161c29.js"><link rel="prefetch" href="/javablog/public/assets/js/115.2cd09ddb.js"><link rel="prefetch" href="/javablog/public/assets/js/116.372ddb2e.js"><link rel="prefetch" href="/javablog/public/assets/js/117.e63b10e1.js"><link rel="prefetch" href="/javablog/public/assets/js/118.2f9e5ce7.js"><link rel="prefetch" href="/javablog/public/assets/js/119.60dcae83.js"><link rel="prefetch" href="/javablog/public/assets/js/12.4ef1fb4e.js"><link rel="prefetch" href="/javablog/public/assets/js/120.707256f6.js"><link rel="prefetch" href="/javablog/public/assets/js/121.8c825164.js"><link rel="prefetch" href="/javablog/public/assets/js/122.8ae16c3c.js"><link rel="prefetch" href="/javablog/public/assets/js/123.a7b1f062.js"><link rel="prefetch" href="/javablog/public/assets/js/124.5dcdc2f9.js"><link rel="prefetch" href="/javablog/public/assets/js/125.257780ea.js"><link rel="prefetch" href="/javablog/public/assets/js/126.a68c9bd6.js"><link rel="prefetch" href="/javablog/public/assets/js/127.1fc1ff81.js"><link rel="prefetch" href="/javablog/public/assets/js/128.44850510.js"><link rel="prefetch" href="/javablog/public/assets/js/129.dc217ee2.js"><link rel="prefetch" href="/javablog/public/assets/js/13.ceeb1de9.js"><link rel="prefetch" href="/javablog/public/assets/js/130.e0665da4.js"><link rel="prefetch" href="/javablog/public/assets/js/131.a3b960b2.js"><link rel="prefetch" href="/javablog/public/assets/js/132.36b3a340.js"><link rel="prefetch" href="/javablog/public/assets/js/133.7670583a.js"><link rel="prefetch" href="/javablog/public/assets/js/134.af065f19.js"><link rel="prefetch" href="/javablog/public/assets/js/135.62252ab8.js"><link rel="prefetch" href="/javablog/public/assets/js/136.46bbc448.js"><link rel="prefetch" href="/javablog/public/assets/js/137.a4ef0be4.js"><link rel="prefetch" href="/javablog/public/assets/js/138.f1776165.js"><link rel="prefetch" href="/javablog/public/assets/js/139.2f5e0433.js"><link rel="prefetch" href="/javablog/public/assets/js/14.36d52a41.js"><link rel="prefetch" href="/javablog/public/assets/js/140.907cedf4.js"><link rel="prefetch" href="/javablog/public/assets/js/141.0b8652bf.js"><link rel="prefetch" href="/javablog/public/assets/js/142.d6ae1a38.js"><link rel="prefetch" href="/javablog/public/assets/js/143.4b0c0aed.js"><link rel="prefetch" href="/javablog/public/assets/js/144.4661099e.js"><link rel="prefetch" href="/javablog/public/assets/js/145.85c2f517.js"><link rel="prefetch" href="/javablog/public/assets/js/146.1d46ca8a.js"><link rel="prefetch" href="/javablog/public/assets/js/147.a6af6efc.js"><link rel="prefetch" href="/javablog/public/assets/js/148.a42c7d4f.js"><link rel="prefetch" href="/javablog/public/assets/js/149.b44a9b6b.js"><link rel="prefetch" href="/javablog/public/assets/js/15.997fd530.js"><link rel="prefetch" href="/javablog/public/assets/js/150.52615758.js"><link rel="prefetch" href="/javablog/public/assets/js/151.88cb5a6b.js"><link rel="prefetch" href="/javablog/public/assets/js/152.8afcc06b.js"><link rel="prefetch" href="/javablog/public/assets/js/153.79cd3d74.js"><link rel="prefetch" href="/javablog/public/assets/js/154.c0744bad.js"><link rel="prefetch" href="/javablog/public/assets/js/155.0cf6ee9d.js"><link rel="prefetch" href="/javablog/public/assets/js/156.567423bc.js"><link rel="prefetch" href="/javablog/public/assets/js/157.70235ad6.js"><link rel="prefetch" href="/javablog/public/assets/js/158.b2e88fae.js"><link rel="prefetch" href="/javablog/public/assets/js/159.d7b5f7db.js"><link rel="prefetch" href="/javablog/public/assets/js/16.1c0a3f63.js"><link rel="prefetch" href="/javablog/public/assets/js/160.619e01d3.js"><link rel="prefetch" href="/javablog/public/assets/js/161.56fb6fd2.js"><link rel="prefetch" href="/javablog/public/assets/js/162.c69526a0.js"><link rel="prefetch" href="/javablog/public/assets/js/163.61fae01a.js"><link rel="prefetch" href="/javablog/public/assets/js/164.8fb9b011.js"><link rel="prefetch" href="/javablog/public/assets/js/166.4be98d3d.js"><link rel="prefetch" href="/javablog/public/assets/js/167.6645dd30.js"><link rel="prefetch" href="/javablog/public/assets/js/168.90cfd10b.js"><link rel="prefetch" href="/javablog/public/assets/js/169.68c15c9d.js"><link rel="prefetch" href="/javablog/public/assets/js/17.49080dba.js"><link rel="prefetch" href="/javablog/public/assets/js/170.e7dd93e6.js"><link rel="prefetch" href="/javablog/public/assets/js/171.ae2121d8.js"><link rel="prefetch" href="/javablog/public/assets/js/172.62779db1.js"><link rel="prefetch" href="/javablog/public/assets/js/173.587d09d7.js"><link rel="prefetch" href="/javablog/public/assets/js/174.1d376124.js"><link rel="prefetch" href="/javablog/public/assets/js/175.8408bf9a.js"><link rel="prefetch" href="/javablog/public/assets/js/176.c0489a3b.js"><link rel="prefetch" href="/javablog/public/assets/js/177.f98c401b.js"><link rel="prefetch" href="/javablog/public/assets/js/178.ea825d8e.js"><link rel="prefetch" href="/javablog/public/assets/js/179.25386a43.js"><link rel="prefetch" href="/javablog/public/assets/js/18.ef5364a5.js"><link rel="prefetch" href="/javablog/public/assets/js/180.77677786.js"><link rel="prefetch" href="/javablog/public/assets/js/181.14f4c0e1.js"><link rel="prefetch" href="/javablog/public/assets/js/182.ee429894.js"><link rel="prefetch" href="/javablog/public/assets/js/183.bb8332f7.js"><link rel="prefetch" href="/javablog/public/assets/js/184.65460936.js"><link rel="prefetch" href="/javablog/public/assets/js/19.717e5f83.js"><link rel="prefetch" href="/javablog/public/assets/js/20.01abc885.js"><link rel="prefetch" href="/javablog/public/assets/js/21.25b738cf.js"><link rel="prefetch" href="/javablog/public/assets/js/22.c58a212d.js"><link rel="prefetch" href="/javablog/public/assets/js/23.04704e8e.js"><link rel="prefetch" href="/javablog/public/assets/js/24.217e5f88.js"><link rel="prefetch" href="/javablog/public/assets/js/25.96f2cd47.js"><link rel="prefetch" href="/javablog/public/assets/js/26.0fe068a2.js"><link rel="prefetch" href="/javablog/public/assets/js/27.59543182.js"><link rel="prefetch" href="/javablog/public/assets/js/28.e5b788e2.js"><link rel="prefetch" href="/javablog/public/assets/js/29.cf18e8eb.js"><link rel="prefetch" href="/javablog/public/assets/js/3.e3ffdcdf.js"><link rel="prefetch" href="/javablog/public/assets/js/30.8f3a785e.js"><link rel="prefetch" href="/javablog/public/assets/js/31.093f83f7.js"><link rel="prefetch" href="/javablog/public/assets/js/32.082e4d76.js"><link rel="prefetch" href="/javablog/public/assets/js/33.58a595c9.js"><link rel="prefetch" href="/javablog/public/assets/js/34.197eb4b5.js"><link rel="prefetch" href="/javablog/public/assets/js/35.19547c3a.js"><link rel="prefetch" href="/javablog/public/assets/js/36.1e3aa1e2.js"><link rel="prefetch" href="/javablog/public/assets/js/37.d83436a5.js"><link rel="prefetch" href="/javablog/public/assets/js/38.3cc26ec6.js"><link rel="prefetch" href="/javablog/public/assets/js/39.7a5a2735.js"><link rel="prefetch" href="/javablog/public/assets/js/4.b3839ec3.js"><link rel="prefetch" href="/javablog/public/assets/js/40.80cc5c3a.js"><link rel="prefetch" href="/javablog/public/assets/js/41.631fefa8.js"><link rel="prefetch" href="/javablog/public/assets/js/42.9478684b.js"><link rel="prefetch" href="/javablog/public/assets/js/43.3959b557.js"><link rel="prefetch" href="/javablog/public/assets/js/44.f71f7498.js"><link rel="prefetch" href="/javablog/public/assets/js/45.5120ecba.js"><link rel="prefetch" href="/javablog/public/assets/js/46.33c1cb31.js"><link rel="prefetch" href="/javablog/public/assets/js/47.67b3fdd5.js"><link rel="prefetch" href="/javablog/public/assets/js/48.48f3bb93.js"><link rel="prefetch" href="/javablog/public/assets/js/49.f781ffec.js"><link rel="prefetch" href="/javablog/public/assets/js/5.b6b34a0a.js"><link rel="prefetch" href="/javablog/public/assets/js/50.eb30b770.js"><link rel="prefetch" href="/javablog/public/assets/js/51.33bae3e0.js"><link rel="prefetch" href="/javablog/public/assets/js/52.9f9e2ad5.js"><link rel="prefetch" href="/javablog/public/assets/js/53.b590e9db.js"><link rel="prefetch" href="/javablog/public/assets/js/54.219c8658.js"><link rel="prefetch" href="/javablog/public/assets/js/55.848a0963.js"><link rel="prefetch" href="/javablog/public/assets/js/56.2a064aa6.js"><link rel="prefetch" href="/javablog/public/assets/js/57.8a784539.js"><link rel="prefetch" href="/javablog/public/assets/js/58.41958eb2.js"><link rel="prefetch" href="/javablog/public/assets/js/59.010f1dfa.js"><link rel="prefetch" href="/javablog/public/assets/js/6.5d776486.js"><link rel="prefetch" href="/javablog/public/assets/js/60.b327f502.js"><link rel="prefetch" href="/javablog/public/assets/js/61.19ead4af.js"><link rel="prefetch" href="/javablog/public/assets/js/62.5133466b.js"><link rel="prefetch" href="/javablog/public/assets/js/63.d7c1f5a0.js"><link rel="prefetch" href="/javablog/public/assets/js/64.76f06ff2.js"><link rel="prefetch" href="/javablog/public/assets/js/65.4e1fd9dd.js"><link rel="prefetch" href="/javablog/public/assets/js/66.63124715.js"><link rel="prefetch" href="/javablog/public/assets/js/67.c946ac04.js"><link rel="prefetch" href="/javablog/public/assets/js/68.fe9be5e4.js"><link rel="prefetch" href="/javablog/public/assets/js/69.613f032b.js"><link rel="prefetch" href="/javablog/public/assets/js/7.bb353da4.js"><link rel="prefetch" href="/javablog/public/assets/js/70.f44ad41c.js"><link rel="prefetch" href="/javablog/public/assets/js/71.f584cdff.js"><link rel="prefetch" href="/javablog/public/assets/js/72.6e288661.js"><link rel="prefetch" href="/javablog/public/assets/js/73.1a38c44f.js"><link rel="prefetch" href="/javablog/public/assets/js/74.dac8188f.js"><link rel="prefetch" href="/javablog/public/assets/js/75.cfa02d9e.js"><link rel="prefetch" href="/javablog/public/assets/js/76.8cc68874.js"><link rel="prefetch" href="/javablog/public/assets/js/77.a2c1ca46.js"><link rel="prefetch" href="/javablog/public/assets/js/78.598d94ae.js"><link rel="prefetch" href="/javablog/public/assets/js/79.f9be01d2.js"><link rel="prefetch" href="/javablog/public/assets/js/8.524581aa.js"><link rel="prefetch" href="/javablog/public/assets/js/80.011da93d.js"><link rel="prefetch" href="/javablog/public/assets/js/81.067d765f.js"><link rel="prefetch" href="/javablog/public/assets/js/82.378455fa.js"><link rel="prefetch" href="/javablog/public/assets/js/83.4113ccbc.js"><link rel="prefetch" href="/javablog/public/assets/js/84.00e5bb72.js"><link rel="prefetch" href="/javablog/public/assets/js/85.2fc80282.js"><link rel="prefetch" href="/javablog/public/assets/js/86.434f8b88.js"><link rel="prefetch" href="/javablog/public/assets/js/87.ff41e6fa.js"><link rel="prefetch" href="/javablog/public/assets/js/88.a804116a.js"><link rel="prefetch" href="/javablog/public/assets/js/89.2396c399.js"><link rel="prefetch" href="/javablog/public/assets/js/9.8694b6a6.js"><link rel="prefetch" href="/javablog/public/assets/js/90.3aaf4069.js"><link rel="prefetch" href="/javablog/public/assets/js/91.3e227041.js"><link rel="prefetch" href="/javablog/public/assets/js/92.c45a6466.js"><link rel="prefetch" href="/javablog/public/assets/js/94.0b2a5c81.js"><link rel="prefetch" href="/javablog/public/assets/js/95.ed319873.js"><link rel="prefetch" href="/javablog/public/assets/js/96.0823a056.js"><link rel="prefetch" href="/javablog/public/assets/js/97.9a98082f.js"><link rel="prefetch" href="/javablog/public/assets/js/98.47a818c6.js"><link rel="prefetch" href="/javablog/public/assets/js/99.f57f5fe8.js">
+    <link rel="stylesheet" href="/javablog/public/assets/css/0.styles.0bd56f36.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>码路全栈开发</h3> <p class="description" data-v-59e6cb88>快来玩java全栈呀</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/javablog/public/" class="home-link router-link-active"><img src="/javablog/public/logo.png" alt="码路全栈开发" class="logo"> <span class="site-name">码路全栈开发</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/HarmonyOS/" class="nav-link"><i class="undefined"></i>
+  HarmonyOS
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/devops/" class="nav-link"><i class="undefined"></i>
+  devops
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javabase/" class="nav-link"><i class="undefined"></i>
+  javabase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/每日一题/" class="nav-link"><i class="undefined"></i>
+  每日一题
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/linux/" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/pybase/" class="nav-link"><i class="undefined"></i>
+  pybase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloud/" class="nav-link"><i class="undefined"></i>
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloudalibaba/" class="nav-link"><i class="undefined"></i>
+  springcloudalibaba
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/storage/" class="nav-link"><i class="undefined"></i>
+  storage
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/zhifu/" class="nav-link"><i class="undefined"></i>
+  zhifu
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/javablog/public/avatar.png" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    码路
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>172</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>43</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/javablog/public/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      全栈开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/categories/base/" class="nav-link"><i class="undefined"></i>
+  base
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/HarmonyOS/" class="nav-link"><i class="undefined"></i>
+  HarmonyOS
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/data analysis/" class="nav-link"><i class="undefined"></i>
+  data analysis
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/devops/" class="nav-link"><i class="undefined"></i>
+  devops
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javabase/" class="nav-link"><i class="undefined"></i>
+  javabase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/每日一题/" class="nav-link"><i class="undefined"></i>
+  每日一题
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/javaweb/" class="nav-link"><i class="undefined"></i>
+  javaweb
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/linux/" class="nav-link"><i class="undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/pybase/" class="nav-link"><i class="undefined"></i>
+  pybase
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/node/" class="nav-link"><i class="undefined"></i>
+  node
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/spider/" class="nav-link"><i class="undefined"></i>
+  spider
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloud/" class="nav-link"><i class="undefined"></i>
+  springcloud
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/springcloudalibaba/" class="nav-link"><i class="undefined"></i>
+  springcloudalibaba
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/ssm/" class="nav-link"><i class="undefined"></i>
+  ssm
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/storage/" class="nav-link"><i class="undefined"></i>
+  storage
+</a></li><li class="dropdown-item"><!----> <a href="/javablog/public/categories/zhifu/" class="nav-link"><i class="undefined"></i>
+  zhifu
+</a></li></ul></div></div><div class="nav-item"><a href="/javablog/public/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/javablog/public/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Docs
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/javablog/public/docs/theme-reco/" class="nav-link"><i class="undefined"></i>
+  vuepress-reco
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      Contact
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/recoluan" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>08-打包，压缩，解压缩，特殊符号</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>码路</span>
+          
+        <span data-v-59e6cb88>2017 - </span>
+        2024
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">08-打包，压缩，解压缩，特殊符号</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>码路</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>12/15/2028</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>devops</span></i></div></div> <div class="theme-reco-content content__default"><h3 id="_1-打包压缩"><a href="#_1-打包压缩" class="header-anchor">#</a> 1，打包压缩</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">tar</span>
+语法结构:
+    <span class="token function">tar</span> 参数选项  包的名称  文件1 文件2
+    <span class="token function">tar</span> 参数选项  框子 香蕉 黄瓜 茄子
+    <span class="token function">tar</span> zcvf test.tar.gz 文件/目录
+    <span class="token parameter variable">-z</span> 使用gzip打包
+    <span class="token parameter variable">-c</span> create 创建
+    <span class="token parameter variable">-v</span> verbose 显示过程
+    <span class="token parameter variable">-f</span> 指定文件名称
+
+    简写: <span class="token parameter variable">-zcf</span> 
+    
+解压缩:
+		 xf  解压压缩包
+		 <span class="token parameter variable">-C</span>  指定解压到哪个目录
+扩展:
+	     tf  查看压缩包
+	     <span class="token parameter variable">--exclude</span><span class="token operator">=</span>file <span class="token comment"># 排除文件</span>
+		 
+为什么压缩打包?
+<span class="token number">1</span>.节省空间
+<span class="token number">2</span>.方便备份传输 节省网络带宽
+<span class="token number">3</span>.减少磁盘IO
+
+环境准备:
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">0</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 a.log
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 b.log
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 c.log
+
+
+案例1.打包当前的a.log 为test.tar.gz
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># tar zcvf test.tar.gz a.log </span>
+a.log
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">4</span>
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 a.log
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 b.log
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 c.log
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">108</span> Jul <span class="token number">11</span> <span class="token number">11</span>:09 test.tar.gz
+
+
+案例2.打包a b c .log 三个文件为all.tar.gz
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># tar zcvf all.tar.gz a.log b.log c.log </span>
+a.log
+b.log
+c.log
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">8</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">125</span> Jul <span class="token number">11</span> <span class="token number">11</span>:10 all.tar.gz
+
+或者用*
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># tar zcvf all.tar.gz *.log</span>
+
+案例3.打包压缩目录 /etc/目录 为etc.tar.gz
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># tar zcvf etc.tar.gz /etc</span>
+
+案例4.打包多个目录 malu <span class="token builtin class-name">test</span>
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># mkdir malu test</span>
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># tar zcvf dir.tar.gz malu/ test</span>
+malu/
+test/
+<span class="token punctuation">[</span>root@malu:test<span class="token punctuation">]</span><span class="token comment"># ll</span>
+-rw-r--r-- <span class="token number">1</span> root root     <span class="token number">126</span> Jul <span class="token number">11</span> <span class="token number">11</span>:12 dir.tar.gz
+
+
+案例5.尽量到相对路径在打包，打包/etc/hosts /etc/passwd 
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># tar zcvf h.tar.gz /etc/hosts</span>
+tar: Removing leading `/' from member names
+/etc/hosts
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">8</span>
+-rwxr-xr-x <span class="token number">1</span> root root  <span class="token number">12</span> Jul <span class="token number">10</span> <span class="token number">18</span>:09 a.txt
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">168</span> Jul <span class="token number">11</span> <span class="token number">11</span>:13 h.tar.gz
+drwxr-xr-x <span class="token number">4</span> root root <span class="token number">144</span> Jul <span class="token number">11</span> <span class="token number">11</span>:12 <span class="token builtin class-name">test</span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># cd /etc/</span>
+<span class="token punctuation">[</span>root@malu:etc<span class="token punctuation">]</span><span class="token comment"># tar zcvf h.tar.gz hosts passwd</span>
+hosts
+<span class="token function">passwd</span>
+<span class="token punctuation">[</span>root@malu:etc<span class="token punctuation">]</span><span class="token comment"># ll h.tar.gz </span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">950</span> Jul <span class="token number">11</span> <span class="token number">11</span>:15 h.tar.gz
+
+
+
+案例6.打包a.txt文件为a.tar.gz 放在/opt/目录下   
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">8</span>
+-rwxr-xr-x <span class="token number">1</span> root root  <span class="token number">12</span> Jul <span class="token number">10</span> <span class="token number">18</span>:09 a.txt
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">168</span> Jul <span class="token number">11</span> <span class="token number">11</span>:13 h.tar.gz
+drwxr-xr-x <span class="token number">4</span> root root <span class="token number">144</span> Jul <span class="token number">11</span> <span class="token number">11</span>:12 <span class="token builtin class-name">test</span>
+
+打包
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># tar zcvf /opt/a.tar.gz  a.txt</span>
+a.txt
+
+查看/opt目录
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll /opt/</span>
+total <span class="token number">4</span>
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">10</span> <span class="token number">15</span>:53 <span class="token number">1</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">121</span> Jul <span class="token number">11</span> <span class="token number">11</span>:20 a.tar.gz
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">10</span> <span class="token number">16</span>:00 a.txt
+
+
+解压缩:
+案例1.解压c.tar.gz到当前的目录
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># rm -f a.txt</span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># tar xf c.tar.gz </span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">24</span>
+-rwxr-xr-x <span class="token number">1</span> root root    <span class="token number">12</span> Jul <span class="token number">10</span> <span class="token number">18</span>:09 a.txt
+
+案例2.解压/opt/a.tar.gz 到当前的目录
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">0</span>
+drwxr-xr-x <span class="token number">4</span> root root <span class="token number">144</span> Jul <span class="token number">11</span> <span class="token number">11</span>:12 <span class="token builtin class-name">test</span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll /opt/a.tar.gz </span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">121</span> Jul <span class="token number">11</span> <span class="token number">11</span>:20 /opt/a.tar.gz
+
+解压:
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># tar xf /opt/a.tar.gz   # 直接回车默认解压到当前的位置</span>
+
+
+案例3.解压test目录下的all.tar.gz 到/opt
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll test/all.tar.gz </span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">125</span> Jul <span class="token number">11</span> <span class="token number">11</span>:10 test/all.tar.gz
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># rm -rf /opt/*</span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll /opt/</span>
+total <span class="token number">0</span>
+
+方法1:
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># cd /opt/</span>
+<span class="token punctuation">[</span>root@malu:opt<span class="token punctuation">]</span><span class="token comment"># tar xf /root/test/all.tar.gz </span>
+<span class="token punctuation">[</span>root@malu:opt<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">0</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 a.log
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 b.log
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 c.log
+
+方法2: 使用参数-C 指定解压的位置
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># tar xf test/all.tar.gz -C /opt/</span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll /opt/</span>
+total <span class="token number">0</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 a.log
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 b.log
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">10</span>:33 c.log
+
+
+案例4.查看压缩包内的文件
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># tar tf test/all.tar.gz </span>
+a.log
+b.log
+c.log
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># tar tf test/dir.tar.gz </span>
+malu/
+test/
+
+
+
+centos排除文件打包:
+<span class="token punctuation">[</span>root@linuxnc malu<span class="token punctuation">]</span><span class="token comment"># touch a.txt b.txt c.txt</span>
+<span class="token punctuation">[</span>root@linuxnc malu<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">0</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:36 a.txt
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:36 b.txt
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:36 c.txt
+<span class="token punctuation">[</span>root@linuxnc malu<span class="token punctuation">]</span><span class="token comment"># tar zcvf all.tar.gz *.txt --exclude=c.txt</span>
+a.txt
+b.txt
+<span class="token punctuation">[</span>root@linuxnc malu<span class="token punctuation">]</span><span class="token comment"># tar tf all.tar.gz </span>
+a.txt
+b.txt
+
+
+<span class="token function">tar</span> 重点:
+打包:
+    <span class="token function">tar</span> <span class="token parameter variable">-zcvf</span>  test.tar.gz file1 <span class="token function">file</span> /etc/hosts
+    <span class="token function">tar</span> <span class="token parameter variable">-zcvf</span>  /opt/test.tar.gz file1 /etc/hosts
+解压:
+	<span class="token function">tar</span> xf  test.tar.gz 解压到当前的目录
+	<span class="token function">tar</span> xf /opt/test.tar.gz 解压到当前的目录
+	<span class="token function">tar</span> xf test.tar.gz <span class="token parameter variable">-C</span> /opt  指定解压到/opt目录
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br></div></div><h3 id="_2-zip打包压缩"><a href="#_2-zip打包压缩" class="header-anchor">#</a> 2，zip打包压缩</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>打包压缩:
+语法结构:		
+	  压缩打包: <span class="token function">zip</span>  all.zip file1  file2
+	  压缩包的位置: <span class="token function">zip</span> /opt/all.zip file1 file2
+	  解压：   <span class="token function">unzip</span> all.zip
+	  指定位置解压: <span class="token function">unzip</span> all.zip <span class="token parameter variable">-d</span> /opt/
+
+案例1.打包所有的文件为all.zip
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># zip all.zip *.txt</span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">4</span>
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 <span class="token number">1</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 <span class="token number">2</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 <span class="token number">3</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 <span class="token number">4</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">574</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 all.zip
+
+案例2.打包1.txt为test.zip 后放在/opt目录
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># zip /opt/test.zip 1.txt </span>
+  adding: <span class="token number">1</span>.txt <span class="token punctuation">(</span>stored <span class="token number">0</span>%<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll /opt/</span>
+total <span class="token number">4</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">160</span> Jul <span class="token number">11</span> <span class="token number">11</span>:49 test.zip
+
+案例3.解压all.zip到当前目录
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># rm -rf *.txt</span>
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">4</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">574</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 all.zip
+
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># unzip all.zip </span>
+Archive:  all.zip
+ extracting: <span class="token number">1</span>.txt                   
+ extracting: <span class="token number">2</span>.txt                   
+ extracting: <span class="token number">3</span>.txt                   
+ extracting: <span class="token number">4</span>.txt                   
+<span class="token punctuation">[</span>root@oldboy:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">4</span>
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 <span class="token number">1</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 <span class="token number">2</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 <span class="token number">3</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root   <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 <span class="token number">4</span>.txt
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">574</span> Jul <span class="token number">11</span> <span class="token number">11</span>:47 all.zip
+
+
+案例4.解压all.tar.gz 到/tmp目录下
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># unzip all.zip -d /tmp/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><h3 id="_3-特殊符号"><a href="#_3-特殊符号" class="header-anchor">#</a> 3，特殊符号</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token punctuation">;</span> 命令的分隔符 不管前面的命令执行是否成功，都会继续往后执行
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># touc 1.txt;mkdir malu;ls -l</span>
+-bash: touc: <span class="token builtin class-name">command</span> not found
+total <span class="token number">0</span>
+drwxr-xr-x <span class="token number">2</span> root root <span class="token number">6</span> Jul <span class="token number">11</span> <span class="token number">11</span>:53 malu
+
+<span class="token operator">&amp;&amp;</span> 命令的分隔符 前面的命令必须执行成功，才会执行后面的命令
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># touc 1.txt &amp;&amp; mkdir malu &amp;&amp; ls -l</span>
+-bash: touc: <span class="token builtin class-name">command</span> not found
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># touch 1.txt &amp;&amp; mkdir malu &amp;&amp; ls -l</span>
+total <span class="token number">0</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">0</span> Jul <span class="token number">11</span> <span class="token number">11</span>:55 <span class="token number">1</span>.txt
+drwxr-xr-x <span class="token number">2</span> root root <span class="token number">6</span> Jul <span class="token number">11</span> <span class="token number">11</span>:55 malu
+
+<span class="token function">ifdown</span> ens33 <span class="token operator">&amp;&amp;</span> <span class="token function">ifup</span> ens33
+
+<span class="token operator">||</span> 命令的分隔符 前面的命令必须执行失败，才会执行后面的命令
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># touc 1.txt || mkdir malu </span>
+-bash: touc: <span class="token builtin class-name">command</span> not found
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">0</span>
+drwxr-xr-x <span class="token number">2</span> root root <span class="token number">6</span> Jul <span class="token number">11</span> <span class="token number">11</span>:56 malu
+
+目录不存在则创建:
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># cd malu || mkdir malu</span>
+-bash: cd: oldboy: No such <span class="token function">file</span> or directory
+<span class="token punctuation">[</span>root@malu:~<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">0</span>
+drwxr-xr-x <span class="token number">2</span> root root <span class="token number">6</span> Jul <span class="token number">11</span> <span class="token number">11</span>:57 malu
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div></div></section> <footer class="page-edit"><!----> <!----></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9/%E6%89%93%E5%8C%85%EF%BC%8C%E5%8E%8B%E7%BC%A9%EF%BC%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9%EF%BC%8C%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7.html#_1-打包压缩" class="sidebar-link reco-side-_1-打包压缩" data-v-b57cc07c>1，打包压缩</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9/%E6%89%93%E5%8C%85%EF%BC%8C%E5%8E%8B%E7%BC%A9%EF%BC%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9%EF%BC%8C%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7.html#_2-zip打包压缩" class="sidebar-link reco-side-_2-zip打包压缩" data-v-b57cc07c>2，zip打包压缩</a></li><li class="level-3" data-v-b57cc07c><a href="/javablog/public/blogs/devops/%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9/%E6%89%93%E5%8C%85%EF%BC%8C%E5%8E%8B%E7%BC%A9%EF%BC%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9%EF%BC%8C%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7.html#_3-特殊符号" class="sidebar-link reco-side-_3-特殊符号" data-v-b57cc07c>3，特殊符号</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/javablog/public/assets/js/app.09bd957f.js" defer></script><script src="/javablog/public/assets/js/93.02187136.js" defer></script><script src="/javablog/public/assets/js/1.8cfd729d.js" defer></script><script src="/javablog/public/assets/js/165.a605c2cd.js" defer></script>
+  </body>
+</html>

@@ -176,7 +176,7 @@ ping: www.aa.comaaaaaaaaaa: Name or service not known
 
 
 
-### 3，sort命令
+### 3，sort命令，uniq命令，diff命令，alias命令
 
 作用：排序
 
@@ -231,7 +231,151 @@ f
 g
 h
 [root@malu:~]# echo {a..h}|xargs -n1 > b.txt
+[root@malu:~]# cat b.txt 
+afee
+h
+b342
+f
+cfweew
+dfe
+e
+g
+
+[root@malu:~]# sort b.txt 
+afee
+b342
+cfweew
+dfe
+e
+f
+g
+h
+
+案例2.按照数字进行正序排序
+[root@malu:~]# sort -n a.txt 
+1
+5
+6
+7
+8
+9
+10
+34
+123
+222
+456
+
+案例2.按照数字进行逆序排序
+[root@malu:~]# sort -rn a.txt 
+456
+222
+123
+34
+10
+9
+8
+7
+6
+5
+1
+
+案例3.数字在第2列
+[root@malu:~]# sort -nk2 a.txt 
+aaa 1
+aaa 5
+aaa 6
+aaa 7
+aaa 8
+aaa 9
+aaa 10
+aaa 34
+aaa 123
+aaa 222
+aaa 456
+
+案例4.统计成绩
+[root@malu:~]# sort -rnk2 count.txt
+熊征宇	100
+张恒源	100
+刘文言	100
+马诗凯	98
+陈柏松	98
+
+案例5.统计单词出现的数量
+[root@malu:~]# cat d.txt
+test
+malu
+mysql
+shell
+docker
+shell
+mysql
+test
+test
+
+第一步: 排序
+[root@malu:~]# cat d.txt|sort 
+docker
+mysql
+mysql
+malu
+shell
+shell
+test
+test
+test
+
+4.uniq -c 去重并统计
+
+第二步: 去重并统计重复的次数
+[root@malu:~]# cat d.txt|sort |uniq
+docker
+mysql
+malu
+shell
+test
+[root@malu:~]# cat d.txt|sort |uniq -c
+      1 docker
+      2 mysql
+      1 malu
+      2 shell
+      3 test
+      
+案例.统计日志文件中IP地址的TOP10
+[root@malu:~]# cat ip.txt|sort |uniq -c|sort -rn|head
+    189 157.66.48.147
+     76 219.82.2.110
+     53 123.112.20.52
+     53 117.132.188.205
+     44 143.198.0.139
+     36 180.98.131.167
+     36 113.215.189.214
+     36 113.215.188.106
+     21 113.215.188.107
+     19 113.215.188.108
+     
+扩展: 
+1.统计passwd中单词的数量
+2.统计passwd中每个字母出现的数量
+
+
+5.diff 比对两个文件的不同
+[root@malu:~]# cat 1.txt 
+www.malu.com
+www.baidu.com
+[root@malu:~]# cat 2.txt 
+www.test.com
+www.baidu.com
+[root@malu:~]# diff 1.txt 2.txt 
+1c1
+< www.malu.com
+---
+> www.test.com
+
+6.alias 别名 起外号 了解 /etc/profile
 ```
+
+
 
 
 

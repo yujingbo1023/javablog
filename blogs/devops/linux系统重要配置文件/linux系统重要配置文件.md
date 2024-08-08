@@ -273,7 +273,7 @@ www.a.shifen.com.	31	IN	A	39.156.66.14
 ;; MSG SIZE  rcvd: 101
 ```
 
-![1723112320837](assets/1723112320837.png)
+![1723112320837](./assets/1723112320837.png)
 
 
 
@@ -527,8 +527,6 @@ vim /etc/fstab
 
 
 ### 9，系统版本号
-
-
 
 centos中两个文件（/etc/issue   /etc/issue.net）中存放系统版本号，远程连接时会显示版本号：
 
