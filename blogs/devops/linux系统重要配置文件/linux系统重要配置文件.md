@@ -247,11 +247,35 @@ PREFIX=24
 GATEWAY=10.0.0.2
 DNS1=223.5.5.5				# 必须配置，会覆盖/etc/resolv.conf
 3.如果网卡中没有DNS，手动配置resolv.conf，重启网卡不会覆盖resolv.conf.
+
+# 使用谷歌DNS服务器解析域名
+[root@linux ~]# dig www.baidu.com @8.8.8.8
+
+; <<>> DiG 9.11.21-9.11.21-10.ky10 <<>> www.baidu.com @8.8.8.8
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8355
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;www.baidu.com.			IN	A
+
+;; ANSWER SECTION:
+www.baidu.com.		1077	IN	CNAME	www.a.shifen.com.
+www.a.shifen.com.	31	IN	A	39.156.66.18
+www.a.shifen.com.	31	IN	A	39.156.66.14
+
+;; Query time: 69 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8)
+;; WHEN: 四 8月 08 18:16:52 CST 2024
+;; MSG SIZE  rcvd: 101
 ```
 
-![1723044432490](./assets/1723044432490.png)
+![1723112320837](assets/1723112320837.png)
 
-![1723044472422](./assets/1723044472422.png)
+
 
 关于ubuntu网卡配置：
 
@@ -280,11 +304,9 @@ network:
 
 
 
-
-
 ### 5，开机自动执行命令
 
-配置文件：/etc/rc.local， 作用：作用: 开机自动执行里面的命令。
+配置文件：/etc/rc.local，作用: 开机自动执行里面的命令。
 
 ```bash
 注意: rc.local是一个软链接(windows的快捷方式)
