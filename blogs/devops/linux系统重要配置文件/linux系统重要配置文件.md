@@ -35,7 +35,11 @@ categories:
 ```bash
 [root@malu ~]# cat /etc/sysconfig/network-scripts/ifcfg-ens33
 TYPE=Ethernet		     # 网络类型 以太网(常用)  快速以太网(金融)
-BOOTPROTO=none		     # 配置网络类型 自动获取IP 静态IP=none 静态地址=static 动态地址dhcp(不用)
+BOOTPROTO=none		     # 配置网络类型 自动获取IP 静态IP=none 静态地址=static （物理机）
+ 						 # 动态地址dhcp(不用)  （公有云DHCP）（物理机）
+ 						 # 10.0.0.3-20 网站服务器
+ 						 # 10.0.0.21-40 数据库服务器
+ 						 # 10.0.0.41-45 备份服务器
 NAME=ens33				 # 网卡的名称
 UUID=e0f13fe3-0419-4c65-9ec5-a02adce36e98 # 硬件设备唯一标识 删除掉，因为后期还要克隆很多机器
 DEVICE=ens33			 # 硬件网卡的名称
@@ -184,7 +188,7 @@ malu
 
 ### 4，DNS的配置
 
-
+![1723044377005](assets/1723044377005.png)
 
 配置文件：/etc/resolv.conf， 作用：DNS的配置文件
 
@@ -245,7 +249,9 @@ DNS1=223.5.5.5				# 必须配置，会覆盖/etc/resolv.conf
 3.如果网卡中没有DNS，手动配置resolv.conf，重启网卡不会覆盖resolv.conf.
 ```
 
+![1723044432490](assets/1723044432490.png)
 
+![1723044472422](assets/1723044472422.png)
 
 关于ubuntu网卡配置：
 
