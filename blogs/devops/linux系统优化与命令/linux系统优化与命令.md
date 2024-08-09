@@ -123,6 +123,7 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos
 
 
 麒麟操作系统: 默认不需要修改。
+
 Ubuntu系统: 修改为国内的YUM仓库
 查看默认的仓库:
 root@ubuntu:~# apt-cache policy
@@ -177,10 +178,10 @@ ubuntu: 	  apt -y install  xx
 安装epel扩展仓库:
 Centos和麒麟需要安装，ubuntu不需要安装。
 麒麟安装epel扩展仓库:
-[root@oldboy ~]# wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
+[root@malu ~]# wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
 
 查看是否成功:
-[root@oldboy ~]# ll /etc/yum.repos.d/
+[root@malu ~]# ll /etc/yum.repos.d/
 total 8
 -rw-r--r-- 1 root root 664 Aug  4  2022 epel.repo
 -rw-r--r-- 1 root root 701 Sep  8  2022 kylin_x86_64.repo
@@ -202,7 +203,7 @@ ubuntu: apt -y install lrzsz cowsay sl
 
 ```bash
 安装扩展的仓库: epel
-[root@oldboy ~]# wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
+[root@malu ~]# wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
 ```
 
 
@@ -458,17 +459,31 @@ sz   # 将linux上的文件下载到windows
 
 ### 9，增加网卡
 
-![1723097587501](./assets/1723097587501.png)
+![1723170005022](./assets/1723170005022.png)
 
-![1723097610739](./assets/1723097610739.png)
+![1723170044928](./assets/1723170044928.png)
 
-![1723097644498](./assets/1723097644498.png)
+![1723170091363](./assets/1723170091363.png)
+
+![1723170113452](./assets/1723170113452.png)
+
+![1723170163714](./assets/1723170163714.png)
+
+![1723170186315](./assets/1723170186315.png)
+
+
+
+
 
 ![1723097758219](./assets/1723097758219.png)
 
 
 
-![1723097800174](./assets/1723097800174.png)
+
+
+
+
+![1723170268887](./assets/1723170268887.png)
 
 
 
@@ -517,7 +532,7 @@ reboot
 重启后关机，调整内存为1G
 ```
 
-![1723098036357](./assets/1723098036357.png)
+![1723170741737](./assets/1723170741737.png)
 
 
 
@@ -525,7 +540,7 @@ reboot
 
 ### 11，生成一个快照
 
-![1723098060606](./assets/1723098060606.png)
+![1723170814250](./assets/1723170814250.png)
 
 
 
@@ -533,7 +548,13 @@ reboot
 
 ### 12，克隆一台虚拟机
 
-链接克隆就可以
+链接克隆就可以：
+
+![1723171022169](./assets/1723171022169.png)
+
+![1723171132812](./assets/1723171132812.png)
+
+![1723171172759](./assets/1723171172759.png)
 
 ```bash
 backup服务器:
@@ -563,6 +584,16 @@ xshell复制已优化的会话修改信息
 
 5.快照
 ```
+
+
+
+xshell连接：
+
+![1723171576671](./assets/1723171576671.png)
+
+![1723171585273](./assets/1723171585273.png)
+
+
 
 
 
